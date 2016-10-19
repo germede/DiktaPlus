@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+    <!-- Material Design -->
+    <color name="color_accent">#b8ef13</color>
+    <color name="color_primary">#95bb24</color>
+    <color name="color_primary_dark">#95bb24</color>
+    <color name="primary_text_color">#000000</color>
+    <color name="window_background">#ffffff</color>
+    <color name="navigation_bar_color">#95bb24</color>
+
+    <!-- Colors -->
+    <color name="black">#000000</color>
+    <color name="blue">#0083df</color>
+    <color name="gray_dark">#1c1c1c</color>
+    <color name="gray_hint">#777777</color>
+    <color name="gray_medium">#a9a9a9</color>
+    <color name="gray_off">#999999</color>
+    <color name="gray_on">#333333</color>
+    <color name="red">#dd2123</color>
+    <color name="white">#ffffff</color>
+
+</resources>

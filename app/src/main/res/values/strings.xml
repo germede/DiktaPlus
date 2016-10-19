@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Global -->
+    <!--<string name="app_name">BaseProject</string>-->
+    <string name="action_settings">Configuración</string>
+    <string name="navigation_drawer_open">Abrir menú lateral</string>
+    <string name="navigation_drawer_close">Cerrar menú lateral</string>
+
+    <!-- Global errors -->
+    <string name="text_error_unknown">Error desconocido</string>
+
+    <!-- SplashActivity -->
+    <string name="button_exit">Salir</string>
+    <string name="button_go_to_play_store">Ir a Play Store</string>
+    <string name="message_new_api_version">Hay una nueva versión disponible. Para poder continuar usando la aplicación, es necesario actualizar. ¿Desea actualizar ahora?</string>
+
+    <!-- WebService -->
+    <string name="message_no_internet">Debe disponer de conexión a Internet para poder utilizar la aplicación</string>
+    <string name="message_server_error">Se ha producido un error en el servidor. Por favor, inténtelo más tarde</string>
+
+</resources>
