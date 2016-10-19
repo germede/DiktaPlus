@@ -10,4 +10,7 @@
     <!-- Size -->
     <dimen name="progressbar_size_big">50dp</dimen>
     <dimen name="progressbar_size_small">25dp</dimen>
+
+    <!-- Button -->
+    <dimen name="button_padding">16dp</dimen>
 </resources>
