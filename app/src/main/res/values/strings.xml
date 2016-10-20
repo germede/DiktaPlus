@@ -1,11 +1,17 @@
 <resources>
-    <!-- Login -->
+    <!-- Login & Signup -->
     <string name="username_or_email">Username or email</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot password?</string>
-    <string name="log_in">LOG IN</string>
-    <string name="sign_up">SIGN UP</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
     <string name="logo">Logo Diktaplus</string>
+    <string name="submit">Submit</string>
+    <string name="country">Country</string>
+    <string name="email">E-mail</string>
+    <string name="username">Username</string>
+
+
 
     <!-- Texts -->
     <string name="choose_language_and_level">Choose language and level</string>
@@ -27,5 +33,8 @@
     <!-- WebService -->
     <string name="message_no_internet">Debe disponer de conexión a Internet para poder utilizar la aplicación</string>
     <string name="message_server_error">Se ha producido un error en el servidor. Por favor, inténtelo más tarde</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

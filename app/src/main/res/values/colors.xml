@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<color name="colorPrimary">#3F51B5</color>-->
-    <!--<color name="colorPrimaryDark">#303F9F</color>-->
-    <!--<color name="colorAccent">#FF4081</color>-->
 
     <!-- Material Design -->
     <color name="color_accent">#b8ef13</color>
@@ -25,4 +22,5 @@
 
     <!-- Custom -->
     <color name="transparent">#00000000</color>
+
 </resources>

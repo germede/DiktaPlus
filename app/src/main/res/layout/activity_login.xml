@@ -7,13 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/fragment_login_container"
     tools:context="singularfactory.app.views.activities.LoginActivity">
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="singularfactory.app.views.fragments.LoginFragment"
-        android:id="@+id/fragment2"
-        android:layout_gravity="center"
-        tools:layout="@layout/fragment_login" />
 </FrameLayout>

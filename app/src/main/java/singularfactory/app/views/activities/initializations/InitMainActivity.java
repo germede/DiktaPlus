@@ -52,7 +52,6 @@ public class InitMainActivity {
      * LISTENER
      */
     public interface InitMainActivityListener {
-        void onClickFab(View view);
     }
 
     public void setInitMainActivityListener(InitMainActivityListener listener) {
