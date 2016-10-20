@@ -28,7 +28,6 @@ public class InitSplashActivity {
 
     public void initialize(View view) {
         this.view = view;
-        tvLogo    = view.findViewById(R.id.tvLogo);
         pbLoading = view.findViewById(R.id.pbLoading);
     }
 

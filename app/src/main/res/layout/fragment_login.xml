@@ -24,11 +24,12 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:ems="10"
             android:id="@+id/editText"
             android:layout_gravity="center_horizontal"
-            android:text="@string/username_or_email" />
+            android:autoText="true"
+            android:hint="@string/username_or_email" />
 
         <EditText
             android:layout_width="match_parent"
@@ -37,7 +38,7 @@
             android:ems="10"
             android:id="@+id/editText2"
             android:layout_gravity="center_horizontal"
-            android:text="@string/password" />
+            android:hint="@string/password" />
 
         <TextView
             android:layout_width="wrap_content"
