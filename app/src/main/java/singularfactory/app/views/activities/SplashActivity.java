@@ -97,7 +97,7 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
 //                registrationProgressBarRight.setVisibility(ProgressBar.GONE);
 
 //                getGlobalConfig();
-                launchMainActivity();
+                launchLoginActivity();
 
             }
         };
@@ -116,11 +116,11 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
         }
 
         //API VERSION OK. Load app
-        launchMainActivity();
+        launchLoginActivity();
     }
 
-    private void launchMainActivity() {
-        appCommon.getUtils().launchActivity(MainActivity.class, SplashActivity.this, null);          //Launch next activity
+    private void launchLoginActivity() {
+        appCommon.getUtils().launchActivity(LoginActivity.class, SplashActivity.this, null);          //Launch next activity
         overridePendingTransition(appCommon.SLIDE_IN_RIGHT, appCommon.SLIDE_OUT_LEFT);  //Show animation
         finish();   //Close this activity
     }
