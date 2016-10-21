@@ -13,12 +13,4 @@
     tools:context=".views.activities.MainActivity"
     tools:showIn="@layout/layout_activity_main">
 
-
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="singularfactory.app.views.fragments.LoginFragment"
-        android:id="@+id/fragment"
-        android:layout_gravity="center"
-        tools:layout="@layout/fragment_login" />
 </FrameLayout>

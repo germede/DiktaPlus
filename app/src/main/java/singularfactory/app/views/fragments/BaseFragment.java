@@ -7,17 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Óscar Adae Rodríguez on 18/08/2016.
- */
+import singularfactory.app.AppCommon;
+
 public class BaseFragment extends Fragment {
 
     public final static String TAG = BaseFragment.class.getSimpleName();
+    private AppCommon appCommon;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        appCommon       = AppCommon.getInstance();
     }
 
     @Nullable

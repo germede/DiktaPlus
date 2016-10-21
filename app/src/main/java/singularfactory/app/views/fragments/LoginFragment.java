@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import singularfactory.app.R;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends BaseFragment {
 
     public LoginFragment() {
         // Required empty public constructor

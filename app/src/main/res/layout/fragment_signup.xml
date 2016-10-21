@@ -70,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/log_in"
+            android:onClick="onClickReturnLogin"
             android:id="@+id/button2"
             style="@style/ButtonSecondaryColor"
             android:layout_gravity="center_horizontal|bottom" />

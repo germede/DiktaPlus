@@ -58,8 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/log_in"
+            android:onClick="onClickLogin"
             android:id="@+id/button"
-            android:onClick="onClickSignup"
             style="@style/ButtonPrimaryColor"
             android:layout_gravity="center_horizontal|bottom" />
 
@@ -67,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
+            android:onClick="onClickSignup"
             android:id="@+id/button2"
             style="@style/ButtonSecondaryColor"
             android:layout_gravity="center_horizontal|bottom" />

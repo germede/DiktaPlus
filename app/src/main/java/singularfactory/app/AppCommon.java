@@ -9,9 +9,6 @@ import singularfactory.app.presenters.PresenterSplash;
 import singularfactory.app.presenters.interfaces.IPresenterMain;
 import singularfactory.app.presenters.interfaces.IPresenterSplash;
 
-/**
- * Created by Óscar Adae Rodríguez on 08/05/2016.
- */
 public class AppCommon extends MultiDexApplication {
 
     //Singleton

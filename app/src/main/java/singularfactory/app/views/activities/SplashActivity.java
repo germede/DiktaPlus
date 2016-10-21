@@ -13,10 +13,6 @@ import singularfactory.app.Tags;
 import singularfactory.app.models.Model;
 import singularfactory.app.views.activities.initializations.InitSplashActivity;
 
-
-/**
- * Created by Óscar Adae Rodríguez on 08/05/2016.
- */
 public class SplashActivity extends BaseActivity implements InitSplashActivity.InitSplashActivityListener {
 
     private static final String TAG = SplashActivity.class.getName();

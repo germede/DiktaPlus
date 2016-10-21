@@ -14,7 +14,7 @@ android {
     productFlavors {
         _dev {
             applicationId "singularfactory.app"
-            resValue "string", "app_name", "BaseProjectSF (Dev)"
+            resValue "string", "app_name", "Diktaplus (dev)"
             buildConfigField "Boolean", "SHOW_LOGS", 'true'
             buildConfigField "String", "API_VERSION", '"1.0.0"'
             buildConfigField "String", "BASE_URL", '"http://"'
@@ -26,7 +26,7 @@ android {
         }
         _prod {
             applicationId "singularfactory.app"
-            resValue "string", "app_name", "BaseProjectSF"
+            resValue "string", "app_name", "Diktaplus"
             buildConfigField "Boolean", "SHOW_LOGS", 'false'
             buildConfigField "String", "API_VERSION", '"1.0.0"'
             buildConfigField "String", "BASE_URL", '"http://"'
