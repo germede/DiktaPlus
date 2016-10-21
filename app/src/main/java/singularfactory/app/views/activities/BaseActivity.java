@@ -177,15 +177,5 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Show snackBar on the bottom of screen
-     * @param view
-     * @param contentText
-     * @param actionText
-     * @param onClickListener
-     */
-    public static void showSnackBar(View view, String contentText, String actionText, View.OnClickListener onClickListener) {
-        Snackbar.make(view, contentText, Snackbar.LENGTH_LONG)
-                .setAction(actionText, onClickListener).show();
-    }
+
 }

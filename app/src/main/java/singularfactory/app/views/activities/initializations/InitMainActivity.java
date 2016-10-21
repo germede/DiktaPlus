@@ -35,20 +35,13 @@ public class InitMainActivity {
     public void initialize(View view) {
         this.view = view;
         toolbar           = (Toolbar)              view.findViewById(R.id.toolbar);
-        fab               = (FloatingActionButton) view.findViewById(R.id.fab);
         drawer            = (DrawerLayout)         view.findViewById(R.id.drawer_layout);
         navigationView    = (NavigationView)       view.findViewById(R.id.nav_view);
         coordinatorLayout = view.findViewById(R.id.coordinatorLayout);
     }
 
     public void initializeActions() {
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (listener != null)
-                    listener.onClickFab(view);
-            }
-        });
+
     }
 
     public void initializeCustomFonts() {
@@ -59,7 +52,6 @@ public class InitMainActivity {
      * LISTENER
      */
     public interface InitMainActivityListener {
-        void onClickFab(View view);
     }
 
     public void setInitMainActivityListener(InitMainActivityListener listener) {

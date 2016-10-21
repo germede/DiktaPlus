@@ -119,10 +119,5 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
     }
     /****/
 
-    /** InitMainActivity.InitMainActivityListener **/
-    @Override
-    public void onClickFab(View view) {
-        BaseActivity.showSnackBar(itemView.coordinatorLayout, "onClickFab", "", null);
-    }
-    /****/
+
 }

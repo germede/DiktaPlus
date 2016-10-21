@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import singularfactory.app.R;
 
-public class LoginFragment extends BaseFragment {
+public class SignupFragment extends BaseFragment {
 
-    public LoginFragment() {
+    public SignupFragment() {
         // Required empty public constructor
     }
 
@@ -22,7 +22,7 @@ public class LoginFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_signup, container, false);
         return view;
     }
 

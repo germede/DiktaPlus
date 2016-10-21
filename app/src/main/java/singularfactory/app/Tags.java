@@ -1,8 +1,5 @@
 package singularfactory.app;
 
-/**
- * Created by Óscar Adae Rodríguez on 08/05/2016.
- */
 public class Tags {
 
     /** SharedPreferences **/

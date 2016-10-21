@@ -1,31 +1,41 @@
 <resources>
-    <!-- Login -->
+    <!-- Login & Signup -->
     <string name="username_or_email">Username or email</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot password?</string>
-    <string name="log_in">LOG IN</string>
-    <string name="sign_up">SIGN UP</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
     <string name="logo">Logo Diktaplus</string>
+    <string name="submit">Submit</string>
+    <string name="country">Country</string>
+    <string name="email">E-mail</string>
+    <string name="username">Username</string>
+
+    <!-- Sidebar items -->
+    <string name="dictation">Dictation</string>
+    <string name="ranking">Ranking</string>
+    <string name="friends">Friends</string>
+    <string name="settings">Settings</string>
+    <string name="log_out">Log out</string>
 
     <!-- Texts -->
     <string name="choose_language_and_level">Choose language and level</string>
 
     <!-- Global -->
-    <!--<string name="app_name">BaseProject</string>-->
-    <string name="action_settings">Configuración</string>
-    <string name="navigation_drawer_open">Abrir menú lateral</string>
-    <string name="navigation_drawer_close">Cerrar menú lateral</string>
+    <string name="navigation_drawer_open">Open sidebar</string>
+    <string name="navigation_drawer_close">Close sidebar</string>
 
     <!-- Global errors -->
-    <string name="text_error_unknown">Error desconocido</string>
+    <string name="text_error_unknown">Unknown error</string>
 
     <!-- SplashActivity -->
-    <string name="button_exit">Salir</string>
-    <string name="button_go_to_play_store">Ir a Play Store</string>
-    <string name="message_new_api_version">Hay una nueva versión disponible. Para poder continuar usando la aplicación, es necesario actualizar. ¿Desea actualizar ahora?</string>
+    <string name="button_exit">Exit</string>
+    <string name="button_go_to_play_store">Play Store</string>
+    <string name="message_new_api_version">There is a new available version. Do you want to download it?</string>
 
     <!-- WebService -->
-    <string name="message_no_internet">Debe disponer de conexión a Internet para poder utilizar la aplicación</string>
-    <string name="message_server_error">Se ha producido un error en el servidor. Por favor, inténtelo más tarde</string>
+    <string name="message_no_internet">You should have an Internet connection, in order to use this application</string>
+    <string name="message_server_error">There was a server error. Please try again later</string>
+
 
 </resources>
