@@ -17,8 +17,7 @@ import java.util.List;
 import singularfactory.app.R;
 
 public class TextsFragment extends BaseFragment {
-
-    ViewGroup rootView;
+    View view;
     ExpandableListView texts;
     ExpandableListAdapter textsListAdapter;
     List<String> listDataHeader;
@@ -69,24 +68,20 @@ public class TextsFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        texts = (ExpandableListView)rootView.findViewById(R.id.textsList);
-        prepareListData();
-
-        textsListAdapter = new ExpandableListAdapter(this.getContext(), listDataHeader, listDataChild);
-
-        texts.setAdapter(textsListAdapter);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = container;
+        view = inflater.inflate(R.layout.fragment_texts, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_texts, container, false);
+        texts = (ExpandableListView)view.findViewById(R.id.textsList);
+        prepareListData();
+        textsListAdapter = new ExpandableListAdapter(this.getContext(), listDataHeader, listDataChild);
+        texts.setAdapter(textsListAdapter);
+
         return view;
     }
-
 
 
     class ExpandableListAdapter extends BaseExpandableListAdapter {

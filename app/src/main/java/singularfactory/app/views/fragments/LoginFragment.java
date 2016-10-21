@@ -28,10 +28,4 @@ public class LoginFragment extends BaseFragment {
         return view;
     }
 
-    public void onClickLogin(View view) {
-        Intent intent = new Intent(this.getActivity(), MainActivity.class);
-        //intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }
-
 }

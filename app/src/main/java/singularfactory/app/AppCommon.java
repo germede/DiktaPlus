@@ -4,10 +4,12 @@ import android.support.multidex.MultiDexApplication;
 
 import singularfactory.app.common.Utils;
 import singularfactory.app.models.interfaces.IModel;
+import singularfactory.app.models.interfaces.IModelTexts;
 import singularfactory.app.presenters.PresenterMain;
 import singularfactory.app.presenters.PresenterSplash;
 import singularfactory.app.presenters.interfaces.IPresenterMain;
 import singularfactory.app.presenters.interfaces.IPresenterSplash;
+import singularfactory.app.presenters.interfaces.IPresenterTexts;
 
 public class AppCommon extends MultiDexApplication {
 
@@ -49,51 +51,47 @@ public class AppCommon extends MultiDexApplication {
     /************/
 
     private IModel model;
-
     public IModel getModel(){
         return model;
     }
-
     public void setModel(IModel model){
         this.model = model;
     }
+
+    private IModelTexts modelTexts;
+    public IModelTexts getModelTexts(){
+        return modelTexts;
+    }
+    public void setModelTexts(IModelTexts modelTexts){
+        this.modelTexts = modelTexts;
+    }
+
 
     /****************/
     /** PRESENTERS **/
     /****************/
 
     private IPresenterMain presenterMain;
-    private IPresenterSplash presenterSplash;
-
-    //PresenterMain
     public IPresenterMain getPresenterMain() {
-        if (presenterMain == null)
-            presenterMain = new PresenterMain();
-
+        if (presenterMain == null) presenterMain = new PresenterMain();
         return presenterMain;
     }
+    public void setPresenterMain(IPresenterMain presenterMain) { this.presenterMain = presenterMain;}
 
-    public void setPresenterMain(IPresenterMain presenterMain) {
-        this.presenterMain = presenterMain;
-    }
-
-    public void removePresenterMain() {presenterMain = null;}
-
-    //PresenterSplash
+    private IPresenterSplash presenterSplash;
     public IPresenterSplash getPresenterSplash() {
-        if (presenterSplash == null)
-            presenterSplash = new PresenterSplash();
-
+        if (presenterSplash == null) presenterSplash = new PresenterSplash();
         return presenterSplash;
     }
+    public void setPresenterSplash(IPresenterSplash presenterSplash) { this.presenterSplash = presenterSplash; }
 
-    public void setPresenterSplash(IPresenterSplash presenterSplash) {
-        this.presenterSplash = presenterSplash;
+    private IPresenterTexts presenterTexts;
+    public IPresenterTexts getPresenterTexts() {
+        if (presenterTexts == null) presenterTexts = new PresenterTexts();
+        return presenterTexts;
     }
+    public void setPresenterTexts(IPresenterTexts presenterTexts) { this.presenterTexts = presenterTexts; }
 
-    public void removePresenterSplash() {
-        presenterSplash = null;
-    }
 
     /***************/
     /** UTILITIES **/
