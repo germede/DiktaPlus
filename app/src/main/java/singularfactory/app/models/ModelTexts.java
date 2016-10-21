@@ -8,19 +8,16 @@ import singularfactory.app.common.Logs;
 import singularfactory.app.models.interfaces.IModelTexts;
 
 public class ModelTexts implements IModelTexts {
-
     private static final String TAG = ModelTexts.class.getSimpleName();
-
     private static ModelTexts singleton = null;
+    private final AppCommon appCommon   = AppCommon.getInstance();
 
     public ModelTexts() {
         //constructor
     }
 
     public ModelTexts getInstance() {
-        if (singleton == null) {
-            singleton = new ModelTexts();
-        }
+        if (singleton == null) singleton = new ModelTexts();
         return singleton;
     }
 
@@ -50,16 +47,13 @@ public class ModelTexts implements IModelTexts {
 
     @Override
     public void onResponseOK(Object object, String tag, JSONArray json) throws JSONException {
-
         Logs.SystemLog(TAG + " - onResponseOK");
-
         switch (tag) {
             case "vehicleList":
-                AppCommon.getInstance().getPresenterTexts().setVehicleNames(object,json);
+                appCommon.getPresenterTexts().setTextsList(object,json);
                 break;
             default:
                 break;
         }
     }
-
 }

@@ -12,7 +12,7 @@ import singularfactory.app.AppCommon;
 public class BaseFragment extends Fragment {
 
     public final static String TAG = BaseFragment.class.getSimpleName();
-    private AppCommon appCommon;
+    AppCommon appCommon;
 
 
     @Override

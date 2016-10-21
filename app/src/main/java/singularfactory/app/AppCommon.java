@@ -3,10 +3,12 @@ package singularfactory.app;
 import android.support.multidex.MultiDexApplication;
 
 import singularfactory.app.common.Utils;
+import singularfactory.app.models.ModelTexts;
 import singularfactory.app.models.interfaces.IModel;
 import singularfactory.app.models.interfaces.IModelTexts;
 import singularfactory.app.presenters.PresenterMain;
 import singularfactory.app.presenters.PresenterSplash;
+import singularfactory.app.presenters.PresenterTexts;
 import singularfactory.app.presenters.interfaces.IPresenterMain;
 import singularfactory.app.presenters.interfaces.IPresenterSplash;
 import singularfactory.app.presenters.interfaces.IPresenterTexts;
@@ -59,7 +61,8 @@ public class AppCommon extends MultiDexApplication {
     }
 
     private IModelTexts modelTexts;
-    public IModelTexts getModelTexts(){
+    public IModelTexts getModelTexts() {
+        if (modelTexts == null) modelTexts = new ModelTexts();
         return modelTexts;
     }
     public void setModelTexts(IModelTexts modelTexts){

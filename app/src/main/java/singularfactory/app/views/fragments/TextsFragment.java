@@ -9,12 +9,19 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import singularfactory.app.AppCommon;
 import singularfactory.app.R;
+import singularfactory.app.presenters.PresenterTexts;
 
 public class TextsFragment extends BaseFragment {
     View view;
@@ -22,6 +29,7 @@ public class TextsFragment extends BaseFragment {
     ExpandableListAdapter textsListAdapter;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
+    PresenterTexts presenterTexts;
 
     public TextsFragment() {
         // Required empty public constructor
@@ -66,9 +74,7 @@ public class TextsFragment extends BaseFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,8 +85,18 @@ public class TextsFragment extends BaseFragment {
         prepareListData();
         textsListAdapter = new ExpandableListAdapter(this.getContext(), listDataHeader, listDataChild);
         texts.setAdapter(textsListAdapter);
+        appCommon.getPresenterTexts().getTextsList(this,"GET textsList", Request.Method.GET,"http://192.168.1.106:8000/api/texts/ES/Easy","Cargando lista de textos...");
 
         return view;
+    }
+
+    public void setTextsList(JSONArray texts) {
+        Context context = getContext();
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
 

@@ -28,21 +28,19 @@ public class PresenterTexts implements IPresenterTexts {
     /*******************/
     /**** API CALLS ****/
     /*******************/
-    public void getVehicleList(final Object object, final String tagRequest, int verb, String url, String dialogMessage){
-        volleyAsynctask(object,tagRequest,verb,url,"Cargando lista de vehiculos...",true);
+    @Override
+    public void getTextsList(final Object object, final String tagRequest, int verb, String url, String dialogMessage){
+        volleyAsynctask(object,tagRequest,verb,url,"Cargando lista de textos...",true);
     }
+
     /*******************/
     /** API RESPONSES **/
     /*******************/
-
     @Override
-    public void setVehicleNames(Object object, JSONArray vehicles) {
+    public void setTextsList(Object object, JSONArray vehicles) {
         TextsFragment textsFragment = (TextsFragment) object;
-        try {
-            textsFragment.setVehicleNames(vehicles);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        textsFragment.setTextsList(vehicles);
+
     }
 
     /** Response error **/
@@ -55,7 +53,6 @@ public class PresenterTexts implements IPresenterTexts {
     /** VOLLEY ASYNCTASK **/
     /**********************/
     private void volleyAsynctask(final Object object, final String tagRequest, int verb, String url, String dialogMessage, boolean showDialog, final String... params) {
-
         if (showDialog) {
             TextsFragment textsFragment = (TextsFragment) object;
             pDialog = new ProgressDialog(textsFragment.getContext());
@@ -65,20 +62,17 @@ public class PresenterTexts implements IPresenterTexts {
             pDialog.setCancelable(false);
             pDialog.show();
         }
-
         final AppCommon appCommon   = AppCommon.getInstance();
         final JsonArrayRequest request = new JsonArrayRequest(verb, url, new Response.Listener<JSONArray>() {
-
             @Override
             public void onResponse(JSONArray jsonArray) {
                 Log.i(TAG + "_" + tagRequest, "OK");
-
                 //Dismiss dialog
                 if (pDialog != null && pDialog.isShowing())
                     pDialog.dismiss();
 
                 try {
-                    AppCommon.getInstance().getModelTexts().onResponse(object, jsonArray, tagRequest, 200);
+                    appCommon.getModelTexts().onResponse(object, jsonArray, tagRequest, 200);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -111,7 +105,7 @@ public class PresenterTexts implements IPresenterTexts {
                     pDialog.dismiss();
 
                 try {
-                    AppCommon.getInstance().getModelTexts().onResponse(object, new JSONArray(), tagRequest, httpStatus);
+                    appCommon.getModelTexts().onResponse(object, new JSONArray(), tagRequest, httpStatus);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -121,20 +115,16 @@ public class PresenterTexts implements IPresenterTexts {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Accept", "application/json");
-//                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("Content-Type", "application/json; charset=utf-8");
 //                headers.put("Authorization", "Bearer " + AppMediator.getInstance().sharedGetValue(AppMediator.getInstance().getApplicationContext(), Tags.SHARED_ACCESS_TOKEN, 1));
-
                 return headers;
             }
-
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
-
                 return parameters;
             }
         };
-
         //Adding request to request queue
         Volley.getInstance(appCommon.getApplicationContext()).addToRequestQueue(request, tagRequest);
     }
