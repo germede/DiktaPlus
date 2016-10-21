@@ -1,5 +1,6 @@
 package singularfactory.app.views.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import singularfactory.app.R;
+import singularfactory.app.views.activities.MainActivity;
 
 public class LoginFragment extends BaseFragment {
 
@@ -26,5 +28,10 @@ public class LoginFragment extends BaseFragment {
         return view;
     }
 
+    public void onClickLogin(View view) {
+        Intent intent = new Intent(this.getActivity(), MainActivity.class);
+        //intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
 
 }

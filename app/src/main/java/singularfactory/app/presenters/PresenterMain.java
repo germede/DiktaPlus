@@ -29,7 +29,9 @@ public class PresenterMain implements IPresenterMain {
     /*******************/
     /**** API CALLS ****/
     /*******************/
-
+    public void getTexts (String language, String difficulty) {
+        Log.e(TAG,"wii");
+    }
 
     /*******************/
     /** API RESPONSES **/

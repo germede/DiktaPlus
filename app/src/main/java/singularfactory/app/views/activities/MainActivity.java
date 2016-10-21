@@ -2,6 +2,7 @@ package singularfactory.app.views.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,12 +13,15 @@ import singularfactory.app.AppCommon;
 import singularfactory.app.R;
 import singularfactory.app.models.Model;
 import singularfactory.app.views.activities.initializations.InitMainActivity;
+import singularfactory.app.views.fragments.LoginFragment;
+import singularfactory.app.views.fragments.TextsFragment;
 
 public class MainActivity extends BaseActivity implements InitMainActivity.InitMainActivityListener, NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     public InitMainActivity itemView;
+    Fragment textsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,9 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
 
         initialize(findViewById(android.R.id.content));
         initializeActionBarAndToggle();
+
+        textsFragment = new TextsFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_main_container, textsFragment).commit();
     }
 
     @Override
@@ -99,17 +106,13 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_dictation) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_ranking) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_friends) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_settings) {
 
         }
 

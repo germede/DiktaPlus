@@ -31,12 +31,6 @@ public class LoginActivity extends BaseActivity {
         transaction.commit();
     }
 
-    public void onClickLogin(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        //intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }
-
     public void onClickReturnLogin(View view) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
