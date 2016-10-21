@@ -3,6 +3,7 @@ package singularfactory.app.views.fragments;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,18 +86,18 @@ public class TextsFragment extends BaseFragment {
         prepareListData();
         textsListAdapter = new ExpandableListAdapter(this.getContext(), listDataHeader, listDataChild);
         texts.setAdapter(textsListAdapter);
-        appCommon.getPresenterTexts().getTextsList(this,"GET textsList", Request.Method.GET,"http://192.168.1.106:8000/api/texts/ES/Easy","Cargando lista de textos...");
+        appCommon.getPresenterTexts().getTextsList(this,"GET Texts", Request.Method.GET,"http://192.168.1.106:8000/api/texts/ES/Easy","Cargando lista de textos...");
 
         return view;
     }
 
-    public void setTextsList(JSONArray texts) {
+    public void setTextsList(String texts) {
         Context context = getContext();
-        CharSequence text = "Hello toast!";
-        int duration = Toast.LENGTH_SHORT;
+        int duration = Toast.LENGTH_LONG;
 
-        Toast toast = Toast.makeText(context, text, duration);
+        Toast toast = Toast.makeText(context, texts, duration);
         toast.show();
+        Log.e(TAG,"hola");
     }
 
 

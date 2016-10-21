@@ -1,5 +1,7 @@
 package singularfactory.app.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -24,22 +26,25 @@ public class ModelTexts implements IModelTexts {
     @Override
     public void onResponse(Object object, JSONArray result, String tag, int httpStatus) throws JSONException {
         if (httpStatus == 200) {
-            Logs.SystemLog(tag + " - OK 200");
+            Log.i(tag, " - OK 200");
             onResponseOK(object, tag, result);
         } else if (httpStatus == 401) {
-            Logs.SystemLog(tag + " - ERROR 401");
+            Log.e(tag, " - ERROR 401");
         } else if (httpStatus == 400) {
-            Logs.SystemLog(tag + " - ERROR 400");
+            Log.e(tag, " - ERROR 400");
             onResponseError(object, tag, result.toString());
         } else {
-            Logs.SystemLog(tag + " - ERROR 500");
+            Log.e(tag, " - ERROR 500");
         }
     }
 
     @Override
     public void onResponseError(Object object, String tag, String json) {
-        Logs.SystemLog(TAG + " - onResponseError");
+        Log.e(TAG, " - onResponseError");
         switch (tag) {
+            case "GET Texts":
+                appCommon.getPresenterTexts().responseError(object,tag);
+                break;
             default:
                 break;
         }
@@ -47,9 +52,10 @@ public class ModelTexts implements IModelTexts {
 
     @Override
     public void onResponseOK(Object object, String tag, JSONArray json) throws JSONException {
-        Logs.SystemLog(TAG + " - onResponseOK");
+        Log.i(TAG, " - onResponseOK");
         switch (tag) {
-            case "vehicleList":
+            case "GET Texts":
+                Log.e(TAG, " - onResponseOKasdf");
                 appCommon.getPresenterTexts().setTextsList(object,json);
                 break;
             default:
