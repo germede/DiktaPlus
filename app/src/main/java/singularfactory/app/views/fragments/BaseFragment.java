@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import singularfactory.app.AppCommon;
 
@@ -14,6 +15,9 @@ public class BaseFragment extends Fragment {
     public final static String TAG = BaseFragment.class.getSimpleName();
     AppCommon appCommon;
 
+    public void showErrorToast(String errorMessage) {
+        Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

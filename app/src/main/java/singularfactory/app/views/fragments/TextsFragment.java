@@ -57,9 +57,6 @@ public class TextsFragment extends BaseFragment {
         textsList.setAdapter(textsListAdapter);
     }
 
-    public void showErrorToast(String errorMessage) {
-        Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState);}
