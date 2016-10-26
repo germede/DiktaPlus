@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,18 +27,22 @@ import singularfactory.app.presenters.PresenterTexts;
 
 public class GameFragment extends BaseFragment {
     View view;
-    TextView pressTheButton;
+    TextView pressTheButtonLabel;
     ImageButton playButton;
+    EditText gameTextEdit;
 
     public GameFragment() {
         // Required empty public constructor
     }
 
     public void play() {
-        pressTheButton = (TextView)view.getRootView().findViewById(R.id.press_the_button_label);
+        pressTheButtonLabel = (TextView)view.getRootView().findViewById(R.id.press_the_button_label);
         playButton = (ImageButton) view.getRootView().findViewById(R.id.play_button);
-        pressTheButton.setVisibility(View.GONE);
+        gameTextEdit = (EditText) view.getRootView().findViewById(R.id.game_text_edit);
+
+        pressTheButtonLabel.setVisibility(View.GONE);
         playButton.setImageResource(android.R.drawable.ic_media_pause);
+        gameTextEdit.setVisibility(View.VISIBLE);
 
     }
 

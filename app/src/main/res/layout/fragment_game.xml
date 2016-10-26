@@ -13,6 +13,14 @@
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/game_text_edit"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.31"
+        android:visibility="gone" />
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
