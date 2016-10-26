@@ -4,7 +4,10 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +36,11 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     TextView pressTheButtonLabel;
     ImageButton playButton;
     EditText gameTextEdit;
-    String textToPlay;
+
     TextToSpeech tts;
+    String textToPlay;
+    String [] words;
+    int wordIndex;
 
 
     @Override
@@ -45,7 +51,9 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This language is not supported");
             } else {
+                tts.speak("hello",TextToSpeech.QUEUE_ADD,null);
                 dictate();
+                dictateNextWord();
             }
         } else {
             Log.e("TTS", "Initilization failed");
@@ -53,10 +61,19 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void dictate () {
-        String [] words = textToPlay.split(" ");
-        for (int i = 0; i < words.length; i++) {
-            
+        wordIndex = 0;
+        words = textToPlay.split(" ");
+    }
+
+    public void dictateNextWord() {
+        if (wordIndex < words.length) {
+            tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
+            wordIndex++;
         }
+    }
+
+    public void stopDictation() {
+
     }
 
     public GameFragment() {
@@ -71,6 +88,19 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         pressTheButtonLabel.setVisibility(View.GONE);
         playButton.setImageResource(android.R.drawable.ic_media_pause);
         gameTextEdit.setVisibility(View.VISIBLE);
+        gameTextEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.e(TAG, s.toString());
+                if (s.toString().charAt(s.length()-1) == ' ') {
+                    dictateNextWord();
+                }
+            }
+        });
 
         tts = new TextToSpeech(getContext(),this);
     }

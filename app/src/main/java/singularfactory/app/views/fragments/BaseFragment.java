@@ -36,6 +36,7 @@ public class BaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+
     /********************/
     /** PUBLIC METHODS **/
     /********************/
