@@ -30,6 +30,7 @@ import java.util.Locale;
 
 import singularfactory.app.R;
 import singularfactory.app.presenters.PresenterTexts;
+import singularfactory.app.views.activities.MainActivity;
 
 public class GameFragment extends BaseFragment implements TextToSpeech.OnInitListener {
     View view;
@@ -46,21 +47,19 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     @Override
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
-            int result = tts.setLanguage(Locale.US);
+            int result = tts.setLanguage(new Locale("es"));
             if (result == TextToSpeech.LANG_MISSING_DATA
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This language is not supported");
             } else {
-                tts.speak("hello",TextToSpeech.QUEUE_ADD,null);
-                dictate();
-                dictateNextWord();
+                startDictation();
             }
         } else {
             Log.e("TTS", "Initilization failed");
         }
     }
 
-    public void dictate () {
+    public void startDictation () {
         wordIndex = 0;
         words = textToPlay.split(" ");
     }
@@ -73,7 +72,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void stopDictation() {
-
+        ((MainActivity)getActivity()).onClickStop();
     }
 
     public GameFragment() {
@@ -87,6 +86,12 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
         pressTheButtonLabel.setVisibility(View.GONE);
         playButton.setImageResource(android.R.drawable.ic_media_pause);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopDictation();
+            }
+        });
         gameTextEdit.setVisibility(View.VISIBLE);
         gameTextEdit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -95,7 +100,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                Log.e(TAG, s.toString());
                 if (s.toString().charAt(s.length()-1) == ' ') {
                     dictateNextWord();
                 }

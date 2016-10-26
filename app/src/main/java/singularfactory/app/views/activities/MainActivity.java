@@ -95,6 +95,13 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
         gameFragment.play();
     }
 
+    public void onClickStop() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+        transaction.replace(R.id.fragment_main_container, textsFragment);
+        transaction.commit();
+    }
+
     /** Settings **/
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
