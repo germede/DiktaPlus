@@ -95,16 +95,16 @@
     <style name="ButtonLeft">
         <item name="android:background">@color/transparent</item>
         <item name="android:src">@android:drawable/ic_media_ff</item>
-        <item name="android:layout_height">54dp</item>
-        <item name="android:layout_width">54dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_width">35dp</item>
     </style>
 
     <!-- Button right -->
     <style name="ButtonRight">
         <item name="android:background">@color/transparent</item>
         <item name="android:src">@android:drawable/ic_media_rew</item>
-        <item name="android:layout_height">54dp</item>
-        <item name="android:layout_width">54dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_width">35dp</item>
     </style>
 
 </resources>

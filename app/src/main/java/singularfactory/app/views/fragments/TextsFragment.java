@@ -10,21 +10,18 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import singularfactory.app.AppCommon;
 import singularfactory.app.R;
 import singularfactory.app.presenters.PresenterTexts;
 
@@ -195,7 +192,7 @@ public class TextsFragment extends BaseFragment {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this._context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.fragment_texts_listitem, null);
+                convertView = infalInflater.inflate(R.layout.fragment_texts_child, null);
             }
 
             TextView txtListChild = (TextView) convertView
@@ -233,7 +230,7 @@ public class TextsFragment extends BaseFragment {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this._context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.fragment_texts_listgroup, null);
+                convertView = infalInflater.inflate(R.layout.fragment_texts_head, null);
             }
 
             TextView lblListHeader = (TextView) convertView
