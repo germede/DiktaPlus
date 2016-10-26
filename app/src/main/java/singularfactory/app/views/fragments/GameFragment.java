@@ -3,7 +3,6 @@ package singularfactory.app.views.fragments;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +20,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import singularfactory.app.AppCommon;
 import singularfactory.app.R;
 import singularfactory.app.presenters.PresenterTexts;
 
-public class TextsFragment extends BaseFragment {
+public class GameFragment extends BaseFragment {
     View view;
     ExpandableListView textsList;
     ExpandableListAdapter textsListAdapter;
@@ -33,7 +31,7 @@ public class TextsFragment extends BaseFragment {
     HashMap<String, List<String>> listDataChild;
     PresenterTexts presenterTexts;
 
-    public TextsFragment() {
+    public GameFragment() {
         // Required empty public constructor
     }
     private void prepareTextsList() {

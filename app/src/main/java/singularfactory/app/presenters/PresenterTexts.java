@@ -30,17 +30,16 @@ public class PresenterTexts implements IPresenterTexts {
     /*******************/
     @Override
     public void getTextsList(final Object object, final String tagRequest, int verb, String url, String dialogMessage){
-        volleyAsynctask(object,tagRequest,verb,url,"Cargando lista de textos...",true);
-        Log.e(TAG,"hola");
+        volleyAsynctask(object,tagRequest,verb,url,"Loading texts list...",true);
     }
 
     /*******************/
     /** API RESPONSES **/
     /*******************/
     @Override
-    public void setTextsList(Object object, JSONArray texts) {
+    public void setTextsList(Object object, JSONArray texts) throws JSONException {
         TextsFragment textsFragment = (TextsFragment) object;
-        textsFragment.setTextsList("guay");
+        textsFragment.setTextsList(texts);
 
     }
 
@@ -48,7 +47,7 @@ public class PresenterTexts implements IPresenterTexts {
     @Override
     public void responseError(Object object, String message) {
         TextsFragment textsFragment = (TextsFragment) object;
-        textsFragment.setTextsList(message);
+        textsFragment.showErrorToast(message);
     }
 
     /**********************/

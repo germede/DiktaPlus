@@ -55,7 +55,6 @@ public class ModelTexts implements IModelTexts {
         Log.i(TAG, " - onResponseOK");
         switch (tag) {
             case "GET Texts":
-                Log.e(TAG, " - onResponseOKasdf");
                 appCommon.getPresenterTexts().setTextsList(object,json);
                 break;
             default:

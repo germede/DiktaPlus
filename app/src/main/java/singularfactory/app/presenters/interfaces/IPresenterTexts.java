@@ -2,6 +2,7 @@ package singularfactory.app.presenters.interfaces;
 
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 public interface IPresenterTexts {
 
@@ -9,7 +10,7 @@ public interface IPresenterTexts {
 
     /** API CALLS **/
 
-    void setTextsList(Object object, JSONArray vehicles);
+    void setTextsList(Object object, JSONArray vehicles) throws JSONException;
 
     /** API RESPONSES **/
     void responseError(Object object, String message);

@@ -15,14 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Best score"
-        android:id="@+id/bestScoreLabel"
+        android:id="@+id/best_score_label"
         android:layout_gravity="left|top" />
-
-    <TextView
-        android:id="@+id/difficultyLabel"
-        android:text="Difficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|top" />
 
 </FrameLayout>
