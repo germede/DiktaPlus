@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,13 +26,20 @@ import singularfactory.app.presenters.PresenterTexts;
 
 public class GameFragment extends BaseFragment {
     View view;
-
+    TextView pressTheButton;
+    ImageButton playButton;
 
     public GameFragment() {
         // Required empty public constructor
     }
 
+    public void play() {
+        pressTheButton = (TextView)view.getRootView().findViewById(R.id.press_the_button_label);
+        playButton = (ImageButton) view.getRootView().findViewById(R.id.play_button);
+        pressTheButton.setVisibility(View.GONE);
+        playButton.setImageResource(android.R.drawable.ic_media_pause);
 
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState);}

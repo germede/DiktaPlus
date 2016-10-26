@@ -7,7 +7,8 @@
     <ImageButton
         android:layout_width="178dp"
         android:layout_height="51dp"
-        android:id="@+id/imageButton3"
+        android:id="@+id/start_game_button"
+        android:onClick="onClickStartGame"
         android:layout_gravity="center_horizontal|bottom"
         android:src="@android:drawable/ic_media_play" />
 

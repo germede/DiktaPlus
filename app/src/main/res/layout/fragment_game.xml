@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="PRESS THE BUTTON"
-        android:id="@+id/textView5"
+        android:id="@+id/press_the_button_label"
         android:layout_gravity="center_horizontal" />
 
     <Space
@@ -36,7 +36,8 @@
     <ImageButton
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton4"
+        android:id="@+id/play_button"
+        android:onClick="onClickPlay"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.08"
         android:src="@android:drawable/ic_media_play" />
