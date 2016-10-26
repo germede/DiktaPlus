@@ -30,7 +30,7 @@ public class PresenterTexts implements IPresenterTexts {
     /*******************/
     @Override
     public void getTextsList(final Object object, final String tagRequest, int verb, String url, String dialogMessage){
-        volleyAsynctask(object,tagRequest,verb,url,"Loading texts list...",true);
+        volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true);
     }
 
     /*******************/

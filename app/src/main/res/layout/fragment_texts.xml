@@ -16,36 +16,53 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-
-        <ViewSwitcher
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/viewSwitcher"
-            android:layout_gravity="center" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/textView4"
-                android:layout_gravity="center" />
-        </ViewSwitcher>
+        android:gravity="center_horizontal" >
 
         <ImageButton
             style="@style/ButtonLeft"
-            android:layout_width="54dp"
-            android:layout_height="45dp"
-            android:id="@+id/imageButton"
-            android:layout_gravity="right|center_vertical"
-            />
+            android:id="@+id/imageButton3"
+            android:onClick="onClickLanguageLeft"
+            android:layout_gravity="right|center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Language"
+            android:id="@+id/language_label"
+            android:layout_gravity="center" />
 
         <ImageButton
             style="@style/ButtonRight"
-            android:layout_width="51dp"
-            android:layout_height="42dp"
+            android:id="@+id/imageButton4"
+            android:onClick="onClickLanguageRight"
+            android:layout_gravity="left|center_vertical" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <ImageButton
+            style="@style/ButtonRight"
+            android:onClick="onClickDifficultyLeft"
             android:id="@+id/imageButton2"
             android:layout_gravity="left|center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Difficulty"
+            android:id="@+id/difficulty_label"
+            android:layout_gravity="center" />
+
+        <ImageButton
+            style="@style/ButtonLeft"
+            android:onClick="onClickDifficultyRight"
+            android:id="@+id/imageButton"
+            android:layout_gravity="right|center_vertical"
+            />
 
     </FrameLayout>
 

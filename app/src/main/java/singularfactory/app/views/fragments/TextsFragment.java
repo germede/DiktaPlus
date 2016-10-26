@@ -16,10 +16,12 @@ import com.android.volley.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import singularfactory.app.AppCommon;
 import singularfactory.app.R;
@@ -32,7 +34,17 @@ public class TextsFragment extends BaseFragment {
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
     PresenterTexts presenterTexts;
+
     String selectedText;
+
+    final String[] languages = {"es","en","de"};
+    Locale[] languagesLocales;
+    int selectedLanguage;
+    TextView languageLabel;
+
+    final String[] difficulties = {"Easy", "Medium", "Hard"};
+    int selectedDifficulty;
+    TextView difficultyLabel;
 
     public TextsFragment() {
         // Required empty public constructor
@@ -45,7 +57,11 @@ public class TextsFragment extends BaseFragment {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
 
-        appCommon.getPresenterTexts().getTextsList(this,"GET Texts", Request.Method.GET,"http://192.168.1.106:8000/api/texts/ES/Easy","Cargando lista de textos...");
+        appCommon.getPresenterTexts().getTextsList(
+                this,
+                "GET Texts",
+                Request.Method.GET,"http://192.168.1.106:8000/api/texts/ES/"+difficulties[selectedDifficulty],
+                "Loading texts list...");
     }
 
     public void setTextsList(JSONArray texts) throws JSONException{
@@ -71,7 +87,44 @@ public class TextsFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_texts, container, false);
         prepareTextsList();
+
+        // Default difficulty: "Medium"
+        difficultyLabel = (TextView)view.findViewById(R.id.difficulty_label);
+        selectedDifficulty = 1;
+        difficultyLabel.setText(difficulties[selectedDifficulty]);
+
+        // Default language: "English"
+        languageLabel = (TextView)view.findViewById(R.id.language_label);
+        languagesLocales = new Locale[languages.length];
+        for (int i = 0; i < languages.length; i++) {languagesLocales[i] = new Locale(languages[i]);}
+        selectedLanguage = 0;
+        languageLabel.setText(languagesLocales[selectedLanguage].getDisplayName());
+
         return view;
+    }
+
+    public void switchLanguageLeft() {
+        if (selectedLanguage == 0) selectedLanguage = languages.length-1;
+        else selectedLanguage--;
+        languageLabel.setText(languagesLocales[selectedLanguage].getDisplayName());
+    }
+
+    public void switchLanguageRight() {
+        if (selectedLanguage == languages.length-1) selectedLanguage = 0;
+        else selectedLanguage++;
+        languageLabel.setText(languagesLocales[selectedLanguage].getDisplayName());
+    }
+
+    public void switchDifficultyLeft() {
+        if (selectedDifficulty == 0) selectedDifficulty = difficulties.length-1;
+        else selectedDifficulty--;
+        difficultyLabel.setText(difficulties[selectedDifficulty]);
+    }
+
+    public void switchDifficultyRight() {
+        if (selectedDifficulty == difficulties.length-1) selectedDifficulty = 0;
+        else selectedDifficulty++;
+        difficultyLabel.setText(difficulties[selectedDifficulty]);
     }
 
     class ExpandableListAdapter extends BaseExpandableListAdapter {
