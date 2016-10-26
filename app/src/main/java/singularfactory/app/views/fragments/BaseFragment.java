@@ -19,6 +19,11 @@ public class BaseFragment extends Fragment {
         Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
     }
 
+    public String toProperCase(String s) {
+        return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -107,4 +107,13 @@
         <item name="android:layout_width">35dp</item>
     </style>
 
+    <!-- Texts switcher label -->
+    <style name="TextSwitcherLabel">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:text">bold</item>
+
+    </style>
+
 </resources>

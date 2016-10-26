@@ -83,7 +83,6 @@ public class PresenterTexts implements IPresenterTexts {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG + "_" + tagRequest, "ERROR: " + error.getMessage() + "\n" + "CAUSE: " + error.getCause());
 
                 NetworkResponse networkResponse = error.networkResponse;
                 String body, result = "";
@@ -123,8 +122,7 @@ public class PresenterTexts implements IPresenterTexts {
             }
             @Override
             protected Map<String, String> getParams() {
-                Map<String, String> parameters = new HashMap<>();
-                return parameters;
+                return new HashMap<>();
             }
         };
         //Adding request to request queue

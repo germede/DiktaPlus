@@ -1,6 +1,7 @@
 package singularfactory.app.views.fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -36,10 +38,17 @@ public class TextsFragment extends BaseFragment {
     JSONArray receivedList;
     DiktaplusText selectedText;
 
-    final String[] languages = {"en","es","de"};
+    final String[] languages = {"en","es","de","fr","it"};
+    final int[] flags = {R.drawable.en,
+            R.drawable.es,
+            R.drawable.de,
+            R.drawable.fr,
+            R.drawable.it,
+    };
     Locale[] languagesLocales;
     int selectedLanguage;
     TextView languageLabel;
+    ImageView languageFlag;
 
     final String[] difficulties = {"Easy", "Medium", "Hard"};
     int selectedDifficulty;
@@ -101,14 +110,15 @@ public class TextsFragment extends BaseFragment {
         // Default difficulty: "Medium"
         difficultyLabel = (TextView)view.findViewById(R.id.difficulty_label);
         selectedDifficulty = 1;
-        difficultyLabel.setText(difficulties[selectedDifficulty]);
+        updateDifficultyLabel();
 
         // Default language: "English"
         languageLabel = (TextView)view.findViewById(R.id.language_label);
+        languageFlag = (ImageView)view.findViewById(R.id.language_flag);
         languagesLocales = new Locale[languages.length];
         for (int i = 0; i < languages.length; i++) {languagesLocales[i] = new Locale(languages[i]);}
         selectedLanguage = 0;
-        languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
+        updateLanguageLabel();
 
         return view;
     }
@@ -116,7 +126,7 @@ public class TextsFragment extends BaseFragment {
     public void switchLanguageLeft() {
         if (selectedLanguage == 0) selectedLanguage = languages.length-1;
         else selectedLanguage--;
-        languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
+        updateLanguageLabel();
         updateTextList();
     }
 
@@ -124,25 +134,40 @@ public class TextsFragment extends BaseFragment {
         if (selectedLanguage == languages.length-1) selectedLanguage = 0;
         else selectedLanguage++;
         languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
+        updateLanguageLabel();
         updateTextList();
     }
 
-    public String toProperCase(String s) {
-        return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+    private void updateLanguageLabel() {
+        languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
+        languageFlag.setImageResource(flags[selectedLanguage]);
     }
 
     public void switchDifficultyLeft() {
         if (selectedDifficulty == 0) selectedDifficulty = difficulties.length-1;
         else selectedDifficulty--;
-        difficultyLabel.setText(difficulties[selectedDifficulty]);
+        updateDifficultyLabel();
         updateTextList();
     }
 
     public void switchDifficultyRight() {
         if (selectedDifficulty == difficulties.length-1) selectedDifficulty = 0;
         else selectedDifficulty++;
-        difficultyLabel.setText(difficulties[selectedDifficulty]);
+        updateDifficultyLabel();
         updateTextList();
+    }
+
+    private void updateDifficultyLabel() {
+        difficultyLabel.setText(difficulties[selectedDifficulty]);
+        switch (selectedDifficulty) {
+            case 0: difficultyLabel.setTextColor(Color.GREEN);
+                break;
+            case 1: difficultyLabel.setTextColor(Color.YELLOW);
+                break;
+            case 2: difficultyLabel.setTextColor(Color.RED);
+                break;
+            default:break;
+        }
     }
 
     class ExpandableListAdapter extends BaseExpandableListAdapter {

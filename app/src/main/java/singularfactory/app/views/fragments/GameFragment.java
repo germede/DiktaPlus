@@ -47,7 +47,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     @Override
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
-            int result = tts.setLanguage(new Locale("es"));
+            int result = tts.setLanguage(new Locale(textToPlay.getLanguage()));
             if (result == TextToSpeech.LANG_MISSING_DATA
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This language is not supported");

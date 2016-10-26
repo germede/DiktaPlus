@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -22,21 +23,38 @@
         <ImageButton
             style="@style/ButtonLeft"
             android:id="@+id/imageButton3"
-            android:onClick="onClickLanguageLeft"
+            android:onClick="onClickLanguageRight"
             android:layout_gravity="right|center_vertical" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Language"
-            android:id="@+id/language_label"
-            android:layout_gravity="center" />
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/en"
+                android:id="@+id/language_flag" />
+
+            <TextView
+                style="@style/TextSwitcherLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Language"
+                android:id="@+id/language_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        </LinearLayout>
 
         <ImageButton
             style="@style/ButtonRight"
             android:id="@+id/imageButton4"
-            android:onClick="onClickLanguageRight"
+            android:onClick="onClickLanguageLeft"
             android:layout_gravity="left|center_vertical" />
+
+
+
     </FrameLayout>
 
     <FrameLayout
@@ -53,11 +71,12 @@
             android:layout_gravity="left|center_vertical" />
 
         <TextView
+            style="@style/TextSwitcherLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Difficulty"
             android:id="@+id/difficulty_label"
-            android:layout_gravity="center" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <ImageButton
             style="@style/ButtonLeft"
