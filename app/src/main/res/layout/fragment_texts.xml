@@ -16,7 +16,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal" >
+        android:gravity="center_horizontal"
+        android:background="@color/switchbar_background_color">
 
         <ImageButton
             style="@style/ButtonLeft"
@@ -42,7 +43,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:background="@color/switchbar_background_color">
 
         <ImageButton
             style="@style/ButtonRight"
