@@ -30,6 +30,7 @@ public class GameFragment extends BaseFragment {
     TextView pressTheButtonLabel;
     ImageButton playButton;
     EditText gameTextEdit;
+    String textToPlay;
 
     public GameFragment() {
         // Required empty public constructor
@@ -43,11 +44,12 @@ public class GameFragment extends BaseFragment {
         pressTheButtonLabel.setVisibility(View.GONE);
         playButton.setImageResource(android.R.drawable.ic_media_pause);
         gameTextEdit.setVisibility(View.VISIBLE);
-
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState);}
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,5 +58,8 @@ public class GameFragment extends BaseFragment {
         return view;
     }
 
+    public void setTextToPlay (String textToPlay) {
+        this.textToPlay=textToPlay;
+    }
 
 }

@@ -32,9 +32,14 @@ public class TextsFragment extends BaseFragment {
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
     PresenterTexts presenterTexts;
+    String selectedText;
 
     public TextsFragment() {
         // Required empty public constructor
+    }
+
+    public String getSelectedText() {
+        return selectedText;
     }
     private void prepareTextsList() {
         listDataHeader = new ArrayList<String>();
@@ -87,6 +92,11 @@ public class TextsFragment extends BaseFragment {
         public Object getChild(int groupPosition, int childPosititon) {
             return this._listDataChild.get(this._listDataHeader.get(groupPosition))
                     .get(childPosititon);
+        }
+
+        @Override
+        public void onGroupExpanded(int groupPosition) {
+            selectedText = this._listDataHeader.get(groupPosition);
         }
 
         @Override

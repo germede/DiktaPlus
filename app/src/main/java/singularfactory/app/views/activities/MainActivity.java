@@ -80,7 +80,9 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
     }
 
     public void onClickStartGame(View view) {
+        // Replace the texts fragment with the game fragment
         gameFragment = new GameFragment();
+        gameFragment.setTextToPlay(textsFragment.getSelectedText());
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
         transaction.replace(R.id.fragment_main_container, gameFragment);
@@ -89,8 +91,6 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
 
     public void onClickPlay(View view) {
         gameFragment.play();
-
-
     }
 
     /** Settings **/
