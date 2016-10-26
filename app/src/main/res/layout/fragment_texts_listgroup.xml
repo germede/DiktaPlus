@@ -8,6 +8,6 @@
     <TextView
         android:id="@+id/textsListHeader"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="53dp" />
 
 </LinearLayout>

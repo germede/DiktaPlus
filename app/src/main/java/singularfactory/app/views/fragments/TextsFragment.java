@@ -35,7 +35,12 @@ public class TextsFragment extends BaseFragment {
     public TextsFragment() {
         // Required empty public constructor
     }
-    private void prepareListData() {
+    private void prepareTextsList() {
+        texts = (ExpandableListView)view.findViewById(R.id.textsList);
+        textsListAdapter = new ExpandableListAdapter(this.getContext(), listDataHeader, listDataChild);
+        texts.setAdapter(textsListAdapter);
+        appCommon.getPresenterTexts().getTextsList(this,"GET Texts", Request.Method.GET,"http://192.168.1.106:8000/api/texts/ES/Easy","Cargando lista de textos...");
+
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
 
@@ -74,6 +79,10 @@ public class TextsFragment extends BaseFragment {
         listDataChild.put(listDataHeader.get(2), comingSoon);
     }
 
+    public void setTextsList(String texts) {
+
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);}
 
@@ -82,24 +91,10 @@ public class TextsFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_texts, container, false);
 
-        texts = (ExpandableListView)view.findViewById(R.id.textsList);
-        prepareListData();
-        textsListAdapter = new ExpandableListAdapter(this.getContext(), listDataHeader, listDataChild);
-        texts.setAdapter(textsListAdapter);
-        appCommon.getPresenterTexts().getTextsList(this,"GET Texts", Request.Method.GET,"http://192.168.1.106:8000/api/texts/ES/Easy","Cargando lista de textos...");
+        prepareTextsList();
 
         return view;
     }
-
-    public void setTextsList(String texts) {
-        Context context = getContext();
-        int duration = Toast.LENGTH_LONG;
-
-        Toast toast = Toast.makeText(context, texts, duration);
-        toast.show();
-        Log.e(TAG,"hola");
-    }
-
 
     class ExpandableListAdapter extends BaseExpandableListAdapter {
 

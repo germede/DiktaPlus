@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textsListItem"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+    <ImageButton
+        android:layout_width="178dp"
+        android:layout_height="51dp"
+        android:id="@+id/imageButton3"
+        android:layout_gravity="center_horizontal|bottom"
+        android:src="@android:drawable/ic_media_play" />
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Best score"
+        android:id="@+id/bestScoreLabel"
+        android:layout_gravity="left|top" />
+
+    <TextView
+        android:id="@+id/difficultyLabel"
+        android:text="Difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top" />
+
+</FrameLayout>
