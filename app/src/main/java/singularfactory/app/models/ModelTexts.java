@@ -28,22 +28,21 @@ public class ModelTexts implements IModelTexts {
         if (httpStatus == 200) {
             Log.i(tag, " - OK 200");
             onResponseOK(object, tag, result);
-        } else if (httpStatus == 401) {
-            Log.e(tag, " - ERROR 401");
-        } else if (httpStatus == 400) {
-            Log.e(tag, " - ERROR 400");
-            onResponseError(object, tag, result.toString());
+        } else if (httpStatus == 404) {
+            Log.e(tag, " - ERROR 404");
+            onResponseError(object, tag, "Texts not found for that language and difficulty");
         } else {
             Log.e(tag, " - ERROR 500");
+            onResponseError(object, tag, "Server error");
         }
     }
 
     @Override
-    public void onResponseError(Object object, String tag, String json) {
+    public void onResponseError(Object object, String tag, String message) {
         Log.e(TAG, " - onResponseError");
         switch (tag) {
             case "GET Texts":
-                appCommon.getPresenterTexts().responseError(object,tag);
+                appCommon.getPresenterTexts().responseError(object,message);
                 break;
             default:
                 break;

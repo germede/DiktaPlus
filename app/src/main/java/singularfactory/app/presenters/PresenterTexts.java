@@ -47,7 +47,7 @@ public class PresenterTexts implements IPresenterTexts {
     @Override
     public void responseError(Object object, String message) {
         TextsFragment textsFragment = (TextsFragment) object;
-        textsFragment.showErrorToast(message);
+        textsFragment.onResponseError(message);
     }
 
     /**********************/

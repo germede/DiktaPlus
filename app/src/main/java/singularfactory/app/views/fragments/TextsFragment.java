@@ -16,6 +16,7 @@ import com.android.volley.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -35,9 +36,10 @@ public class TextsFragment extends BaseFragment {
     HashMap<String, List<String>> listDataChild;
     PresenterTexts presenterTexts;
 
-    String selectedText;
+    JSONArray receivedList;
+    DiktaplusText selectedText;
 
-    final String[] languages = {"es","en","de"};
+    final String[] languages = {"en","es","de"};
     Locale[] languagesLocales;
     int selectedLanguage;
     TextView languageLabel;
@@ -50,32 +52,41 @@ public class TextsFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    public String getSelectedText() {
+    public DiktaplusText getSelectedText() {
         return selectedText;
     }
-    private void prepareTextsList() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
 
+    private void updateTextList() {
         appCommon.getPresenterTexts().getTextsList(
                 this,
                 "GET Texts",
-                Request.Method.GET,"http://192.168.1.106:8000/api/texts/ES/"+difficulties[selectedDifficulty],
+                Request.Method.GET,
+                "http://192.168.1.15:8000/api/texts/"
+                        +languages[selectedLanguage]
+                        +"/"+difficulties[selectedDifficulty],
                 "Loading texts list...");
     }
 
+
     public void setTextsList(JSONArray texts) throws JSONException{
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
+        receivedList = texts;
         List<String> listItemInfo;
         for (int i = 0; i < texts.length(); i++) {
             listItemInfo = new ArrayList<String>();
-            listDataHeader.add(texts.getJSONObject(i).getString("content"));
+            listDataHeader.add(texts.getJSONObject(i).getString("title"));
             listItemInfo.add(Integer.toString(111));             //TODO: hacer funcionar el bestscore
             listDataChild.put(listDataHeader.get(i), listItemInfo);
         }
 
-        textsList = (ExpandableListView)view.findViewById(R.id.textsList);
         textsListAdapter = new ExpandableListAdapter(this.getContext(), listDataHeader, listDataChild);
         textsList.setAdapter(textsListAdapter);
+    }
+
+    public void onResponseError (String message) {
+        textsList.setAdapter((BaseExpandableListAdapter)null);
+        showErrorToast(message);
     }
 
 
@@ -86,7 +97,9 @@ public class TextsFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_texts, container, false);
-        prepareTextsList();
+
+        textsList = (ExpandableListView)view.findViewById(R.id.textsList);
+        updateTextList();
 
         // Default difficulty: "Medium"
         difficultyLabel = (TextView)view.findViewById(R.id.difficulty_label);
@@ -98,7 +111,7 @@ public class TextsFragment extends BaseFragment {
         languagesLocales = new Locale[languages.length];
         for (int i = 0; i < languages.length; i++) {languagesLocales[i] = new Locale(languages[i]);}
         selectedLanguage = 0;
-        languageLabel.setText(languagesLocales[selectedLanguage].getDisplayName());
+        languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
 
         return view;
     }
@@ -106,32 +119,39 @@ public class TextsFragment extends BaseFragment {
     public void switchLanguageLeft() {
         if (selectedLanguage == 0) selectedLanguage = languages.length-1;
         else selectedLanguage--;
-        languageLabel.setText(languagesLocales[selectedLanguage].getDisplayName());
+        languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
+        updateTextList();
     }
 
     public void switchLanguageRight() {
         if (selectedLanguage == languages.length-1) selectedLanguage = 0;
         else selectedLanguage++;
-        languageLabel.setText(languagesLocales[selectedLanguage].getDisplayName());
+        languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
+        updateTextList();
+    }
+
+    public String toProperCase(String s) {
+        return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
     }
 
     public void switchDifficultyLeft() {
         if (selectedDifficulty == 0) selectedDifficulty = difficulties.length-1;
         else selectedDifficulty--;
         difficultyLabel.setText(difficulties[selectedDifficulty]);
+        updateTextList();
     }
 
     public void switchDifficultyRight() {
         if (selectedDifficulty == difficulties.length-1) selectedDifficulty = 0;
         else selectedDifficulty++;
         difficultyLabel.setText(difficulties[selectedDifficulty]);
+        updateTextList();
     }
 
     class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         private Context _context;
-        private List<String> _listDataHeader; // header titles
-        // child data in format of header title, child title
+        private List<String> _listDataHeader;
         private HashMap<String, List<String>> _listDataChild;
 
         public ExpandableListAdapter(Context context, List<String> listDataHeader,
@@ -149,7 +169,16 @@ public class TextsFragment extends BaseFragment {
 
         @Override
         public void onGroupExpanded(int groupPosition) {
-            selectedText = this._listDataHeader.get(groupPosition);
+            JSONObject text;
+            try {
+                text = receivedList.getJSONObject(groupPosition);
+                selectedText = new DiktaplusText(text.getString("title"),
+                        text.getString("content"),
+                        text.getString("language"),
+                        text.getString("difficulty"));
+            } catch (JSONException e) {
+                Log.e(TAG,"Error parsing received JSON");
+            }
         }
 
         @Override

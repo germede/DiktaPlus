@@ -39,7 +39,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     EditText gameTextEdit;
 
     TextToSpeech tts;
-    String textToPlay;
+    DiktaplusText textToPlay;
     String [] words;
     int wordIndex;
 
@@ -61,7 +61,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
     public void startDictation () {
         wordIndex = 0;
-        words = textToPlay.split(" ");
+        words = textToPlay.getContent().split(" ");
     }
 
     public void dictateNextWord() {
@@ -130,7 +130,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         super.onDestroy();
     }
 
-    public void setTextToPlay (String textToPlay) {
+    public void setTextToPlay (DiktaplusText textToPlay) {
         this.textToPlay=textToPlay;
     }
 
