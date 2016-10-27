@@ -5,7 +5,5 @@ package singularfactory.app.models.interfaces;
  */
 public interface IModel {
 
-    IModelMain getModelMain();
-
-    IModelSplash getModelSplash();
+    void volleyAsynctask(Object object, String tagRequest, int verb, String url, String dialogMessage, boolean showDialog, String... params);
 }

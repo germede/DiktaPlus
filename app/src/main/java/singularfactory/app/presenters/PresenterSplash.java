@@ -60,7 +60,7 @@ public class PresenterSplash implements IPresenterSplash {
         String url      = BuildConfig.BASE_URL + "api/config/global";
         String[] params = {};
 
-        volleyAsynctask(object, Tags.WS_GET_GLOBAL_CONFIG, Request.Method.GET, url, "", false, activity, params);
+        appCommon.getModel().volleyAsynctask(object, Tags.WS_GET_GLOBAL_CONFIG, Request.Method.GET, url, "", false, params);
     }
 
     /*******************/
@@ -83,84 +83,5 @@ public class PresenterSplash implements IPresenterSplash {
         if (object instanceof SplashActivity) {
             ((SplashActivity) object).responseGetGlobalConfig(apiVersion, mediaUrl);
         }
-    }
-
-    /**********************/
-    /** VOLLEY ASYNCTASK **/
-    /**********************/
-    private void volleyAsynctask(final Object object, final String tagRequest, int verb, String url, String dialogMessage, boolean showDialog, Activity activity, final String... params) {
-
-        if (showDialog) {
-            pDialog = new ProgressDialog(activity);
-            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            pDialog.setMessage(dialogMessage);
-            pDialog.setCanceledOnTouchOutside(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        final AppCommon appCommon   = AppCommon.getInstance();
-        final StringRequest request = new StringRequest(verb, url, new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String json) {
-                Log.i(TAG + "_" + tagRequest, "OK");
-
-                //Dismiss dialog
-                if (pDialog != null && pDialog.isShowing())
-                    pDialog.dismiss();
-
-                AppCommon.getInstance().getModel().getModelSplash().onResponse(object, json, tagRequest, 200);
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG + "_" + tagRequest, "ERROR: " + error.getMessage() + "\n" + "CAUSE: " + error.getCause());
-
-                NetworkResponse networkResponse = error.networkResponse;
-                String body, result = "";
-                int httpStatus = 400;   //Default value
-
-                try {
-                    if (networkResponse != null)
-                        httpStatus = networkResponse.statusCode;
-
-                    if (error.networkResponse != null && error.networkResponse.data != null) {
-                        body   = new String(error.networkResponse.data, "UTF-8");
-                        result = (!body.equals("")) ? body : "";
-                    }
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-
-                //Dismiss dialog
-                if (pDialog != null && pDialog.isShowing())
-                    pDialog.dismiss();
-
-                AppCommon.getInstance().getModel().getModelSplash().onResponse(object, result, tagRequest, httpStatus);
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/json");
-//                headers.put("Content-Type", "application/json; charset=utf-8");
-//                headers.put("Authorization", "Bearer " + AppMediator.getInstance().sharedGetValue(AppMediator.getInstance().getApplicationContext(), Tags.SHARED_ACCESS_TOKEN, 1));
-
-                return headers;
-            }
-
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> parameters = new HashMap<>();
-
-                return parameters;
-            }
-        };
-
-        //Adding request to request queue
-        Volley.getInstance(appCommon.getApplicationContext()).addToRequestQueue(request, tagRequest);
     }
 }

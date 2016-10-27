@@ -22,6 +22,7 @@
     <string name="choose_language_and_level">Choose language and level</string>
 
     <!-- Global -->
+    <string name="search">Search</string>
     <string name="navigation_drawer_open">Open sidebar</string>
     <string name="navigation_drawer_close">Close sidebar</string>
 

@@ -33,7 +33,6 @@ public class TextsFragment extends BaseFragment {
     ExpandableListAdapter textsListAdapter;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
-    PresenterTexts presenterTexts;
 
     JSONArray receivedList;
     DiktaplusText selectedText;
@@ -109,11 +108,13 @@ public class TextsFragment extends BaseFragment {
 
         // Default difficulty: "Medium"
         difficultyLabel = (TextView)view.findViewById(R.id.difficulty_label);
+        difficultyLabel.setTypeface(appCommon.getFont());
         selectedDifficulty = 1;
         updateDifficultyLabel();
 
         // Default language: "English"
         languageLabel = (TextView)view.findViewById(R.id.language_label);
+        languageLabel.setTypeface(appCommon.getFont());
         languageFlag = (ImageView)view.findViewById(R.id.language_flag);
         languagesLocales = new Locale[languages.length];
         for (int i = 0; i < languages.length; i++) {languagesLocales[i] = new Locale(languages[i]);}

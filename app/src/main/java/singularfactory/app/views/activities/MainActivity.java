@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -35,11 +36,6 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
-        if (AppCommon.getInstance().getModel() == null) {
-            AppCommon.getInstance().setModel(Model.getInstance());
-            //Detect if model is null. App lost resources... you may need to reinitialize something else...
-        }
 
         initialize(findViewById(android.R.id.content));
         initializeActionBarAndToggle();
@@ -119,12 +115,11 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
     }
 
     /** Settings **/
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
 
 //    @Override

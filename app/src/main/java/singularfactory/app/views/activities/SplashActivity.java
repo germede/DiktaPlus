@@ -70,7 +70,6 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
 
     public void initialize(View view) {
         appCommon = AppCommon.getInstance();
-        appCommon.setModel(Model.getInstance());
 //        registrationProgressBarLeft  = (ProgressBar) findViewById(R.id.registrationProgressBarLeft);
 //        registrationProgressBarRight = (ProgressBar) findViewById(R.id.registrationProgressBarRight);
 
@@ -117,7 +116,7 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
 
     private void launchLoginActivity() {
         appCommon.getUtils().launchActivity(LoginActivity.class, SplashActivity.this, null);          //Launch next activity
-        overridePendingTransition(appCommon.SLIDE_IN_RIGHT, appCommon.SLIDE_OUT_LEFT);  //Show animation
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);  //Show animation
         finish();   //Close this activity
     }
 
