@@ -10,13 +10,13 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import singularfactory.app.common.AppCommon;
@@ -36,23 +36,26 @@ public class Model {
         return singleton;
     }
 
-    public void checkStatusOnResponse(Object object, JSONArray result, String tag, int httpStatus) throws JSONException {
+    private void checkStatusOnResponse(Object object, JSONObject result, String tag, int httpStatus) throws JSONException {
         if (httpStatus == 200) {
             Log.i(tag, " - OK 200");
             onResponseOK(object, tag, result);
+        } else if (httpStatus == 403) {
+            Log.e(tag, " - ERROR 403");
+            onResponseError(object, tag, "Forbidden access");
         } else if (httpStatus == 404) {
             Log.e(tag, " - ERROR 404");
-            onResponseError(object, tag, "not found");
+            onResponseError(object, tag, "Not found");
         } else if (httpStatus == 500){
             Log.e(tag, " - ERROR 500");
-            onResponseError(object, tag, ": server error");
+            onResponseError(object, tag, "Server error");
         } else {
-            Log.e(tag, " - ERROR"+httpStatus);
-            onResponseError(object, tag, ": UNKNOWN ERROR");
+            Log.e(tag, " - ERROR "+httpStatus);
+            onResponseError(object, tag, "UNKNOWN ERROR");
         }
     }
 
-    public void onResponseOK(Object object, String tag, JSONArray json) throws JSONException {
+    private void onResponseOK(Object object, String tag, JSONObject json) throws JSONException {
         Log.i(TAG, " - onResponseOK");
         switch (tag) {
             case "Get texts":
@@ -66,14 +69,14 @@ public class Model {
         }
     }
 
-    public void onResponseError(Object object, String tag, String message) {
+    private void onResponseError(Object object, String tag, String message) {
         Log.e(TAG, " - onResponseError");
         switch (tag) {
             case "Get texts":
-                appCommon.getPresenterTexts().responseError(object,"Texts "+message);
+                appCommon.getPresenterTexts().responseError(object,message);
                 break;
             case "Login user":
-                appCommon.getPresenterUser().responseError(object,"User "+message);
+                appCommon.getPresenterUser().responseError(object,message);
                 break;
             default:
                 break;
@@ -81,10 +84,10 @@ public class Model {
     }
 
     public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url,
-                                String dialogMessage, boolean showDialog, JSONObject paramsJson) {
+                                String dialogMessage, boolean showDialog, String params) {
         if (showDialog) {
             Fragment fragment = (Fragment) object;
-            pDialog = new ProgressDialog(fragment.getContext());
+            pDialog = new ProgressDialog(fragment.getActivity());
             pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pDialog.setMessage(dialogMessage);
             pDialog.setCanceledOnTouchOutside(false);
@@ -92,17 +95,17 @@ public class Model {
             pDialog.show();
         }
         final AppCommon appCommon   = AppCommon.getInstance();
-        final JsonArrayRequest request = new JsonArrayRequest(verb, url, paramsJson
-                , new Response.Listener<JSONArray>() {
+        JsonObjectRequest request = new JsonObjectRequest(verb, url, params
+                , new Response.Listener<JSONObject>() {
 
             @Override
-            public void onResponse(JSONArray jsonArray) {
+            public void onResponse(JSONObject jsonObject) {
                 Log.i(TAG + "_" + tagRequest, "OK");
 
                 if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
 
                 try {
-                    checkStatusOnResponse(object, jsonArray, tagRequest, 200);
+                    checkStatusOnResponse(object, jsonObject, tagRequest, 200);
                 } catch (JSONException e) {
                     Log.e(TAG,"JSON error");
                 }
@@ -124,7 +127,7 @@ public class Model {
                 if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
 
                 try {
-                    checkStatusOnResponse(object, new JSONArray(), tagRequest, httpStatus);
+                    checkStatusOnResponse(object, new JSONObject(), tagRequest, httpStatus);
                 } catch (JSONException e) {
                     Log.e(TAG,"JSON error");
                 }

@@ -23,13 +23,13 @@ public class PresenterUser {
         jsonObject.put("username",jsonParams[0]);
         jsonObject.put("password",jsonParams[1]);
         Log.e(TAG,jsonObject.toString());
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
     }
 
     /*******************/
     /** API RESPONSES **/
     /*******************/
-    public void loginUserResponse(Object object, JSONArray user) throws JSONException {
+    public void loginUserResponse(Object object, JSONObject user) throws JSONException {
         LoginFragment loginFragment = (LoginFragment) object;
         loginFragment.setUser(user);
 

@@ -2,6 +2,7 @@ package singularfactory.app.presenters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import singularfactory.app.common.AppCommon;
 import singularfactory.app.views.fragments.TextsFragment;
@@ -20,9 +21,9 @@ public class PresenterTexts {
     /*******************/
     /** API RESPONSES **/
     /*******************/
-    public void getTextsResponse(Object object, JSONArray texts) throws JSONException {
+    public void getTextsResponse(Object object, JSONObject texts) throws JSONException {
         TextsFragment textsFragment = (TextsFragment) object;
-        textsFragment.setTextsList(texts);
+        textsFragment.setTextsList(texts.toJSONArray(new JSONArray()));
 
     }
 

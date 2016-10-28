@@ -57,15 +57,13 @@ public class LoginFragment extends BaseFragment {
                 params);
     }
 
-    public void setUser(JSONArray receivedList) {
-        JSONObject userJson;
+    public void setUser(JSONObject userJson) {
         try {
-            userJson = receivedList.getJSONObject(0);
             appCommon.setUser(new User(userJson.getInt("id"),
                     userJson.getString("email"),
                     userJson.getString("username"),
                     userJson.getString("country"),
-                    userJson.getInt("totalScore"),
+                    userJson.getInt("total_score"),
                     userJson.getInt("level")));
         } catch (JSONException e) {
             Log.e(TAG,"Error parsing received JSON");
