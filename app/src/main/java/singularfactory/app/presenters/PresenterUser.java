@@ -53,7 +53,7 @@ public class PresenterUser {
     /** Response error **/
     public void responseError(Object object, String message) {
         BaseFragment baseFragment = (BaseFragment) object;
-        baseFragment.showErrorToast(message);
+        baseFragment.showDialog(message);
     }
 
 

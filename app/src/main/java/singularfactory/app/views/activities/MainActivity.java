@@ -14,14 +14,14 @@ import android.view.View;
 import singularfactory.app.R;
 import singularfactory.app.views.activities.initializations.InitMainActivity;
 import singularfactory.app.views.fragments.GameFragment;
-import singularfactory.app.views.fragments.TextsFragment;
+import singularfactory.app.views.fragments.TextFragment;
 
 public class MainActivity extends BaseActivity implements InitMainActivity.InitMainActivityListener, NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     public InitMainActivity itemView;
-    TextsFragment textsFragment;
+    TextFragment textFragment;
     GameFragment gameFragment;
 
     @Override
@@ -33,8 +33,8 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
         initialize(findViewById(android.R.id.content));
         initializeActionBarAndToggle();
 
-        textsFragment = new TextsFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_main_container, textsFragment).commit();
+        textFragment = new TextFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_main_container, textFragment).commit();
     }
 
     @Override
@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
     public void onClickStartGame(View view) {
         // Replace the texts fragment with the game fragment
         gameFragment = new GameFragment();
-        gameFragment.setTextToPlay(textsFragment.getSelectedText());
+        gameFragment.setTextToPlay(textFragment.getSelectedText());
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
         transaction.replace(R.id.fragment_main_container, gameFragment);
@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
     public void onClickStop() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
-        transaction.replace(R.id.fragment_main_container, textsFragment);
+        transaction.replace(R.id.fragment_main_container, textFragment);
         transaction.commit();
     }
 

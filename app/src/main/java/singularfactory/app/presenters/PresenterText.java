@@ -2,13 +2,12 @@ package singularfactory.app.presenters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import singularfactory.app.common.AppCommon;
-import singularfactory.app.views.fragments.TextsFragment;
+import singularfactory.app.views.fragments.TextFragment;
 
-public class PresenterTexts {
-    private static final String TAG = PresenterTexts.class.getSimpleName();
+public class PresenterText {
+    private static final String TAG = PresenterText.class.getSimpleName();
     private AppCommon appCommon     = AppCommon.getInstance();
 
     /*******************/
@@ -22,15 +21,15 @@ public class PresenterTexts {
     /** API RESPONSES **/
     /*******************/
     public void getTextsResponse(Object object, JSONArray texts) throws JSONException {
-        TextsFragment textsFragment = (TextsFragment) object;
-        textsFragment.setTextsList(texts);
+        TextFragment textFragment = (TextFragment) object;
+        textFragment.setTextsList(texts);
 
     }
 
     /** Response error **/
     public void responseError(Object object, String message) {
-        TextsFragment textsFragment = (TextsFragment) object;
-        textsFragment.onErrorGetUser(message);
+        TextFragment textFragment = (TextFragment) object;
+        textFragment.onErrorGetTexts(message);
     }
 
 }

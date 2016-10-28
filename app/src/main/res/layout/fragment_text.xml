@@ -43,6 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Language"
+                android:textColor="@color/white"
                 android:id="@+id/language_label"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
         </LinearLayout>

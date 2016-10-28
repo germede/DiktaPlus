@@ -10,11 +10,9 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,19 +43,19 @@ public class Model {
             onResponseOK(object, tag, result);
         } else if (httpStatus == 400) {
             Log.e(tag, " - ERROR 400");
-            onResponseError(object, tag, "Bad request, please check all the fields");
+            onResponseError(object, tag, " bad request, please check all the fields");
         } else if (httpStatus == 403) {
             Log.e(tag, " - ERROR 403");
-            onResponseError(object, tag, "Forbidden access");
+            onResponseError(object, tag, " forbidden access");
         } else if (httpStatus == 404) {
             Log.e(tag, " - ERROR 404");
-            onResponseError(object, tag, "Not found");
+            onResponseError(object, tag, " not found");
         } else if (httpStatus == 500){
             Log.e(tag, " - ERROR 500");
-            onResponseError(object, tag, "Server error");
+            onResponseError(object, tag, " server error");
         } else {
             Log.e(tag, " - ERROR "+httpStatus);
-            onResponseError(object, tag, "UNKNOWN ERROR");
+            onResponseError(object, tag, " unknown error");
         }
     }
 
@@ -65,7 +63,7 @@ public class Model {
         Log.i(TAG, " - onResponseOK");
         switch (tag) {
             case "Get texts":
-                appCommon.getPresenterTexts().getTextsResponse(object,json);
+                appCommon.getPresenterText().getTextsResponse(object,json);
                 break;
             case "Login user":
                 appCommon.getPresenterUser().loginUserResponse(object,json.getJSONObject(0));
@@ -82,13 +80,13 @@ public class Model {
         Log.e(TAG, " - onResponseError");
         switch (tag) {
             case "Get texts":
-                appCommon.getPresenterTexts().responseError(object,message);
+                appCommon.getPresenterText().responseError(object,"Texts error:"+message);
                 break;
             case "Login user":
-                appCommon.getPresenterUser().responseError(object,message);
+                appCommon.getPresenterUser().responseError(object,"User error:"+message);
                 break;
             case "Register user":
-                appCommon.getPresenterUser().responseError(object,message);
+                appCommon.getPresenterUser().responseError(object,"User error:"+message);
                 break;
             default:
                 break;
@@ -100,11 +98,11 @@ public class Model {
         if (showDialog) {
             Fragment fragment = (Fragment) object;
             pDialog = new ProgressDialog(fragment.getActivity());
-            pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             pDialog.setMessage(dialogMessage);
             pDialog.setCanceledOnTouchOutside(false);
             pDialog.setCancelable(false);
-            //pDialog.show();
+            pDialog.show();
         }
         final AppCommon appCommon   = AppCommon.getInstance();
         JsonArrayRequest request = new JsonArrayRequest(verb, url, params
@@ -113,9 +111,7 @@ public class Model {
             @Override
             public void onResponse(JSONArray result) {
                 Log.i(TAG + "_" + tagRequest, "OK");
-
                 if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
-
                 try {
                     checkStatusOnResponse(object, result, tagRequest, 200);
                 } catch (JSONException e) {
@@ -127,28 +123,10 @@ public class Model {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG + "_" + tagRequest, "ERROR: " + error.getMessage() + "\n" + "CAUSE: " + error.getCause());
-
                 NetworkResponse networkResponse = error.networkResponse;
-                String body, result = "";
                 int httpStatus = 400;   //Default value
-
-                try {
-                    if (networkResponse != null)
-                        httpStatus = networkResponse.statusCode;
-
-                    if (error.networkResponse != null && error.networkResponse.data != null) {
-                        body   = new String(error.networkResponse.data, "UTF-8");
-                        result = (!body.equals("")) ? body : "";
-                    }
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-
-                //Dismiss dialog
-                if (pDialog != null && pDialog.isShowing())
-                    pDialog.dismiss();
-
+                if (networkResponse != null) httpStatus = networkResponse.statusCode;
+                if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
                 try {
                     checkStatusOnResponse(object, new JSONArray(), tagRequest, httpStatus);
                 } catch (JSONException e) {

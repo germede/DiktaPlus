@@ -22,15 +22,15 @@ import static singularfactory.app.views.fragments.BaseFragment.TAG;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private TextsFragment textsFragment;
+    private TextFragment textFragment;
     private Context context;
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
 
-    public ExpandableListAdapter(Context context, TextsFragment textsFragment, List<String> listDataHeader,
+    public ExpandableListAdapter(Context context, TextFragment textFragment, List<String> listDataHeader,
                                  HashMap<String, List<String>> listChildData) {
         this.context = context;
-        this.textsFragment = textsFragment;
+        this.textFragment = textFragment;
         this.listDataHeader = listDataHeader;
         this.listDataChild = listChildData;
     }
@@ -45,8 +45,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public void onGroupExpanded(int groupPosition) {
         JSONObject text;
         try {
-            text = textsFragment.receivedList.getJSONObject(groupPosition);
-            textsFragment.selectedText = new Text(text.getInt("id"),
+            text = textFragment.receivedList.getJSONObject(groupPosition);
+            textFragment.selectedText = new Text(text.getInt("id"),
                     text.getString("title"),
                     text.getString("content"),
                     text.getString("language"),
@@ -70,7 +70,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.fragment_texts_child, null);
+            convertView = infalInflater.inflate(R.layout.fragment_text_child, null);
         }
 
         TextView txtListChild = (TextView) convertView
@@ -108,7 +108,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.fragment_texts_head, null);
+            convertView = infalInflater.inflate(R.layout.fragment_text_head, null);
         }
 
         TextView lblListHeader = (TextView) convertView

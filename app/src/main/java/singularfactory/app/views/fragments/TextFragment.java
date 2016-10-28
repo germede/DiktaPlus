@@ -1,16 +1,11 @@
 package singularfactory.app.views.fragments;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,7 +15,6 @@ import com.android.volley.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +24,7 @@ import java.util.Locale;
 import singularfactory.app.R;
 import singularfactory.app.models.Text;
 
-public class TextsFragment extends BaseFragment {
+public class TextFragment extends BaseFragment {
     View view;
     ExpandableListView textsList;
     ExpandableListAdapter textsListAdapter;
@@ -58,7 +52,7 @@ public class TextsFragment extends BaseFragment {
     int selectedDifficulty;
     TextView difficultyLabel;
 
-    public TextsFragment() {
+    public TextFragment() {
         // Required empty public constructor
     }
 
@@ -67,7 +61,7 @@ public class TextsFragment extends BaseFragment {
     }
 
     private void getTextList() {
-        appCommon.getPresenterTexts().getTexts(
+        appCommon.getPresenterText().getTexts(
                 this,
                 "Get texts",
                 Request.Method.GET,
@@ -92,7 +86,7 @@ public class TextsFragment extends BaseFragment {
         textsList.setAdapter(textsListAdapter);
     }
 
-    public void onErrorGetUser (String message) {
+    public void onErrorGetTexts (String message) {
         textsList.setAdapter((BaseExpandableListAdapter)null);
         showToast(message);
     }
@@ -104,20 +98,18 @@ public class TextsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_texts, container, false);
+        view = inflater.inflate(R.layout.fragment_text, container, false);
 
         textsList = (ExpandableListView)view.findViewById(R.id.textsList);
         getTextList();
 
         // Default difficulty: "Medium"
         difficultyLabel = (TextView)view.findViewById(R.id.difficulty_label);
-        difficultyLabel.setTypeface(appCommon.getUtils().getFont(getContext(),"Handlee-Regular.ttf"));
         selectedDifficulty = 1;
         updateDifficultyLabel();
 
         // Default language: "English"
         languageLabel = (TextView)view.findViewById(R.id.language_label);
-        languageLabel.setTypeface(appCommon.getUtils().getFont(getContext(),"Handlee-Regular.ttf"));
         languageFlag = (ImageView)view.findViewById(R.id.language_flag);
         languagesLocales = new Locale[languages.length];
         for (int i = 0; i < languages.length; i++) {languagesLocales[i] = new Locale(languages[i]);}

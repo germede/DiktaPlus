@@ -6,7 +6,7 @@ import singularfactory.app.R;
 import singularfactory.app.models.Model;
 import singularfactory.app.models.User;
 import singularfactory.app.presenters.PresenterSplash;
-import singularfactory.app.presenters.PresenterTexts;
+import singularfactory.app.presenters.PresenterText;
 import singularfactory.app.presenters.PresenterUser;
 
 public class AppCommon extends MultiDexApplication {
@@ -45,10 +45,10 @@ public class AppCommon extends MultiDexApplication {
         return presenterSplash;
     }
 
-    private PresenterTexts presenterTexts;
-    public PresenterTexts getPresenterTexts() {
-        if (presenterTexts == null) presenterTexts = new PresenterTexts();
-        return presenterTexts;
+    private PresenterText presenterText;
+    public PresenterText getPresenterText() {
+        if (presenterText == null) presenterText = new PresenterText();
+        return presenterText;
     }
 
     private PresenterUser presenterUser;
