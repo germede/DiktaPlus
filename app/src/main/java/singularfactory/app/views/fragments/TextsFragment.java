@@ -4,12 +4,15 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,6 +39,8 @@ public class TextsFragment extends BaseFragment {
 
     JSONArray receivedList;
     Text selectedText;
+
+    ImageButton languageLeft, languageRight, difficultyLeft, difficultyRight;
 
     final String[] languages = {"EN","ES","DE","FR","IT"};
     final int[] flags = {R.drawable.en,
@@ -119,41 +124,57 @@ public class TextsFragment extends BaseFragment {
         selectedLanguage = 0;
         updateLanguageLabel();
 
+        // Switch language and difficulty buttons
+        languageLeft = (ImageButton)view.findViewById(R.id.language_left);
+        languageRight = (ImageButton)view.findViewById(R.id.language_right);
+        difficultyLeft = (ImageButton)view.findViewById(R.id.difficulty_left);
+        difficultyRight = (ImageButton)view.findViewById(R.id.difficulty_right);
+
+        // Click listeners for the buttons
+        languageLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedLanguage == 0) selectedLanguage = languages.length-1;
+                else selectedLanguage--;
+                updateLanguageLabel();
+                getTextList();
+            }
+        });
+        languageRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedLanguage == languages.length-1) selectedLanguage = 0;
+                else selectedLanguage++;
+                languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
+                updateLanguageLabel();
+                getTextList();
+            }
+        });
+        difficultyLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedDifficulty == 0) selectedDifficulty = difficulties.length-1;
+                else selectedDifficulty--;
+                updateDifficultyLabel();
+                getTextList();
+            }
+        });
+        difficultyRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedDifficulty == difficulties.length-1) selectedDifficulty = 0;
+                else selectedDifficulty++;
+                updateDifficultyLabel();
+                getTextList();
+            }
+        });
+
         return view;
-    }
-
-    public void switchLanguageLeft() {
-        if (selectedLanguage == 0) selectedLanguage = languages.length-1;
-        else selectedLanguage--;
-        updateLanguageLabel();
-        getTextList();
-    }
-
-    public void switchLanguageRight() {
-        if (selectedLanguage == languages.length-1) selectedLanguage = 0;
-        else selectedLanguage++;
-        languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
-        updateLanguageLabel();
-        getTextList();
     }
 
     private void updateLanguageLabel() {
         languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
         languageFlag.setImageResource(flags[selectedLanguage]);
-    }
-
-    public void switchDifficultyLeft() {
-        if (selectedDifficulty == 0) selectedDifficulty = difficulties.length-1;
-        else selectedDifficulty--;
-        updateDifficultyLabel();
-        getTextList();
-    }
-
-    public void switchDifficultyRight() {
-        if (selectedDifficulty == difficulties.length-1) selectedDifficulty = 0;
-        else selectedDifficulty++;
-        updateDifficultyLabel();
-        getTextList();
     }
 
     private void updateDifficultyLabel() {
@@ -168,113 +189,4 @@ public class TextsFragment extends BaseFragment {
             default:break;
         }
     }
-
-    class ExpandableListAdapter extends BaseExpandableListAdapter {
-
-        private Context _context;
-        private List<String> _listDataHeader;
-        private HashMap<String, List<String>> _listDataChild;
-
-        public ExpandableListAdapter(Context context, List<String> listDataHeader,
-                                     HashMap<String, List<String>> listChildData) {
-            this._context = context;
-            this._listDataHeader = listDataHeader;
-            this._listDataChild = listChildData;
-        }
-
-        @Override
-        public Object getChild(int groupPosition, int childPosititon) {
-            return this._listDataChild.get(this._listDataHeader.get(groupPosition))
-                    .get(childPosititon);
-        }
-
-        @Override
-        public void onGroupExpanded(int groupPosition) {
-            JSONObject text;
-            try {
-                text = receivedList.getJSONObject(groupPosition);
-                selectedText = new Text(text.getInt("id"),
-                        text.getString("title"),
-                        text.getString("content"),
-                        text.getString("language"),
-                        text.getString("difficulty"));
-            } catch (JSONException e) {
-                Log.e(TAG,"Error parsing received JSON");
-            }
-        }
-
-        @Override
-        public long getChildId(int groupPosition, int childPosition) {
-            return childPosition;
-        }
-
-        @Override
-        public View getChildView(int groupPosition, final int childPosition,
-                                 boolean isLastChild, View convertView, ViewGroup parent) {
-
-            final String childText = (String) getChild(groupPosition, childPosition);
-
-            if (convertView == null) {
-                LayoutInflater infalInflater = (LayoutInflater) this._context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.fragment_texts_child, null);
-            }
-
-            TextView txtListChild = (TextView) convertView
-                    .findViewById(R.id.best_score_label);
-
-            txtListChild.setText(childText);
-            return convertView;
-        }
-
-        @Override
-        public int getChildrenCount(int groupPosition) {
-            return this._listDataChild.get(this._listDataHeader.get(groupPosition))
-                    .size();
-        }
-
-        @Override
-        public Object getGroup(int groupPosition) {
-            return this._listDataHeader.get(groupPosition);
-        }
-
-        @Override
-        public int getGroupCount() {
-            return this._listDataHeader.size();
-        }
-
-        @Override
-        public long getGroupId(int groupPosition) {
-            return groupPosition;
-        }
-
-        @Override
-        public View getGroupView(int groupPosition, boolean isExpanded,
-                                 View convertView, ViewGroup parent) {
-            String headerTitle = (String) getGroup(groupPosition);
-            if (convertView == null) {
-                LayoutInflater infalInflater = (LayoutInflater) this._context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.fragment_texts_head, null);
-            }
-
-            TextView lblListHeader = (TextView) convertView
-                    .findViewById(R.id.textsListHeader);
-            lblListHeader.setTypeface(null, Typeface.BOLD);
-            lblListHeader.setText(headerTitle);
-
-            return convertView;
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return false;
-        }
-
-        @Override
-        public boolean isChildSelectable(int groupPosition, int childPosition) {
-            return true;
-        }
-    }
-
 }

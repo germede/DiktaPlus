@@ -3,6 +3,7 @@ package singularfactory.app.views.fragments;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,11 +82,7 @@ public class SignupFragment extends BaseFragment {
 
     public void onSuccessfullyRegistration(String message) {
         showErrorToast(message);
-        password.setText("");
         ((LoginActivity)getActivity()).onClickReturnLogin(getView());
     }
 
-    public String getEmailAfterSignup() {
-        return email.getText().toString();
-    }
 }

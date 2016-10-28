@@ -36,7 +36,7 @@ public class Model {
         return singleton;
     }
 
-    private void checkStatusOnResponse(Object object, JSONObject result, String tag, int httpStatus) throws JSONException {
+    private void checkStatusOnResponse(Object object, JSONArray result, String tag, int httpStatus) throws JSONException {
         if (httpStatus == 200) {
             Log.i(tag, " - OK 200");
             onResponseOK(object, tag, result);
@@ -61,17 +61,17 @@ public class Model {
         }
     }
 
-    private void onResponseOK(Object object, String tag, JSONObject json) throws JSONException {
+    private void onResponseOK(Object object, String tag, JSONArray json) throws JSONException {
         Log.i(TAG, " - onResponseOK");
         switch (tag) {
             case "Get texts":
                 appCommon.getPresenterTexts().getTextsResponse(object,json);
                 break;
             case "Login user":
-                appCommon.getPresenterUser().loginUserResponse(object,json);
+                appCommon.getPresenterUser().loginUserResponse(object,json.getJSONObject(0));
                 break;
             case "Register user":
-                appCommon.getPresenterUser().registerUserResponse(object,json);
+                appCommon.getPresenterUser().registerUserResponse(object,json.getJSONObject(0));
                 break;
             default:
                 break;
@@ -107,17 +107,17 @@ public class Model {
             pDialog.show();
         }
         final AppCommon appCommon   = AppCommon.getInstance();
-        JsonObjectRequest request = new JsonObjectRequest(verb, url, params
-                , new Response.Listener<JSONObject>() {
+        JsonArrayRequest request = new JsonArrayRequest(verb, url, params
+                , new Response.Listener<JSONArray>() {
 
             @Override
-            public void onResponse(JSONObject jsonObject) {
+            public void onResponse(JSONArray result) {
                 Log.i(TAG + "_" + tagRequest, "OK");
 
                 if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
 
                 try {
-                    checkStatusOnResponse(object, jsonObject, tagRequest, 200);
+                    checkStatusOnResponse(object, result, tagRequest, 200);
                 } catch (JSONException e) {
                     Log.e(TAG,"JSON error");
                 }
@@ -126,22 +126,33 @@ public class Model {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;int httpStatus = 400;
+                Log.e(TAG + "_" + tagRequest, "ERROR: " + error.getMessage() + "\n" + "CAUSE: " + error.getCause());
+
+                NetworkResponse networkResponse = error.networkResponse;
+                String body, result = "";
+                int httpStatus = 400;   //Default value
 
                 try {
-                    if (networkResponse != null) httpStatus = networkResponse.statusCode;
+                    if (networkResponse != null)
+                        httpStatus = networkResponse.statusCode;
+
                     if (error.networkResponse != null && error.networkResponse.data != null) {
+                        body   = new String(error.networkResponse.data, "UTF-8");
+                        result = (!body.equals("")) ? body : "";
                     }
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
 
-                if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
+                //Dismiss dialog
+                if (pDialog != null && pDialog.isShowing())
+                    pDialog.dismiss();
 
                 try {
-                    checkStatusOnResponse(object, new JSONObject(), tagRequest, httpStatus);
+                    checkStatusOnResponse(object, new JSONArray(), tagRequest, httpStatus);
                 } catch (JSONException e) {
-                    Log.e(TAG,"JSON error");
+                    e.printStackTrace();
                 }
             }
         }) {
@@ -158,6 +169,7 @@ public class Model {
                 return new HashMap<>();
             }
         };
+
         Volley.getInstance(appCommon.getApplicationContext()).addToRequestQueue(request, tagRequest);
     }
 }

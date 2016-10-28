@@ -25,6 +25,7 @@ public class LoginFragment extends BaseFragment {
 
     EditText usernameOrEmail;
     EditText password;
+    String savedEmail;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -42,12 +43,9 @@ public class LoginFragment extends BaseFragment {
 
         usernameOrEmail = (EditText)view.findViewById(R.id.username_input);
         password = (EditText)view.findViewById(R.id.password_input);
+        if (savedEmail!=null) usernameOrEmail.setText(savedEmail);
 
         return view;
-    }
-
-    public void setUsernameOrEmailAfterSignup(String email) {
-        usernameOrEmail.setText(email);
     }
 
     public void getUser() throws JSONException {

@@ -9,6 +9,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         multiDexEnabled true    //Enabling multidex support.
+        vectorDrawables.useSupportLibrary = true
     }
 
     productFlavors {
@@ -69,15 +70,16 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
 
     //Third library
+
+
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.juanpabloprado:countrypicker:1.2.0'
-
-
+    compile 'com.android.support:support-vector-drawable:23.4.0'
+    testCompile 'junit:junit:4.12'
 }

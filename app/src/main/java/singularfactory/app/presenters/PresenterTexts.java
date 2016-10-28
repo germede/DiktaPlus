@@ -21,9 +21,9 @@ public class PresenterTexts {
     /*******************/
     /** API RESPONSES **/
     /*******************/
-    public void getTextsResponse(Object object, JSONObject texts) throws JSONException {
+    public void getTextsResponse(Object object, JSONArray texts) throws JSONException {
         TextsFragment textsFragment = (TextsFragment) object;
-        textsFragment.setTextsList(texts.toJSONArray(new JSONArray()));
+        textsFragment.setTextsList(texts);
 
     }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 
 import org.json.JSONException;
@@ -26,6 +27,12 @@ public class LoginActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_login_container, loginFragment).commit();
     }
 
+    // TODO: REMOVE THIS
+    public void quickLogin() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void onClickSignup(View view) {
         signupFragment = new SignupFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -43,11 +50,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void onClickReturnLogin(View view) {
-        String savedEmail = signupFragment.getEmailAfterSignup();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
         transaction.replace(R.id.fragment_login_container, loginFragment);
         transaction.commit();
-        loginFragment.setUsernameOrEmailAfterSignup(savedEmail);
     }
 }

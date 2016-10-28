@@ -22,7 +22,7 @@
 
         <ImageButton
             style="@style/ButtonLeft"
-            android:id="@+id/imageButton3"
+            android:id="@+id/language_right"
             android:onClick="onClickLanguageRight"
             android:layout_gravity="right|center_vertical" />
 
@@ -49,7 +49,7 @@
 
         <ImageButton
             style="@style/ButtonRight"
-            android:id="@+id/imageButton4"
+            android:id="@+id/language_left"
             android:onClick="onClickLanguageLeft"
             android:layout_gravity="left|center_vertical" />
 
@@ -67,7 +67,7 @@
         <ImageButton
             style="@style/ButtonRight"
             android:onClick="onClickDifficultyLeft"
-            android:id="@+id/imageButton2"
+            android:id="@+id/difficulty_left"
             android:layout_gravity="left|center_vertical" />
 
         <TextView
@@ -81,7 +81,7 @@
         <ImageButton
             style="@style/ButtonLeft"
             android:onClick="onClickDifficultyRight"
-            android:id="@+id/imageButton"
+            android:id="@+id/difficulty_right"
             android:layout_gravity="right|center_vertical"
             />
 

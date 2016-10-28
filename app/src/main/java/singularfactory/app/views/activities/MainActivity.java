@@ -69,22 +69,6 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
         itemView.navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void onClickLanguageLeft(View view) {
-        textsFragment.switchLanguageLeft();
-    }
-
-    public void onClickLanguageRight(View view) {
-        textsFragment.switchLanguageRight();
-    }
-
-    public void onClickDifficultyLeft(View view) {
-        textsFragment.switchDifficultyLeft();
-    }
-
-    public void onClickDifficultyRight(View view) {
-        textsFragment.switchDifficultyRight();
-    }
-
     public void onClickStartGame(View view) {
         // Replace the texts fragment with the game fragment
         gameFragment = new GameFragment();
