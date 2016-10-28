@@ -2,7 +2,6 @@ package singularfactory.app.models;
 
 
 import android.app.ProgressDialog;
-import android.nfc.Tag;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
@@ -14,6 +13,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -28,9 +28,7 @@ public class Model {
     private static Model singleton = null;
     private final AppCommon appCommon   = AppCommon.getInstance();
     private ProgressDialog pDialog  = null;
-    public Model() {
-        //constructor
-    }
+    public Model() {}
     public static Model getInstance() {
         if (singleton == null) {
             singleton = new Model();
@@ -44,24 +42,13 @@ public class Model {
             onResponseOK(object, tag, result);
         } else if (httpStatus == 404) {
             Log.e(tag, " - ERROR 404");
-            onResponseError(object, tag, "Not found");
-        } else {
+            onResponseError(object, tag, "not found");
+        } else if (httpStatus == 500){
             Log.e(tag, " - ERROR 500");
-            onResponseError(object, tag, "Server error");
-        }
-    }
-
-    public void onResponseError(Object object, String tag, String message) {
-        Log.e(TAG, " - onResponseError");
-        switch (tag) {
-            case "Get texts":
-                appCommon.getPresenterTexts().responseError(object,message);
-                break;
-            case "Login user":
-                appCommon.getPresenterUser().responseError(object,message);
-                break;
-            default:
-                break;
+            onResponseError(object, tag, ": server error");
+        } else {
+            Log.e(tag, " - ERROR"+httpStatus);
+            onResponseError(object, tag, ": UNKNOWN ERROR");
         }
     }
 
@@ -79,18 +66,35 @@ public class Model {
         }
     }
 
-    public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url, String dialogMessage, boolean showDialog, final String... params) {
+    public void onResponseError(Object object, String tag, String message) {
+        Log.e(TAG, " - onResponseError");
+        switch (tag) {
+            case "Get texts":
+                appCommon.getPresenterTexts().responseError(object,"Texts "+message);
+                break;
+            case "Login user":
+                appCommon.getPresenterUser().responseError(object,"User "+message);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url,
+                                String dialogMessage, boolean showDialog, JSONObject paramsJson) {
         if (showDialog) {
             Fragment fragment = (Fragment) object;
             pDialog = new ProgressDialog(fragment.getContext());
-            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pDialog.setMessage(dialogMessage);
             pDialog.setCanceledOnTouchOutside(false);
             pDialog.setCancelable(false);
             pDialog.show();
         }
         final AppCommon appCommon   = AppCommon.getInstance();
-        final JsonArrayRequest request = new JsonArrayRequest(verb, url, new Response.Listener<JSONArray>() {
+        final JsonArrayRequest request = new JsonArrayRequest(verb, url, paramsJson
+                , new Response.Listener<JSONArray>() {
+
             @Override
             public void onResponse(JSONArray jsonArray) {
                 Log.i(TAG + "_" + tagRequest, "OK");
@@ -136,16 +140,7 @@ public class Model {
             }
             @Override
             protected Map<String, String> getParams() {
-                HashMap<String,String> paramsMap = new HashMap<>();
-                paramsMap.put("username",params[0]);
-                paramsMap.put("password",params[1]);
-                paramsMap.put("email",params[0]);
-                Iterator it = paramsMap.entrySet().iterator();
-                while (it.hasNext()) {
-                    Map.Entry e = (Map.Entry)it.next();
-                    Log.e(TAG,e.getKey() + " " + e.getValue());
-                }
-                return paramsMap;
+                return new HashMap<>();
             }
         };
         Volley.getInstance(appCommon.getApplicationContext()).addToRequestQueue(request, tagRequest);

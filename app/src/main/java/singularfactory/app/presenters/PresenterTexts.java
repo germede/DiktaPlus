@@ -14,7 +14,7 @@ public class PresenterTexts {
     /**** API CALLS ****/
     /*******************/
     public void getTexts(final Object object, final String tagRequest, int verb, String url, String dialogMessage){
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
     /*******************/

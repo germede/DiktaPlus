@@ -1,7 +1,11 @@
 package singularfactory.app.presenters;
 
+import android.nfc.Tag;
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import singularfactory.app.common.AppCommon;
 import singularfactory.app.views.fragments.LoginFragment;
@@ -13,8 +17,13 @@ public class PresenterUser {
     /*******************/
     /**** API CALLS ****/
     /*******************/
-    public void loginUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] params){
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true, params);
+    public void loginUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("email",jsonParams[0]);
+        jsonObject.put("username",jsonParams[0]);
+        jsonObject.put("password",jsonParams[1]);
+        Log.e(TAG,jsonObject.toString());
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject);
     }
 
     /*******************/

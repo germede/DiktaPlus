@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
+import org.json.JSONException;
+
 import singularfactory.app.R;
 import singularfactory.app.views.fragments.LoginFragment;
 import singularfactory.app.views.fragments.SignupFragment;
@@ -31,7 +33,7 @@ public class LoginActivity extends BaseActivity {
         transaction.commit();
     }
 
-    public void onClickLogin(View view) {
+    public void onClickLogin(View view) throws JSONException{
         loginFragment.getUser();
     }
 

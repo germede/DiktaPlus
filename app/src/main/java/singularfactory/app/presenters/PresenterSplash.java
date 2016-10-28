@@ -38,9 +38,8 @@ public class PresenterSplash {
         }
 
         String url      = BuildConfig.BASE_URL + "api/config/global";
-        String[] params = {};
 
-        appCommon.getModel().volleyAsynctask(object, AppCommon.Tags.WS_GET_GLOBAL_CONFIG, Request.Method.GET, url, "", false, params);
+        appCommon.getModel().volleyAsynctask(object, AppCommon.Tags.WS_GET_GLOBAL_CONFIG, Request.Method.GET, url, "", false, null);
     }
 
     /*******************/
