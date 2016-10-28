@@ -73,7 +73,6 @@ public class LoginFragment extends BaseFragment {
             Log.e(TAG,"Error parsing received JSON");
         }
         Intent intent = new Intent(getActivity(), MainActivity.class);
-        getActivity().overridePendingTransition(R.anim.rotate_180, R.anim.rotate_180);
         startActivity(intent);
         getActivity().finish();
     }

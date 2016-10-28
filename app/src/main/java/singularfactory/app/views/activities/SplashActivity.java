@@ -101,13 +101,13 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
 
     private void launchLoginActivity() {
         appCommon.getUtils().launchActivity(LoginActivity.class, SplashActivity.this, null);
-        overridePendingTransition(R.anim.rotate_180, R.anim.rotate_180);
+        overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         finish();
     }
 
     private void launchMainActivity() {
         appCommon.getUtils().launchActivity(MainActivity.class, SplashActivity.this, null);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         finish();
     }
 }
