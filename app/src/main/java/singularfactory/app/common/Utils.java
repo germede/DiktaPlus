@@ -306,48 +306,28 @@ public class Utils {
         return bd.floatValue();
     }
 
-    /**
-     * Get string from shared preferences
-     * @param context
-     * @param valueName
-     * @param objectType = 0: Boolean | 1: String | 2: Integer
-     * @return
-     */
     public Object sharedGetValue(Context context, String valueName, int objectType) {
         Object object = null;
         SharedPreferences confShared = context.getSharedPreferences(AppCommon.getInstance().getString(R.string.app_name), Context.MODE_PRIVATE);
-
-        if (objectType == 0)
-            object = confShared.getBoolean(valueName, false);
-
-        if (objectType == 1)
-            object = confShared.getString(valueName, "");
-
-        if (objectType == 2)
-            object = confShared.getInt(valueName, 0);
-
+        if (objectType == 0) object = confShared.getBoolean(valueName, false);
+        if (objectType == 1) object = confShared.getString(valueName, "");
+        if (objectType == 2) object = confShared.getInt(valueName, 0);
         return object;
     }
 
-    /**
-     * Set string into shared preferences
-     * @param context
-     * @param sharedName
-     * @param value
-     */
     public void sharedSetValue(Context context, String sharedName, Object value) {
         SharedPreferences confShared 	   	= context.getSharedPreferences(AppCommon.getInstance().getString(R.string.app_name), Context.MODE_PRIVATE);
         SharedPreferences.Editor editShared = confShared.edit();
+        if (value instanceof Boolean) editShared.putBoolean(sharedName, (Boolean) value);
+        if (value instanceof Integer) editShared.putInt(sharedName, (Integer) value);
+        if (value instanceof String) editShared.putString(sharedName, (String) value);
+        editShared.apply();
+    }
 
-        if (value instanceof Boolean)
-            editShared.putBoolean(sharedName, (Boolean) value);
-
-        if (value instanceof Integer)
-            editShared.putInt(sharedName, (Integer) value);
-
-        if (value instanceof String)
-            editShared.putString(sharedName, (String) value);
-
+    public void sharedRemoveValue(Context context, String sharedName) {
+        SharedPreferences confShared 	   	= context.getSharedPreferences(AppCommon.getInstance().getString(R.string.app_name), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editShared = confShared.edit();
+        editShared.remove(sharedName);
         editShared.apply();
     }
 }

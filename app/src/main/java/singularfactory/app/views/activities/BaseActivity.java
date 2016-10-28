@@ -25,7 +25,7 @@ import singularfactory.app.common.Volley;
 public class BaseActivity extends AppCompatActivity {
 
     private static final String TAG = BaseActivity.class.getSimpleName();
-    private AppCommon appCommon;
+    protected AppCommon appCommon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
