@@ -67,6 +67,7 @@ public class LoginFragment extends BaseFragment {
                     userJson.getString("country"),
                     userJson.getInt("total_score"),
                     userJson.getInt("level")));
+            appCommon.getUtils().sharedSetValue(getContext(),"id",userJson.getInt("id"));
         } catch (JSONException e) {
             Log.e(TAG,"Error parsing received JSON");
         }

@@ -1,7 +1,9 @@
 package singularfactory.app.models;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
@@ -71,6 +73,9 @@ public class Model {
             case "Register user":
                 appCommon.getPresenterUser().registerUserResponse(object,json.getJSONObject(0));
                 break;
+            case "Get user info":
+                appCommon.getPresenterUser().getUserInfoResponse(object,json.getJSONObject(0));
+                break;
             case "Get best score":
                 appCommon.getPresenterGame().getBestScoreResponse(object,json.getJSONObject(0));
                 break;
@@ -91,6 +96,9 @@ public class Model {
             case "Register user":
                 appCommon.getPresenterUser().responseError(object,"User error:"+message);
                 break;
+            case "Get user info":
+                appCommon.getPresenterUser().responseError(object,"User error:"+message);
+                break;
             case "Get best score":
                 appCommon.getPresenterUser().responseError(object,"Game error:"+message);
                 break;
@@ -102,8 +110,8 @@ public class Model {
     public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url,
                                 String dialogMessage, boolean showDialog, String params) {
         if (showDialog) {
-            Fragment fragment = (Fragment) object;
-            pDialog = new ProgressDialog(fragment.getActivity());
+            if (object instanceof Activity) pDialog = new ProgressDialog((Activity)object);
+            else pDialog = new ProgressDialog(((Fragment)object).getContext());
             pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             pDialog.setMessage(dialogMessage);
             pDialog.setCanceledOnTouchOutside(false);

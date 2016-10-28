@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import singularfactory.app.common.AppCommon;
+import singularfactory.app.views.activities.SplashActivity;
 import singularfactory.app.views.fragments.BaseFragment;
 import singularfactory.app.views.fragments.LoginFragment;
 import singularfactory.app.views.fragments.SignupFragment;
@@ -36,6 +37,10 @@ public class PresenterUser {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
     }
 
+    public void getUserInfo(final Object object, final String tagRequest, int verb, String url, String dialogMessage) throws JSONException{
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+    }
+
     /*******************/
     /** API RESPONSES **/
     /*******************/
@@ -50,11 +55,15 @@ public class PresenterUser {
         signupFragment.onSuccessfullyRegistration("Successfully signed up, please try to login");
     }
 
+    public void getUserInfoResponse(Object object, JSONObject user) {
+        SplashActivity splashActivity = (SplashActivity) object;
+        splashActivity.setUserInfo(user);
+    }
+
     /** Response error **/
     public void responseError(Object object, String message) {
         BaseFragment baseFragment = (BaseFragment) object;
         baseFragment.showDialog(message);
     }
-
 
 }

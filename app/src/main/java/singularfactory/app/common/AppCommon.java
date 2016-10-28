@@ -6,10 +6,8 @@ import singularfactory.app.R;
 import singularfactory.app.models.Model;
 import singularfactory.app.models.User;
 import singularfactory.app.presenters.PresenterGame;
-import singularfactory.app.presenters.PresenterSplash;
 import singularfactory.app.presenters.PresenterText;
 import singularfactory.app.presenters.PresenterUser;
-import singularfactory.app.views.fragments.TextFragment;
 
 public class AppCommon extends MultiDexApplication {
 
@@ -23,7 +21,6 @@ public class AppCommon extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        presenterSplash = null;
         singleton       = this;
     }
 
@@ -41,11 +38,6 @@ public class AppCommon extends MultiDexApplication {
     /** PRESENTERS **/
     /****************/
 
-    private PresenterSplash presenterSplash;
-    public PresenterSplash getPresenterSplash() {
-        if (presenterSplash == null) presenterSplash = new PresenterSplash();
-        return presenterSplash;
-    }
 
     private PresenterText presenterText;
     public PresenterText getPresenterText() {

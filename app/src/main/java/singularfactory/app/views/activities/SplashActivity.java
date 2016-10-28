@@ -4,11 +4,19 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+
+import com.android.volley.Request;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import singularfactory.app.common.AppCommon;
 import singularfactory.app.BuildConfig;
 import singularfactory.app.R;
+import singularfactory.app.models.User;
 import singularfactory.app.views.activities.initializations.InitSplashActivity;
 
 public class SplashActivity extends BaseActivity implements InitSplashActivity.InitSplashActivityListener {
@@ -21,12 +29,7 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
 
     public InitSplashActivity itemView;
 
-
     private AppCommon appCommon;
-//    private BroadcastReceiver registrationBroadcastReceiver;
-//    private ProgressBar registrationProgressBarLeft, registrationProgressBarRight;
-//    private boolean googlePlayInstalled = true;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,21 +37,38 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
         setContentView(R.layout.activity_splash);
 
         initialize(findViewById(android.R.id.content));
+
+        int id = (Integer)appCommon.getUtils().sharedGetValue(this,"id",2);
+        if (id == 0) launchLoginActivity();
+        else getUserInfo(id);
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//
-//        LocalBroadcastManager.getInstance(this).registerReceiver(registrationBroadcastReceiver,
-//                new IntentFilter(RegistrationIntentService.REGISTRATION_COMPLETE));
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        LocalBroadcastManager.getInstance(this).unregisterReceiver(registrationBroadcastReceiver);
-//        super.onPause();
-//    }
+    private void getUserInfo(int id) {
+        try {
+            appCommon.getPresenterUser().getUserInfo(
+                    this,
+                    "Get user info",
+                    Request.Method.GET,
+                    appCommon.getBaseURL()+"users/"+id,
+                    "Trying to log in...");
+        } catch (JSONException e) {
+            Log.e(TAG,"JSON Exception");
+        }
+    }
+
+    public void setUserInfo(JSONObject userJson) {
+        try {
+            appCommon.setUser(new User(userJson.getInt("id"),
+                    userJson.getString("email"),
+                    userJson.getString("username"),
+                    userJson.getString("country"),
+                    userJson.getInt("total_score"),
+                    userJson.getInt("level")));
+            launchMainActivity();
+        } catch (JSONException e) {
+            Log.e(TAG,"Error parsing received JSON");
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -61,15 +81,8 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
     public void initialize(View view) {
         appCommon = AppCommon.getInstance();
-//        registrationProgressBarLeft  = (ProgressBar) findViewById(R.id.registrationProgressBarLeft);
-//        registrationProgressBarRight = (ProgressBar) findViewById(R.id.registrationProgressBarRight);
 
         itemView = new InitSplashActivity(this);
         itemView.initialize(view);
@@ -77,107 +90,24 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
         itemView.initializeCustomFonts();
         itemView.setInitSplashActivityListener(this);
 
-//        broadcastTokenGCM();
-
-        handler  = new Handler();
+        handler = new Handler();
         runnable = new Runnable() {
             public void run() {
-//                if (!googlePlayInstalled) {
-//                    return;
-//                }
-
-//                registrationProgressBarLeft.setVisibility(ProgressBar.GONE);
-//                registrationProgressBarRight.setVisibility(ProgressBar.GONE);
-
-//                getGlobalConfig();
-                launchLoginActivity();
 
             }
         };
         handler.postDelayed(runnable, SPLASH_TIME_OUT);
     }
 
-    private void compareApiVersion(String currentApiVersion, String apiVersionFromServer) {
-
-        if (!currentApiVersion.equals(apiVersionFromServer)) {
-            showAlertWithReflectionTwoButtons(this, this,
-                    appCommon.getString(R.string.message_new_api_version),
-                    appCommon.getString(R.string.button_go_to_play_store),
-                    appCommon.getString(R.string.button_exit),
-                    "goToGooglePlay");
-            return;
-        }
-
-        //API VERSION OK. Load app
-        launchLoginActivity();
-    }
-
     private void launchLoginActivity() {
-        appCommon.getUtils().launchActivity(LoginActivity.class, SplashActivity.this, null);          //Launch next activity
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);  //Show animation
-        finish();   //Close this activity
+        appCommon.getUtils().launchActivity(LoginActivity.class, SplashActivity.this, null);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        finish();
     }
 
-    /** PUBLIC METHODS **/
-    public void responseErrorGetGlobalConfig(String message) {
-        itemView.showLoading(false);
-        BaseActivity.showSingleAlert(this, message);
+    private void launchMainActivity() {
+        appCommon.getUtils().launchActivity(MainActivity.class, SplashActivity.this, null);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        finish();
     }
-
-    public void responseGetGlobalConfig(String apiVersion, String mediaUrl) {
-
-        itemView.showLoading(false);
-        appCommon.getUtils().sharedSetValue(appCommon.getApplicationContext(), AppCommon.Tags.SHARED_API_VERSION, apiVersion);
-        appCommon.getUtils().sharedSetValue(appCommon.getApplicationContext(), AppCommon.Tags.SHARED_MEDIA_URL, mediaUrl);
-
-        compareApiVersion(BuildConfig.API_VERSION, apiVersion);
-    }
-    /****/
-
-    /** ACCESSED BY REFLECTION **/
-    //Accessed by method "compareApiVersion"
-    public void goToGooglePlay() {
-        String urlMarket = "market://details?id=" + appCommon.getApplicationContext().getPackageName();
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlMarket));  //Go to Play Store and update
-        startActivity(intent);
-    }
-    /****/
-
-    /** API CALLS **/
-    public void getGlobalConfig() {
-        itemView.showLoading(true);
-        appCommon.getPresenterSplash().getGlobalConfig(SplashActivity.this);
-    }
-    /****/
-
-//    public void broadcastTokenGCM() {
-//        registrationBroadcastReceiver = new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-//                boolean sentToken = sharedPreferences.getBoolean(RegistrationIntentService.SENT_TOKEN_TO_SERVER, false);
-//
-//                if (sentToken) {    //OK
-//                    Log.i(TAG, appMediator.getString(R.string.debug_gcm_send_message));   //Token stored in RegistrationIntentService
-//                } else {            //ERROR
-//                    Log.e(TAG, appMediator.getString(R.string.debug_gcm_token_error));
-//                }
-//            }
-//        };
-//
-//        //Check if Google Play Services are installed
-//        if (!appMediator.checkPlayServices(this)) {
-//            googlePlayInstalled = false;
-//            showSingleAlertWithReflection(this, appMediator.getString(R.string.message_no_google_play_services), "onBackPressed");
-//            return;
-//        }
-//
-//        // Start IntentService to register this application with GCM.
-//        Intent intent = new Intent(this, RegistrationIntentService.class);
-//        startService(intent);
-//    }
-
-    /** InitSplashActivity.InitSplashActivityListener **/
-
-    /****/
 }
