@@ -43,10 +43,11 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void onClickReturnLogin(View view) {
-        loginFragment.setUsernameOrEmailAfterSignup(signupFragment.getEmailAfterSignup());
+        String savedEmail = signupFragment.getEmailAfterSignup();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
         transaction.replace(R.id.fragment_login_container, loginFragment);
         transaction.commit();
+        loginFragment.setUsernameOrEmailAfterSignup(savedEmail);
     }
 }
