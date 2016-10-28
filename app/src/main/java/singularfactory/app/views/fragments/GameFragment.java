@@ -132,7 +132,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
         languageGameLabel.setText(getActivity().getApplicationContext().getString(R.string.language, textToPlay.getLanguage()));
         difficultyGameLabel.setText(getActivity().getApplicationContext().getString(R.string.difficulty, textToPlay.getDifficulty()));
-        bestScoreGameLabel.setText(getActivity().getApplicationContext().getString(R.string.best_score,"ASDF"));
+        bestScoreGameLabel.setText(getActivity().getApplicationContext().getString(R.string.best_score,textToPlay.getBestScore()));
 
         return view;
     }

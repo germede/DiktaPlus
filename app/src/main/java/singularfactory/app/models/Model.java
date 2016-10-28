@@ -71,6 +71,9 @@ public class Model {
             case "Register user":
                 appCommon.getPresenterUser().registerUserResponse(object,json.getJSONObject(0));
                 break;
+            case "Get best score":
+                appCommon.getPresenterGame().getBestScoreResponse(object,json.getJSONObject(0));
+                break;
             default:
                 break;
         }
@@ -87,6 +90,9 @@ public class Model {
                 break;
             case "Register user":
                 appCommon.getPresenterUser().responseError(object,"User error:"+message);
+                break;
+            case "Get best score":
+                appCommon.getPresenterUser().responseError(object,"Game error:"+message);
                 break;
             default:
                 break;

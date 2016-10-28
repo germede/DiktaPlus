@@ -77,6 +77,7 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
         transaction.replace(R.id.fragment_main_container, gameFragment);
+        transaction.addToBackStack(TAG);
         transaction.commit();
     }
 
@@ -94,11 +95,11 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
     /**
      * Settings
      **/
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
 
 
     @Override

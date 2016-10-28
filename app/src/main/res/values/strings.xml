@@ -26,7 +26,7 @@
     <string name="progress">Progress</string>
     <string name="language">Language: %1$s</string>
     <string name="difficulty">Difficulty: %1$s</string>
-    <string name="best_score">Best score: %1$s</string>
+    <string name="best_score">Best score: %1$d</string>
 
     <!-- Global -->
     <string name="search">Search</string>

@@ -5,9 +5,11 @@ import android.support.multidex.MultiDexApplication;
 import singularfactory.app.R;
 import singularfactory.app.models.Model;
 import singularfactory.app.models.User;
+import singularfactory.app.presenters.PresenterGame;
 import singularfactory.app.presenters.PresenterSplash;
 import singularfactory.app.presenters.PresenterText;
 import singularfactory.app.presenters.PresenterUser;
+import singularfactory.app.views.fragments.TextFragment;
 
 public class AppCommon extends MultiDexApplication {
 
@@ -57,6 +59,12 @@ public class AppCommon extends MultiDexApplication {
         return presenterUser;
     }
 
+    private PresenterGame presenterGame;
+    public PresenterGame getPresenterGame() {
+        if (presenterGame == null) presenterGame = new PresenterGame();
+        return presenterGame;
+    }
+
 
     /***************/
     /** UTILITIES **/
@@ -65,9 +73,7 @@ public class AppCommon extends MultiDexApplication {
     public Utils getUtils() {
         return Utils.getInstance();
     }
-
     public static class Tags {
-
         /** SharedPreferences **/
         public final static String SHARED_API_VERSION   = getInstance().getString(R.string.app_name) + "_API_VERSION";
         public final static String SHARED_ACCESS_TOKEN  = getInstance().getString(R.string.app_name) + "_ACCESS_TOKEN";

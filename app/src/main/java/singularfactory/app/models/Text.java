@@ -7,6 +7,7 @@ public class Text {
         this.content = content;
         this.language = language;
         this.difficulty = difficulty;
+        this.bestScore = 0;
     }
 
     private int id;
@@ -14,6 +15,16 @@ public class Text {
     private String content;
     private String language;
     private String difficulty;
+
+    public int getBestScore() {
+        return bestScore;
+    }
+
+    public void setBestScore(int bestScore) {
+        this.bestScore = bestScore;
+    }
+
+    private int bestScore;
 
     public int getId() {
         return id;

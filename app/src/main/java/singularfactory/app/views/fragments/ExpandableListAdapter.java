@@ -51,6 +51,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     text.getString("content"),
                     text.getString("language"),
                     text.getString("difficulty"));
+            textFragment.getBestScore();
         } catch (JSONException e) {
             Log.e(TAG,"Error parsing received JSON");
         }
@@ -82,8 +83,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.listDataChild.get(this.listDataHeader.get(groupPosition))
-                .size();
+        return 1;
     }
 
     @Override

@@ -78,7 +78,7 @@ public class TextFragment extends BaseFragment {
         for (int i = 0; i < texts.length(); i++) {
             listItemInfo = new ArrayList<String>();
             listDataHeader.add(texts.getJSONObject(i).getString("title"));
-            listItemInfo.add(Integer.toString(111));             //TODO: hacer funcionar el bestscore
+            listItemInfo.add("Best score: 0");
             listDataChild.put(listDataHeader.get(i), listItemInfo);
         }
 
@@ -180,5 +180,20 @@ public class TextFragment extends BaseFragment {
                 break;
             default:break;
         }
+    }
+
+    public void getBestScore() throws JSONException {
+        appCommon.getPresenterGame().getBestScore(
+                this,
+                "Get best score",
+                Request.Method.GET,
+                appCommon.getBaseURL()+"games/"+appCommon.getUser().getId()+"/"+selectedText.getId(),
+                "Loading best score...");
+    }
+
+    public void setBestScore(int bestScore) {
+        selectedText.setBestScore(bestScore);
+        TextView bestScoreLabel = (TextView)view.findViewById(R.id.best_score_label);
+        bestScoreLabel.setText(getActivity().getApplicationContext().getString(R.string.best_score, bestScore));
     }
 }
