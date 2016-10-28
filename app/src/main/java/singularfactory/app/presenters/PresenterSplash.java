@@ -12,9 +12,6 @@ import singularfactory.app.R;
 import singularfactory.app.views.activities.BaseActivity;
 import singularfactory.app.views.activities.SplashActivity;
 
-/**
- * Created by Óscar Adae Rodríguez on 08/05/2016.
- */
 public class PresenterSplash {
 
     private static final String TAG = PresenterSplash.class.getSimpleName();

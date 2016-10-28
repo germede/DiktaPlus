@@ -16,6 +16,7 @@ import singularfactory.app.views.fragments.SignupFragment;
 public class LoginActivity extends BaseActivity {
 
     LoginFragment loginFragment;
+    SignupFragment signupFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void onClickSignup(View view) {
-        Fragment signupFragment = new SignupFragment();
+        signupFragment = new SignupFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
         transaction.replace(R.id.fragment_login_container, signupFragment);
@@ -35,6 +36,10 @@ public class LoginActivity extends BaseActivity {
 
     public void onClickLogin(View view) throws JSONException{
         loginFragment.getUser();
+    }
+
+    public void onClickSubmit (View view) {
+        signupFragment.registerUser();
     }
 
     public void onClickReturnLogin(View view) {

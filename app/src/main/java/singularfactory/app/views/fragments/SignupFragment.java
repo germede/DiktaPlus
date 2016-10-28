@@ -27,4 +27,15 @@ public class SignupFragment extends BaseFragment {
     }
 
 
+    public void registerUser() {
+        String [] params = {username.getText().toString(),email.getText().toString(), password.getText().toString()};
+        appCommon.getPresenterUser().loginUser(
+                this,
+                "Login user",
+                Request.Method.POST,
+                appCommon.getBaseURL()+"users/login",
+                "Trying to log in...",
+                params);
+
+    }
 }
