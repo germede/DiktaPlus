@@ -88,7 +88,7 @@ public class TextsFragment extends BaseFragment {
             listDataChild.put(listDataHeader.get(i), listItemInfo);
         }
 
-        textsListAdapter = new ExpandableListAdapter(this.getContext(), listDataHeader, listDataChild);
+        textsListAdapter = new ExpandableListAdapter(this.getContext(),this, listDataHeader, listDataChild);
         textsList.setAdapter(textsListAdapter);
     }
 

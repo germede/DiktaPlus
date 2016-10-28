@@ -28,7 +28,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     // TODO: REMOVE THIS
-    public void quickLogin() {
+    public void quickLogin(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

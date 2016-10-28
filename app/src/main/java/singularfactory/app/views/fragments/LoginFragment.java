@@ -70,7 +70,6 @@ public class LoginFragment extends BaseFragment {
         } catch (JSONException e) {
             Log.e(TAG,"Error parsing received JSON");
         }
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(getActivity(), MainActivity.class));
     }
 }
