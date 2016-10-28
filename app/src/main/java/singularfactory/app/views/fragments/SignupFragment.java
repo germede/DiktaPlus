@@ -9,10 +9,14 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.juanpabloprado.countrypicker.CountryPicker;
 import com.juanpabloprado.countrypicker.CountryPickerListener;
 
+import org.json.JSONException;
+
 import singularfactory.app.R;
+import singularfactory.app.views.activities.LoginActivity;
 
 public class SignupFragment extends BaseFragment {
 
@@ -61,11 +65,27 @@ public class SignupFragment extends BaseFragment {
     }
 
 
-    public void registerUser() {
-
+    public void registerUser() throws JSONException{
+        String [] params = {username.getText().toString(),
+                            email.getText().toString(),
+                            password.getText().toString(),
+                            country.getText().toString()};
+        appCommon.getPresenterUser().registerUser(
+                this,
+                "Register user",
+                Request.Method.POST,
+                appCommon.getBaseURL()+"users/register",
+                "Trying to register...",
+                params);
     }
 
-    public void showCountryList() {
+    public void onSuccessfullyRegistration(String message) {
+        showErrorToast(message);
+        password.setText("");
+        ((LoginActivity)getActivity()).onClickReturnLogin(getView());
+    }
 
+    public String getEmailAfterSignup() {
+        return email.getText().toString();
     }
 }

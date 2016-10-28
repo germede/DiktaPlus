@@ -40,6 +40,12 @@ public class Model {
         if (httpStatus == 200) {
             Log.i(tag, " - OK 200");
             onResponseOK(object, tag, result);
+        } else if (httpStatus == 201) {
+            Log.e(tag, " - CREATED 201");
+            onResponseOK(object, tag, result);
+        } else if (httpStatus == 400) {
+            Log.e(tag, " - ERROR 400");
+            onResponseError(object, tag, "Bad request, please check all the fields");
         } else if (httpStatus == 403) {
             Log.e(tag, " - ERROR 403");
             onResponseError(object, tag, "Forbidden access");
@@ -64,6 +70,9 @@ public class Model {
             case "Login user":
                 appCommon.getPresenterUser().loginUserResponse(object,json);
                 break;
+            case "Register user":
+                appCommon.getPresenterUser().registerUserResponse(object,json);
+                break;
             default:
                 break;
         }
@@ -76,6 +85,9 @@ public class Model {
                 appCommon.getPresenterTexts().responseError(object,message);
                 break;
             case "Login user":
+                appCommon.getPresenterUser().responseError(object,message);
+                break;
+            case "Register user":
                 appCommon.getPresenterUser().responseError(object,message);
                 break;
             default:

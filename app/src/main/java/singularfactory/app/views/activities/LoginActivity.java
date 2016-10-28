@@ -38,15 +38,12 @@ public class LoginActivity extends BaseActivity {
         loginFragment.getUser();
     }
 
-    public void onClickCountry(View view) {
-        signupFragment.showCountryList();
-    }
-
-    public void onClickSubmit (View view) {
+    public void onClickSubmit (View view) throws JSONException {
         signupFragment.registerUser();
     }
 
     public void onClickReturnLogin(View view) {
+        loginFragment.setUsernameOrEmailAfterSignup(signupFragment.getEmailAfterSignup());
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
         transaction.replace(R.id.fragment_login_container, loginFragment);

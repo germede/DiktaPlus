@@ -46,6 +46,10 @@ public class LoginFragment extends BaseFragment {
         return view;
     }
 
+    public void setUsernameOrEmailAfterSignup(String email) {
+        usernameOrEmail.setText(email);
+    }
+
     public void getUser() throws JSONException {
         String [] params = {usernameOrEmail.getText().toString(), password.getText().toString()};
         appCommon.getPresenterUser().loginUser(

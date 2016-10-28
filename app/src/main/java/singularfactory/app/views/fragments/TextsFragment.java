@@ -72,8 +72,8 @@ public class TextsFragment extends BaseFragment {
 
 
     public void setTextsList(JSONArray texts) throws JSONException{
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
         receivedList = texts;
         List<String> listItemInfo;
         for (int i = 0; i < texts.length(); i++) {
