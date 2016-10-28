@@ -2,6 +2,7 @@ package singularfactory.app.models;
 
 
 import android.app.ProgressDialog;
+import android.nfc.Tag;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
@@ -15,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import singularfactory.app.common.AppCommon;
@@ -93,46 +95,34 @@ public class Model {
             public void onResponse(JSONArray jsonArray) {
                 Log.i(TAG + "_" + tagRequest, "OK");
 
-                //Dismiss dialog
-                if (pDialog != null && pDialog.isShowing())
-                    pDialog.dismiss();
+                if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
 
                 try {
                     checkStatusOnResponse(object, jsonArray, tagRequest, 200);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.e(TAG,"JSON error");
                 }
             }
 
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                NetworkResponse networkResponse = error.networkResponse;
-                String body, result = "";
-                int httpStatus = 400;   //Default value
+                NetworkResponse networkResponse = error.networkResponse;int httpStatus = 400;
 
                 try {
-                    if (networkResponse != null)
-                        httpStatus = networkResponse.statusCode;
-
+                    if (networkResponse != null) httpStatus = networkResponse.statusCode;
                     if (error.networkResponse != null && error.networkResponse.data != null) {
-                        body   = new String(error.networkResponse.data, "UTF-8");
-                        result = (!body.equals("")) ? body : "";
                     }
-
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
 
-                //Dismiss dialog
-                if (pDialog != null && pDialog.isShowing())
-                    pDialog.dismiss();
+                if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
 
                 try {
                     checkStatusOnResponse(object, new JSONArray(), tagRequest, httpStatus);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.e(TAG,"JSON error");
                 }
             }
         }) {
@@ -146,10 +136,18 @@ public class Model {
             }
             @Override
             protected Map<String, String> getParams() {
-                return new HashMap<>();
+                HashMap<String,String> paramsMap = new HashMap<>();
+                paramsMap.put("username",params[0]);
+                paramsMap.put("password",params[1]);
+                paramsMap.put("email",params[0]);
+                Iterator it = paramsMap.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry e = (Map.Entry)it.next();
+                    Log.e(TAG,e.getKey() + " " + e.getValue());
+                }
+                return paramsMap;
             }
         };
-        //Adding request to request queue
         Volley.getInstance(appCommon.getApplicationContext()).addToRequestQueue(request, tagRequest);
     }
 }
