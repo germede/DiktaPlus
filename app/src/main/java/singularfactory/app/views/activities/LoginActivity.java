@@ -38,6 +38,10 @@ public class LoginActivity extends BaseActivity {
         loginFragment.getUser();
     }
 
+    public void onClickCountry(View view) {
+        signupFragment.showCountryList();
+    }
+
     public void onClickSubmit (View view) {
         signupFragment.registerUser();
     }
