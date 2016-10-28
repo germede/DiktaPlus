@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import singularfactory.app.R;
 import singularfactory.app.models.Text;
 import singularfactory.app.models.User;
+import singularfactory.app.views.activities.LoginActivity;
 import singularfactory.app.views.activities.MainActivity;
 
 public class LoginFragment extends BaseFragment {
@@ -71,6 +72,9 @@ public class LoginFragment extends BaseFragment {
         } catch (JSONException e) {
             Log.e(TAG,"Error parsing received JSON");
         }
-        startActivity(new Intent(getActivity(), MainActivity.class));
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        getActivity().overridePendingTransition(R.anim.rotate_180, R.anim.rotate_180);
+        startActivity(intent);
+        getActivity().finish();
     }
 }

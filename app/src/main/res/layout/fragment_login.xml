@@ -44,7 +44,6 @@
             android:layout_height="wrap_content"
             android:text="@string/forgot_password"
             android:id="@+id/textView2"
-            android:onClick="quickLogin"
             android:layout_gravity="right" />
     </LinearLayout>
 

@@ -27,12 +27,6 @@ public class LoginActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_login_container, loginFragment).commit();
     }
 
-    // TODO: REMOVE THIS
-    public void quickLogin(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
     public void onClickSignup(View view) {
         signupFragment = new SignupFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

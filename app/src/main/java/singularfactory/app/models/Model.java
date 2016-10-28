@@ -110,13 +110,15 @@ public class Model {
     public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url,
                                 String dialogMessage, boolean showDialog, String params) {
         if (showDialog) {
-            if (object instanceof Activity) pDialog = new ProgressDialog((Activity)object);
-            else pDialog = new ProgressDialog(((Fragment)object).getContext());
-            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            pDialog.setMessage(dialogMessage);
-            pDialog.setCanceledOnTouchOutside(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
+            if (object instanceof Activity) pDialog = new ProgressDialog((Activity) object);
+            else {
+                pDialog = new ProgressDialog(((Fragment) object).getContext());
+                pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                pDialog.setMessage(dialogMessage);
+                pDialog.setCanceledOnTouchOutside(false);
+                pDialog.setCancelable(false);
+                pDialog.show();
+            }
         }
         final AppCommon appCommon   = AppCommon.getInstance();
         JsonArrayRequest request = new JsonArrayRequest(verb, url, params

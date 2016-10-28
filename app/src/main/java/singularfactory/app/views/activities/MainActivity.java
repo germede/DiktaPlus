@@ -128,7 +128,6 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
         } else if (id == R.id.nav_logout) {
             appCommon.getUtils().sharedRemoveValue(this,"id");
             Intent intent = new Intent(this, LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }
