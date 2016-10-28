@@ -7,7 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import singularfactory.app.AppCommon;
+import singularfactory.app.common.AppCommon;
 import singularfactory.app.R;
 
 /**

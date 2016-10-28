@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,7 +15,7 @@ import com.android.volley.toolbox.ImageLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import singularfactory.app.AppCommon;
+import singularfactory.app.common.AppCommon;
 import singularfactory.app.R;
 import singularfactory.app.common.Volley;
 

@@ -4,12 +4,12 @@
     <!-- Material Design -->
     <color name="color_accent">#b8ef13</color>
     <color name="color_primary">#95bb24</color>
-    <color name="color_primary_dark">#95bb24</color>
+    <color name="color_primary_dark">#637b1d</color>
     <color name="primary_text_color">#000000</color>
     <color name="window_background">#ffffff</color>
     <color name="navigation_bar_color">#95bb24</color>
 
-    <!-- Colors -->
+    <!-- Basic Colors -->
     <color name="black">#000000</color>
     <color name="blue">#0083df</color>
     <color name="gray_dark">#1c1c1c</color>
@@ -23,5 +23,6 @@
     <!-- Custom -->
     <color name="transparent">#00000000</color>
     <color name="switchbar_background_color">#d6d6d6</color>
+    <color name="orange">#FC7B00</color>
 
 </resources>

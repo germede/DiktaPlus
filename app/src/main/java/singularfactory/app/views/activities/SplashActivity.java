@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
-import singularfactory.app.AppCommon;
+import singularfactory.app.common.AppCommon;
 import singularfactory.app.BuildConfig;
 import singularfactory.app.R;
-import singularfactory.app.Tags;
-import singularfactory.app.models.Model;
 import singularfactory.app.views.activities.initializations.InitSplashActivity;
 
 public class SplashActivity extends BaseActivity implements InitSplashActivity.InitSplashActivityListener {
@@ -129,8 +127,8 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
     public void responseGetGlobalConfig(String apiVersion, String mediaUrl) {
 
         itemView.showLoading(false);
-        appCommon.getUtils().sharedSetValue(appCommon.getApplicationContext(), Tags.SHARED_API_VERSION, apiVersion);
-        appCommon.getUtils().sharedSetValue(appCommon.getApplicationContext(), Tags.SHARED_MEDIA_URL, mediaUrl);
+        appCommon.getUtils().sharedSetValue(appCommon.getApplicationContext(), AppCommon.Tags.SHARED_API_VERSION, apiVersion);
+        appCommon.getUtils().sharedSetValue(appCommon.getApplicationContext(), AppCommon.Tags.SHARED_MEDIA_URL, mediaUrl);
 
         compareApiVersion(BuildConfig.API_VERSION, apiVersion);
     }

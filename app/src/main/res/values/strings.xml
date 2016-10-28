@@ -5,7 +5,7 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="log_in">Log in</string>
     <string name="sign_up">Sign up</string>
-    <string name="logo">Logo Diktaplus</string>
+    <string name="logo">Logo</string>
     <string name="submit">Submit</string>
     <string name="country">Country</string>
     <string name="email">E-mail</string>
@@ -20,6 +20,13 @@
 
     <!-- Texts -->
     <string name="choose_language_and_level">Choose language and level</string>
+
+    <!-- Game -->
+    <string name="press_the_button">Press the button to play</string>
+    <string name="progress">Progress</string>
+    <string name="language">Language: %1$s</string>
+    <string name="difficulty">Difficulty: %1$s</string>
+    <string name="best_score">Best score: %1$s</string>
 
     <!-- Global -->
     <string name="search">Search</string>

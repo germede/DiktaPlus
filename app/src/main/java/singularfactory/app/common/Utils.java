@@ -25,7 +25,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.TimeZone;
 
-import singularfactory.app.AppCommon;
 import singularfactory.app.R;
 
 /**
@@ -155,7 +154,7 @@ public class Utils {
             outTypeFace = cachedFonts.get(fontName);
 
         } else {
-            outTypeFace = Typeface.createFromAsset(ctx.getAssets(), fontName);
+            outTypeFace = Typeface.createFromAsset(ctx.getAssets(), "fonts/" + fontName);
 
             if (outTypeFace != null) {
                 cachedFonts.put(fontName, outTypeFace);

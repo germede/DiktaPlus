@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 import singularfactory.app.R;
+import singularfactory.app.models.Text;
 import singularfactory.app.presenters.PresenterTexts;
 
 public class TextsFragment extends BaseFragment {
@@ -35,9 +36,9 @@ public class TextsFragment extends BaseFragment {
     HashMap<String, List<String>> listDataChild;
 
     JSONArray receivedList;
-    DiktaplusText selectedText;
+    Text selectedText;
 
-    final String[] languages = {"en","es","de","fr","it"};
+    final String[] languages = {"EN","ES","DE","FR","IT"};
     final int[] flags = {R.drawable.en,
             R.drawable.es,
             R.drawable.de,
@@ -57,7 +58,7 @@ public class TextsFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    public DiktaplusText getSelectedText() {
+    public Text getSelectedText() {
         return selectedText;
     }
 
@@ -66,9 +67,7 @@ public class TextsFragment extends BaseFragment {
                 this,
                 "GET Texts",
                 Request.Method.GET,
-                "http://192.168.1.15:8000/api/texts/"
-                        +languages[selectedLanguage]
-                        +"/"+difficulties[selectedDifficulty],
+                appCommon.getBaseURL()+"texts/"+languages[selectedLanguage]+"/"+difficulties[selectedDifficulty],
                 "Loading texts list...");
     }
 
@@ -108,13 +107,13 @@ public class TextsFragment extends BaseFragment {
 
         // Default difficulty: "Medium"
         difficultyLabel = (TextView)view.findViewById(R.id.difficulty_label);
-        difficultyLabel.setTypeface(appCommon.getFont());
+        difficultyLabel.setTypeface(appCommon.getUtils().getFont(getContext(),"Handlee-Regular.ttf"));
         selectedDifficulty = 1;
         updateDifficultyLabel();
 
         // Default language: "English"
         languageLabel = (TextView)view.findViewById(R.id.language_label);
-        languageLabel.setTypeface(appCommon.getFont());
+        languageLabel.setTypeface(appCommon.getUtils().getFont(getContext(),"Handlee-Regular.ttf"));
         languageFlag = (ImageView)view.findViewById(R.id.language_flag);
         languagesLocales = new Locale[languages.length];
         for (int i = 0; i < languages.length; i++) {languagesLocales[i] = new Locale(languages[i]);}
@@ -195,7 +194,7 @@ public class TextsFragment extends BaseFragment {
             JSONObject text;
             try {
                 text = receivedList.getJSONObject(groupPosition);
-                selectedText = new DiktaplusText(text.getString("title"),
+                selectedText = new Text(text.getString("title"),
                         text.getString("content"),
                         text.getString("language"),
                         text.getString("difficulty"));

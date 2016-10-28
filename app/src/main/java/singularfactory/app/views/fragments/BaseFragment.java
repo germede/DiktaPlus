@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import singularfactory.app.AppCommon;
+import singularfactory.app.common.AppCommon;
 
 public class BaseFragment extends Fragment {
 

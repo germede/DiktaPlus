@@ -3,7 +3,7 @@ package singularfactory.app.views.activities.initializations;
 import android.content.Context;
 import android.view.View;
 
-import singularfactory.app.AppCommon;
+import singularfactory.app.common.AppCommon;
 import singularfactory.app.R;
 
 

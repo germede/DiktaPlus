@@ -16,27 +16,19 @@ import org.json.JSONException;
 import java.util.HashMap;
 import java.util.Map;
 
-import singularfactory.app.AppCommon;
+import singularfactory.app.common.AppCommon;
 import singularfactory.app.common.Volley;
-import singularfactory.app.models.interfaces.IModel;
 import singularfactory.app.views.fragments.TextsFragment;
 
-/**
- * Created by Óscar Adae Rodríguez on 08/05/2016.
- */
-public class Model implements IModel {
+public class Model {
 
     private static final String TAG = Model.class.getSimpleName();
-
     private static Model singleton = null;
-
+    private final AppCommon appCommon   = AppCommon.getInstance();
     private ProgressDialog pDialog  = null;
-
     public Model() {
         //constructor
-
     }
-
     public static Model getInstance() {
         if (singleton == null) {
             singleton = new Model();
@@ -44,7 +36,41 @@ public class Model implements IModel {
         return singleton;
     }
 
-    @Override
+    public void checkStatusOnResponse(Object object, JSONArray result, String tag, int httpStatus) throws JSONException {
+        if (httpStatus == 200) {
+            Log.i(tag, " - OK 200");
+            onResponseOK(object, tag, result);
+        } else if (httpStatus == 404) {
+            Log.e(tag, " - ERROR 404");
+            onResponseError(object, tag, "Not found");
+        } else {
+            Log.e(tag, " - ERROR 500");
+            onResponseError(object, tag, "Server error");
+        }
+    }
+
+    public void onResponseError(Object object, String tag, String message) {
+        Log.e(TAG, " - onResponseError");
+        switch (tag) {
+            case "GET Texts":
+                appCommon.getPresenterTexts().responseError(object,message);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void onResponseOK(Object object, String tag, JSONArray json) throws JSONException {
+        Log.i(TAG, " - onResponseOK");
+        switch (tag) {
+            case "GET Texts":
+                appCommon.getPresenterTexts().setTextsList(object,json);
+                break;
+            default:
+                break;
+        }
+    }
+
     public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url, String dialogMessage, boolean showDialog, final String... params) {
         if (showDialog) {
             TextsFragment textsFragment = (TextsFragment) object;
@@ -66,7 +92,7 @@ public class Model implements IModel {
                     pDialog.dismiss();
 
                 try {
-                    appCommon.getModelTexts().onResponse(object, jsonArray, tagRequest, 200);
+                    checkStatusOnResponse(object, jsonArray, tagRequest, 200);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -98,7 +124,7 @@ public class Model implements IModel {
                     pDialog.dismiss();
 
                 try {
-                    appCommon.getModelTexts().onResponse(object, new JSONArray(), tagRequest, httpStatus);
+                    checkStatusOnResponse(object, new JSONArray(), tagRequest, httpStatus);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

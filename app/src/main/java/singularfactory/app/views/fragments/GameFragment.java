@@ -15,6 +15,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,17 +30,23 @@ import java.util.List;
 import java.util.Locale;
 
 import singularfactory.app.R;
+import singularfactory.app.models.Text;
 import singularfactory.app.presenters.PresenterTexts;
 import singularfactory.app.views.activities.MainActivity;
 
 public class GameFragment extends BaseFragment implements TextToSpeech.OnInitListener {
     View view;
+    TextView languageGameLabel;
+    TextView difficultyGameLabel;
+    TextView bestScoreGameLabel;
     TextView pressTheButtonLabel;
+    TextView progressLabel;
+    ProgressBar progressBar;
     ImageButton playButton;
     EditText gameTextEdit;
 
     TextToSpeech tts;
-    DiktaplusText textToPlay;
+    Text textToPlay;
     String [] words;
     int wordIndex;
 
@@ -80,11 +87,20 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void play() {
+        // Initialize invisible elements
         pressTheButtonLabel = (TextView)view.getRootView().findViewById(R.id.press_the_button_label);
         playButton = (ImageButton) view.getRootView().findViewById(R.id.play_button);
         gameTextEdit = (EditText) view.getRootView().findViewById(R.id.game_text_edit);
+        progressBar = (ProgressBar) view.getRootView().findViewById(R.id.progress_bar);
+        progressLabel = (TextView) view.getRootView().findViewById(R.id.progress_label);
 
+        // Hide all the labels
+        languageGameLabel.setVisibility(View.GONE);
+        difficultyGameLabel.setVisibility(View.GONE);
+        bestScoreGameLabel.setVisibility(View.GONE);
         pressTheButtonLabel.setVisibility(View.GONE);
+
+        // Change image of button and its behaviour
         playButton.setImageResource(android.R.drawable.ic_media_pause);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +108,12 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
                 stopDictation();
             }
         });
+
+        // Show progress bar
+        progressLabel.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+
+        // Show text area to play
         gameTextEdit.setVisibility(View.VISIBLE);
         gameTextEdit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -118,6 +140,15 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_game, container, false);
+
+        languageGameLabel = (TextView)view.getRootView().findViewById(R.id.language_game_label);
+        difficultyGameLabel = (TextView)view.getRootView().findViewById(R.id.difficulty_game_label);
+        bestScoreGameLabel = (TextView)view.getRootView().findViewById(R.id.best_score_game_label);
+
+        languageGameLabel.setText(getActivity().getApplicationContext().getString(R.string.language, textToPlay.getLanguage()));
+        difficultyGameLabel.setText(getActivity().getApplicationContext().getString(R.string.difficulty, textToPlay.getDifficulty()));
+        bestScoreGameLabel.setText(getActivity().getApplicationContext().getString(R.string.best_score,"ASDF"));
+
         return view;
     }
 
@@ -130,7 +161,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         super.onDestroy();
     }
 
-    public void setTextToPlay (DiktaplusText textToPlay) {
+    public void setTextToPlay (Text textToPlay) {
         this.textToPlay=textToPlay;
     }
 

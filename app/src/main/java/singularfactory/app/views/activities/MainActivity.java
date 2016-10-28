@@ -2,25 +2,17 @@ package singularfactory.app.views.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import singularfactory.app.AppCommon;
 import singularfactory.app.R;
-import singularfactory.app.models.Model;
 import singularfactory.app.views.activities.initializations.InitMainActivity;
 import singularfactory.app.views.fragments.GameFragment;
-import singularfactory.app.views.fragments.LoginFragment;
-import singularfactory.app.views.fragments.SignupFragment;
 import singularfactory.app.views.fragments.TextsFragment;
 
 public class MainActivity extends BaseActivity implements InitMainActivity.InitMainActivityListener, NavigationView.OnNavigationItemSelectedListener {
