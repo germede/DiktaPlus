@@ -1,22 +1,27 @@
 package singularfactory.app.models;
 
-import singularfactory.app.common.AppCommon;
-
 public class Text {
-    private static final String TAG = Text.class.getSimpleName();
-    private final AppCommon appCommon   = AppCommon.getInstance();
-
-    public Text(String title, String content, String language, String difficulty) {
+    public Text(int id, String title, String content, String language, String difficulty) {
+        this.id = id;
         this.title = title;
         this.content = content;
         this.language = language;
         this.difficulty = difficulty;
     }
 
+    private int id;
     private String title;
     private String content;
     private String language;
     private String difficulty;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -49,6 +54,4 @@ public class Text {
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
-
-
 }

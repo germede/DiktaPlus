@@ -2,6 +2,7 @@ package singularfactory.app.models;
 
 
 import android.app.ProgressDialog;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -18,7 +19,6 @@ import java.util.Map;
 
 import singularfactory.app.common.AppCommon;
 import singularfactory.app.common.Volley;
-import singularfactory.app.views.fragments.TextsFragment;
 
 public class Model {
 
@@ -52,8 +52,11 @@ public class Model {
     public void onResponseError(Object object, String tag, String message) {
         Log.e(TAG, " - onResponseError");
         switch (tag) {
-            case "GET Texts":
+            case "Get texts":
                 appCommon.getPresenterTexts().responseError(object,message);
+                break;
+            case "Login user":
+                appCommon.getPresenterUser().responseError(object,message);
                 break;
             default:
                 break;
@@ -63,8 +66,11 @@ public class Model {
     public void onResponseOK(Object object, String tag, JSONArray json) throws JSONException {
         Log.i(TAG, " - onResponseOK");
         switch (tag) {
-            case "GET Texts":
-                appCommon.getPresenterTexts().setTextsList(object,json);
+            case "Get texts":
+                appCommon.getPresenterTexts().getTextsResponse(object,json);
+                break;
+            case "Login user":
+                appCommon.getPresenterUser().loginUserResponse(object,json);
                 break;
             default:
                 break;
@@ -73,8 +79,8 @@ public class Model {
 
     public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url, String dialogMessage, boolean showDialog, final String... params) {
         if (showDialog) {
-            TextsFragment textsFragment = (TextsFragment) object;
-            pDialog = new ProgressDialog(textsFragment.getContext());
+            Fragment fragment = (Fragment) object;
+            pDialog = new ProgressDialog(fragment.getContext());
             pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             pDialog.setMessage(dialogMessage);
             pDialog.setCanceledOnTouchOutside(false);

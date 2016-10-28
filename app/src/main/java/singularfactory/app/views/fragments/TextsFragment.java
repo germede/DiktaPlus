@@ -26,7 +26,6 @@ import java.util.Locale;
 
 import singularfactory.app.R;
 import singularfactory.app.models.Text;
-import singularfactory.app.presenters.PresenterTexts;
 
 public class TextsFragment extends BaseFragment {
     View view;
@@ -62,10 +61,10 @@ public class TextsFragment extends BaseFragment {
         return selectedText;
     }
 
-    private void updateTextList() {
-        appCommon.getPresenterTexts().getTextsList(
+    private void getTextList() {
+        appCommon.getPresenterTexts().getTexts(
                 this,
-                "GET Texts",
+                "Get texts",
                 Request.Method.GET,
                 appCommon.getBaseURL()+"texts/"+languages[selectedLanguage]+"/"+difficulties[selectedDifficulty],
                 "Loading texts list...");
@@ -88,7 +87,7 @@ public class TextsFragment extends BaseFragment {
         textsList.setAdapter(textsListAdapter);
     }
 
-    public void onResponseError (String message) {
+    public void onErrorGetUser (String message) {
         textsList.setAdapter((BaseExpandableListAdapter)null);
         showErrorToast(message);
     }
@@ -103,7 +102,7 @@ public class TextsFragment extends BaseFragment {
         view = inflater.inflate(R.layout.fragment_texts, container, false);
 
         textsList = (ExpandableListView)view.findViewById(R.id.textsList);
-        updateTextList();
+        getTextList();
 
         // Default difficulty: "Medium"
         difficultyLabel = (TextView)view.findViewById(R.id.difficulty_label);
@@ -127,7 +126,7 @@ public class TextsFragment extends BaseFragment {
         if (selectedLanguage == 0) selectedLanguage = languages.length-1;
         else selectedLanguage--;
         updateLanguageLabel();
-        updateTextList();
+        getTextList();
     }
 
     public void switchLanguageRight() {
@@ -135,7 +134,7 @@ public class TextsFragment extends BaseFragment {
         else selectedLanguage++;
         languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
         updateLanguageLabel();
-        updateTextList();
+        getTextList();
     }
 
     private void updateLanguageLabel() {
@@ -147,14 +146,14 @@ public class TextsFragment extends BaseFragment {
         if (selectedDifficulty == 0) selectedDifficulty = difficulties.length-1;
         else selectedDifficulty--;
         updateDifficultyLabel();
-        updateTextList();
+        getTextList();
     }
 
     public void switchDifficultyRight() {
         if (selectedDifficulty == difficulties.length-1) selectedDifficulty = 0;
         else selectedDifficulty++;
         updateDifficultyLabel();
-        updateTextList();
+        getTextList();
     }
 
     private void updateDifficultyLabel() {
@@ -194,7 +193,8 @@ public class TextsFragment extends BaseFragment {
             JSONObject text;
             try {
                 text = receivedList.getJSONObject(groupPosition);
-                selectedText = new Text(text.getString("title"),
+                selectedText = new Text(text.getInt("id"),
+                        text.getString("title"),
                         text.getString("content"),
                         text.getString("language"),
                         text.getString("difficulty"));

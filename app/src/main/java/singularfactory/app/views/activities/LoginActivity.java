@@ -13,7 +13,7 @@ import singularfactory.app.views.fragments.SignupFragment;
 
 public class LoginActivity extends BaseActivity {
 
-    Fragment loginFragment;
+    LoginFragment loginFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void onClickLogin(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        //intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+        loginFragment.getUser();
     }
 
     public void onClickReturnLogin(View view) {
