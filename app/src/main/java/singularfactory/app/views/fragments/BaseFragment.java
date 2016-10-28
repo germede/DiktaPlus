@@ -9,14 +9,19 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import singularfactory.app.common.AppCommon;
+import singularfactory.app.views.activities.BaseActivity;
 
 public class BaseFragment extends Fragment {
 
     public final static String TAG = BaseFragment.class.getSimpleName();
     AppCommon appCommon;
 
-    public void showErrorToast(String errorMessage) {
-        Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
+    public void showDialog(String message) {
+        ((BaseActivity)getActivity()).showSingleAlert(getContext(),message);
+    }
+
+    public void showToast(String message) {
+        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
     }
 
     public String toProperCase(String s) {

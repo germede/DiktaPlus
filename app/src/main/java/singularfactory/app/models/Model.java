@@ -104,7 +104,7 @@ public class Model {
             pDialog.setMessage(dialogMessage);
             pDialog.setCanceledOnTouchOutside(false);
             pDialog.setCancelable(false);
-            pDialog.show();
+            //pDialog.show();
         }
         final AppCommon appCommon   = AppCommon.getInstance();
         JsonArrayRequest request = new JsonArrayRequest(verb, url, params

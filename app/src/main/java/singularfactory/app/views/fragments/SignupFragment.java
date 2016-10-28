@@ -81,7 +81,7 @@ public class SignupFragment extends BaseFragment {
     }
 
     public void onSuccessfullyRegistration(String message) {
-        showErrorToast(message);
+        showDialog(message);
         ((LoginActivity)getActivity()).onClickReturnLogin(getView());
     }
 

@@ -94,7 +94,7 @@ public class TextsFragment extends BaseFragment {
 
     public void onErrorGetUser (String message) {
         textsList.setAdapter((BaseExpandableListAdapter)null);
-        showErrorToast(message);
+        showToast(message);
     }
 
 

@@ -42,15 +42,6 @@ public class BaseActivity extends AppCompatActivity {
     /** PUBLIC METHODS **/
     /********************/
 
-    /**
-     * Load image with Volley
-     * @param context
-     * @param maxWidth
-     * @param maxHeight
-     * @param imageUrl
-     * @param progressBar
-     * @param image
-     */
     public static ImageLoader loadImageWithVolley(final Context context, String imageUrl, final ProgressBar progressBar, final ImageView image, int maxWidth, int maxHeight) {
 
         ImageLoader imageLoader  = Volley.getInstance(context).getImageLoader();
@@ -78,24 +69,12 @@ public class BaseActivity extends AppCompatActivity {
         return imageLoader;
     }
 
-    /**
-     * Show alert dialog with informative message.
-     * @param context
-     * @param message
-     */
     public static void showSingleAlert(final Context context, String message) {
         new android.support.v7.app.AlertDialog.Builder(context, R.style.MyAlertDialogStyle)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
     }
-
-    /**
-     * Show alert dialog with informative message and execute process passed by parameter.
-     * @param object
-     * @param text
-     * @param processName
-     */
     public static void showSingleAlertWithReflection(final Activity activity, final Object object, String text, final String processName) {
 
         if(object != null) {
@@ -128,16 +107,6 @@ public class BaseActivity extends AppCompatActivity {
                     .show();
         }
     }
-
-    /**
-     * Show alert dialog with informative message and execute processes passed by parameters.
-     * @param activity
-     * @param currentClass
-     * @param text
-     * @param positiveButtonName
-     * @param negativeButtonName
-     * @param processName
-     */
     public static void showAlertWithReflectionTwoButtons(final Activity activity, final Object currentClass, String text, String positiveButtonName, String negativeButtonName, final String processName) {
         if(activity != null){
             new android.support.v7.app.AlertDialog.Builder(activity, R.style.MyAlertDialogStyle)
