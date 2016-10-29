@@ -41,11 +41,11 @@ public class TextFragment extends BaseFragment {
     ImageButton languageLeft, languageRight, difficultyLeft, difficultyRight;
 
     final String[] languages = {"EN","ES","DE","FR","IT"};
-    final int[] flags = {R.drawable.en,
-            R.drawable.es,
-            R.drawable.de,
-            R.drawable.fr,
-            R.drawable.it,
+    final int[] flags = {R.drawable.flag_gb,
+            R.drawable.flag_es,
+            R.drawable.flag_de,
+            R.drawable.flag_fr,
+            R.drawable.flag_it,
     };
     Locale[] languagesLocales;
     int selectedLanguage;

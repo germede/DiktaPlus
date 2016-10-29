@@ -31,6 +31,10 @@
     <string name="difficulty">Difficulty: %1$s</string>
     <string name="best_score">Best score: %1$d</string>
 
+    <!-- Ranking -->
+    <string name="top">Top</string>
+    <string name="of">of</string>
+
     <!-- Global -->
     <string name="search">Search</string>
     <string name="navigation_drawer_open">Open sidebar</string>

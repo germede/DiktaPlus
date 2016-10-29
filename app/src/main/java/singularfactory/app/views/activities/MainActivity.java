@@ -13,6 +13,7 @@ import android.view.View;
 
 import singularfactory.app.R;
 import singularfactory.app.views.fragments.GameFragment;
+import singularfactory.app.views.fragments.RankingFragment;
 import singularfactory.app.views.fragments.TextFragment;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -24,6 +25,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     TextFragment textFragment;
     GameFragment gameFragment;
+    RankingFragment rankingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.commit();
     }
 
+    public void changeToRankingFragment() {
+        rankingFragment = new RankingFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        transaction.replace(R.id.fragment_main_container, rankingFragment);
+        transaction.commit();
+    }
+
     /**
      * Settings
      **/
@@ -107,9 +117,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
 
         if (id == R.id.nav_dictation) {
-
+            changeToTextFragment();
         } else if (id == R.id.nav_ranking) {
-
+            changeToRankingFragment();
         } else if (id == R.id.nav_friends) {
 
         } else if (id == R.id.nav_settings) {
