@@ -65,7 +65,6 @@ public class SplashActivity extends BaseActivity {
                     userJson.getInt("total_score"),
                     userJson.getInt("level")));
             launchMainActivity();
-            ((TextView)findViewById(R.id.email_label)).setText(appCommon.getUser().getEmail());
         } catch (JSONException e) {
             Log.e(TAG,"Error parsing received JSON");
         }

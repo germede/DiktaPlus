@@ -12,7 +12,9 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import com.android.volley.Request;
 
@@ -49,12 +51,12 @@ public class TextFragment extends BaseFragment {
     };
     Locale[] languagesLocales;
     int selectedLanguage;
-    TextView languageLabel;
+    TextSwitcher languageLabel;
     ImageView languageFlag;
 
     final String[] difficulties = {"Easy", "Medium", "Hard"};
     int selectedDifficulty;
-    TextView difficultyLabel;
+    TextSwitcher difficultyLabel;
 
     public TextFragment() {
         // Required empty public constructor
@@ -108,12 +110,32 @@ public class TextFragment extends BaseFragment {
         getTextList();
 
         // Default difficulty: "Medium"
-        difficultyLabel = (TextView)view.findViewById(R.id.difficulty_label);
+        difficultyLabel = (TextSwitcher) view.findViewById(R.id.difficulty_label);
+        difficultyLabel.setFactory(new ViewSwitcher.ViewFactory() {
+            public View makeView() {
+                TextView myText = new TextView(getActivity());
+                myText.setTextColor(getResources().getColor(R.color.white));
+                myText.setTypeface(null, Typeface.BOLD);
+                myText.setTextSize(20);
+                return myText;
+            }
+        });
         selectedDifficulty = 1;
         updateDifficultyLabel();
 
         // Default language: "English"
-        languageLabel = (TextView)view.findViewById(R.id.language_label);
+        languageLabel = (TextSwitcher)view.findViewById(R.id.language_label);
+        languageLabel.setInAnimation(getContext(),R.anim.slide_in_left);
+        languageLabel.setOutAnimation(getContext(),R.anim.slide_out_right);
+        languageLabel.setFactory(new ViewSwitcher.ViewFactory() {
+            public View makeView() {
+                TextView myText = new TextView(getActivity());
+                myText.setTextColor(getResources().getColor(R.color.white));
+                myText.setTypeface(null, Typeface.BOLD);
+                myText.setTextSize(20);
+                return myText;
+            }
+        });
         languageFlag = (ImageView)view.findViewById(R.id.language_flag);
         languagesLocales = new Locale[languages.length];
         for (int i = 0; i < languages.length; i++) {languagesLocales[i] = new Locale(languages[i]);}
@@ -149,6 +171,8 @@ public class TextFragment extends BaseFragment {
         difficultyLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                difficultyLabel.setInAnimation(getContext(),R.anim.slide_in_left);
+                difficultyLabel.setOutAnimation(getContext(),R.anim.slide_out_right);
                 if (selectedDifficulty == 0) selectedDifficulty = difficulties.length-1;
                 else selectedDifficulty--;
                 updateDifficultyLabel();
@@ -158,6 +182,8 @@ public class TextFragment extends BaseFragment {
         difficultyRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                difficultyLabel.setInAnimation(getContext(),R.anim.slide_in_right);
+                difficultyLabel.setOutAnimation(getContext(),R.anim.slide_out_left);
                 if (selectedDifficulty == difficulties.length-1) selectedDifficulty = 0;
                 else selectedDifficulty++;
                 updateDifficultyLabel();
@@ -176,13 +202,13 @@ public class TextFragment extends BaseFragment {
     private void updateDifficultyLabel() {
         switch (selectedDifficulty) {
             case 0:
-                difficultyLabel.setText(R.string.easy);
+                difficultyLabel.setText(getResources().getString(R.string.easy));
                 break;
             case 1:
-                difficultyLabel.setText(R.string.medium);
+                difficultyLabel.setText(getResources().getString(R.string.medium));
                 break;
             case 2:
-                difficultyLabel.setText(R.string.hard);
+                difficultyLabel.setText(getResources().getString(R.string.hard));
                 break;
             default:break;
         }

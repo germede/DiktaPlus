@@ -70,7 +70,6 @@ public class LoginFragment extends BaseFragment {
                     userJson.getInt("total_score"),
                     userJson.getInt("level")));
             appCommon.getUtils().sharedSetValue(getContext(),"id",userJson.getInt("id"));
-            ((TextView)getActivity().findViewById(R.id.email_label)).setText(appCommon.getUser().getEmail());
         } catch (JSONException e) {
             Log.e(TAG,"Error parsing received JSON");
         }

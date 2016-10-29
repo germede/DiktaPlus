@@ -41,14 +41,13 @@
                 android:src="@drawable/flag_gb"
                 android:id="@+id/language_flag" />
 
-            <TextView
-                style="@style/TextSwitcherLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Language"
-                android:textColor="@color/white"
-                android:id="@+id/language_label"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            <TextSwitcher
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/language_label">
+
+            </TextSwitcher>
+
         </LinearLayout>
 
         <ImageButton
@@ -56,7 +55,6 @@
             android:id="@+id/language_left"
             android:onClick="onClickLanguageLeft"
             android:layout_gravity="left|center_vertical" />
-
 
 
     </FrameLayout>
@@ -74,21 +72,21 @@
             android:id="@+id/difficulty_left"
             android:layout_gravity="left|center_vertical" />
 
-        <TextView
-            style="@style/TextSwitcherLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Difficulty"
-            android:id="@+id/difficulty_label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/white" />
-
         <ImageButton
             style="@style/ButtonLeft"
             android:onClick="onClickDifficultyRight"
             android:id="@+id/difficulty_right"
             android:layout_gravity="right|center_vertical"
             />
+
+        <TextSwitcher
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:id="@+id/difficulty_label"
+            android:textAlignment="center">
+
+        </TextSwitcher>
 
     </FrameLayout>
 
