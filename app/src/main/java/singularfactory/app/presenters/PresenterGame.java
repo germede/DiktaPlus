@@ -17,7 +17,7 @@ public class PresenterGame {
     /**** API CALLS ****/
     /*******************/
     public void getBestScore(final Object object, final String tagRequest, int verb, String url, String dialogMessage) throws JSONException{
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
 

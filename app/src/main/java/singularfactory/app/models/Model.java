@@ -100,7 +100,7 @@ public class Model {
                 appCommon.getPresenterUser().responseError(object,"User error:"+message);
                 break;
             case "Get best score":
-                appCommon.getPresenterUser().responseError(object,"Game error:"+message);
+                appCommon.getPresenterGame().responseError(object,"Game error:"+message);
                 break;
             default:
                 break;
@@ -140,7 +140,7 @@ public class Model {
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG + "_" + tagRequest, "ERROR: " + error.getMessage() + "\n" + "CAUSE: " + error.getCause());
                 NetworkResponse networkResponse = error.networkResponse;
-                int httpStatus = 400;   //Default value
+                int httpStatus = 500;
                 if (networkResponse != null) httpStatus = networkResponse.statusCode;
                 if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
                 try {

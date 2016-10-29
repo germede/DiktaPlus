@@ -15,7 +15,6 @@ import singularfactory.app.R;
 import singularfactory.app.models.User;
 
 public class SplashActivity extends BaseActivity {
-
     private static final String TAG = SplashActivity.class.getName();
     private static final int SPLASH_TIME_OUT = 1000; //ms
 
@@ -23,7 +22,6 @@ public class SplashActivity extends BaseActivity {
     private Runnable runnable;
 
     public View pbLoading;
-
     private AppCommon appCommon;
 
     @Override
@@ -37,17 +35,10 @@ public class SplashActivity extends BaseActivity {
         }
 
         setContentView(R.layout.activity_splash);
-
         initialize(findViewById(android.R.id.content));
-
-
-        int id = (Integer)appCommon.getUtils().sharedGetValue(this,"id",2);
-        if (id == 0) launchLoginActivity();
-        else getUserInfo(id);
     }
 
     public void exitApp() {
-        Log.e(TAG,"HOLA");
         finish();
     }
 
@@ -81,7 +72,6 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         if (handler != null && runnable != null) {
             handler.removeCallbacks(runnable);
             runnable = null;
@@ -98,7 +88,9 @@ public class SplashActivity extends BaseActivity {
         handler = new Handler();
         runnable = new Runnable() {
             public void run() {
-
+                int id = (Integer) appCommon.getUtils().sharedGetValue(getApplicationContext(), "id", 2);
+                if (id == 0) launchLoginActivity();
+                else getUserInfo(id);
             }
         };
         handler.postDelayed(runnable, SPLASH_TIME_OUT);
@@ -121,8 +113,6 @@ public class SplashActivity extends BaseActivity {
             pbLoading.setVisibility(View.GONE);
             return;
         }
-
         pbLoading.setVisibility(View.VISIBLE);
     }
-
 }

@@ -188,7 +188,7 @@ public class TextFragment extends BaseFragment {
                 "Get best score",
                 Request.Method.GET,
                 appCommon.getBaseURL()+"games/"+appCommon.getUser().getId()+"/"+selectedText.getId(),
-                "Loading best score...");
+                "Loading best score..");
     }
 
     public void setBestScore(int bestScore) {

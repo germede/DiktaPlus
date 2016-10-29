@@ -1,19 +1,15 @@
 package singularfactory.app.presenters;
 
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import singularfactory.app.common.AppCommon;
-import singularfactory.app.views.activities.BaseActivity;
 import singularfactory.app.views.activities.SplashActivity;
 import singularfactory.app.views.fragments.BaseFragment;
 import singularfactory.app.views.fragments.LoginFragment;
 import singularfactory.app.views.fragments.SignupFragment;
-
-import static android.R.id.message;
 
 public class PresenterUser {
     private static final String TAG = PresenterUser.class.getSimpleName();
@@ -68,11 +64,8 @@ public class PresenterUser {
             BaseFragment baseFragment = (BaseFragment) object;
             baseFragment.showDialog(message);
         } else {
-            BaseActivity baseActivity = (BaseActivity) object;
-            baseActivity.showSingleAlert(baseActivity,message);
+            SplashActivity splashActivity = (SplashActivity) object;
+            splashActivity.showSingleAlertWithReflection(splashActivity,splashActivity,message,"exitApp");
         }
-
-
     }
-
 }

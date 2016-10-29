@@ -1,5 +1,6 @@
 package singularfactory.app.views.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Editable;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -112,6 +114,11 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
                 }
             }
         });
+
+        // Request focus for text area and show keyboard
+        gameTextEdit.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(gameTextEdit, InputMethodManager.SHOW_IMPLICIT);
 
         tts = new TextToSpeech(getContext(),this);
     }
