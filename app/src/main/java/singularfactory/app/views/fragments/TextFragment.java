@@ -262,6 +262,7 @@ public class TextFragment extends BaseFragment {
         private Context context;
         private List<String> listDataHeader;
         private HashMap<String, List<String>> listDataChild;
+        private int previousGroup;
 
         public ExpandableListAdapter(Context context, TextFragment textFragment, List<String> listDataHeader,
                                      HashMap<String, List<String>> listChildData) {
@@ -269,6 +270,7 @@ public class TextFragment extends BaseFragment {
             this.textFragment = textFragment;
             this.listDataHeader = listDataHeader;
             this.listDataChild = listChildData;
+            previousGroup = -1;
         }
 
         @Override
@@ -281,9 +283,14 @@ public class TextFragment extends BaseFragment {
         public void onGroupExpanded(int groupPosition) {
             try {
                 getTextContent(groupPosition);
+
             } catch (JSONException e) {
                 Log.e(TAG,"JSON error");
             }
+            if ((previousGroup != -1) && (groupPosition != previousGroup)) {
+                textsList.collapseGroup(previousGroup);
+            }
+            previousGroup = groupPosition;
         }
 
         @Override
