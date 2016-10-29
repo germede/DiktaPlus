@@ -68,7 +68,7 @@ public class Model {
                 appCommon.getPresenterText().getTextsResponse(object,json);
                 break;
             case "Get text content":
-                appCommon.getPresenterText().getTextContentResponse(object,json);
+                appCommon.getPresenterText().getTextContentResponse(object,json.getJSONObject(0));
                 break;
             case "Login user":
                 appCommon.getPresenterUser().loginUserResponse(object,json.getJSONObject(0));
@@ -78,6 +78,9 @@ public class Model {
                 break;
             case "Get user info":
                 appCommon.getPresenterUser().getUserInfoResponse(object,json.getJSONObject(0));
+                break;
+            case "Get ranking":
+                appCommon.getPresenterUser().getRankingResponse(object,json);
                 break;
             case "Get best score":
                 appCommon.getPresenterGame().getBestScoreResponse(object,json.getJSONObject(0));
@@ -103,6 +106,9 @@ public class Model {
                 appCommon.getPresenterUser().responseError(object,"User error:"+message);
                 break;
             case "Get user info":
+                appCommon.getPresenterUser().responseError(object,"User error:"+message);
+                break;
+            case "Get ranking":
                 appCommon.getPresenterUser().responseError(object,"User error:"+message);
                 break;
             case "Get best score":

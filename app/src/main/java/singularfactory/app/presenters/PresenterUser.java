@@ -2,6 +2,7 @@ package singularfactory.app.presenters;
 
 import android.support.v4.app.Fragment;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,6 +10,7 @@ import singularfactory.app.common.AppCommon;
 import singularfactory.app.views.activities.SplashActivity;
 import singularfactory.app.views.fragments.BaseFragment;
 import singularfactory.app.views.fragments.LoginFragment;
+import singularfactory.app.views.fragments.RankingFragment;
 import singularfactory.app.views.fragments.SignupFragment;
 
 public class PresenterUser {
@@ -39,6 +41,10 @@ public class PresenterUser {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
+    public void getRanking(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+    }
+
     /*******************/
     /** API RESPONSES **/
     /*******************/
@@ -56,6 +62,11 @@ public class PresenterUser {
     public void getUserInfoResponse(Object object, JSONObject user) {
         SplashActivity splashActivity = (SplashActivity) object;
         splashActivity.setUserInfo(user);
+    }
+
+    public void getRankingResponse(Object object, JSONArray users) throws JSONException {
+        RankingFragment rankingFragment = (RankingFragment) object;
+        rankingFragment.setRanking(users);
     }
 
     /** Response error **/
