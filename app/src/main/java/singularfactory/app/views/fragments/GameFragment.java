@@ -54,8 +54,19 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void startDictation () {
-        wordIndex = 0;
-        words = textToPlay.getContent().split(" ");
+        //wordIndex = 0;
+        //words = textToPlay.getContent().split(" ");
+
+        if (textToPlay.getDifficulty().equals("Easy")) {
+            tts.setSpeechRate(0.1f);
+        } else if (textToPlay.getDifficulty().equals("Medium")) {
+            tts.setSpeechRate(0.25f);
+        } else {
+            tts.setSpeechRate(0.4f);
+        }
+
+        tts.speak(textToPlay.getContent(),TextToSpeech.QUEUE_ADD,null);
+
     }
 
     public void dictateNextWord() {
@@ -66,7 +77,11 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void stopDictation() {
-        ((MainActivity)getActivity()).onClickStop();
+        if(tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        ((MainActivity)getActivity()).changeToTextFragment();
     }
 
     public GameFragment() {
@@ -76,7 +91,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     public void play() {
         // Initialize invisible elements
         pressTheButtonLabel = (TextView)view.getRootView().findViewById(R.id.press_the_button_label);
-        playButton = (ImageButton) view.getRootView().findViewById(R.id.play_button);
         gameTextEdit = (EditText) view.getRootView().findViewById(R.id.game_text_edit);
         progressBar = (ProgressBar) view.getRootView().findViewById(R.id.progress_bar);
         progressLabel = (TextView) view.getRootView().findViewById(R.id.progress_label);
@@ -110,7 +124,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString().charAt(s.length()-1) == ' ') {
-                    dictateNextWord();
+                    //dictateNextWord();
                 }
             }
         });
@@ -140,6 +154,14 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         languageGameLabel.setText(getActivity().getApplicationContext().getString(R.string.language, textToPlay.getLanguage()));
         difficultyGameLabel.setText(getActivity().getApplicationContext().getString(R.string.difficulty, textToPlay.getDifficulty()));
         bestScoreGameLabel.setText(getActivity().getApplicationContext().getString(R.string.best_score,textToPlay.getBestScore()));
+
+        playButton = (ImageButton) view.getRootView().findViewById(R.id.play_button);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                play();
+            }
+        });
 
         return view;
     }

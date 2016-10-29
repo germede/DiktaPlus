@@ -74,13 +74,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.commit();
     }
 
-    public void onClickPlay(View view) {
-        gameFragment.play();
-    }
-
-    public void onClickStop() {
+    public void changeToTextFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
         transaction.replace(R.id.fragment_main_container, textFragment);
         transaction.commit();
     }

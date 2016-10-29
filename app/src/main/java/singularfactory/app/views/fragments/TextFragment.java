@@ -170,13 +170,18 @@ public class TextFragment extends BaseFragment {
     }
 
     private void updateDifficultyLabel() {
-        difficultyLabel.setText(difficulties[selectedDifficulty]);
         switch (selectedDifficulty) {
-            case 0: difficultyLabel.setTextColor(Color.GREEN);
+            case 0:
+                difficultyLabel.setText(R.string.easy);
+                difficultyLabel.setTextColor(Color.GREEN);
                 break;
-            case 1: difficultyLabel.setTextColor(Color.YELLOW);
+            case 1:
+                difficultyLabel.setText(R.string.medium);
+                difficultyLabel.setTextColor(Color.YELLOW);
                 break;
-            case 2: difficultyLabel.setTextColor(Color.RED);
+            case 2:
+                difficultyLabel.setText(R.string.hard);
+                difficultyLabel.setTextColor(Color.RED);
                 break;
             default:break;
         }

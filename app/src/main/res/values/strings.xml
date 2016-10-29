@@ -20,6 +20,9 @@
 
     <!-- Texts -->
     <string name="choose_language_and_level">Choose language and level</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
 
     <!-- Game -->
     <string name="press_the_button">Press the button to play</string>

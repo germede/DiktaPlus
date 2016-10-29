@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar3"
-        android:progress="0" />
+        android:progress="0"
+        android:visibility="gone"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -83,7 +84,6 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:id="@+id/play_button"
-        android:onClick="onClickPlay"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.08"
         android:src="@android:drawable/ic_media_play" />
