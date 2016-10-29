@@ -76,9 +76,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.commit();
     }
 
-    public void changeToTextFragment() {
+    public void changeToTextFragment(int animIn, int animOut) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, textFragment);
         transaction.commit();
     }
@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public void changeToRankingFragment() {
         rankingFragment = new RankingFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        transaction.setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_top);
         transaction.replace(R.id.fragment_main_container, rankingFragment);
         transaction.commit();
     }
@@ -117,7 +117,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
 
         if (id == R.id.nav_dictation) {
-            changeToTextFragment();
+            changeToTextFragment(R.anim.slide_in_top,R.anim.slide_out_bottom);
         } else if (id == R.id.nav_ranking) {
             changeToRankingFragment();
         } else if (id == R.id.nav_friends) {

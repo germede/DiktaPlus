@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:gravity="center_horizontal">
 
     <ImageView
         android:layout_width="match_parent"
@@ -16,9 +17,9 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.23">
+        android:gravity="center_vertical">
 
         <TextView
             android:text="@string/top"
@@ -26,29 +27,47 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView"
             android:layout_weight="1"
-            android:textAlignment="textEnd" />
+            android:textAlignment="textEnd"
+            android:textSize="18sp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
         <EditText
-            android:layout_width="109dp"
+            android:layout_width="52dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/editText" />
+            android:id="@+id/editText"
+            android:gravity="center_vertical|fill_horizontal"
+            android:text="10"
+            android:textAlignment="center" />
 
         <TextView
             android:text="@string/of"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView4"
-            android:layout_weight="1" />
+            android:layout_weight="0.10"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
         <EditText
-            android:layout_width="109dp"
+            android:layout_width="66dp"
             android:layout_height="wrap_content"
             android:inputType="none"
             android:ems="10"
-            android:id="@+id/editText2"
-            android:layout_weight="1" />
+            android:text="GB"
+            android:id="@+id/country_ranking_input"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="center" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:src="@drawable/flag_gb"
+            android:id="@+id/imageView4"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
     </LinearLayout>
 
 </LinearLayout>
