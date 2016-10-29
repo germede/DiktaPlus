@@ -81,7 +81,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             tts.stop();
             tts.shutdown();
         }
-        ((MainActivity)getActivity()).changeToTextFragment(R.anim.slide_in_left,R.anim.slide_out_right);
     }
 
     public GameFragment() {
@@ -106,7 +105,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopDictation();
+                ((MainActivity)getActivity()).changeToTextFragment(R.anim.slide_in_left,R.anim.slide_out_right);
             }
         });
 

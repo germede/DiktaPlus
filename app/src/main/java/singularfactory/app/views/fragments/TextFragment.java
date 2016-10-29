@@ -177,15 +177,12 @@ public class TextFragment extends BaseFragment {
         switch (selectedDifficulty) {
             case 0:
                 difficultyLabel.setText(R.string.easy);
-                difficultyLabel.setTextColor(Color.GREEN);
                 break;
             case 1:
                 difficultyLabel.setText(R.string.medium);
-                difficultyLabel.setTextColor(Color.YELLOW);
                 break;
             case 2:
                 difficultyLabel.setText(R.string.hard);
-                difficultyLabel.setTextColor(Color.RED);
                 break;
             default:break;
         }
@@ -309,11 +306,11 @@ public class TextFragment extends BaseFragment {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.fragment_text_head, null);
+                convertView = infalInflater.inflate(android.R.layout.simple_expandable_list_item_2, null);
             }
 
             TextView lblListHeader = (TextView) convertView
-                    .findViewById(R.id.textsListHeader);
+                    .findViewById(android.R.id.text1);
             lblListHeader.setTypeface(null, Typeface.BOLD);
             lblListHeader.setText(headerTitle);
 

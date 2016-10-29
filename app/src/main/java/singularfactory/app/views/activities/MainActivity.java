@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import singularfactory.app.R;
 import singularfactory.app.views.fragments.GameFragment;
@@ -78,6 +79,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     public void changeToTextFragment(int animIn, int animOut) {
+        if (gameFragment != null) gameFragment.stopDictation();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, textFragment);

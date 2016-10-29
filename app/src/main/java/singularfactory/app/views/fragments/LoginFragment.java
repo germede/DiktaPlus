@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 
@@ -69,6 +70,7 @@ public class LoginFragment extends BaseFragment {
                     userJson.getInt("total_score"),
                     userJson.getInt("level")));
             appCommon.getUtils().sharedSetValue(getContext(),"id",userJson.getInt("id"));
+            ((TextView)getActivity().findViewById(R.id.email_label)).setText(appCommon.getUser().getEmail());
         } catch (JSONException e) {
             Log.e(TAG,"Error parsing received JSON");
         }
