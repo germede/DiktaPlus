@@ -71,7 +71,7 @@ public class RankingFragment extends BaseFragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                getRanking();
+                if(s!= null && s.toString().length()>0) getRanking();
             }
         });
         country = (EditText) view.findViewById(R.id.country_ranking_input);
@@ -114,7 +114,7 @@ public class RankingFragment extends BaseFragment {
     public void setRanking(JSONArray users) throws JSONException {
         List<String> usersList = new ArrayList<String>();;
         for (int i = 0; i < users.length(); i++) {
-            usersList.add(i+". "+users.getJSONObject(i).getString("username"));
+            usersList.add((i+1)+". "+users.getJSONObject(i).getString("username"));
         }
         ranking.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,usersList));
     }

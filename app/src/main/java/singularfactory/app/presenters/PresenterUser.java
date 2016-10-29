@@ -42,7 +42,7 @@ public class PresenterUser {
     }
 
     public void getRanking(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
     /*******************/
