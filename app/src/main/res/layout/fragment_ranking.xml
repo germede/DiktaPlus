@@ -6,68 +6,95 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:gravity="center_horizontal">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/alert_dark_frame"
-        android:id="@+id/imageView3"
-        android:layout_weight="0.23" />
+    android:gravity="center_horizontal"
+    android:layout_margin="@dimen/activity_horizontal_margin">
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:text="@string/top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="1"
-            android:textAlignment="textEnd"
-            android:textSize="18sp"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
-
-        <EditText
-            android:layout_width="52dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText"
-            android:gravity="center_vertical|fill_horizontal"
-            android:text="10"
-            android:textAlignment="center" />
-
-        <TextView
-            android:text="@string/of"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView4"
-            android:layout_weight="0.10"
-            android:textSize="18sp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
-
-        <EditText
-            android:layout_width="66dp"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:ems="10"
-            android:text="GB"
-            android:id="@+id/country_ranking_input"
-            android:gravity="center_vertical|center_horizontal"
-            android:textAlignment="center" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <ImageView
+            android:layout_width="90dp"
+            android:layout_height="76dp"
+            app:srcCompat="@android:drawable/alert_dark_frame"
+            android:id="@+id/imageView3" />
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:src="@drawable/flag_gb"
-            android:id="@+id/imageView4"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="@string/top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:layout_weight="0.05"
+                    android:textAlignment="textEnd"
+                    android:textSize="18sp"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin" />
+
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editText"
+                    android:gravity="center_vertical|fill_horizontal"
+                    android:text="10"
+                    android:textAlignment="center"
+                    android:layout_weight="0.04"
+                    android:layout_width="40dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="@string/of"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView4"
+                    android:layout_weight="0.10"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin" />
+
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:ems="10"
+                    android:text="@string/country"
+                    android:id="@+id/country_ranking_input"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textAlignment="center"
+                    android:layout_width="124dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:src="@drawable/flag_gb"
+                    android:id="@+id/ranking_flag"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

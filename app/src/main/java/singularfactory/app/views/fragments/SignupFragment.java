@@ -26,6 +26,8 @@ public class SignupFragment extends BaseFragment {
     EditText password;
     EditText country;
 
+    String selectedCountry;
+
     public SignupFragment() {
         // Required empty public constructor
     }
@@ -50,7 +52,8 @@ public class SignupFragment extends BaseFragment {
                 if (b) {
                     CountryPicker picker = CountryPicker.getInstance("Select Country", new CountryPickerListener() {
                         @Override public void onSelectCountry(String name, String code) {
-                            country.setText(code);
+                            country.setText(name);
+                            selectedCountry = code;
                             DialogFragment dialogFragment =
                                     (DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker");
                             dialogFragment.dismiss();
@@ -70,7 +73,7 @@ public class SignupFragment extends BaseFragment {
         String [] params = {username.getText().toString(),
                             email.getText().toString(),
                             password.getText().toString(),
-                            country.getText().toString()};
+                            selectedCountry};
         appCommon.getPresenterUser().registerUser(
                 this,
                 "Register user",

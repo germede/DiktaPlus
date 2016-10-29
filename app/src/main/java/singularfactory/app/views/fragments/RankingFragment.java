@@ -35,6 +35,7 @@ import singularfactory.app.models.Text;
 public class RankingFragment extends BaseFragment {
     View view;
     EditText country;
+    ImageView flag;
 
 
     public RankingFragment() {
@@ -51,6 +52,7 @@ public class RankingFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_ranking, container, false);
 
+        flag = (ImageView) view.findViewById(R.id.ranking_flag);
         country = (EditText) view.findViewById(R.id.country_ranking_input);
         country.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -59,10 +61,14 @@ public class RankingFragment extends BaseFragment {
                     CountryPicker picker = CountryPicker.getInstance("Select Country", new CountryPickerListener() {
                         @Override
                         public void onSelectCountry(String name, String code) {
-                            country.setText(code);
+                            country.setText(name);
                             DialogFragment dialogFragment =
                                     (DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker");
                             dialogFragment.dismiss();
+                            int drawableId = getResources()
+                                    .getIdentifier("flag_"+code.toLowerCase(), "drawable", getActivity().getPackageName());
+
+                            flag.setImageResource(drawableId);
 
                         }
                     });
