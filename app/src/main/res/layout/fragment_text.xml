@@ -29,26 +29,16 @@
             android:onClick="onClickLanguageRight"
             android:layout_gravity="right|center_vertical" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/flag_gb"
-                android:id="@+id/language_flag" />
 
-            <TextSwitcher
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/language_label">
+        <TextSwitcher
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:id="@+id/language_label"
+            android:textAlignment="center"
+            android:layout_width="325dp"
+            android:measureAllChildren="false">
 
-            </TextSwitcher>
-
-        </LinearLayout>
+        </TextSwitcher>
 
         <ImageButton
             style="@style/ButtonRight"
@@ -72,21 +62,22 @@
             android:id="@+id/difficulty_left"
             android:layout_gravity="left|center_vertical" />
 
+        <TextSwitcher
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:id="@+id/difficulty_label"
+            android:textAlignment="center"
+            android:layout_width="325dp"
+            android:measureAllChildren="false">
+
+        </TextSwitcher>
+
         <ImageButton
             style="@style/ButtonLeft"
             android:onClick="onClickDifficultyRight"
             android:id="@+id/difficulty_right"
             android:layout_gravity="right|center_vertical"
-            />
-
-        <TextSwitcher
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:id="@+id/difficulty_label"
-            android:textAlignment="center">
-
-        </TextSwitcher>
+             />
 
     </FrameLayout>
 
@@ -94,7 +85,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textsList"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/activity_vertical_margin" />
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

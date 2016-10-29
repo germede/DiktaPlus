@@ -34,12 +34,10 @@
         android:textColor="@color/black"
         android:text="example@example.com" />
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar3"
-        android:progress="100"/>
+        android:layout_height="1dp"
+        android:background="@color/color_primary"/>
 
 
 </LinearLayout>

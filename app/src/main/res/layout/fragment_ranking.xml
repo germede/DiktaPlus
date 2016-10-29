@@ -9,56 +9,67 @@
     android:gravity="center_horizontal"
     android:layout_margin="@dimen/activity_horizontal_margin">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="134dp"
-        app:srcCompat="@android:drawable/alert_dark_frame"
-        android:id="@+id/ranking_flag" />
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:text="@string/top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:textSize="18sp"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
+        <ImageView
+            android:layout_width="59dp"
+            android:layout_height="63dp"
+            app:srcCompat="@android:drawable/alert_dark_frame"
+            android:id="@+id/ranking_flag" />
 
-        <EditText
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/cnt_ranking_input"
-            android:gravity="center_vertical|fill_horizontal"
-            android:text="10"
-            android:textAlignment="center"
-            android:layout_width="43dp" />
-
-        <TextView
-            android:text="@string/of"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView4"
-            android:textSize="18sp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
-
-        <EditText
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:text="@string/country"
-            android:id="@+id/country_ranking_input"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center_vertical|center_horizontal"
-            android:textAlignment="center"
-            android:layout_width="wrap_content" />
+            android:layout_weight="1">
 
+            <TextView
+                android:text="@string/top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:textSize="18sp"
+                android:layout_marginRight="8dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/cnt_ranking_input"
+                android:gravity="center_vertical|fill_horizontal"
+                android:text="10"
+                android:textAlignment="center"
+                android:layout_width="43dp" />
+
+            <TextView
+                android:text="@string/of"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:textSize="18sp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:editable="false"
+                android:text="@string/country"
+                android:id="@+id/country_ranking_input"
+                android:gravity="center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:layout_width="wrap_content" />
+
+        </LinearLayout>
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

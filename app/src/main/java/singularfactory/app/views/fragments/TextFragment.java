@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,6 +115,7 @@ public class TextFragment extends BaseFragment {
         difficultyLabel.setFactory(new ViewSwitcher.ViewFactory() {
             public View makeView() {
                 TextView myText = new TextView(getActivity());
+                myText.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL);
                 myText.setTextColor(getResources().getColor(R.color.white));
                 myText.setTypeface(null, Typeface.BOLD);
                 myText.setTextSize(20);
@@ -130,13 +132,13 @@ public class TextFragment extends BaseFragment {
         languageLabel.setFactory(new ViewSwitcher.ViewFactory() {
             public View makeView() {
                 TextView myText = new TextView(getActivity());
+                myText.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL);
                 myText.setTextColor(getResources().getColor(R.color.white));
                 myText.setTypeface(null, Typeface.BOLD);
                 myText.setTextSize(20);
                 return myText;
             }
         });
-        languageFlag = (ImageView)view.findViewById(R.id.language_flag);
         languagesLocales = new Locale[languages.length];
         for (int i = 0; i < languages.length; i++) {languagesLocales[i] = new Locale(languages[i]);}
         selectedLanguage = 0;
@@ -152,6 +154,8 @@ public class TextFragment extends BaseFragment {
         languageLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                languageLabel.setInAnimation(getContext(),R.anim.slide_in_left);
+                languageLabel.setOutAnimation(getContext(),R.anim.slide_out_right);
                 if (selectedLanguage == 0) selectedLanguage = languages.length-1;
                 else selectedLanguage--;
                 updateLanguageLabel();
@@ -161,6 +165,8 @@ public class TextFragment extends BaseFragment {
         languageRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                languageLabel.setInAnimation(getContext(),R.anim.slide_in_right);
+                languageLabel.setOutAnimation(getContext(),R.anim.slide_out_left);
                 if (selectedLanguage == languages.length-1) selectedLanguage = 0;
                 else selectedLanguage++;
                 languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
@@ -196,7 +202,6 @@ public class TextFragment extends BaseFragment {
 
     private void updateLanguageLabel() {
         languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
-        languageFlag.setImageResource(flags[selectedLanguage]);
     }
 
     private void updateDifficultyLabel() {
