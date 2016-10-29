@@ -58,11 +58,11 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         //words = textToPlay.getContent().split(" ");
 
         if (textToPlay.getDifficulty().equals("Easy")) {
-            tts.setSpeechRate(0.1f);
+            tts.setSpeechRate(0.05f);
         } else if (textToPlay.getDifficulty().equals("Medium")) {
             tts.setSpeechRate(0.25f);
         } else {
-            tts.setSpeechRate(0.4f);
+            tts.setSpeechRate(1f);
         }
 
         tts.speak(textToPlay.getContent(),TextToSpeech.QUEUE_ADD,null);

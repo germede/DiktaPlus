@@ -1,7 +1,10 @@
 package singularfactory.app.views.fragments;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,7 @@ import com.android.volley.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -200,5 +204,130 @@ public class TextFragment extends BaseFragment {
         selectedText.setBestScore(bestScore);
         TextView bestScoreLabel = (TextView)view.findViewById(R.id.best_score_label);
         bestScoreLabel.setText(getActivity().getApplicationContext().getString(R.string.best_score, bestScore));
+    }
+
+    public void getTextContent(int groupPosition) throws JSONException {
+        appCommon.getPresenterText().getTextContent(
+                this,
+                "Get text content",
+                Request.Method.GET,
+                appCommon.getBaseURL()+"texts/"+receivedList.getJSONObject(groupPosition).getInt("id"),
+                "Loading text content..");
+    }
+
+    public void setTextContent(JSONObject text) {
+        try {
+            selectedText = new Text(text.getInt("id"),
+                    text.getString("title"),
+                    text.getString("content"),
+                    text.getString("language"),
+                    text.getString("difficulty"));
+            getBestScore();
+        } catch (JSONException e) {
+            Log.e(TAG,"Error parsing received JSON");
+        }
+    }
+
+    class ExpandableListAdapter extends BaseExpandableListAdapter {
+
+        private TextFragment textFragment;
+        private Context context;
+        private List<String> listDataHeader;
+        private HashMap<String, List<String>> listDataChild;
+
+        public ExpandableListAdapter(Context context, TextFragment textFragment, List<String> listDataHeader,
+                                     HashMap<String, List<String>> listChildData) {
+            this.context = context;
+            this.textFragment = textFragment;
+            this.listDataHeader = listDataHeader;
+            this.listDataChild = listChildData;
+        }
+
+        @Override
+        public Object getChild(int groupPosition, int childPosititon) {
+            return this.listDataChild.get(this.listDataHeader.get(groupPosition))
+                    .get(childPosititon);
+        }
+
+        @Override
+        public void onGroupExpanded(int groupPosition) {
+            try {
+                getTextContent(groupPosition);
+            } catch (JSONException e) {
+                Log.e(TAG,"JSON error");
+            }
+        }
+
+        @Override
+        public long getChildId(int groupPosition, int childPosition) {
+            return childPosition;
+        }
+
+        @Override
+        public View getChildView(int groupPosition, final int childPosition,
+                                 boolean isLastChild, View convertView, ViewGroup parent) {
+
+            final String childText = (String) getChild(groupPosition, childPosition);
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.fragment_text_child, null);
+            }
+
+            TextView txtListChild = (TextView) convertView
+                    .findViewById(R.id.best_score_label);
+
+            txtListChild.setText(childText);
+            return convertView;
+        }
+
+        @Override
+        public int getChildrenCount(int groupPosition) {
+            return 1;
+        }
+
+        @Override
+        public Object getGroup(int groupPosition) {
+            return this.listDataHeader.get(groupPosition);
+        }
+
+        @Override
+        public int getGroupCount() {
+            return this.listDataHeader.size();
+        }
+
+        @Override
+        public long getGroupId(int groupPosition) {
+            return groupPosition;
+        }
+
+        @Override
+        public View getGroupView(int groupPosition, boolean isExpanded,
+                                 View convertView, ViewGroup parent) {
+            String headerTitle = (String) getGroup(groupPosition);
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.fragment_text_head, null);
+            }
+
+            TextView lblListHeader = (TextView) convertView
+                    .findViewById(R.id.textsListHeader);
+            lblListHeader.setTypeface(null, Typeface.BOLD);
+            lblListHeader.setText(headerTitle);
+
+            return convertView;
+        }
+
+        @Override
+        public boolean hasStableIds() {
+            return false;
+        }
+
+        @Override
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+            return true;
+        }
     }
 }

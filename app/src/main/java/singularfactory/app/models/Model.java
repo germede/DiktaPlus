@@ -67,6 +67,9 @@ public class Model {
             case "Get texts":
                 appCommon.getPresenterText().getTextsResponse(object,json);
                 break;
+            case "Get text content":
+                appCommon.getPresenterText().getTextContentResponse(object,json);
+                break;
             case "Login user":
                 appCommon.getPresenterUser().loginUserResponse(object,json.getJSONObject(0));
                 break;
@@ -88,6 +91,9 @@ public class Model {
         Log.e(TAG, " - onResponseError");
         switch (tag) {
             case "Get texts":
+                appCommon.getPresenterText().responseError(object,"Texts error:"+message);
+                break;
+            case "Get text content":
                 appCommon.getPresenterText().responseError(object,"Texts error:"+message);
                 break;
             case "Login user":

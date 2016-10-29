@@ -17,13 +17,21 @@ public class PresenterText {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
+    public void getTextContent(final Object object, final String tagRequest, int verb, String url, String dialogMessage){
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+    }
+
     /*******************/
     /** API RESPONSES **/
     /*******************/
     public void getTextsResponse(Object object, JSONArray texts) throws JSONException {
         TextFragment textFragment = (TextFragment) object;
         textFragment.setTextsList(texts);
+    }
 
+    public void getTextContentResponse(Object object, JSONArray text) throws JSONException {
+        TextFragment textFragment = (TextFragment) object;
+        textFragment.setTextContent(text.getJSONObject(0));
     }
 
     /** Response error **/
