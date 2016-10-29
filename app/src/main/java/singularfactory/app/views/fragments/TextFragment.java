@@ -337,7 +337,7 @@ public class TextFragment extends BaseFragment {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(android.R.layout.simple_expandable_list_item_2, null);
+                convertView = infalInflater.inflate(android.R.layout.simple_expandable_list_item_1, null);
             }
 
             TextView lblListHeader = (TextView) convertView

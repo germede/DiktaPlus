@@ -31,14 +31,6 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity android:name=".views.activities.LoginActivity" />
-        <activity
-            android:name=".views.activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".views.activities.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="singularfactory.app.views.activities.MainActivity" />
-        </activity>
     </application>
 
 </manifest>

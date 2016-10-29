@@ -56,7 +56,8 @@
             android:ems="10"
             android:id="@+id/country_signup_input"
             android:layout_weight="0.61"
-            android:hint="@string/country" />
+            android:hint="@string/country"
+            android:editable="false"/>
 
     </LinearLayout>
 

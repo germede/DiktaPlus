@@ -2,6 +2,7 @@ package singularfactory.app.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.notification.NotificationListenerService;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import singularfactory.app.R;
+import singularfactory.app.views.fragments.BaseFragment;
 import singularfactory.app.views.fragments.GameFragment;
 import singularfactory.app.views.fragments.RankingFragment;
 import singularfactory.app.views.fragments.TextFragment;
@@ -25,6 +27,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private DrawerLayout drawer;
     private NavigationView navigationView;
 
+    BaseFragment actualFragment;
     TextFragment textFragment;
     GameFragment gameFragment;
     RankingFragment rankingFragment;
@@ -76,6 +79,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.replace(R.id.fragment_main_container, gameFragment);
         transaction.addToBackStack(TAG);
         transaction.commit();
+        actualFragment = gameFragment;
     }
 
     public void changeToTextFragment(int animIn, int animOut) {
@@ -84,6 +88,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, textFragment);
         transaction.commit();
+        actualFragment = textFragment;
     }
 
     public void changeToRankingFragment() {
@@ -92,6 +97,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_top);
         transaction.replace(R.id.fragment_main_container, rankingFragment);
         transaction.commit();
+        actualFragment = rankingFragment;
     }
 
     public void logout() {
@@ -126,17 +132,24 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_dictation) {
-            changeToTextFragment(R.anim.slide_in_top,R.anim.slide_out_bottom);
-        } else if (id == R.id.nav_ranking) {
-            changeToRankingFragment();
-        } else if (id == R.id.nav_friends) {
+        switch (id) {
+            case R.id.nav_dictation:
+                if (!(actualFragment instanceof TextFragment))
+                    changeToTextFragment(R.anim.slide_in_top, R.anim.slide_out_bottom);
+                break;
+            case R.id.nav_ranking:
+                if (!(actualFragment instanceof RankingFragment)) changeToRankingFragment();
+                break;
+            case R.id.nav_friends:
 
-        } else if (id == R.id.nav_settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
-        } else if (id == R.id.nav_logout) {
-            appCommon.getUtils().sharedRemoveValue(this,"id");
-            logout();
+                break;
+            case R.id.nav_settings:
+
+                break;
+            case R.id.nav_logout:
+                appCommon.getUtils().sharedRemoveValue(this, "id");
+                logout();
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
