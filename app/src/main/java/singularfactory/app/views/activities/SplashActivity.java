@@ -1,25 +1,20 @@
 package singularfactory.app.views.activities;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
 import com.android.volley.Request;
-import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import singularfactory.app.common.AppCommon;
-import singularfactory.app.BuildConfig;
 import singularfactory.app.R;
 import singularfactory.app.models.User;
-import singularfactory.app.views.activities.initializations.InitSplashActivity;
 
-public class SplashActivity extends BaseActivity implements InitSplashActivity.InitSplashActivityListener {
+public class SplashActivity extends BaseActivity {
 
     private static final String TAG = SplashActivity.class.getName();
     private static final int SPLASH_TIME_OUT = 1000; //ms
@@ -27,20 +22,33 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
     private Handler handler;
     private Runnable runnable;
 
-    public InitSplashActivity itemView;
+    public View pbLoading;
 
     private AppCommon appCommon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // No internet -> No App
+        if (!AppCommon.getInstance().getUtils().hasInternet(AppCommon.getInstance().getApplicationContext())) {
+            showSingleAlertWithReflection(this, this, getResources().getString(R.string.message_no_internet),"exitApp");
+            return;
+        }
+
         setContentView(R.layout.activity_splash);
 
         initialize(findViewById(android.R.id.content));
 
+
         int id = (Integer)appCommon.getUtils().sharedGetValue(this,"id",2);
         if (id == 0) launchLoginActivity();
         else getUserInfo(id);
+    }
+
+    public void exitApp() {
+        Log.e(TAG,"HOLA");
+        finish();
     }
 
     private void getUserInfo(int id) {
@@ -84,11 +92,8 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
     public void initialize(View view) {
         appCommon = AppCommon.getInstance();
 
-        itemView = new InitSplashActivity(this);
-        itemView.initialize(view);
-        itemView.initializeActions();
-        itemView.initializeCustomFonts();
-        itemView.setInitSplashActivityListener(this);
+        pbLoading = view.findViewById(R.id.pbLoading);
+        showLoading(true);
 
         handler = new Handler();
         runnable = new Runnable() {
@@ -110,4 +115,14 @@ public class SplashActivity extends BaseActivity implements InitSplashActivity.I
         overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         finish();
     }
+
+    public void showLoading(boolean enable) {
+        if (!enable) {
+            pbLoading.setVisibility(View.GONE);
+            return;
+        }
+
+        pbLoading.setVisibility(View.VISIBLE);
+    }
+
 }

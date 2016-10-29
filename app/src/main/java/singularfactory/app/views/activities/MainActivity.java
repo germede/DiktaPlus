@@ -7,20 +7,21 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.Menu;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
 import singularfactory.app.R;
-import singularfactory.app.views.activities.initializations.InitMainActivity;
 import singularfactory.app.views.fragments.GameFragment;
 import singularfactory.app.views.fragments.TextFragment;
 
-public class MainActivity extends BaseActivity implements InitMainActivity.InitMainActivityListener, NavigationView.OnNavigationItemSelectedListener {
-
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    public InitMainActivity itemView;
+    private Toolbar toolbar;
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
+
     TextFragment textFragment;
     GameFragment gameFragment;
 
@@ -49,29 +50,21 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
 
     private void initialize(View view) {
 
-        itemView = new InitMainActivity(this);
-        itemView.initialize(view);
-        itemView.initializeActions();
-        itemView.initializeCustomFonts();
-        itemView.setInitMainActivityListener(this);
+        toolbar           = (Toolbar)              view.findViewById(R.id.toolbar);
+        drawer            = (DrawerLayout)         view.findViewById(R.id.drawer_layout);
+        navigationView    = (NavigationView)       view.findViewById(R.id.nav_view);
     }
 
     private void initializeActionBarAndToggle() {
-        //ActionBar
-        setSupportActionBar(itemView.toolbar);
-
-        //Drawer Toggle
+        setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, itemView.drawer, itemView.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        itemView.drawer.addDrawerListener(toggle);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        //Navigation
-        itemView.navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     public void onClickStartGame(View view) {
-        // Replace the texts fragment with the game fragment
         gameFragment = new GameFragment();
         gameFragment.setTextToPlay(textFragment.getSelectedText());
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -131,7 +124,7 @@ public class MainActivity extends BaseActivity implements InitMainActivity.InitM
             startActivity(intent);
             finish();
         }
-        itemView.drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

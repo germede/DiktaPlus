@@ -80,7 +80,6 @@ public class BaseActivity extends AppCompatActivity {
         if(object != null) {
 
             new android.support.v7.app.AlertDialog.Builder(activity, R.style.MyAlertDialogStyle)
-                    //.setTitle(text)
                     .setMessage(text)
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -93,7 +92,6 @@ public class BaseActivity extends AppCompatActivity {
                             try {
                                 Method method = object.getClass().getMethod(processName);
                                 method.invoke(object);
-
                             } catch (NoSuchMethodException e) {
                                 e.printStackTrace();
                             } catch (InvocationTargetException e) {

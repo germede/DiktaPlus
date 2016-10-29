@@ -1,11 +1,13 @@
 package singularfactory.app.presenters;
 
+import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import singularfactory.app.common.AppCommon;
+import singularfactory.app.views.activities.BaseActivity;
 import singularfactory.app.views.activities.SplashActivity;
 import singularfactory.app.views.fragments.BaseFragment;
 import singularfactory.app.views.fragments.LoginFragment;
@@ -62,8 +64,15 @@ public class PresenterUser {
 
     /** Response error **/
     public void responseError(Object object, String message) {
-        BaseFragment baseFragment = (BaseFragment) object;
-        baseFragment.showDialog(message);
+        if (object instanceof Fragment) {
+            BaseFragment baseFragment = (BaseFragment) object;
+            baseFragment.showDialog(message);
+        } else {
+            BaseActivity baseActivity = (BaseActivity) object;
+            baseActivity.showSingleAlert(baseActivity,message);
+        }
+
+
     }
 
 }
