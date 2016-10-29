@@ -32,7 +32,10 @@ public class PresenterGame {
 
     /** Response error **/
     public void responseError(Object object, String message) {
-        BaseFragment baseFragment = (BaseFragment) object;
+        if(!message.equals("")) {
+            BaseFragment baseFragment = (BaseFragment) object;
+            baseFragment.showDialog(message);
+        }
     }
 
 

@@ -109,10 +109,10 @@ public class Model {
                 appCommon.getPresenterUser().responseError(object,"User error:"+message);
                 break;
             case "Get ranking":
-                appCommon.getPresenterUser().responseError(object,"User error:"+message);
+                appCommon.getPresenterUser().responseError(object,"");
                 break;
             case "Get best score":
-                appCommon.getPresenterGame().responseError(object,"Game error:"+message);
+                appCommon.getPresenterGame().responseError(object,"");
                 break;
             default:
                 break;

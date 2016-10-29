@@ -42,7 +42,7 @@ public class PresenterUser {
     }
 
     public void getRanking(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
     /*******************/
@@ -71,12 +71,14 @@ public class PresenterUser {
 
     /** Response error **/
     public void responseError(Object object, String message) {
-        if (object instanceof Fragment) {
-            BaseFragment baseFragment = (BaseFragment) object;
-            baseFragment.showDialog(message);
-        } else {
-            SplashActivity splashActivity = (SplashActivity) object;
-            splashActivity.showSingleAlertWithReflection(splashActivity,splashActivity,message,"exitApp");
+        if (!message.equals("")) {
+            if (object instanceof Fragment) {
+                BaseFragment baseFragment = (BaseFragment) object;
+                baseFragment.showDialog(message);
+            } else {
+                SplashActivity splashActivity = (SplashActivity) object;
+                splashActivity.showSingleAlertWithReflection(splashActivity,splashActivity,message,"exitApp");
+            }
         }
     }
 }

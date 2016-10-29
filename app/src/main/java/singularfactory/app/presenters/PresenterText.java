@@ -37,8 +37,10 @@ public class PresenterText {
 
     /** Response error **/
     public void responseError(Object object, String message) {
-        TextFragment textFragment = (TextFragment) object;
-        textFragment.onErrorGetTexts(message);
+        if(!message.equals("")) {
+            TextFragment textFragment = (TextFragment) object;
+            textFragment.onErrorGetTexts(message);
+        }
     }
 
 }

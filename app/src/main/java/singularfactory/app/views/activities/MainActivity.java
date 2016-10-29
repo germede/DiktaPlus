@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -91,6 +92,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.commit();
     }
 
+    public void logout() {
+        appCommon.getUtils().launchActivity(LoginActivity.class, MainActivity.this, null);
+        finish();
+    }
+
+
+
     /**
      * Settings
      **/
@@ -126,9 +134,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             startActivity(new Intent(this, SettingsActivity.class));
         } else if (id == R.id.nav_logout) {
             appCommon.getUtils().sharedRemoveValue(this,"id");
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+            logout();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
