@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import singularfactory.app.R;
 import singularfactory.app.views.fragments.BaseFragment;
+import singularfactory.app.views.fragments.FriendFragment;
 import singularfactory.app.views.fragments.GameFragment;
 import singularfactory.app.views.fragments.RankingFragment;
 import singularfactory.app.views.fragments.TextFragment;
@@ -31,10 +32,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private int correctAnimIn;
     private int correctAnimOut;
 
-    BaseFragment actualFragment;
     TextFragment textFragment;
     GameFragment gameFragment;
     RankingFragment rankingFragment;
+    FriendFragment friendFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.replace(R.id.fragment_main_container, gameFragment);
         transaction.addToBackStack(TAG);
         transaction.commit();
-        actualFragment = gameFragment;
     }
 
     public void changeToTextFragment(int animIn, int animOut) {
@@ -92,7 +92,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, textFragment);
         transaction.commit();
-        actualFragment = textFragment;
     }
 
     public void changeToRankingFragment(int animIn, int animOut) {
@@ -101,7 +100,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, rankingFragment);
         transaction.commit();
-        actualFragment = rankingFragment;
+    }
+
+    public void changeToFriendsFragment(int animIn, int animOut) {
+        friendFragment = new FriendFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(animIn, animOut);
+        transaction.replace(R.id.fragment_main_container, friendFragment);
+        transaction.commit();
     }
 
     public void logout() {
@@ -109,15 +115,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         finish();
     }
 
-
-    /**
-     * Settings
-     **/
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -141,7 +138,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 previousSelectedItem = 1;
                 break;
             case R.id.nav_friends:
-
+                if (chooseCorrectAnimation(2)) changeToFriendsFragment(correctAnimIn,correctAnimOut);
                 previousSelectedItem = 2;
                 break;
             case R.id.nav_settings:
