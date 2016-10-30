@@ -83,7 +83,7 @@ public class Model {
                 appCommon.getPresenterUser().getRankingResponse(object,json);
                 break;
             case "Get users by username":
-                appCommon.getPresenterUser().getRankingResponse(object,json);
+                appCommon.getPresenterUser().getUsersByUsernameResponse(object,json);
                 break;
             case "Get best score":
                 appCommon.getPresenterGame().getBestScoreResponse(object,json.getJSONObject(0));

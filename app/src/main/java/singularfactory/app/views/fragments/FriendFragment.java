@@ -1,5 +1,6 @@
 package singularfactory.app.views.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
@@ -9,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.juanpabloprado.countrypicker.CountryPicker;
@@ -30,6 +33,7 @@ public class FriendFragment extends BaseFragment {
     SearchView searchBox;
     ImageView addFriendIcon;
     ListView friends;
+    ListView friendLabel;
 
     public FriendFragment() {
         // Required empty public constructor
@@ -49,13 +53,11 @@ public class FriendFragment extends BaseFragment {
         searchBox.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                showToast("ADSFD");
+                getUsersByUsername();
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String s) {
-                showToast("SFD");
                 return false;
             }
         });
@@ -75,10 +77,36 @@ public class FriendFragment extends BaseFragment {
     }
 
     public void setUsersByUsername(JSONArray users) throws JSONException {
-        List<String> usersList = new ArrayList<String>();;
+        ArrayList<String> usersList = new ArrayList<String>();;
         for (int i = 0; i < users.length(); i++) {
             usersList.add((i+1)+". "+users.getJSONObject(i).getString("username"));
         }
-        friends.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.fragment_friend_item,usersList));
+        if (usersList.contains(appCommon.getUser().getUsername())) usersList.remove(appCommon.getUser().getUsername());
+        friends.setAdapter(new UsersAdapter(getContext(),usersList));
+    }
+
+    class UsersAdapter extends ArrayAdapter<String> {
+        public UsersAdapter(Context context, ArrayList<String> users) {
+            super(context, 0, users);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            String string = getItem(position);
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_friend_item, parent, false);
+            }
+            TextView username = (TextView) convertView.findViewById(R.id.friend_label);
+            ImageButton addButton = (ImageButton) convertView.findViewById(R.id.add_friend_icon);
+
+            username.setText(string);
+            addButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+            return convertView;
+        }
     }
 }
