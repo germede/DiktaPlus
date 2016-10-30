@@ -88,7 +88,6 @@ public class BaseActivity extends AppCompatActivity {
                                 activity.finish();
                                 return;
                             }
-
                             try {
                                 Method method = object.getClass().getMethod(processName);
                                 method.invoke(object);

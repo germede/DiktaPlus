@@ -1,40 +1,36 @@
 package singularfactory.app.views.fragments;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.juanpabloprado.countrypicker.CountryPicker;
-import com.juanpabloprado.countrypicker.CountryPickerListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import singularfactory.app.R;
+import singularfactory.app.models.User;
 
 public class FriendFragment extends BaseFragment {
     View view;
     SearchView searchBox;
     ListView friends;
-
-    ImageButton unconfirmedFriendship;
+    JSONArray receivedList;
 
     ArrayList<String> friendsList;
 
@@ -82,7 +78,8 @@ public class FriendFragment extends BaseFragment {
     }
 
     public void setFriends(JSONArray users) throws JSONException {
-        friendsList = new ArrayList<String>();
+        receivedList = users;
+        friendsList = new ArrayList<>();
         for (int i = 0; i < users.length(); i++) friendsList.add(users.getJSONObject(i).getString("username"));
         if (friendsList.contains(appCommon.getUser().getUsername())) friendsList.remove(appCommon.getUser().getUsername());
         friends.setAdapter(new UsersAdapter(getContext(),friendsList));
@@ -116,22 +113,46 @@ public class FriendFragment extends BaseFragment {
     }
 
     public void setUsersByUsername(JSONArray users) throws JSONException {
-        ArrayList<String> usersList = new ArrayList<String>();;
+        ArrayList<String> usersList = new ArrayList<>();
         for (int i = 0; i < users.length(); i++) {
             usersList.add(users.getJSONObject(i).getString("username"));
         }
         if (usersList.contains(appCommon.getUser().getUsername())) usersList.remove(appCommon.getUser().getUsername());
-
         friends.setAdapter(new UsersAdapter(getContext(),usersList));
     }
 
+    private void getFriendInfo(int id) {
+        appCommon.getPresenterUser().getFriendInfo(
+                this,
+                "Get friend info",
+                Request.Method.GET,
+                appCommon.getBaseURL()+"users/"+id,
+                "Getting friend info...");
+    }
+
+    public void setFriendInfo(JSONObject userJson) {
+        try {
+            User friend = new User(userJson.getInt("id"),
+                    userJson.getString("email"),
+                    userJson.getString("username"),
+                    userJson.getString("country"),
+                    userJson.getInt("total_score"),
+                    userJson.getInt("level"));
+            FriendInfoDialog dialog =new FriendInfoDialog(getActivity());
+            dialog.setFriend(friend);
+            dialog.show();
+        } catch (JSONException e) {
+            Log.e(TAG,"Error parsing received JSON");
+        }
+    }
+
     class UsersAdapter extends ArrayAdapter<String> {
-        public UsersAdapter(Context context, ArrayList<String> users) {
+        UsersAdapter(Context context, ArrayList<String> users) {
             super(context, 0, users);
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             final String string = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_friend_item, parent, false);
@@ -141,10 +162,19 @@ public class FriendFragment extends BaseFragment {
             ImageButton infoButton = (ImageButton) convertView.findViewById(R.id.info_friend_button);
             ImageButton deleteButton = (ImageButton) convertView.findViewById(R.id.delete_friend_button);
 
-
             if (friendsList.contains((string))) {
                 addButton.setVisibility(View.GONE);
                 infoButton.setVisibility(View.VISIBLE);
+                infoButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        try {
+                            getFriendInfo(receivedList.getJSONObject(position).getInt("id"));
+                        } catch (JSONException e) {
+                            Log.e(TAG,"JSON error");
+                        }
+                    }
+                });
                 deleteButton.setVisibility(View.VISIBLE);
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -168,4 +198,24 @@ public class FriendFragment extends BaseFragment {
             return convertView;
         }
     }
+
+    public class FriendInfoDialog extends Dialog implements
+            android.view.View.OnClickListener {
+        private Button exit;
+        User friend;
+
+        public void setFriend(User friend) { this.friend = friend;}
+        FriendInfoDialog(Activity a) {super(a);}
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setTitle(friend.getUsername());
+            setContentView(R.layout.fragment_friend_info);
+            exit = (Button) findViewById(R.id.btn_exit);
+            exit.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View v) {dismiss();}
+    }
+
 }

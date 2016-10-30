@@ -54,6 +54,10 @@ public class PresenterUser {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
+    public void getFriendInfo(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+    }
+
     public void makeFriends(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
@@ -94,6 +98,11 @@ public class PresenterUser {
     public void getFriendsResponse(Object object, JSONArray users) throws JSONException {
         FriendFragment friendFragment = (FriendFragment) object;
         friendFragment.setFriends(users);
+    }
+
+    public void getFriendInfoResponse(Object object, JSONObject user) {
+        FriendFragment friendFragment = (FriendFragment) object;
+        friendFragment.setFriendInfo(user);
     }
 
     public void makeFriendsResponse(Object object, JSONArray users) throws JSONException {

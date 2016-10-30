@@ -88,6 +88,9 @@ public class Model {
             case "Get friends":
                 appCommon.getPresenterUser().getFriendsResponse(object,json);
                 break;
+            case "Get friend info":
+                appCommon.getPresenterUser().getFriendInfoResponse(object,json.getJSONObject(0));
+                break;
             case "Make friends":
                 appCommon.getPresenterUser().makeFriendsResponse(object,json);
                 break;
@@ -128,6 +131,9 @@ public class Model {
                 break;
             case "Get friends":
                 appCommon.getPresenterUser().responseError(object,"No friends");
+                break;
+            case "Get friend info":
+                appCommon.getPresenterUser().responseError(object,"Error getting info of that user");
                 break;
             case "Make friends":
                 appCommon.getPresenterUser().responseError(object,"Friendship could not be created");

@@ -19,7 +19,7 @@
     <string name="log_out">Log out</string>
 
     <!-- Texts -->
-    <string name="choose_language_and_level">Choose language and level</string>
+    <string name="choose_language_and_difficulty">Choose language and difficulty</string>
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
@@ -30,6 +30,8 @@
     <string name="language">Language: %1$s</string>
     <string name="difficulty">Difficulty: %1$s</string>
     <string name="best_score">Best score: %1$d</string>
+    <string name="level">Level</string>
+    <string name="total_score">Total score</string>
 
     <!-- Ranking -->
     <string name="top">Top</string>

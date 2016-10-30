@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/choose_language_and_level"
+        android:text="@string/choose_language_and_difficulty"
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal"
         android:background="@color/color_accent"
