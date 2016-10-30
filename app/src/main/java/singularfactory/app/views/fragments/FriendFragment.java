@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import singularfactory.app.R;
 import singularfactory.app.models.User;
@@ -33,7 +35,7 @@ public class FriendFragment extends BaseFragment {
     JSONArray receivedList;
     ArrayList<String> friendsList;
 
-
+    User selectedFriend;
 
     public FriendFragment() {
         // Required empty public constructor
@@ -133,15 +135,15 @@ public class FriendFragment extends BaseFragment {
 
     public void setFriendInfo(JSONObject userJson) {
         try {
-            User friend = new User(userJson.getInt("id"),
+            selectedFriend = new User(userJson.getInt("id"),
                     userJson.getString("email"),
                     userJson.getString("username"),
                     userJson.getString("country"),
                     userJson.getInt("total_score"),
                     userJson.getInt("level"));
             FriendInfoDialog dialog =new FriendInfoDialog(getActivity());
-            dialog.setFriend(friend);
             dialog.show();
+
         } catch (JSONException e) {
             Log.e(TAG,"Error parsing received JSON");
         }
@@ -203,23 +205,28 @@ public class FriendFragment extends BaseFragment {
     class FriendInfoDialog extends Dialog implements
             android.view.View.OnClickListener {
         private Button exit;
-        private TextView country,level,totalScore;
 
-        void setFriend(User friend) {
-            setTitle(friend.getUsername());
-            country.setText(friend.getCountry());
-            level.setText(friend.getLevel());
-            totalScore.setText(friend.getTotalScore());
-        }
         FriendInfoDialog(Activity a) {super(a);}
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.fragment_friend_info);
+            TextView country = (TextView)findViewById(R.id.friend_country_label);
+            TextView level = (TextView)findViewById(R.id.friend_level_label);
+            TextView totalScore = (TextView)findViewById(R.id.friend_total_score_label);
+            ImageView flag = (ImageView)findViewById(R.id.friend_flag);
+
+            setTitle(selectedFriend.getUsername());
+            country.setText(new Locale("",selectedFriend.getCountry()).getDisplayCountry());
+            level.setText(selectedFriend.getLevel()+"");
+            totalScore.setText(selectedFriend.getTotalScore()+"");
+            int drawableId = getResources()
+                    .getIdentifier("flag_"+selectedFriend.getCountry().toLowerCase(), "drawable", getActivity().getPackageName());
+
+            flag.setImageResource(drawableId);
+
+
             exit = (Button) findViewById(R.id.btn_exit);
-            country = (TextView)findViewById(R.id.friend_country_label);
-            level = (TextView)findViewById(R.id.friend_level_label);
-            totalScore = (TextView)findViewById(R.id.friend_total_score_label);
             exit.setOnClickListener(this);
         }
         @Override
