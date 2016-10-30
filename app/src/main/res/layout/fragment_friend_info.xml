@@ -13,85 +13,101 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:srcCompat="@android:drawable/editbox_dropdown_dark_frame"
-        android:id="@+id/imageView3"
+        android:id="@+id/friend_flag"
         android:layout_weight="0.17" />
 
-    <TableLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:stretchColumns="*">
+        android:layout_height="142dp">
 
-        <TableRow
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.0"
-            android:gravity="center_vertical">
+            android:layout_weight="0.17">
 
             <TextView
                 android:text="@string/country"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView7"
-                android:layout_weight="1.0" />
-
-            <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView11"
-                android:gravity="right" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.0"
-            android:gravity="center_vertical">
+                android:layout_weight="1.0"
+                android:textColor="@color/black"
+                android:gravity="right"
+                android:padding="@dimen/button_padding" />
 
             <TextView
                 android:text="@string/level"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView8"
-                android:layout_weight="1.0" />
-
-            <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView12"
-                android:gravity="right" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.0"
-            android:gravity="center_vertical">
+                android:layout_weight="1.0"
+                android:textColor="@color/black"
+                android:gravity="right"
+                android:padding="@dimen/button_padding" />
 
             <TextView
                 android:text="@string/total_score"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView9"
-                android:layout_weight="1.0" />
+                android:layout_weight="1.0"
+                android:textColor="@color/black"
+                android:gravity="right"
+                android:padding="@dimen/button_padding" />
+
+        </LinearLayout>
+        <View
+            android:layout_height="351dp"
+            android:background="@color/color_primary"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_width="2dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.17">
 
             <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
+                android:text="@string/country"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView13"
-                android:gravity="right" />
+                android:id="@+id/friend_country_label"
+                android:textColor="@color/black"
+                android:gravity="left"
+                android:layout_weight="1.0"
+                android:padding="@dimen/button_padding" />
 
-        </TableRow>
+            <TextView
+                android:text="@string/level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/friend_level_label"
+                android:textColor="@color/black"
+                android:gravity="left"
+                android:layout_weight="1.0"
+                android:padding="@dimen/button_padding" />
 
-    </TableLayout>
+            <TextView
+                android:text="@string/total_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/friend_total_score_label"
+                android:textColor="@color/black"
+                android:gravity="left"
+                android:layout_weight="1.0"
+                android:padding="@dimen/button_padding" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:text="@string/button_exit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_exit" />
+        android:id="@+id/btn_exit"
+        android:background="@color/color_accent"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
 </LinearLayout>

@@ -31,8 +31,9 @@ public class FriendFragment extends BaseFragment {
     SearchView searchBox;
     ListView friends;
     JSONArray receivedList;
-
     ArrayList<String> friendsList;
+
+
 
     public FriendFragment() {
         // Required empty public constructor
@@ -199,19 +200,26 @@ public class FriendFragment extends BaseFragment {
         }
     }
 
-    public class FriendInfoDialog extends Dialog implements
+    class FriendInfoDialog extends Dialog implements
             android.view.View.OnClickListener {
         private Button exit;
-        User friend;
+        private TextView country,level,totalScore;
 
-        public void setFriend(User friend) { this.friend = friend;}
+        void setFriend(User friend) {
+            setTitle(friend.getUsername());
+            country.setText(friend.getCountry());
+            level.setText(friend.getLevel());
+            totalScore.setText(friend.getTotalScore());
+        }
         FriendInfoDialog(Activity a) {super(a);}
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setTitle(friend.getUsername());
             setContentView(R.layout.fragment_friend_info);
             exit = (Button) findViewById(R.id.btn_exit);
+            country = (TextView)findViewById(R.id.friend_country_label);
+            level = (TextView)findViewById(R.id.friend_level_label);
+            totalScore = (TextView)findViewById(R.id.friend_total_score_label);
             exit.setOnClickListener(this);
         }
         @Override
