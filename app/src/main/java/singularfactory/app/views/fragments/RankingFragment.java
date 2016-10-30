@@ -75,33 +75,44 @@ public class RankingFragment extends BaseFragment {
             }
         });
         country = (EditText) view.findViewById(R.id.country_ranking_input);
+        country.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCountryList();
+            }
+        });
         country.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b) {
-                    CountryPicker picker = CountryPicker.getInstance("Select Country", new CountryPickerListener() {
-                        @Override
-                        public void onSelectCountry(String name, String code) {
-                            country.setText(name);
-                            DialogFragment dialogFragment =
-                                    (DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker");
-                            dialogFragment.dismiss();
-                            int drawableId = getResources()
-                                    .getIdentifier("flag_"+code.toLowerCase(), "drawable", getActivity().getPackageName());
-
-                            flag.setImageResource(drawableId);
-                            selectedCountry = code;
-                            getRanking();
-                        }
-                    });
-                    picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
+                    showCountryList();
                 }
             }
         });
         return view;
     }
 
+    private void showCountryList() {
+        CountryPicker picker = CountryPicker.getInstance("Select Country", new CountryPickerListener() {
+            @Override
+            public void onSelectCountry(String name, String code) {
+                country.setText(name);
+                DialogFragment dialogFragment =
+                        (DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker");
+                dialogFragment.dismiss();
+                int drawableId = getResources()
+                        .getIdentifier("flag_"+code.toLowerCase(), "drawable", getActivity().getPackageName());
+
+                flag.setImageResource(drawableId);
+                selectedCountry = code;
+                getRanking();
+            }
+        });
+        picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
+    }
+
     public void getRanking() {
+        ranking.setAdapter(null);
         appCommon.getPresenterUser().getRanking(
                 this,
                 "Get ranking",

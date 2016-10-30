@@ -54,6 +54,14 @@ public class PresenterUser {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
+    public void makeFriends(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+    }
+
+    public void deleteFriends(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+    }
+
     /*******************/
     /** API RESPONSES **/
     /*******************/
@@ -86,6 +94,18 @@ public class PresenterUser {
     public void getFriendsResponse(Object object, JSONArray users) throws JSONException {
         FriendFragment friendFragment = (FriendFragment) object;
         friendFragment.setFriends(users);
+    }
+
+    public void makeFriendsResponse(Object object, JSONArray users) throws JSONException {
+        FriendFragment friendFragment = (FriendFragment) object;
+        friendFragment.showToast("Friendship successfully created");
+        friendFragment.getFriends();
+    }
+
+    public void deleteFriendsResponse(Object object, JSONArray users) throws JSONException {
+        FriendFragment friendFragment = (FriendFragment) object;
+        friendFragment.showToast("Friendship successfully deleted");
+        friendFragment.getFriends();
     }
 
     /** Response error **/

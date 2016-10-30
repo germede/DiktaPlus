@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="wrap_content">
@@ -12,12 +13,36 @@
         android:layout_gravity="left|center"
         android:textSize="25sp" />
 
-    <ImageButton
-        android:layout_width="51dp"
-        android:layout_height="51dp"
-        android:id="@+id/add_friend_icon"
-        android:onClick="onClickStartGame"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_gravity="right|center"
-        android:src="@android:drawable/ic_input_add" />
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:id="@+id/info_friend_button"
+            android:onClick="onClickStartGame"
+            android:src="@android:drawable/ic_dialog_info"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:id="@+id/delete_friend_button"
+            android:onClick="onClickStartGame"
+            android:src="@android:drawable/ic_delete"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:id="@+id/add_friend_button"
+            android:onClick="onClickStartGame"
+            android:src="@android:drawable/ic_input_add"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 
 </FrameLayout>

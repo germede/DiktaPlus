@@ -32,9 +32,9 @@ import singularfactory.app.R;
 public class FriendFragment extends BaseFragment {
     View view;
     SearchView searchBox;
-    ImageView addFriendIcon;
     ListView friends;
-    ListView friendLabel;
+
+    ImageButton unconfirmedFriendship;
 
     ArrayList<String> friendsList;
 
@@ -66,7 +66,6 @@ public class FriendFragment extends BaseFragment {
                 return false;
             }
         });
-        addFriendIcon = (ImageView) view.findViewById(R.id.add_friend_icon);
         friends = (ListView) view.findViewById(R.id.friends);
         getFriends();
 
@@ -87,6 +86,24 @@ public class FriendFragment extends BaseFragment {
         for (int i = 0; i < users.length(); i++) friendsList.add(users.getJSONObject(i).getString("username"));
         if (friendsList.contains(appCommon.getUser().getUsername())) friendsList.remove(appCommon.getUser().getUsername());
         friends.setAdapter(new UsersAdapter(getContext(),friendsList));
+    }
+
+    public void makeFriends(String friendUsername) {
+        appCommon.getPresenterUser().makeFriends(
+                this,
+                "Make friends",
+                Request.Method.PUT,
+                appCommon.getBaseURL()+"users/friends/"+appCommon.getUser().getId()+"/"+friendUsername,
+                "Making friends...");
+    }
+
+    public void deleteFriends(String friendUsername) {
+        appCommon.getPresenterUser().deleteFriends(
+                this,
+                "Delete friends",
+                Request.Method.DELETE,
+                appCommon.getBaseURL()+"users/friends/"+appCommon.getUser().getId()+"/"+friendUsername,
+                "Deleting friends...");
     }
 
     public void getUsersByUsername() {
@@ -115,22 +132,39 @@ public class FriendFragment extends BaseFragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            String string = getItem(position);
+            final String string = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_friend_item, parent, false);
             }
             TextView username = (TextView) convertView.findViewById(R.id.friend_label);
-            ImageButton addButton = (ImageButton) convertView.findViewById(R.id.add_friend_icon);
+            ImageButton addButton = (ImageButton) convertView.findViewById(R.id.add_friend_button);
+            ImageButton infoButton = (ImageButton) convertView.findViewById(R.id.info_friend_button);
+            ImageButton deleteButton = (ImageButton) convertView.findViewById(R.id.delete_friend_button);
 
-            addButton.setVisibility(View.GONE);
 
+            if (friendsList.contains((string))) {
+                addButton.setVisibility(View.GONE);
+                infoButton.setVisibility(View.VISIBLE);
+                deleteButton.setVisibility(View.VISIBLE);
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        deleteFriends(string);
+                    }
+                });
+            } else {
+                addButton.setVisibility(View.VISIBLE);
+                addButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        makeFriends(string);
+                    }
+                });
+                infoButton.setVisibility(View.GONE);
+                deleteButton.setVisibility(View.GONE);
+            }
             username.setText(string);
-            addButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                }
-            });
             return convertView;
         }
     }

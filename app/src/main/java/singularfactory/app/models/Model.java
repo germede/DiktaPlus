@@ -88,6 +88,12 @@ public class Model {
             case "Get friends":
                 appCommon.getPresenterUser().getFriendsResponse(object,json);
                 break;
+            case "Make friends":
+                appCommon.getPresenterUser().makeFriendsResponse(object,json);
+                break;
+            case "Delete friends":
+                appCommon.getPresenterUser().deleteFriendsResponse(object,json);
+                break;
             case "Get best score":
                 appCommon.getPresenterGame().getBestScoreResponse(object,json.getJSONObject(0));
                 break;
@@ -100,7 +106,7 @@ public class Model {
         Log.e(TAG, " - onResponseError");
         switch (tag) {
             case "Get texts":
-                appCommon.getPresenterText().responseError(object,"Texts error:"+message);
+                appCommon.getPresenterText().responseError(object,"No text founded with that criteria");
                 break;
             case "Get text content":
                 appCommon.getPresenterText().responseError(object,"Texts error:"+message);
@@ -122,6 +128,12 @@ public class Model {
                 break;
             case "Get friends":
                 appCommon.getPresenterUser().responseError(object,"No friends");
+                break;
+            case "Make friends":
+                appCommon.getPresenterUser().responseError(object,"Friendship could not be created");
+                break;
+            case "Delete friends":
+                appCommon.getPresenterUser().responseError(object,"Friendship could not be deleted");
                 break;
             case "Get best score":
                 appCommon.getPresenterGame().responseError(object,"");
