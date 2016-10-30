@@ -44,16 +44,13 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void getUserInfo(int id) {
-        try {
-            appCommon.getPresenterUser().getUserInfo(
-                    this,
-                    "Get user info",
-                    Request.Method.GET,
-                    appCommon.getBaseURL()+"users/"+id,
-                    "Trying to log in...");
-        } catch (JSONException e) {
-            Log.e(TAG,"JSON Exception");
-        }
+        appCommon.getPresenterUser().getUserInfo(
+                this,
+                "Get user info",
+                Request.Method.GET,
+                appCommon.getBaseURL()+"users/"+id,
+                "Trying to log in...");
+
     }
 
     public void setUserInfo(JSONObject userJson) {

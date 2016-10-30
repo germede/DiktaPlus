@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import singularfactory.app.common.AppCommon;
 import singularfactory.app.views.activities.SplashActivity;
 import singularfactory.app.views.fragments.BaseFragment;
+import singularfactory.app.views.fragments.FriendFragment;
 import singularfactory.app.views.fragments.LoginFragment;
 import singularfactory.app.views.fragments.RankingFragment;
 import singularfactory.app.views.fragments.SignupFragment;
@@ -37,11 +38,15 @@ public class PresenterUser {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
     }
 
-    public void getUserInfo(final Object object, final String tagRequest, int verb, String url, String dialogMessage) throws JSONException{
+    public void getUserInfo(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
     public void getRanking(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+    }
+
+    public void getUsersByUsername(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
@@ -67,6 +72,11 @@ public class PresenterUser {
     public void getRankingResponse(Object object, JSONArray users) throws JSONException {
         RankingFragment rankingFragment = (RankingFragment) object;
         rankingFragment.setRanking(users);
+    }
+
+    public void getUsersByUsernameResponse(Object object, JSONArray users) throws JSONException {
+        FriendFragment friendFragment = (FriendFragment) object;
+        friendFragment.setUsersByUsername(users);
     }
 
     /** Response error **/

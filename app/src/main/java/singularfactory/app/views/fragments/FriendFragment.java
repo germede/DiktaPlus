@@ -43,15 +43,9 @@ public class FriendFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_ranking, container, false);
+        view = inflater.inflate(R.layout.fragment_friend, container, false);
 
         searchBox = (SearchView) view.findViewById(R.id.friends_searchbox);
-        searchBox.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
         searchBox.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -72,7 +66,7 @@ public class FriendFragment extends BaseFragment {
     }
 
     public void getUsersByUsername() {
-        appCommon.getPresenterUser().getRanking(
+        appCommon.getPresenterUser().getUsersByUsername(
                 this,
                 "Get users by username",
                 Request.Method.GET,
