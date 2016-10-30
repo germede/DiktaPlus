@@ -10,7 +10,6 @@
         android:text="Person"
         android:id="@+id/friend_label"
         android:layout_gravity="left|center"
-        android:layout_marginLeft="30dp"
         android:textSize="25sp" />
 
     <ImageButton
@@ -19,7 +18,6 @@
         android:id="@+id/add_friend_icon"
         android:onClick="onClickStartGame"
         android:layout_gravity="right|center"
-        android:src="@android:drawable/ic_input_add"
-        android:layout_marginRight="30dp" />
+        android:src="@android:drawable/ic_input_add" />
 
 </FrameLayout>

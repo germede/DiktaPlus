@@ -70,17 +70,23 @@ public class SignupFragment extends BaseFragment {
 
 
     public void registerUser() throws JSONException{
-        String [] params = {username.getText().toString(),
-                            email.getText().toString(),
-                            password.getText().toString(),
-                            selectedCountry};
-        appCommon.getPresenterUser().registerUser(
-                this,
-                "Register user",
-                Request.Method.POST,
-                appCommon.getBaseURL()+"users/register",
-                "Trying to register...",
-                params);
+        if (username.getText().toString().indexOf(' ') > -1) {
+            showToast("Username should not contain spaces");
+        } else if (password.getText().toString().length() < 6) {
+            showToast("Password should be longer");
+        } else {
+            String[] params = {username.getText().toString(),
+                    email.getText().toString(),
+                    password.getText().toString(),
+                    selectedCountry};
+            appCommon.getPresenterUser().registerUser(
+                    this,
+                    "Register user",
+                    Request.Method.POST,
+                    appCommon.getBaseURL() + "users/register",
+                    "Trying to register...",
+                    params);
+        }
     }
 
     public void onSuccessfullyRegistration(String message) {

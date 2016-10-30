@@ -50,6 +50,10 @@ public class PresenterUser {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
+    public void getFriends(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+    }
+
     /*******************/
     /** API RESPONSES **/
     /*******************/
@@ -77,6 +81,11 @@ public class PresenterUser {
     public void getUsersByUsernameResponse(Object object, JSONArray users) throws JSONException {
         FriendFragment friendFragment = (FriendFragment) object;
         friendFragment.setUsersByUsername(users);
+    }
+
+    public void getFriendsResponse(Object object, JSONArray users) throws JSONException {
+        FriendFragment friendFragment = (FriendFragment) object;
+        friendFragment.setFriends(users);
     }
 
     /** Response error **/

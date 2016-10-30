@@ -85,6 +85,9 @@ public class Model {
             case "Get users by username":
                 appCommon.getPresenterUser().getUsersByUsernameResponse(object,json);
                 break;
+            case "Get friends":
+                appCommon.getPresenterUser().getFriendsResponse(object,json);
+                break;
             case "Get best score":
                 appCommon.getPresenterGame().getBestScoreResponse(object,json.getJSONObject(0));
                 break;
@@ -112,10 +115,13 @@ public class Model {
                 appCommon.getPresenterUser().responseError(object,"User error:"+message);
                 break;
             case "Get ranking":
-                appCommon.getPresenterUser().responseError(object,"");
+                appCommon.getPresenterUser().responseError(object,"No ranking for that criteria");
                 break;
             case "Get users by username":
-                appCommon.getPresenterUser().responseError(object,"");
+                appCommon.getPresenterUser().responseError(object,"No user found with that username");
+                break;
+            case "Get friends":
+                appCommon.getPresenterUser().responseError(object,"No friends");
                 break;
             case "Get best score":
                 appCommon.getPresenterGame().responseError(object,"");

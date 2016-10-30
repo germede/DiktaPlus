@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,9 @@ public class FriendFragment extends BaseFragment {
         searchBox.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                getUsersByUsername();
+                if (s.length() > 0) getUsersByUsername();
+                else getFriends();
+                Log.e(TAG,s);
                 return false;
             }
             @Override
@@ -63,8 +66,27 @@ public class FriendFragment extends BaseFragment {
         });
         addFriendIcon = (ImageView) view.findViewById(R.id.add_friend_icon);
         friends = (ListView) view.findViewById(R.id.friends);
+        getFriends();
 
         return view;
+    }
+
+    public void getFriends() {
+        appCommon.getPresenterUser().getFriends(
+                this,
+                "Get friends",
+                Request.Method.GET,
+                appCommon.getBaseURL()+"users/friends/"+appCommon.getUser().getId(),
+                "Getting friends...");
+    }
+
+    public void setFriends(JSONArray users) throws JSONException {
+        ArrayList<String> usersList = new ArrayList<String>();;
+        for (int i = 0; i < users.length(); i++) {
+            usersList.add(users.getJSONObject(i).toString());
+        }
+        if (usersList.contains(appCommon.getUser().getUsername())) usersList.remove(appCommon.getUser().getUsername());
+        friends.setAdapter(new UsersAdapter(getContext(),usersList));
     }
 
     public void getUsersByUsername() {
@@ -79,7 +101,7 @@ public class FriendFragment extends BaseFragment {
     public void setUsersByUsername(JSONArray users) throws JSONException {
         ArrayList<String> usersList = new ArrayList<String>();;
         for (int i = 0; i < users.length(); i++) {
-            usersList.add((i+1)+". "+users.getJSONObject(i).getString("username"));
+            usersList.add(users.getJSONObject(i).getString("username"));
         }
         if (usersList.contains(appCommon.getUser().getUsername())) usersList.remove(appCommon.getUser().getUsername());
         friends.setAdapter(new UsersAdapter(getContext(),usersList));
