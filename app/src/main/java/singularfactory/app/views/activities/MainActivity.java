@@ -27,6 +27,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private DrawerLayout drawer;
     private NavigationView navigationView;
 
+    private int previousSelectedItem;
+    private int correctAnimIn;
+    private int correctAnimOut;
+
     BaseFragment actualFragment;
     TextFragment textFragment;
     GameFragment gameFragment;
@@ -57,9 +61,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void initialize(View view) {
 
-        toolbar           = (Toolbar)              view.findViewById(R.id.toolbar);
-        drawer            = (DrawerLayout)         view.findViewById(R.id.drawer_layout);
-        navigationView    = (NavigationView)       view.findViewById(R.id.nav_view);
+        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        drawer = (DrawerLayout) view.findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) view.findViewById(R.id.nav_view);
     }
 
     private void initializeActionBarAndToggle() {
@@ -91,10 +95,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         actualFragment = textFragment;
     }
 
-    public void changeToRankingFragment() {
+    public void changeToRankingFragment(int animIn, int animOut) {
         rankingFragment = new RankingFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_top);
+        transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, rankingFragment);
         transaction.commit();
         actualFragment = rankingFragment;
@@ -106,7 +110,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
 
-
     /**
      * Settings
      **/
@@ -115,8 +118,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 //        getMenuInflater().inflate(R.menu.main, menu);
 //        return true;
 //    }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -129,22 +130,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         switch (id) {
             case R.id.nav_dictation:
-                if (!(actualFragment instanceof TextFragment))
-                    changeToTextFragment(R.anim.slide_in_top, R.anim.slide_out_bottom);
+                if (chooseCorrectAnimation(0)) changeToTextFragment(correctAnimIn,correctAnimOut);
+                previousSelectedItem = 0;
                 break;
             case R.id.nav_ranking:
-                if (!(actualFragment instanceof RankingFragment)) changeToRankingFragment();
+                if (chooseCorrectAnimation(1)) changeToRankingFragment(correctAnimIn,correctAnimOut);
+                previousSelectedItem = 1;
                 break;
             case R.id.nav_friends:
 
+                previousSelectedItem = 2;
                 break;
             case R.id.nav_settings:
 
+                previousSelectedItem = 3;
                 break;
             case R.id.nav_logout:
                 appCommon.getUtils().sharedRemoveValue(this, "id");
@@ -155,5 +157,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return true;
     }
 
-
+    private boolean chooseCorrectAnimation (int selectedItem) {
+        if (selectedItem < previousSelectedItem) {
+            correctAnimIn = R.anim.slide_in_top;
+            correctAnimOut = R.anim.slide_out_bottom;
+            return true;
+        } else if (selectedItem > previousSelectedItem) {
+            correctAnimIn = R.anim.slide_in_bottom;
+            correctAnimOut = R.anim.slide_out_top;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
