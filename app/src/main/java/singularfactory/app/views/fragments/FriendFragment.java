@@ -83,10 +83,8 @@ public class FriendFragment extends BaseFragment {
     }
 
     public void setFriends(JSONArray users) throws JSONException {
-        friendsList = new ArrayList<String>();;
-        for (int i = 0; i < users.length(); i++) {
-            friendsList.add(users.getJSONObject(i).toString());
-        }
+        friendsList = new ArrayList<String>();
+        for (int i = 0; i < users.length(); i++) friendsList.add(users.getJSONObject(i).getString("username"));
         if (friendsList.contains(appCommon.getUser().getUsername())) friendsList.remove(appCommon.getUser().getUsername());
         friends.setAdapter(new UsersAdapter(getContext(),friendsList));
     }
@@ -106,7 +104,6 @@ public class FriendFragment extends BaseFragment {
             usersList.add(users.getJSONObject(i).getString("username"));
         }
         if (usersList.contains(appCommon.getUser().getUsername())) usersList.remove(appCommon.getUser().getUsername());
-        for (String user : usersList) if (friendsList.contains(user)) usersList.remove(user);
 
         friends.setAdapter(new UsersAdapter(getContext(),usersList));
     }
@@ -125,7 +122,7 @@ public class FriendFragment extends BaseFragment {
             TextView username = (TextView) convertView.findViewById(R.id.friend_label);
             ImageButton addButton = (ImageButton) convertView.findViewById(R.id.add_friend_icon);
 
-            if(!friendsList.contains(string)) addButton.setVisibility(View.GONE);
+            addButton.setVisibility(View.GONE);
 
             username.setText(string);
             addButton.setOnClickListener(new View.OnClickListener() {

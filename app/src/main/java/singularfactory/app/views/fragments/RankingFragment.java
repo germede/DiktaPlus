@@ -98,7 +98,6 @@ public class RankingFragment extends BaseFragment {
                 }
             }
         });
-        getRanking();
         return view;
     }
 
