@@ -43,6 +43,7 @@
     <!-- Settings -->
     <string name="account_management">Account management</string>
     <string name="edit_account">Edit account</string>
+    <string name="edit_account_summary">Change your account details+</string>
     <string name="delete_account">Delete account</string>
     <string name="delete_account_summary">This action cannot be undone</string>
     <string name="change_email">Change e-mail</string>
