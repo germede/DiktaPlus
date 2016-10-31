@@ -40,7 +40,8 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void exitApp() {
-        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 
     private void getUserInfo(int id) {

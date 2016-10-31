@@ -81,6 +81,7 @@ public class BaseActivity extends AppCompatActivity {
 
             new android.support.v7.app.AlertDialog.Builder(activity, R.style.MyAlertDialogStyle)
                     .setMessage(text)
+                    .setCancelable(false)
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

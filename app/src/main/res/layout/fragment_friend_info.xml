@@ -19,18 +19,19 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="142dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="0.17">
 
             <TextView
                 android:text="@string/country"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1.0"
                 android:textColor="@color/black"
                 android:gravity="right"
@@ -39,7 +40,7 @@
             <TextView
                 android:text="@string/level"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/textView8"
                 android:layout_weight="1.0"
                 android:textColor="@color/black"
@@ -49,7 +50,7 @@
             <TextView
                 android:text="@string/total_score"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/textView9"
                 android:layout_weight="1.0"
                 android:textColor="@color/black"
@@ -58,21 +59,20 @@
 
         </LinearLayout>
         <View
-            android:layout_height="351dp"
+            android:layout_height="match_parent"
             android:background="@color/color_primary"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_width="2dp" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="0.17">
 
             <TextView
                 android:text="@string/country"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/friend_country_label"
                 android:textColor="@color/black"
                 android:gravity="left"
@@ -82,7 +82,7 @@
             <TextView
                 android:text="@string/level"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/friend_level_label"
                 android:textColor="@color/black"
                 android:gravity="left"
@@ -92,7 +92,7 @@
             <TextView
                 android:text="@string/total_score"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/friend_total_score_label"
                 android:textColor="@color/black"
                 android:gravity="left"

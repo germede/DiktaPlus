@@ -217,7 +217,7 @@ public class FriendFragment extends BaseFragment {
             ImageView flag = (ImageView)findViewById(R.id.friend_flag);
 
             setTitle(selectedFriend.getUsername());
-            country.setText(new Locale("",selectedFriend.getCountry()).getDisplayCountry());
+            country.setText(selectedFriend.getCountry());
             level.setText(selectedFriend.getLevel()+"");
             totalScore.setText(selectedFriend.getTotalScore()+"");
             int drawableId = getResources()
