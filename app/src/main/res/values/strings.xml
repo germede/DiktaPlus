@@ -41,8 +41,13 @@
     <string name="searchbox">Search by username</string>
 
     <!-- Settings -->
+    <string name="account_management">Account management</string>
     <string name="edit_account">Edit account</string>
     <string name="delete_account">Delete account</string>
+    <string name="delete_account_summary">This action cannot be undone</string>
+    <string name="change_email">Change e-mail</string>
+    <string name="change_country">Change country</string>
+    <string name="change_password">Change password</string>
 
     <!-- Global -->
     <string name="search">Search</string>
