@@ -79,6 +79,9 @@ public class Model {
             case "Get user info":
                 appCommon.getPresenterUser().getUserInfoResponse(object,json.getJSONObject(0));
                 break;
+            case "Delete user":
+                appCommon.getPresenterUser().deleteUserResponse(object,json.getJSONObject(0));
+                break;
             case "Get ranking":
                 appCommon.getPresenterUser().getRankingResponse(object,json);
                 break;
@@ -122,6 +125,9 @@ public class Model {
                 break;
             case "Get user info":
                 appCommon.getPresenterUser().responseError(object,"Error getting user info:"+message);
+                break;
+            case "Delete user":
+                appCommon.getPresenterUser().responseError(object,"Error deleting user:"+message);
                 break;
             case "Get ranking":
                 appCommon.getPresenterUser().responseError(object,"No ranking for that criteria");

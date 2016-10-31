@@ -19,9 +19,6 @@ import singularfactory.app.common.AppCommon;
 import singularfactory.app.R;
 import singularfactory.app.common.Volley;
 
-/**
- * Created by Óscar Adae Rodríguez on 08/05/2016.
- */
 public class BaseActivity extends AppCompatActivity {
 
     private static final String TAG = BaseActivity.class.getSimpleName();
@@ -108,13 +105,10 @@ public class BaseActivity extends AppCompatActivity {
     public static void showAlertWithReflectionTwoButtons(final Activity activity, final Object currentClass, String text, String positiveButtonName, String negativeButtonName, final String processName) {
         if(activity != null){
             new android.support.v7.app.AlertDialog.Builder(activity, R.style.MyAlertDialogStyle)
-                    //.setTitle(text)
                     .setMessage(text)
                     .setNegativeButton(negativeButtonName, new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            activity.finish();
-                            return;
+                        public void onClick(DialogInterface dialog, int which) { return;
                         }
                     })
                     .setPositiveButton(positiveButtonName, new DialogInterface.OnClickListener() {
@@ -124,11 +118,9 @@ public class BaseActivity extends AppCompatActivity {
                                 activity.finish();
                                 return;
                             }
-
                             try {
                                 Method method = currentClass.getClass().getMethod(processName);
                                 method.invoke(currentClass);
-
                             } catch (NoSuchMethodException e) {
                                 e.printStackTrace();
                             } catch (InvocationTargetException e) {

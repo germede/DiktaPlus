@@ -12,6 +12,7 @@ import singularfactory.app.views.fragments.BaseFragment;
 import singularfactory.app.views.fragments.FriendFragment;
 import singularfactory.app.views.fragments.LoginFragment;
 import singularfactory.app.views.fragments.RankingFragment;
+import singularfactory.app.views.fragments.SettingsFragment;
 import singularfactory.app.views.fragments.SignupFragment;
 
 public class PresenterUser {
@@ -39,6 +40,10 @@ public class PresenterUser {
     }
 
     public void getUserInfo(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+    }
+
+    public void deleteUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
@@ -85,6 +90,11 @@ public class PresenterUser {
         splashActivity.setUserInfo(user);
     }
 
+    public void deleteUserResponse(Object object, JSONObject user) {
+        SettingsFragment settingsFragment = (SettingsFragment) object;
+        settingsFragment.deleteAccountSuccess();
+    }
+
     public void getRankingResponse(Object object, JSONArray users) throws JSONException {
         RankingFragment rankingFragment = (RankingFragment) object;
         rankingFragment.setRanking(users);
@@ -123,7 +133,9 @@ public class PresenterUser {
             if (object instanceof Fragment) {
                 BaseFragment baseFragment = (BaseFragment) object;
                 baseFragment.showDialog(message);
-            } else {
+            } else if (object instanceof SettingsFragment) {
+                ((SettingsFragment)object).showToast(message);
+            } else if (object instanceof SplashActivity){
                 SplashActivity splashActivity = (SplashActivity) object;
                 splashActivity.showSingleAlertWithReflection(splashActivity,splashActivity,message,"exitApp");
             }

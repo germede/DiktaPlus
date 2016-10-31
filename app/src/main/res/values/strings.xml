@@ -49,6 +49,7 @@
     <string name="change_email">Change e-mail</string>
     <string name="change_country">Change country</string>
     <string name="change_password">Change password</string>
+    <string name="delete_confirmation">Are you sure you want to delete your account and all its data?</string>
 
     <!-- Global -->
     <string name="search">Search</string>
