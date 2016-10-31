@@ -1,11 +1,15 @@
 package singularfactory.app.views.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import singularfactory.app.R;
 import singularfactory.app.common.AppCommon;
@@ -26,14 +30,27 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         deleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                ((BaseActivity)getActivity()).showAlertWithReflectionTwoButtons(getActivity(),getClass(),
-                        getString(R.string.delete_confirmation),
-                        getString(android.R.string.ok),
-                        getString(android.R.string.cancel),
-                        "deleteAccount");
+//                ((BaseActivity)getActivity()).showAlertWithReflectionTwoButtons(getActivity(),this,
+//                        getString(R.string.delete_confirmation),
+//                        getString(android.R.string.ok),
+//                        getString(android.R.string.cancel),
+//                        "deleteAccount");
+
+                new android.support.v7.app.AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle)
+                        .setMessage(getString(R.string.delete_confirmation))
+                        .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) { return; }
+                        })
+                        .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) { deleteAccount(); }
+                        })
+                        .create()
+                        .show();
                 return false;
-            }
-        });
+                    }
+                });
     }
 
     public void deleteAccount() {
@@ -46,7 +63,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     public void deleteAccountSuccess() {
-        Toast.makeText(getContext(),"Account successfully deleted",Toast.LENGTH_SHORT).show();
+        showToast("Account successfully deleted");
         ((MainActivity)getActivity()).logout();
     }
 

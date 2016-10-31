@@ -186,7 +186,6 @@ public class Model {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG + "_" + tagRequest, "ERROR: " + error.getMessage() + "\n" + "CAUSE: " + error.getCause());
                 NetworkResponse networkResponse = error.networkResponse;
                 int httpStatus = 500;
                 if (networkResponse != null) httpStatus = networkResponse.statusCode;
