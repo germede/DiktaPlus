@@ -137,7 +137,7 @@ public class PresenterUser {
                 ((SettingsFragment)object).showToast(message);
             } else if (object instanceof SplashActivity){
                 SplashActivity splashActivity = (SplashActivity) object;
-                splashActivity.showSingleAlertWithReflection(splashActivity,splashActivity,message,"exitApp");
+                splashActivity.showSingleAlertWithReflection(splashActivity,splashActivity,"Your credentials are not valid anymore, please log in again","launchLoginActivity");
             }
         }
     }

@@ -22,7 +22,6 @@ public class SplashActivity extends BaseActivity {
     private Handler handler;
     private Runnable runnable;
 
-    public View pbLoading;
     private AppCommon appCommon;
 
     @Override
@@ -80,10 +79,6 @@ public class SplashActivity extends BaseActivity {
 
     public void initialize(View view) {
         appCommon = AppCommon.getInstance();
-
-        pbLoading = view.findViewById(R.id.pbLoading);
-        showLoading(true);
-
         handler = new Handler();
         runnable = new Runnable() {
             public void run() {
@@ -95,23 +90,16 @@ public class SplashActivity extends BaseActivity {
         handler.postDelayed(runnable, SPLASH_TIME_OUT);
     }
 
-    private void launchLoginActivity() {
+    public void launchLoginActivity() {
         appCommon.getUtils().launchActivity(LoginActivity.class, SplashActivity.this, null);
         overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         finish();
     }
 
-    private void launchMainActivity() {
+    public void launchMainActivity() {
         appCommon.getUtils().launchActivity(MainActivity.class, SplashActivity.this, null);
         overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         finish();
     }
 
-    public void showLoading(boolean enable) {
-        if (!enable) {
-            pbLoading.setVisibility(View.GONE);
-            return;
-        }
-        pbLoading.setVisibility(View.VISIBLE);
-    }
 }

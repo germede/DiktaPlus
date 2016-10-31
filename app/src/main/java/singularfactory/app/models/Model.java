@@ -121,7 +121,7 @@ public class Model {
                 appCommon.getPresenterUser().responseError(object,"Login error: User"+message);
                 break;
             case "Register user":
-                appCommon.getPresenterUser().responseError(object,"Registration error:"+message);
+                appCommon.getPresenterUser().responseError(object,"Username or email are already taken");
                 break;
             case "Get user info":
                 appCommon.getPresenterUser().responseError(object,"Error getting user info:"+message);
