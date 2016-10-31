@@ -20,7 +20,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         appCommon = AppCommon.getInstance();
-        addPreferencesFromResource(R.xml.preferences);
+        setPreferencesFromResource(R.xml.preferences,s);
 
         deleteAccount = getPreferenceManager().findPreference("delete_account");
         deleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

@@ -1,8 +1,6 @@
 package singularfactory.app.views.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.service.notification.NotificationListenerService;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -11,13 +9,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import singularfactory.app.R;
-import singularfactory.app.views.fragments.BaseFragment;
 import singularfactory.app.views.fragments.FriendFragment;
 import singularfactory.app.views.fragments.GameFragment;
 import singularfactory.app.views.fragments.RankingFragment;
@@ -80,17 +75,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         toggle.syncState();
         toolbar.setTitle(R.string.app_name);
         navigationView.setNavigationItemSelectedListener(this);
-    }
-
-    public void onClickStartGame(View view) {
-        gameFragment = new GameFragment();
-        gameFragment.setTextToPlay(textFragment.getSelectedText());
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
-        transaction.replace(R.id.fragment_main_container, gameFragment);
-        transaction.addToBackStack(TAG);
-        transaction.commit();
-        toolbar.setTitle(textFragment.getSelectedText().getTitle());
     }
 
     public void changeToTextFragment(int animIn, int animOut) {
@@ -187,16 +171,22 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
+
+    public void onClickStartGame(View view) {
+        gameFragment = new GameFragment();
+        gameFragment.setTextToPlay(textFragment.getSelectedText());
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+        transaction.replace(R.id.fragment_main_container, gameFragment);
+        transaction.addToBackStack(TAG);
+        transaction.commit();
+        toolbar.setTitle(textFragment.getSelectedText().getTitle());
+    }
+
     @Override
     public boolean onPreferenceStartScreen(PreferenceFragmentCompat preferenceFragmentCompat, PreferenceScreen preferenceScreen) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        SettingsFragment fragment = new SettingsFragment();
-        Bundle args = new Bundle();
-        args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, preferenceScreen.getKey());
-        fragment.setArguments(args);
-        ft.add(R.id.fragment_main_container, fragment, preferenceScreen.getKey());
-        ft.addToBackStack(preferenceScreen.getKey());
-        ft.commit();
-        return false;
+        preferenceFragmentCompat.setPreferenceScreen(preferenceScreen);
+        return true;
     }
+
 }

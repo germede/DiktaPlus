@@ -78,7 +78,7 @@ dependencies {
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:support-vector-drawable:23.4.0'
     compile 'com.juanpabloprado:countrypicker:1.2.0'
-    compile 'com.android.support:preference-v7:23.0.0'
+    compile 'com.android.support:preference-v7:23.0.1'
 
     testCompile 'junit:junit:4.12'
 }

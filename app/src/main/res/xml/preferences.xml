@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/settings">
 
     <PreferenceCategory android:title="@string/account_management">
-
         <PreferenceScreen
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:icon="@android:drawable/ic_btn_speak_now"
             android:key="edit_account"
             android:summary="@string/edit_account_summary"
@@ -21,7 +22,9 @@
             <Preference
                 android:key="change_country"
                 android:title="@string/change_country" />
+
         </PreferenceScreen>
+
 
         <Preference
             android:icon="@android:drawable/ic_btn_speak_now"
