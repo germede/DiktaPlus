@@ -112,16 +112,16 @@ public class Model {
                 appCommon.getPresenterText().responseError(object,"No text founded with that criteria");
                 break;
             case "Get text content":
-                appCommon.getPresenterText().responseError(object,"Texts error:"+message);
+                appCommon.getPresenterText().responseError(object,"Error getting text content:"+message);
                 break;
             case "Login user":
-                appCommon.getPresenterUser().responseError(object,"User error:"+message);
+                appCommon.getPresenterUser().responseError(object,"Login error: User"+message);
                 break;
             case "Register user":
-                appCommon.getPresenterUser().responseError(object,"User error:"+message);
+                appCommon.getPresenterUser().responseError(object,"Registration error:"+message);
                 break;
             case "Get user info":
-                appCommon.getPresenterUser().responseError(object,"User error:"+message);
+                appCommon.getPresenterUser().responseError(object,"Error getting user info:"+message);
                 break;
             case "Get ranking":
                 appCommon.getPresenterUser().responseError(object,"No ranking for that criteria");

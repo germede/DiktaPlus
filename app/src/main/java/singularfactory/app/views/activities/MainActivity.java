@@ -19,6 +19,7 @@ import singularfactory.app.views.fragments.BaseFragment;
 import singularfactory.app.views.fragments.FriendFragment;
 import singularfactory.app.views.fragments.GameFragment;
 import singularfactory.app.views.fragments.RankingFragment;
+import singularfactory.app.views.fragments.SettingsFragment;
 import singularfactory.app.views.fragments.TextFragment;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +37,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     GameFragment gameFragment;
     RankingFragment rankingFragment;
     FriendFragment friendFragment;
+    SettingsFragment settingsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +117,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         toolbar.setTitle(R.string.friends);
     }
 
+    public void changeToSettingsFragment(int animIn, int animOut) {
+        settingsFragment = new SettingsFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(animIn, animOut);
+        transaction.replace(R.id.fragment_main_container, settingsFragment);
+        transaction.commit();
+        toolbar.setTitle(R.string.settings);
+    }
+
     public void logout() {
         appCommon.getUtils().launchActivity(LoginActivity.class, MainActivity.this, null);
         finish();
@@ -147,7 +158,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 previousSelectedItem = 2;
                 break;
             case R.id.nav_settings:
-
+                if (chooseCorrectAnimation(3)) changeToSettingsFragment(correctAnimIn,correctAnimOut);
                 previousSelectedItem = 3;
                 break;
             case R.id.nav_logout:
