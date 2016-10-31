@@ -8,18 +8,14 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import singularfactory.app.R;
 import singularfactory.app.common.AppCommon;
-import singularfactory.app.views.activities.BaseActivity;
 import singularfactory.app.views.activities.MainActivity;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
-    Preference deleteAccount;
     protected AppCommon appCommon;
 
+    Preference deleteAccount;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -30,12 +26,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         deleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-//                ((BaseActivity)getActivity()).showAlertWithReflectionTwoButtons(getActivity(),this,
-//                        getString(R.string.delete_confirmation),
-//                        getString(android.R.string.ok),
-//                        getString(android.R.string.cancel),
-//                        "deleteAccount");
-
                 new android.support.v7.app.AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle)
                         .setMessage(getString(R.string.delete_confirmation))
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {

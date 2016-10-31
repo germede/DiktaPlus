@@ -39,6 +39,7 @@
 
     <!-- Friends -->
     <string name="searchbox">Search by username</string>
+    <string name="button_exit">Exit</string>
 
     <!-- Settings -->
     <string name="account_management">Account management</string>
@@ -51,18 +52,13 @@
     <string name="change_password">Change password</string>
     <string name="delete_confirmation">Are you sure you want to delete your account and all its data?</string>
 
-    <!-- Global -->
+    <!-- Toolbar -->
     <string name="search">Search</string>
     <string name="navigation_drawer_open">Open sidebar</string>
     <string name="navigation_drawer_close">Close sidebar</string>
 
-    <!-- Global errors -->
+    <!-- Errors -->
     <string name="text_error_unknown">Unknown error</string>
-
-    <!-- SplashActivity -->
-    <string name="button_exit">Exit</string>
-    <string name="button_go_to_play_store">Play Store</string>
-    <string name="message_new_api_version">There is a new available version. Do you want to download it?</string>
 
     <!-- WebService -->
     <string name="message_no_internet">You should have an Internet connection, in order to use this application</string>
