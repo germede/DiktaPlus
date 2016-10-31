@@ -2,11 +2,14 @@ package singularfactory.app.views.fragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.juanpabloprado.countrypicker.CountryPicker;
+import com.juanpabloprado.countrypicker.CountryPickerListener;
 
 import singularfactory.app.R;
 import singularfactory.app.common.AppCommon;
@@ -16,6 +19,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     protected AppCommon appCommon;
 
     Preference deleteAccount;
+    Preference changeEmail;
+    Preference changePassword;
+    Preference changeCountry;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -41,6 +47,39 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return false;
                     }
                 });
+
+        changeEmail = getPreferenceScreen().findPreference("change_email");
+        changeEmail.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                return false;
+            }
+        });
+
+        changePassword = getPreferenceScreen().findPreference("change_password");
+        changePassword.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                return false;
+            }
+        });
+
+        changeCountry = getPreferenceManager().findPreference("change_country");
+        changeCountry.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                CountryPicker picker = CountryPicker.getInstance("Select Country", new CountryPickerListener() {
+                    @Override public void onSelectCountry(String name, String code) {
+                        DialogFragment dialogFragment =
+                                (DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker");
+                        dialogFragment.dismiss();
+                    }
+                });
+                picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
+                return true;
+            }
+        });
+
     }
 
     public void deleteAccount() {
