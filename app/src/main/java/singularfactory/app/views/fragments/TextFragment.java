@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
@@ -44,16 +43,9 @@ public class TextFragment extends BaseFragment {
     ImageButton languageLeft, languageRight, difficultyLeft, difficultyRight;
 
     final String[] languages = {"EN","ES","DE","FR","IT"};
-    final int[] flags = {R.drawable.flag_gb,
-            R.drawable.flag_es,
-            R.drawable.flag_de,
-            R.drawable.flag_fr,
-            R.drawable.flag_it,
-    };
     Locale[] languagesLocales;
     int selectedLanguage;
     TextSwitcher languageLabel;
-    ImageView languageFlag;
 
     final String[] difficulties = {"Easy", "Medium", "Hard"};
     int selectedDifficulty;
@@ -83,13 +75,13 @@ public class TextFragment extends BaseFragment {
         receivedList = texts;
         List<String> listItemInfo;
         for (int i = 0; i < texts.length(); i++) {
-            listItemInfo = new ArrayList<String>();
+            listItemInfo = new ArrayList<>();
             listDataHeader.add(texts.getJSONObject(i).getString("title"));
             listItemInfo.add("Best score: 0");
             listDataChild.put(listDataHeader.get(i), listItemInfo);
         }
 
-        textsListAdapter = new ExpandableListAdapter(this.getContext(),this, listDataHeader, listDataChild);
+        textsListAdapter = new ExpandableListAdapter(this.getContext(), listDataHeader, listDataChild);
         textsList.setAdapter(textsListAdapter);
     }
 
@@ -254,7 +246,7 @@ public class TextFragment extends BaseFragment {
         private HashMap<String, List<String>> listDataChild;
         private int previousGroup;
 
-        ExpandableListAdapter(Context context, TextFragment textFragment, List<String> listDataHeader,
+        ExpandableListAdapter(Context context, List<String> listDataHeader,
                                      HashMap<String, List<String>> listChildData) {
             this.context = context;
             this.listDataHeader = listDataHeader;
@@ -296,11 +288,10 @@ public class TextFragment extends BaseFragment {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.fragment_text_child, null);
+                convertView = infalInflater.inflate(R.layout.fragment_text_child,parent);
             }
 
-            TextView txtListChild = (TextView) convertView
-                    .findViewById(R.id.best_score_label);
+            TextView txtListChild = (TextView) convertView.findViewById(R.id.best_score_label);
 
             txtListChild.setText(childText);
             return convertView;

@@ -13,8 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.mukesh.countrypicker.fragments.CountryPicker;
-import com.mukesh.countrypicker.interfaces.CountryPickerListener;
+import com.juanpabloprado.countrypicker.CountryPicker;
+import com.juanpabloprado.countrypicker.CountryPickerListener;
 
 import org.json.JSONException;
 
@@ -46,15 +46,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                         .setMessage(getString(R.string.delete_confirmation))
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                return;
-                            }
+                            public void onClick(DialogInterface dialog, int which) {}
                         })
                         .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                deleteAccount();
-                            }
+                            public void onClick(DialogInterface dialog, int which) {deleteAccount();}
                         })
                         .create()
                         .show();
@@ -189,15 +185,15 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
 
         private void showCountryList() {
-//            CountryPicker picker = CountryPicker.getInstance(new CountryPickerListener() {
-//                @Override
-//                public void onSelectCountry(String name, String code) {
-//                    changeCountry.setText(name);
-//                    selectedCountry = code;
-//                    ((DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker")).dismiss();
-//                }
-//            });
-//            picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
+            CountryPicker picker = CountryPicker.getInstance(getString(R.string.select_country),new CountryPickerListener() {
+                @Override
+                public void onSelectCountry(String name, String code) {
+                    changeCountry.setText(name);
+                    selectedCountry = code;
+                    ((DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker")).dismiss();
+                }
+            });
+            picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
         }
     }
 }

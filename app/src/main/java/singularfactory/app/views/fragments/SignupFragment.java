@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.android.volley.Request;
-import com.mukesh.countrypicker.fragments.CountryPicker;
-import com.mukesh.countrypicker.interfaces.CountryPickerListener;
+import com.juanpabloprado.countrypicker.CountryPicker;
+import com.juanpabloprado.countrypicker.CountryPickerListener;
 
 import org.json.JSONException;
 
@@ -52,10 +52,7 @@ public class SignupFragment extends BaseFragment {
         });
         country.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    showCountryList();
-                }
+            public void onFocusChange(View view, boolean b) {if (b) showCountryList();
             }
         });
         return view;
@@ -91,13 +88,14 @@ public class SignupFragment extends BaseFragment {
     }
 
     private void showCountryList() {
-//        CountryPicker picker = CountryPicker.getInstance(new CountryPickerListener() {
-//            @Override public void onSelectCountry(String name, String code) {
-//                country.setText(name);
-//                selectedCountry = code;
-//                ((DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker")).dismiss();
-//            }
-//        });
-//        picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
+        CountryPicker picker = CountryPicker.getInstance(getString(R.string.select_country),new CountryPickerListener() {
+            @Override
+            public void onSelectCountry(String name, String code) {
+                country.setText(name);
+                selectedCountry = code;
+                ((DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker")).dismiss();
+            }
+        });
+        picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
     }
 }

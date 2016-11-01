@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -154,8 +155,9 @@ public class FriendFragment extends BaseFragment {
             super(context, 0, users);
         }
 
+        @NonNull
         @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
             final String string = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_friend_item, parent, false);
@@ -218,8 +220,8 @@ public class FriendFragment extends BaseFragment {
 
             setTitle(selectedFriend.getUsername());
             country.setText(selectedFriend.getCountry());
-            level.setText(selectedFriend.getLevel()+"");
-            totalScore.setText(selectedFriend.getTotalScore()+"");
+            level.setText(String.valueOf(selectedFriend.getLevel()));
+            totalScore.setText(String.valueOf(selectedFriend.getTotalScore()));
             int drawableId = getResources()
                     .getIdentifier("flag_"+selectedFriend.getCountry().toLowerCase(), "drawable", getActivity().getPackageName());
 

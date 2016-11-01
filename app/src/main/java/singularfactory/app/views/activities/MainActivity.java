@@ -41,7 +41,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         initialize(findViewById(android.R.id.content));
@@ -54,6 +53,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        assert drawer != null;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -124,10 +124,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.nav_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.nav_settings || super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -194,6 +191,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     public void setUsernameLabelAndLevelLabel() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        assert navigationView != null;
         View hView =  navigationView.getHeaderView(0);
         TextView usernameLabel = (TextView)hView.findViewById(R.id.username_label);
         usernameLabel.setText(getApplicationContext().getString(R.string.username_label,

@@ -20,6 +20,9 @@
     <string name="settings">Settings</string>
     <string name="log_out">Log out</string>
 
+    <!-- General -->
+    <string name="select_country">Select country</string>
+
     <!-- Texts -->
     <string name="choose_language_and_difficulty">Choose language and difficulty</string>
     <array name="difficulties">
@@ -27,7 +30,6 @@
         <item name="medium">Medium</item>
         <item name="hard">Hard</item>
     </array>
-
 
     <!-- Game -->
     <string name="press_the_button_to_play">Press the button to play</string>

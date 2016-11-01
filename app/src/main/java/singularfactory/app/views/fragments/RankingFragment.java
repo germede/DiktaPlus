@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
-import com.mukesh.countrypicker.fragments.CountryPicker;
-import com.mukesh.countrypicker.interfaces.CountryPickerListener;
+import com.juanpabloprado.countrypicker.CountryPicker;
+import com.juanpabloprado.countrypicker.CountryPickerListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,6 +78,8 @@ public class RankingFragment extends BaseFragment {
         return view;
     }
 
+
+
     public void getRanking() {
         ranking.setAdapter(null);
         appCommon.getPresenterUser().getRanking(
@@ -89,21 +91,21 @@ public class RankingFragment extends BaseFragment {
     }
 
     public void setRanking(JSONArray users) throws JSONException {
-        List<String> usersList = new ArrayList<String>();;
+        List<String> usersList = new ArrayList<>();
         for (int i = 0; i < users.length(); i++) {
             usersList.add((i+1)+". "+users.getJSONObject(i).getString("username"));
         }
-        ranking.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,usersList));
+        ranking.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,usersList));
     }
 
     private void showCountryList() {
-        CountryPicker picker = CountryPicker.newInstance("Select country");
-        picker.show(getActivity().getSupportFragmentManager(), "COUNTRY_PICKER");
-        picker.setListener(new CountryPickerListener() {
+        CountryPicker picker = CountryPicker.getInstance(getString(R.string.select_country), new CountryPickerListener() {
             @Override
-            public void onSelectCountry(String name, String code,String dialCode, int flagDrawableResID) {
+            public void onSelectCountry(String name, String code) {
                 country.setText(name);
-                flag.setImageResource(flagDrawableResID);
+                ((DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker")).dismiss();
+                flag.setImageResource(getResources()
+                        .getIdentifier("flag_"+code.toLowerCase(), "drawable", getActivity().getPackageName()));
                 selectedCountry = code;
                 getRanking();
             }

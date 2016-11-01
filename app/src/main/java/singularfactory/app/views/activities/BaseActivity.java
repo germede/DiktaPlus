@@ -39,32 +39,6 @@ public class BaseActivity extends AppCompatActivity {
     /** PUBLIC METHODS **/
     /********************/
 
-    public static ImageLoader loadImageWithVolley(final Context context, String imageUrl, final ProgressBar progressBar, final ImageView image, int maxWidth, int maxHeight) {
-
-        ImageLoader imageLoader  = Volley.getInstance(context).getImageLoader();
-
-        if (imageUrl != null && progressBar != null && image != null) {
-
-            imageLoader.get(imageUrl, new ImageLoader.ImageListener() {
-                @Override
-                public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
-                    progressBar.setVisibility(View.GONE);   // hide the spinner here
-                    image.setVisibility(View.VISIBLE);      // set the image here
-                    image.setImageBitmap(response.getBitmap());
-                }
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    progressBar.setVisibility(View.GONE);   // hide the spinner here
-                    image.setVisibility(View.VISIBLE);      // set the image here
-//                    image.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_child));
-                }
-            }, maxWidth, maxHeight);
-        }
-
-        return imageLoader;
-    }
-
     public static void showSingleAlert(final Context context, String message) {
         new android.support.v7.app.AlertDialog.Builder(context, R.style.MyAlertDialogStyle)
                 .setMessage(message)
@@ -101,38 +75,4 @@ public class BaseActivity extends AppCompatActivity {
                     .show();
         }
     }
-    public static void showAlertWithReflectionTwoButtons(final Activity activity, final Object currentClass, String text, String positiveButtonName, String negativeButtonName, final String processName) {
-        if(activity != null){
-            new android.support.v7.app.AlertDialog.Builder(activity, R.style.MyAlertDialogStyle)
-                    .setMessage(text)
-                    .setNegativeButton(negativeButtonName, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) { return;
-                        }
-                    })
-                    .setPositiveButton(positiveButtonName, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (processName == null) {
-                                activity.finish();
-                                return;
-                            }
-                            try {
-                                Method method = currentClass.getClass().getMethod(processName);
-                                method.invoke(currentClass);
-                            } catch (NoSuchMethodException e) {
-                                e.printStackTrace();
-                            } catch (InvocationTargetException e) {
-                                e.printStackTrace();
-                            } catch (IllegalAccessException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    })
-                    .create()
-                    .show();
-        }
-    }
-
-
 }

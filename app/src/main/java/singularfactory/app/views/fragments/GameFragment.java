@@ -3,7 +3,6 @@ package singularfactory.app.views.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.UtteranceProgressListener;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -66,14 +64,11 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             case "Hard": tts.setSpeechRate(2f); break;
         }
         dictateNextWord();
-        //tts.speak(textToPlay.getContent(),TextToSpeech.QUEUE_ADD,null);
 
     }
 
     public void dictateNextWord() {
-        if (wordIndex < words.length) {
-            tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
-        }
+        if (wordIndex < words.length) tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
         progressBar.setProgress((int)(((float)wordIndex/(float)words.length)*100));
 }
     public void stopDictation() {
