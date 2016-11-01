@@ -71,9 +71,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
             wordIndex++;
         }
-        progressBar.setProgress((int)((wordIndex/words.length)*100f));
-        showToast(progressBar.getProgress()+" "+(wordIndex/words.length
-    ));
+        progressBar.setProgress((int)(((float)wordIndex/(float)words.length)*100));
 }
     public void stopDictation() {
         if(tts != null) {
@@ -111,9 +109,16 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.toString().charAt(s.length()-1) == ' ') {
-                    dictateNextWord();
+                String t = s.toString();
+                String [] writtenWords;
+
+                if (t.length() > 1 && t.charAt(t.length()-1) == ' ') {
+                    writtenWords = t.split(" ");
+                    if (writtenWords[writtenWords.length-1].equals(words[wordIndex]))
+                        dictateNextWord();
+                    else showToast("Typing error");
                 }
+
             }
         });
 
