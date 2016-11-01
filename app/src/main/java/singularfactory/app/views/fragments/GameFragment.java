@@ -47,6 +47,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This language is not supported");
             } else {
+                words = textToPlay.getContent().split(" ");
                 startDictation();
             }
         } else {
@@ -60,21 +61,9 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             case "Medium": tts.setSpeechRate(0.55f); break;
             case "Hard": tts.setSpeechRate(2f); break;
         }
-        tts.speak(textToPlay.getContent(),TextToSpeech.QUEUE_ADD,null);
-        tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
-            @Override
-            public void onStart(String s) {
+        dictateNextWord();
+        //tts.speak(textToPlay.getContent(),TextToSpeech.QUEUE_ADD,null);
 
-            }
-            @Override
-            public void onDone(String s) {
-                showToast("ASDF");
-            }
-            @Override
-            public void onError(String s) {
-
-            }
-        });
     }
 
     public void dictateNextWord() {
@@ -82,8 +71,10 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
             wordIndex++;
         }
-    }
-
+        progressBar.setProgress((int)((wordIndex/words.length)*100f));
+        showToast(progressBar.getProgress()+" "+(wordIndex/words.length
+    ));
+}
     public void stopDictation() {
         if(tts != null) {
             tts.stop();
@@ -121,7 +112,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString().charAt(s.length()-1) == ' ') {
-                    //dictateNextWord();
+                    dictateNextWord();
                 }
             }
         });
