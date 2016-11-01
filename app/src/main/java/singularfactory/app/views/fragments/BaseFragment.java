@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import singularfactory.app.R;
 import singularfactory.app.common.AppCommon;
 import singularfactory.app.views.activities.BaseActivity;
 
@@ -27,7 +29,6 @@ public class BaseFragment extends Fragment {
     public String toProperCase(String s) {
         return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

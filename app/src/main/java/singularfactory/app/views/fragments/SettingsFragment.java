@@ -33,6 +33,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     Preference deleteAccount;
     Preference editAccount;
 
+    String newEmail, newCountry;
+
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         appCommon = AppCommon.getInstance();
@@ -89,12 +91,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 "Trying to update account...",
                 params);
     }
-//    new User(appCommon.getUser().getId(),
-//    changeEmail.getText().toString(),
-//    appCommon.getUser().getUsername(),
-//    selectedCountry,
-//            appCommon.getUser().getTotalScore(),
-//    appCommon.getUser().getLevel()));
+
+    public void updateAccountSuccess() {
+        showToast("Successfully changed your account details");
+        appCommon.setUser(new User(appCommon.getUser().getId(),
+                newEmail,
+                appCommon.getUser().getUsername(),
+                newCountry,
+                appCommon.getUser().getTotalScore(),
+                appCommon.getUser().getLevel()));
+    }
+
     public void deleteAccount() {
         appCommon.getPresenterUser().deleteUser(
                 this,
@@ -112,6 +119,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void showToast(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
+
+
 
     class EditAccountDialog extends Dialog implements
             android.view.View.OnClickListener {
@@ -157,6 +166,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     if (changePassword.getText().toString().length() < 6 && changePassword.getText().toString().length() > 0) {
                         showToast("Password should be longer");
                     } else {
+                        newCountry = selectedCountry;
+                        newEmail = changeEmail.getText().toString();
                         try {
                             editAccount(changeEmail.getText().toString(),
                                     selectedCountry,

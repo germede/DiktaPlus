@@ -1,5 +1,6 @@
 package singularfactory.app.views.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +12,7 @@ import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import singularfactory.app.R;
 import singularfactory.app.views.fragments.FriendFragment;
@@ -75,6 +77,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         toggle.syncState();
         toolbar.setTitle(R.string.app_name);
         navigationView.setNavigationItemSelectedListener(this);
+
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
     }
 
     public void changeToTextFragment(int animIn, int animOut) {
@@ -187,6 +191,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onPreferenceStartScreen(PreferenceFragmentCompat preferenceFragmentCompat, PreferenceScreen preferenceScreen) {
         preferenceFragmentCompat.setPreferenceScreen(preferenceScreen);
         return true;
+    }
+
+    public void setUsernameLabelAndLevelLabel() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView =  navigationView.getHeaderView(0);
+        TextView usernameLabel = (TextView)hView.findViewById(R.id.username_label);
+        usernameLabel.setText(getApplicationContext().getString(R.string.username_label,
+                appCommon.getUser().getUsername()));
+        TextView levelLabel = (TextView)hView.findViewById(R.id.level_label);
+        levelLabel.setText(getApplicationContext().getString(R.string.level_label,
+                appCommon.getUser().getLevel()));
     }
 
 }

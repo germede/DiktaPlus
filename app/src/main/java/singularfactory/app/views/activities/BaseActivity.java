@@ -51,7 +51,6 @@ public class BaseActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);   // hide the spinner here
                     image.setVisibility(View.VISIBLE);      // set the image here
                     image.setImageBitmap(response.getBitmap());
-
                 }
 
                 @Override

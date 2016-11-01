@@ -30,6 +30,7 @@ import java.util.Locale;
 
 import singularfactory.app.R;
 import singularfactory.app.models.Text;
+import singularfactory.app.views.activities.MainActivity;
 
 public class TextFragment extends BaseFragment {
     View view;
@@ -197,6 +198,8 @@ public class TextFragment extends BaseFragment {
             }
         });
 
+        ((MainActivity)getActivity()).setUsernameLabelAndLevelLabel();
+
         return view;
     }
 
@@ -258,16 +261,14 @@ public class TextFragment extends BaseFragment {
 
     class ExpandableListAdapter extends BaseExpandableListAdapter {
 
-        private TextFragment textFragment;
         private Context context;
         private List<String> listDataHeader;
         private HashMap<String, List<String>> listDataChild;
         private int previousGroup;
 
-        public ExpandableListAdapter(Context context, TextFragment textFragment, List<String> listDataHeader,
+        ExpandableListAdapter(Context context, TextFragment textFragment, List<String> listDataHeader,
                                      HashMap<String, List<String>> listChildData) {
             this.context = context;
-            this.textFragment = textFragment;
             this.listDataHeader = listDataHeader;
             this.listDataChild = listChildData;
             previousGroup = -1;

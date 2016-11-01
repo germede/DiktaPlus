@@ -1,6 +1,9 @@
 package singularfactory.app.presenters;
 
+import android.nfc.Tag;
 import android.support.v4.app.Fragment;
+import android.support.v7.preference.ListPreference;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +52,7 @@ public class PresenterUser {
         jsonObject.put("country",jsonParams[1]);
         jsonObject.put("password",jsonParams[2]);
         jsonObject.put("old_password",jsonParams[3]);
+        Log.e(TAG,jsonObject.toString());
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
     }
 
@@ -101,7 +105,7 @@ public class PresenterUser {
 
     public void putUserResponse(Object object, JSONObject json) {
         SettingsFragment settingsFragment = (SettingsFragment) object;
-        settingsFragment.showToast("Successfully changed your account details");
+        settingsFragment.updateAccountSuccess();
     }
 
     public void deleteUserResponse(Object object, JSONObject user) {
