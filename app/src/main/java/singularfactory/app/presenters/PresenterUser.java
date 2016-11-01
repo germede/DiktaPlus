@@ -43,6 +43,15 @@ public class PresenterUser {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
+    public void putUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("email",jsonParams[0]);
+        jsonObject.put("country",jsonParams[1]);
+        jsonObject.put("password",jsonParams[2]);
+        jsonObject.put("old_password",jsonParams[3]);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
+    }
+
     public void deleteUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
@@ -82,12 +91,17 @@ public class PresenterUser {
 
     public void registerUserResponse(Object object, JSONObject json) {
         SignupFragment signupFragment = (SignupFragment) object;
-        signupFragment.onSuccessfullyRegistration("Successfully signed up, please try to login");
+        signupFragment.registerUserSuccess("Successfully signed up, please try to login");
     }
 
     public void getUserInfoResponse(Object object, JSONObject user) {
         SplashActivity splashActivity = (SplashActivity) object;
         splashActivity.setUserInfo(user);
+    }
+
+    public void putUserResponse(Object object, JSONObject json) {
+        SettingsFragment settingsFragment = (SettingsFragment) object;
+        settingsFragment.showToast("Successfully changed your account details");
     }
 
     public void deleteUserResponse(Object object, JSONObject user) {

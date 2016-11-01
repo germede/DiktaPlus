@@ -96,7 +96,7 @@ public class SignupFragment extends BaseFragment {
         }
     }
 
-    public void onSuccessfullyRegistration(String message) {
+    public void registerUserSuccess(String message) {
         showDialog(message);
         ((LoginActivity)getActivity()).onClickReturnLogin(getView());
     }

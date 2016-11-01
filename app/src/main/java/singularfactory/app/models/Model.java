@@ -79,6 +79,9 @@ public class Model {
             case "Get user info":
                 appCommon.getPresenterUser().getUserInfoResponse(object,json.getJSONObject(0));
                 break;
+            case "Put user":
+                appCommon.getPresenterUser().putUserResponse(object,json.getJSONObject(0));
+                break;
             case "Delete user":
                 appCommon.getPresenterUser().deleteUserResponse(object,json.getJSONObject(0));
                 break;
@@ -121,10 +124,13 @@ public class Model {
                 appCommon.getPresenterUser().responseError(object,"Login error: User"+message);
                 break;
             case "Register user":
-                appCommon.getPresenterUser().responseError(object,"Username or email are already taken");
+                appCommon.getPresenterUser().responseError(object,"Server error. Username or email may be already taken");
                 break;
             case "Get user info":
                 appCommon.getPresenterUser().responseError(object,"Error getting user info:"+message);
+                break;
+            case "Put user":
+                appCommon.getPresenterUser().responseError(object,"Please check all the parameters");
                 break;
             case "Delete user":
                 appCommon.getPresenterUser().responseError(object,"Error deleting user:"+message);
