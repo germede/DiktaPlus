@@ -16,10 +16,10 @@
         android:gravity="center_vertical|center_horizontal">
 
         <ImageView
-            android:layout_width="200dp"
             app:srcCompat="@android:drawable/alert_dark_frame"
             android:id="@+id/ranking_flag"
-            android:layout_height="200dp" />
+            android:layout_width="70dp"
+            android:layout_height="60dp" />
 
         <TextView
             android:text="@string/top"

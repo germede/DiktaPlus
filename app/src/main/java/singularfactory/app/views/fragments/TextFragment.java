@@ -288,7 +288,7 @@ public class TextFragment extends BaseFragment {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.fragment_text_child,parent);
+                convertView = infalInflater.inflate(R.layout.fragment_text_child,null);
             }
 
             TextView txtListChild = (TextView) convertView.findViewById(R.id.best_score_label);
