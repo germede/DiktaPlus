@@ -86,6 +86,7 @@ public class FriendFragment extends BaseFragment {
         for (int i = 0; i < users.length(); i++) friendsList.add(users.getJSONObject(i).getString("username"));
         if (friendsList.contains(appCommon.getUser().getUsername())) friendsList.remove(appCommon.getUser().getUsername());
         friends.setAdapter(new UsersAdapter(getContext(),friendsList));
+        searchBox.setQuery("",false);
     }
 
     public void makeFriends(String friendUsername) {

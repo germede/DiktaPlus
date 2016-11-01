@@ -60,7 +60,7 @@ public class RankingFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_ranking, container, false);
 
-        selectedCountry = "GB";
+        selectedCountry = "";
         ranking = (ListView) view.findViewById(R.id.ranking);
         flag = (ImageView) view.findViewById(R.id.ranking_flag);
         cnt = (EditText) view.findViewById(R.id.cnt_ranking_input);
@@ -71,7 +71,7 @@ public class RankingFragment extends BaseFragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                if(s!= null && s.toString().length()>0) getRanking();
+                if(s!= null && s.toString().length()>0 && !selectedCountry.equals("")) getRanking();
             }
         });
         country = (EditText) view.findViewById(R.id.country_ranking_input);
