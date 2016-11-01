@@ -79,12 +79,12 @@ public class FriendFragment extends BaseFragment {
                 "Getting friends...");
     }
 
-    public void setFriends(JSONArray users, UsersAdapter adapter) throws JSONException {
+    public void setFriends(JSONArray users) throws JSONException {
         receivedList = users;
         friendsList = new ArrayList<>();
         for (int i = 0; i < users.length(); i++) friendsList.add(users.getJSONObject(i).getString("username"));
         if (friendsList.contains(appCommon.getUser().getUsername())) friendsList.remove(appCommon.getUser().getUsername());
-        friends.setAdapter(adapter);
+        friends.setAdapter(new UsersAdapter(getContext(),friendsList));
         searchBox.setQuery("",false);
     }
 

@@ -3,6 +3,7 @@ package singularfactory.app.views.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -53,19 +55,26 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void startDictation () {
-        //wordIndex = 0;
-        //words = textToPlay.getContent().split(" ");
-
-        if (textToPlay.getDifficulty().equals("Easy")) {
-            tts.setSpeechRate(0.05f);
-        } else if (textToPlay.getDifficulty().equals("Medium")) {
-            tts.setSpeechRate(0.25f);
-        } else {
-            tts.setSpeechRate(1f);
+        switch(textToPlay.getDifficulty()) {
+            case "Easy": tts.setSpeechRate(0.05f); break;
+            case "Medium": tts.setSpeechRate(0.55f); break;
+            case "Hard": tts.setSpeechRate(2f); break;
         }
-
         tts.speak(textToPlay.getContent(),TextToSpeech.QUEUE_ADD,null);
+        tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String s) {
 
+            }
+            @Override
+            public void onDone(String s) {
+                showToast("ASDF");
+            }
+            @Override
+            public void onError(String s) {
+
+            }
+        });
     }
 
     public void dictateNextWord() {
