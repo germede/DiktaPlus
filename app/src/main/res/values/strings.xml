@@ -22,15 +22,16 @@
 
     <!-- Texts -->
     <string name="choose_language_and_difficulty">Choose language and difficulty</string>
-    <string name="easy">Easy</string>
-    <string name="medium">Medium</string>
-    <string name="hard">Hard</string>
+    <array name="difficulties">
+        <item name="easy">Easy</item>
+        <item name="medium">Medium</item>
+        <item name="hard">Hard</item>
+    </array>
+
 
     <!-- Game -->
     <string name="press_the_button">Press the button to play</string>
     <string name="progress">Progress</string>
-    <string name="language">Language: %1$s</string>
-    <string name="difficulty">Difficulty: %1$s</string>
     <string name="best_score">Best score: %1$d</string>
     <string name="level">Level</string>
     <string name="total_score">Total score</string>

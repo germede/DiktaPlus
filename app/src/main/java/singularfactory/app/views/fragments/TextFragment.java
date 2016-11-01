@@ -208,18 +208,7 @@ public class TextFragment extends BaseFragment {
     }
 
     private void updateDifficultyLabel() {
-        switch (selectedDifficulty) {
-            case 0:
-                difficultyLabel.setText(getResources().getString(R.string.easy));
-                break;
-            case 1:
-                difficultyLabel.setText(getResources().getString(R.string.medium));
-                break;
-            case 2:
-                difficultyLabel.setText(getResources().getString(R.string.hard));
-                break;
-            default:break;
-        }
+        difficultyLabel.setText(getResources().getStringArray(R.array.difficulties)[selectedDifficulty]);
     }
 
     public void getBestScore() throws JSONException {

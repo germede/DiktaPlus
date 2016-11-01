@@ -150,9 +150,13 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         difficultyGameLabel = (TextView)view.getRootView().findViewById(R.id.difficulty_game_label);
         bestScoreGameLabel = (TextView)view.getRootView().findViewById(R.id.best_score_game_label);
 
-        languageGameLabel.setText(getActivity().getApplicationContext().getString(R.string.language, textToPlay.getLanguage()));
-        difficultyGameLabel.setText(getActivity().getApplicationContext().getString(R.string.difficulty, textToPlay.getDifficulty()));
-        bestScoreGameLabel.setText(getActivity().getApplicationContext().getString(R.string.best_score,textToPlay.getBestScore()));
+        languageGameLabel.setText(toProperCase(new Locale (textToPlay.getLanguage()).getDisplayLanguage()));
+        switch(textToPlay.getDifficulty()) {
+            case "Easy": difficultyGameLabel.setText(getResources().getStringArray(R.array.difficulties)[0]); break;
+            case "Medium": difficultyGameLabel.setText(getResources().getStringArray(R.array.difficulties)[1]); break;
+            case "Hard": difficultyGameLabel.setText(getResources().getStringArray(R.array.difficulties)[2]); break;
+        }
+        bestScoreGameLabel.setText(getActivity().getResources().getString(R.string.best_score,textToPlay.getBestScore()));
 
         playButton = (ImageButton) view.getRootView().findViewById(R.id.play_button);
         playButton.setOnClickListener(new View.OnClickListener() {

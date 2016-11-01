@@ -1,89 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_vertical_margin"
     android:weightSum="1">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/language_game_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Language"
+            android:textColor="@color/primary_text_color" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_primary"
+            android:id="@+id/view"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/difficulty_game_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Difficulty"
+            android:textColor="@color/primary_text_color" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_primary"
+            android:id="@+id/view2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/best_score_game_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Best score"
+            android:textColor="@color/primary_text_color" />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/color_primary" />
+
+    <TextView
+        android:id="@+id/progress_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:text="@string/progress"
+        android:visibility="gone" />
+
     <ProgressBar
+        android:id="@+id/progress_bar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar3"
-        android:progress="0"
-        android:visibility="gone"/>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.06"
-        android:layout_margin="@dimen/activity_horizontal_margin">
-
-        <TextView
-            android:text="@string/language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/language_game_label"
-            android:layout_gravity="top|start"/>
-
-        <TextView
-            android:text="@string/difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/difficulty_game_label"
-            android:layout_gravity="top|end"/>
-
-        <TextView
-            android:text="@string/best_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/best_score_game_label"
-            android:layout_gravity="bottom|center"/>
-
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/progress_bar"
-            android:progress="100"
-            android:layout_gravity="center|center"
-            android:visibility="gone" />
-
-        <TextView
-            android:text="@string/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progress_label"
-            android:layout_gravity="top|center"
-            android:visibility="gone" />
-
-
-    </FrameLayout>
+        android:layout_gravity="center|center"
+        android:progress="100"
+        android:visibility="gone" />
 
     <EditText
+        android:id="@+id/game_text_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/game_text_edit"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.31"
         android:visibility="gone" />
 
     <TextView
+        android:id="@+id/press_the_button_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/press_the_button"
-        android:id="@+id/press_the_button_label"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="40dp"
+        android:text="@string/press_the_button"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageButton
+        android:id="@+id/play_button"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:id="@+id/play_button"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.08"
         android:src="@android:drawable/ic_media_play" />
