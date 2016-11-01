@@ -1,6 +1,5 @@
 package singularfactory.app.views.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;

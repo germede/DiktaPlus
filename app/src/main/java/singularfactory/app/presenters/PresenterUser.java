@@ -1,8 +1,6 @@
 package singularfactory.app.presenters;
 
-import android.nfc.Tag;
 import android.support.v4.app.Fragment;
-import android.support.v7.preference.ListPreference;
 import android.util.Log;
 
 import org.json.JSONArray;

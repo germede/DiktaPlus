@@ -6,10 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import singularfactory.app.R;
 import singularfactory.app.common.AppCommon;
 import singularfactory.app.views.activities.BaseActivity;
 

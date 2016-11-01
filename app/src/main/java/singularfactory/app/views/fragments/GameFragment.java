@@ -27,7 +27,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     TextView difficultyGameLabel;
     TextView bestScoreGameLabel;
     TextView pressTheButtonLabel;
-    TextView progressLabel;
     ProgressBar progressBar;
     ImageButton playButton;
     EditText gameTextEdit;
@@ -92,15 +91,9 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         pressTheButtonLabel = (TextView)view.getRootView().findViewById(R.id.press_the_button_label);
         gameTextEdit = (EditText) view.getRootView().findViewById(R.id.game_text_edit);
         progressBar = (ProgressBar) view.getRootView().findViewById(R.id.progress_bar);
-        progressLabel = (TextView) view.getRootView().findViewById(R.id.progress_label);
-
-        // Hide all the labels
-        languageGameLabel.setVisibility(View.GONE);
-        difficultyGameLabel.setVisibility(View.GONE);
-        bestScoreGameLabel.setVisibility(View.GONE);
-        pressTheButtonLabel.setVisibility(View.GONE);
 
         // Change image of button and its behaviour
+        pressTheButtonLabel.setText(getResources().getString(R.string.press_the_button_to_stop));
         playButton.setImageResource(android.R.drawable.ic_media_pause);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,10 +101,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
                 ((MainActivity)getActivity()).changeToTextFragment(R.anim.slide_in_left,R.anim.slide_out_right);
             }
         });
-
-        // Show progress bar
-        progressLabel.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
 
         // Show text area to play
         gameTextEdit.setVisibility(View.VISIBLE);

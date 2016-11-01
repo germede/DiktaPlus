@@ -23,7 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import singularfactory.app.R;
 import singularfactory.app.models.User;
@@ -80,12 +79,12 @@ public class FriendFragment extends BaseFragment {
                 "Getting friends...");
     }
 
-    public void setFriends(JSONArray users) throws JSONException {
+    public void setFriends(JSONArray users, UsersAdapter adapter) throws JSONException {
         receivedList = users;
         friendsList = new ArrayList<>();
         for (int i = 0; i < users.length(); i++) friendsList.add(users.getJSONObject(i).getString("username"));
         if (friendsList.contains(appCommon.getUser().getUsername())) friendsList.remove(appCommon.getUser().getUsername());
-        friends.setAdapter(new UsersAdapter(getContext(),friendsList));
+        friends.setAdapter(adapter);
         searchBox.setQuery("",false);
     }
 

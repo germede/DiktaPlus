@@ -2,13 +2,10 @@ package singularfactory.app.views.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.juanpabloprado.countrypicker.CountryPicker;
@@ -17,6 +14,7 @@ import com.juanpabloprado.countrypicker.CountryPickerListener;
 import org.json.JSONException;
 
 import singularfactory.app.R;
+import singularfactory.app.common.Utils;
 import singularfactory.app.views.activities.LoginActivity;
 
 public class SignupFragment extends BaseFragment {
@@ -81,7 +79,9 @@ public class SignupFragment extends BaseFragment {
             showToast("Username should not contain spaces");
         } else if (password.getText().toString().length() < 6) {
             showToast("Password should be longer");
-        } else {
+        } else if (Utils.getInstance().isValidEmail(email.getText().toString())) {
+            showToast("Please use a valid email");
+        }else {
             String[] params = {username.getText().toString(),
                     email.getText().toString(),
                     password.getText().toString(),

@@ -4,15 +4,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import singularfactory.app.common.AppCommon;
 import singularfactory.app.R;
+import singularfactory.app.common.AppCommon;
 import singularfactory.app.models.User;
 
 public class SplashActivity extends BaseActivity {
@@ -91,6 +90,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void launchLoginActivity() {
+        appCommon.getUtils().sharedRemoveValue(getApplicationContext(), "id");
         appCommon.getUtils().launchActivity(LoginActivity.class, SplashActivity.this, null);
         overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
         finish();

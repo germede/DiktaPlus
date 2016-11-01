@@ -15,8 +15,8 @@ import com.android.volley.toolbox.ImageLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import singularfactory.app.common.AppCommon;
 import singularfactory.app.R;
+import singularfactory.app.common.AppCommon;
 import singularfactory.app.common.Volley;
 
 public class BaseActivity extends AppCompatActivity {

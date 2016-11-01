@@ -5,8 +5,6 @@ import org.json.JSONObject;
 
 import singularfactory.app.common.AppCommon;
 import singularfactory.app.views.fragments.BaseFragment;
-import singularfactory.app.views.fragments.LoginFragment;
-import singularfactory.app.views.fragments.SignupFragment;
 import singularfactory.app.views.fragments.TextFragment;
 
 public class PresenterGame {

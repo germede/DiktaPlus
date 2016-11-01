@@ -60,38 +60,44 @@
         android:layout_height="2dp"
         android:background="@color/color_primary" />
 
-    <TextView
-        android:id="@+id/progress_label"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|center"
-        android:text="@string/progress"
-        android:visibility="gone" />
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|center"
-        android:progress="100"
-        android:visibility="gone" />
-
-    <EditText
-        android:id="@+id/game_text_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.31"
-        android:visibility="gone" />
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+
+        <TextView
+            android:id="@+id/progress_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:text="@string/progress"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/primary_text_color"
+            android:textAlignment="viewStart" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center"
+            android:progress="0"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/press_the_button_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:text="@string/press_the_button"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/press_the_button_to_play"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageButton
@@ -101,5 +107,13 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.08"
         android:src="@android:drawable/ic_media_play" />
+
+    <EditText
+        android:id="@+id/game_text_edit"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.22" />
 
 </LinearLayout>

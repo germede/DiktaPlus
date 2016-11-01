@@ -1,24 +1,16 @@
 package singularfactory.app.views.fragments;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.juanpabloprado.countrypicker.CountryPicker;
@@ -26,17 +18,11 @@ import com.juanpabloprado.countrypicker.CountryPickerListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import singularfactory.app.R;
-import singularfactory.app.models.Text;
-
-import static singularfactory.app.R.id.textsList;
 
 public class RankingFragment extends BaseFragment {
     View view;
