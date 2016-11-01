@@ -154,7 +154,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (changePassword.getText().toString().length() < 6) {
+                    if (changePassword.getText().toString().length() < 6 && changePassword.getText().toString().length() > 0) {
                         showToast("Password should be longer");
                     } else {
                         try {

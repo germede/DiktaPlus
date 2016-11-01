@@ -144,11 +144,11 @@ public class PresenterUser {
     /** Response error **/
     public void responseError(Object object, String message) {
         if (!message.equals("")) {
-            if (object instanceof Fragment) {
+            if (object instanceof SettingsFragment) {
+                ((SettingsFragment) object).showToast(message);
+            } else if (object instanceof Fragment) {
                 BaseFragment baseFragment = (BaseFragment) object;
                 baseFragment.showDialog(message);
-            } else if (object instanceof SettingsFragment) {
-                ((SettingsFragment)object).showToast(message);
             } else if (object instanceof SplashActivity){
                 SplashActivity splashActivity = (SplashActivity) object;
                 splashActivity.showSingleAlertWithReflection(splashActivity,splashActivity,"Your credentials are not valid anymore, please log in again","launchLoginActivity");
