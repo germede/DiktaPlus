@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
-import com.juanpabloprado.countrypicker.CountryPicker;
-import com.juanpabloprado.countrypicker.CountryPickerListener;
+import com.mukesh.countrypicker.fragments.CountryPicker;
+import com.mukesh.countrypicker.interfaces.CountryPickerListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,25 +78,6 @@ public class RankingFragment extends BaseFragment {
         return view;
     }
 
-    private void showCountryList() {
-        CountryPicker picker = CountryPicker.getInstance("Select Country", new CountryPickerListener() {
-            @Override
-            public void onSelectCountry(String name, String code) {
-                country.setText(name);
-                DialogFragment dialogFragment =
-                        (DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker");
-                dialogFragment.dismiss();
-                int drawableId = getResources()
-                        .getIdentifier("flag_"+code.toLowerCase(), "drawable", getActivity().getPackageName());
-
-                flag.setImageResource(drawableId);
-                selectedCountry = code;
-                getRanking();
-            }
-        });
-        picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
-    }
-
     public void getRanking() {
         ranking.setAdapter(null);
         appCommon.getPresenterUser().getRanking(
@@ -113,5 +94,20 @@ public class RankingFragment extends BaseFragment {
             usersList.add((i+1)+". "+users.getJSONObject(i).getString("username"));
         }
         ranking.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,usersList));
+    }
+
+    private void showCountryList() {
+        CountryPicker picker = CountryPicker.newInstance("Select country");
+        picker.show(getActivity().getSupportFragmentManager(), "COUNTRY_PICKER");
+        picker.setListener(new CountryPickerListener() {
+            @Override
+            public void onSelectCountry(String name, String code,String dialCode, int flagDrawableResID) {
+                country.setText(name);
+                flag.setImageResource(flagDrawableResID);
+                selectedCountry = code;
+                getRanking();
+            }
+        });
+        picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
     }
 }

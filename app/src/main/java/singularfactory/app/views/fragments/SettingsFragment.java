@@ -13,8 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.juanpabloprado.countrypicker.CountryPicker;
-import com.juanpabloprado.countrypicker.CountryPickerListener;
+import com.mukesh.countrypicker.fragments.CountryPicker;
+import com.mukesh.countrypicker.interfaces.CountryPickerListener;
 
 import org.json.JSONException;
 
@@ -189,17 +189,15 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
 
         private void showCountryList() {
-            CountryPicker picker = CountryPicker.getInstance("Select Country", new CountryPickerListener() {
-                @Override
-                public void onSelectCountry(String name, String code) {
-                    changeCountry.setText(name);
-                    selectedCountry = code;
-                    DialogFragment dialogFragment =
-                            (DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker");
-                    dialogFragment.dismiss();
-                }
-            });
-            picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
+//            CountryPicker picker = CountryPicker.getInstance(new CountryPickerListener() {
+//                @Override
+//                public void onSelectCountry(String name, String code) {
+//                    changeCountry.setText(name);
+//                    selectedCountry = code;
+//                    ((DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker")).dismiss();
+//                }
+//            });
+//            picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
         }
     }
 }

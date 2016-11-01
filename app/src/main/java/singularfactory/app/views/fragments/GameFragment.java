@@ -7,9 +7,11 @@ import android.speech.tts.UtteranceProgressListener;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import singularfactory.app.R;
+import singularfactory.app.common.Utils;
 import singularfactory.app.models.Text;
 import singularfactory.app.views.activities.MainActivity;
 
@@ -32,6 +35,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     ProgressBar progressBar;
     ImageButton playButton;
     EditText gameTextEdit;
+    BaseInputConnection textFieldInputConnection;
 
     TextToSpeech tts;
     Text textToPlay;
@@ -69,7 +73,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     public void dictateNextWord() {
         if (wordIndex < words.length) {
             tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
-            wordIndex++;
         }
         progressBar.setProgress((int)(((float)wordIndex/(float)words.length)*100));
 }
@@ -85,10 +88,13 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void play() {
+
         // Initialize invisible elements
         pressTheButtonLabel = (TextView)view.getRootView().findViewById(R.id.press_the_button_label);
         gameTextEdit = (EditText) view.getRootView().findViewById(R.id.game_text_edit);
         progressBar = (ProgressBar) view.getRootView().findViewById(R.id.progress_bar);
+        textFieldInputConnection = new BaseInputConnection(gameTextEdit, true);
+
 
         // Change image of button and its behaviour
         pressTheButtonLabel.setText(getResources().getString(R.string.press_the_button_to_stop));
@@ -96,6 +102,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utils.getInstance().hideKeyboard(getActivity());
                 ((MainActivity)getActivity()).changeToTextFragment(R.anim.slide_in_left,R.anim.slide_out_right);
             }
         });
@@ -114,9 +121,16 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
                 if (t.length() > 1 && t.charAt(t.length()-1) == ' ') {
                     writtenWords = t.split(" ");
-                    if (writtenWords[writtenWords.length-1].equals(words[wordIndex]))
+                    Log.e(TAG, "Correct" + words[wordIndex]);
+                    Log.e(TAG, "Written" + writtenWords[writtenWords.length - 1]);
+                    if (writtenWords[writtenWords.length - 1].equals(words[wordIndex])) {
+                        wordIndex++;
                         dictateNextWord();
-                    else showToast("Typing error");
+                    } else {
+                        showToast("Typing error");
+                        textFieldInputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+                        tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
+                    }
                 }
 
             }
