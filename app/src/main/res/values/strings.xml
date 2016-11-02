@@ -39,6 +39,7 @@
     <string name="total_score">Total score</string>
     <string name="typing_error">Typing error</string>
     <string name="repeat">Repeat</string>
+    <string name="game_over">Game Over</string>
 
     <!-- Ranking -->
     <string name="top">Top</string>

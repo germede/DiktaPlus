@@ -60,14 +60,42 @@
         android:layout_height="2dp"
         android:background="@color/color_primary" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleY="3"
-        android:progress="0"
-        android:layout_weight="0.03" />
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_weight="0.02">
+
+        <TextView
+            android:text="@string/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:textSize="14sp"
+            android:textColor="@color/primary_text_color" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleY="3"
+            android:progress="0"
+            android:layout_weight="1"
+            android:visibility="visible"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+        <Chronometer
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/chronometer"
+            android:textColor="@color/primary_text_color" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/press_the_button_label"

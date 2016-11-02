@@ -14,12 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.android.volley.Request;
 
 import java.util.Locale;
 
@@ -38,6 +39,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     ImageButton playButton;
     ImageButton repeatButton;
     EditText gameTextEdit;
+    Chronometer chronometer;
     BaseInputConnection textFieldInputConnection;
 
     TextToSpeech tts;
@@ -67,6 +69,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         textToSplit = textToSplit.replaceAll("\\.","");
         textToSplit = textToSplit.replaceAll("\\(","");
         textToSplit = textToSplit.replaceAll("\\)","");
+        textToSplit = textToSplit.replaceAll("\\,","");
 
         originalText = textToPlay.getContent().split(" ");
         words = textToSplit.split(" ");
@@ -75,8 +78,8 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             case "Medium": tts.setSpeechRate(0.55f); break;
             case "Hard": tts.setSpeechRate(2f); break;
         }
+        chronometer.start();
         dictateNextWord();
-
     }
 
     public void dictateNextWord() {
@@ -87,13 +90,28 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         gameTextEdit.setText("");
     }
 
+    private void speakActualWord() {
+        tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
+    }
+
     public void gameOver() {
         stopDictation();
-        postGame();
-
+        String[] params = {appCommon.getUser().getId(),
+                textToPlay.getId(),
+                1000};
+        appCommon.getPresenterGame().postGame(
+                this,
+                "Register user",
+                Request.Method.POST,
+                appCommon.getBaseURL() + "users/register",
+                "Trying to register...",
+                params);
+        GameOverDialog gameOverDialog = new GameOverDialog(getActivity());
+        gameOverDialog.show();
     }
 
     public void stopDictation() {
+        chronometer.stop();
         if(tts != null) {
             tts.stop();
             tts.shutdown();
@@ -163,9 +181,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         });
     }
 
-    private void speakActualWord() {
-        tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -197,6 +212,8 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             }
         });
 
+        chronometer = (Chronometer) view.getRootView().findViewById(R.id.chronometer);
+
         return view;
     }
 
@@ -215,30 +232,15 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
     class GameOverDialog extends Dialog implements
             android.view.View.OnClickListener {
-        private Button exit;
 
         GameOverDialog(Activity a) {super(a);}
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.fragment_friend_info);
-            TextView country = (TextView)findViewById(R.id.friend_country_label);
-            TextView level = (TextView)findViewById(R.id.friend_level_label);
-            TextView totalScore = (TextView)findViewById(R.id.friend_total_score_label);
-            ImageView flag = (ImageView)findViewById(R.id.friend_flag);
+            setContentView(R.layout.fragment_game_over);
 
-            setTitle(selectedFriend.getUsername());
-            country.setText(selectedFriend.getCountry());
-            level.setText(String.valueOf(selectedFriend.getLevel()));
-            totalScore.setText(String.valueOf(selectedFriend.getTotalScore()));
-            int drawableId = getResources()
-                    .getIdentifier("flag_"+selectedFriend.getCountry().toLowerCase(), "drawable", getActivity().getPackageName());
-
-            flag.setImageResource(drawableId);
-
-
-            exit = (Button) findViewById(R.id.btn_exit);
-            exit.setOnClickListener(this);
+            setTitle(getString(R.string.game_over));
+            setCancelable(false);
         }
         @Override
         public void onClick(View v) {dismiss();}
