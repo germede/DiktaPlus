@@ -20,7 +20,7 @@
     <string name="game_over">Partida finalizada</string>
     <string name="level">Nivel</string>
     <string name="level_label">Nivel: %1$d</string>
-    <string name="level_up">¡NIVEL ALCANZADO! %1$d</string>
+    <string name="level_up">¡NUEVO NIVEL: %1$d!</string>
     <string name="log_in">Ingresar</string>
     <string name="log_out">Salir</string>
     <string name="logo"></string>

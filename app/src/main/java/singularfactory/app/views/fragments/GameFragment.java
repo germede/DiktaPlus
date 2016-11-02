@@ -190,8 +190,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
                 String t = s.toString();
                 if (t.length() > 1 && t.charAt(t.length()-1) == ' ') {
                     t = t.trim();
-                    Log.e(TAG,wordIndex+""+words.length);
-                    if (wordIndex >= words.length) gameOver();
+                    if (wordIndex >= words.length) return;
                     else if (t.equals(words[wordIndex])) {
                         wordIndex++;
                         dictateNextWord();
@@ -305,6 +304,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             repeat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    cancel();
                     dismiss();
                     play();
                 }

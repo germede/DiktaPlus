@@ -41,7 +41,7 @@
     <string name="typing_error">Typing error</string>
     <string name="repeat">Repeat</string>
     <string name="game_over">Game Over</string>
-    <string name="level_up">¡LEVEL UP! %1$d</string>
+    <string name="level_up">¡LEVEL UP: %1$d!</string>
     <string name="score">Score: %1$d</string>
 
     <!-- Ranking -->
