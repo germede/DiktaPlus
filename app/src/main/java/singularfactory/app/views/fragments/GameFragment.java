@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 
+import org.json.JSONException;
+
 import java.util.Locale;
 
 import singularfactory.app.R;
@@ -96,16 +98,20 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
     public void gameOver() {
         stopDictation();
-        String[] params = {appCommon.getUser().getId(),
+        int[] params = {appCommon.getUser().getId(),
                 textToPlay.getId(),
                 1000};
-        appCommon.getPresenterGame().postGame(
-                this,
-                "Register user",
-                Request.Method.POST,
-                appCommon.getBaseURL() + "users/register",
-                "Trying to register...",
-                params);
+        try {
+            appCommon.getPresenterGame().postGame(
+                    this,
+                    "Post game",
+                    Request.Method.POST,
+                    appCommon.getBaseURL() + "games/add",
+                    "Posting game...",
+                    params);
+        } catch (JSONException e) {
+            Log.e(TAG,"JSON error");
+        }
         GameOverDialog gameOverDialog = new GameOverDialog(getActivity());
         gameOverDialog.show();
     }

@@ -75,5 +75,4 @@ public class AppCommon extends MultiDexApplication {
         this.user = user;
     }
 
-
 }

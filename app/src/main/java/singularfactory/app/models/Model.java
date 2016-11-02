@@ -1,7 +1,10 @@
 package singularfactory.app.models;
 
 
+import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -18,6 +21,7 @@ import java.util.Map;
 
 import singularfactory.app.common.AppCommon;
 import singularfactory.app.common.Volley;
+import singularfactory.app.views.activities.BaseActivity;
 
 public class Model {
 
@@ -103,6 +107,9 @@ public class Model {
             case "Delete friends":
                 appCommon.getPresenterUser().deleteFriendsResponse(object, json);
                 break;
+            case "Post game":
+                appCommon.getPresenterGame().postGameResponse(object, json.getJSONObject(0));
+                break;
             case "Get best score":
                 appCommon.getPresenterGame().getBestScoreResponse(object, json.getJSONObject(0));
                 break;
@@ -153,6 +160,9 @@ public class Model {
             case "Delete friends":
                 appCommon.getPresenterUser().responseError(object, "Friendship could not be deleted");
                 break;
+            case "Post game":
+                appCommon.getPresenterGame().responseError(object, "The score could not be posted");
+                break;
             case "Get best score":
                 appCommon.getPresenterGame().responseError(object, "");
                 break;
@@ -163,6 +173,16 @@ public class Model {
 
     public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url,
                                 String dialogMessage, boolean showDialog, String params) {
+        if (showDialog) {
+            Context context;
+            if (object instanceof BaseActivity) context = (BaseActivity)object;
+            else context = ((Fragment) object).getActivity();
+            pDialog = new ProgressDialog(context);
+            pDialog.setMessage(dialogMessage);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
         final AppCommon appCommon = AppCommon.getInstance();
         JsonArrayRequest request = new JsonArrayRequest(verb, url, params
                 , new Response.Listener<JSONArray>() {
