@@ -65,7 +65,7 @@ public class SignupFragment extends BaseFragment {
             showToast("Username should not contain spaces");
         } else if (password.getText().toString().length() < 6) {
             showToast("Password should be longer");
-        } else if (Utils.getInstance().isValidEmail(email.getText().toString())) {
+        } else if (!Utils.getInstance().isValidEmail(email.getText().toString())) {
             showToast("Please use a valid email");
         }else {
             String[] params = {username.getText().toString(),

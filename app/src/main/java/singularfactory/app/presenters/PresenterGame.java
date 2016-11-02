@@ -24,7 +24,7 @@ public class PresenterGame {
         jsonObject.put("user",jsonParams[0]);
         jsonObject.put("text",jsonParams[1]);
         jsonObject.put("score",jsonParams[2]);
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,jsonObject.toString());
     }
 
     /*******************/

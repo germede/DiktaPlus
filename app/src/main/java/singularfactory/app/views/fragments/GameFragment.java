@@ -96,7 +96,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
     public void dictateNextWord() {
         if (wordIndex > 0) pressTheButtonLabel.append(originalText[wordIndex-1]+" ");
-        if (wordIndex <= words.length) speakActualWord();
+        if (wordIndex < words.length) speakActualWord();
         else gameOver();
         progressBar.setProgress((int)(((float)wordIndex/(float)words.length)*100));
         gameTextEdit.setText("");
@@ -185,7 +185,9 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
                 String t = s.toString();
                 if (t.length() > 1 && t.charAt(t.length()-1) == ' ') {
                     t = t.trim();
-                    if (t.equals(words[wordIndex])) {
+                    Log.e(TAG,wordIndex+""+words.length);
+                    if (wordIndex >= words.length) gameOver();
+                    else if (t.equals(words[wordIndex])) {
                         wordIndex++;
                         dictateNextWord();
                     } else {

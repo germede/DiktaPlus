@@ -28,7 +28,7 @@ public class PresenterUser {
         jsonObject.put("email",jsonParams[0]);
         jsonObject.put("username",jsonParams[0]);
         jsonObject.put("password",jsonParams[1]);
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,jsonObject.toString());
     }
 
     public void registerUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
@@ -37,11 +37,11 @@ public class PresenterUser {
         jsonObject.put("email",jsonParams[1]);
         jsonObject.put("password",jsonParams[2]);
         jsonObject.put("country",jsonParams[3]);
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,jsonObject.toString());
     }
 
     public void getUserInfo(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
     public void putUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
@@ -51,35 +51,35 @@ public class PresenterUser {
         jsonObject.put("password",jsonParams[2]);
         jsonObject.put("old_password",jsonParams[3]);
         Log.e(TAG,jsonObject.toString());
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,jsonObject.toString());
     }
 
     public void deleteUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
     public void getRanking(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
     public void getUsersByUsername(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
     public void getFriends(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
     public void getFriendInfo(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
     public void makeFriends(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
     public void deleteFriends(final Object object, final String tagRequest, int verb, String url, String dialogMessage) {
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
     /*******************/
