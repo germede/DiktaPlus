@@ -38,7 +38,6 @@ public class PresenterGame {
     public void postGameResponse(Object object, JSONObject game) throws JSONException {
         GameFragment gameFragment = (GameFragment) object;
         if (game.has("levelup")) gameFragment.showToast(String.valueOf(game.getInt("levelup")));
-        else gameFragment.showToast(String.valueOf(game.getInt("message")));
     }
 
     /** Response error **/

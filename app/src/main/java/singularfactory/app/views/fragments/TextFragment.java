@@ -100,7 +100,6 @@ public class TextFragment extends BaseFragment {
         view = inflater.inflate(R.layout.fragment_text, container, false);
 
         textsList = (ExpandableListView)view.findViewById(R.id.textsList);
-        getTextList();
 
         // Default difficulty: "Medium"
         difficultyLabel = (TextSwitcher) view.findViewById(R.id.difficulty_label);
@@ -190,6 +189,7 @@ public class TextFragment extends BaseFragment {
         });
 
         ((MainActivity)getActivity()).setUsernameLabelAndLevelLabel();
+        getTextList();
 
         return view;
     }
