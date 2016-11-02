@@ -1,5 +1,7 @@
 package singularfactory.app.views.fragments;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -86,6 +89,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
     public void gameOver() {
         stopDictation();
+        postGame();
 
     }
 
@@ -207,6 +211,37 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
     public void setTextToPlay (Text textToPlay) {
         this.textToPlay=textToPlay;
+    }
+
+    class GameOverDialog extends Dialog implements
+            android.view.View.OnClickListener {
+        private Button exit;
+
+        GameOverDialog(Activity a) {super(a);}
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.fragment_friend_info);
+            TextView country = (TextView)findViewById(R.id.friend_country_label);
+            TextView level = (TextView)findViewById(R.id.friend_level_label);
+            TextView totalScore = (TextView)findViewById(R.id.friend_total_score_label);
+            ImageView flag = (ImageView)findViewById(R.id.friend_flag);
+
+            setTitle(selectedFriend.getUsername());
+            country.setText(selectedFriend.getCountry());
+            level.setText(String.valueOf(selectedFriend.getLevel()));
+            totalScore.setText(String.valueOf(selectedFriend.getTotalScore()));
+            int drawableId = getResources()
+                    .getIdentifier("flag_"+selectedFriend.getCountry().toLowerCase(), "drawable", getActivity().getPackageName());
+
+            flag.setImageResource(drawableId);
+
+
+            exit = (Button) findViewById(R.id.btn_exit);
+            exit.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View v) {dismiss();}
     }
 
 }
