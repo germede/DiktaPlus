@@ -32,8 +32,7 @@
     </array>
 
     <!-- Game -->
-    <string name="press_the_button_to_play">Press the button to play</string>
-    <string name="press_the_button_to_stop">Press the button to stop</string>
+    <string name="press_the_button_to_play">Press this button to start</string>
     <string name="progress">Progress:</string>
     <string name="best_score">Best score: %1$d</string>
     <string name="level">Level</string>

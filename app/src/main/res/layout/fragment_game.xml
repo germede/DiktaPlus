@@ -60,38 +60,14 @@
         android:layout_height="2dp"
         android:background="@color/color_primary" />
 
-    <LinearLayout
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
-
-
-        <TextView
-            android:id="@+id/progress_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|center"
-            android:text="@string/progress"
-            android:gravity="center_vertical|center_horizontal"
-            android:textColor="@color/primary_text_color"
-            android:visibility="gone" />
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|center"
-            android:scaleY="3"
-            android:progress="0"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:visibility="gone" />
-
-    </LinearLayout>
+        android:scaleY="3"
+        android:progress="0"
+        android:layout_weight="0.03" />
 
     <TextView
         android:id="@+id/press_the_button_label"

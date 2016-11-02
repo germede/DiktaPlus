@@ -14,6 +14,7 @@ import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -76,13 +77,18 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void dictateNextWord() {
-        pressTheButtonLabel.append(originalText[wordIndex]);
+        if (wordIndex > 0) pressTheButtonLabel.append(originalText[wordIndex-1]+" ");
         if (wordIndex < words.length) speakActualWord();
-        else stopDictation();
+        else gameOver();
         progressBar.setProgress((int)(((float)wordIndex/(float)words.length)*100));
         gameTextEdit.setText("");
+    }
 
-}
+    public void gameOver() {
+        stopDictation();
+
+    }
+
     public void stopDictation() {
         if(tts != null) {
             tts.stop();
@@ -103,7 +109,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         textFieldInputConnection = new BaseInputConnection(gameTextEdit, true);
 
         // Change image of button and its behaviour
-        pressTheButtonLabel.setText(getResources().getString(R.string.press_the_button_to_stop));
+        pressTheButtonLabel.setText("");
         pressTheButtonLabel.setVisibility(View.VISIBLE);
         playButton.setImageResource(android.R.drawable.ic_media_pause);
         playButton.setOnClickListener(new View.OnClickListener() {
