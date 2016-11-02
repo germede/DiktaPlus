@@ -14,7 +14,7 @@ public class AppCommon extends MultiDexApplication {
     private static AppCommon singleton;
     public static AppCommon getInstance() { return singleton; }
 
-    private final String baseURL = "http://192.168.1.15:8000/api/";
+    private final String baseURL = "http://192.168.1.138:8000/api/";
     private User user;
 
 
@@ -65,22 +65,6 @@ public class AppCommon extends MultiDexApplication {
     public Utils getUtils() {
         return Utils.getInstance();
     }
-    public static class Tags {
-        /** SharedPreferences **/
-        public final static String SHARED_API_VERSION   = getInstance().getString(R.string.app_name) + "_API_VERSION";
-        public final static String SHARED_ACCESS_TOKEN  = getInstance().getString(R.string.app_name) + "_ACCESS_TOKEN";
-        public final static String SHARED_MEDIA_URL     = getInstance().getString(R.string.app_name) + "_MEDIA_URL";
-        public final static String SHARED_REFRESH_TOKEN = getInstance().getString(R.string.app_name) + "_REFRESH_TOKEN";
-        public final static String SHARED_EMAIL         = getInstance().getString(R.string.app_name) + "_EMAIL";
-
-        /** WebService **/
-        public final static String WS_GET_GLOBAL_CONFIG = "WS_GET_GLOBAL_CONFIG";
-    }
-
-
-    /********************/
-    /** PUBLIC METHODS **/
-    /********************/
     public String getBaseURL() {
         return baseURL;
     }

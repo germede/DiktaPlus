@@ -77,7 +77,8 @@
             android:text="@string/progress"
             android:gravity="center_vertical|center_horizontal"
             android:textColor="@color/primary_text_color"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:visibility="gone" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -88,7 +89,8 @@
             android:scaleY="3"
             android:progress="0"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -115,6 +117,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_height="wrap_content"
-        android:layout_weight="0.22" />
+        android:layout_weight="0.22"
+        android:visibility="gone" />
 
 </LinearLayout>
