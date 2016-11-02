@@ -1,5 +1,6 @@
 package singularfactory.app.views.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -90,15 +91,16 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void launchLoginActivity() {
-        appCommon.getUtils().sharedRemoveValue(getApplicationContext(), "id");
-        appCommon.getUtils().launchActivity(LoginActivity.class, SplashActivity.this, null);
-        overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         finish();
     }
 
     public void launchMainActivity() {
-        appCommon.getUtils().launchActivity(MainActivity.class, SplashActivity.this, null);
-        overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         finish();
     }
 

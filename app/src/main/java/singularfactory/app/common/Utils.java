@@ -41,18 +41,6 @@ public class Utils {
     /** PUBLIC METHODS **/
     /********************/
 
-    public int convertDpToPx(Context ctx, int dp) {
-        DisplayMetrics displayMetrics = ctx.getResources().getDisplayMetrics();
-        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
-        return px;
-    }
-
-    public int convertPxToDp(Context ctx, int px) {
-        DisplayMetrics displayMetrics = ctx.getResources().getDisplayMetrics();
-        int dp = Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
-        return dp;
-    }
-
     public String formatDateFromServer(String serverDateToFormat){
         SimpleDateFormat curFormatter  = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
         SimpleDateFormat postFormatter = new SimpleDateFormat("dd/MM/yyyy  HH:mm");
@@ -118,45 +106,6 @@ public class Utils {
     public boolean isValidEmail(CharSequence target) {
         if (target == null) return false;
         else return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-    }
-
-    public void launchActivity(Class invokedActivity, Object object, Intent extras) {
-        Intent i = new Intent(AppCommon.getInstance(), invokedActivity);
-        if (extras != null) i.putExtras(extras);
-        if (!object.getClass().equals(Activity.class)){
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        }
-        AppCommon.getInstance().startActivity(i);
-//        ((Activity) invocador).overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
-    }
-
-    public void loadFragment(View container, FragmentManager fragmentManager, Fragment fragment, String tag,
-                             Bundle arguments, int enterAnim, int exitAnim, boolean showAnimation,
-                             boolean addBackStack, int type) {
-        if (fragment == null) return;
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        if (arguments != null && arguments.size() > 0) fragment.setArguments(arguments);
-        if (showAnimation) ft.setCustomAnimations(enterAnim, exitAnim, enterAnim, exitAnim);
-        if (type == 0) ft.add(container.getId(), fragment, tag);
-        if (type == 1) ft.replace(container.getId(), fragment, tag);
-        if (addBackStack) ft.addToBackStack(tag);
-        ft.commit();
-        fragmentManager.executePendingTransactions();
-    }
-
-    public void removeFragment(FragmentManager fragmentManager, Fragment fragment, int enterAnim, int exitAnim, boolean showAnimation) {
-        if (fragment != null) {
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            if (showAnimation)  ft.setCustomAnimations(enterAnim, exitAnim, enterAnim, exitAnim);
-            ft.remove(fragment).commit();
-        }
-    }
-    public float roundFloatToXDecimal(float value, int numOfDecimal){
-        BigDecimal bd = new BigDecimal(Float.toString(value));
-        bd = bd.setScale(numOfDecimal, BigDecimal.ROUND_HALF_UP);
-        return bd.floatValue();
     }
 
     public Object sharedGetValue(Context context, String valueName, int objectType) {

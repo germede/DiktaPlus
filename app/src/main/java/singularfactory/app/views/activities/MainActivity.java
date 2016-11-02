@@ -1,5 +1,6 @@
 package singularfactory.app.views.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -9,11 +10,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import singularfactory.app.R;
+import singularfactory.app.common.Utils;
 import singularfactory.app.views.fragments.FriendFragment;
 import singularfactory.app.views.fragments.GameFragment;
 import singularfactory.app.views.fragments.RankingFragment;
@@ -82,6 +85,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     public void changeToTextFragment(int animIn, int animOut) {
         if (gameFragment != null) gameFragment.stopDictation();
+        Utils.getInstance().hideKeyboard(this);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, textFragment);
@@ -117,7 +121,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     public void logout() {
-        appCommon.getUtils().launchActivity(LoginActivity.class, MainActivity.this, null);
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         finish();
     }
 

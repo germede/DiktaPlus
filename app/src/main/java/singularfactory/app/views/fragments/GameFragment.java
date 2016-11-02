@@ -20,6 +20,7 @@ import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -45,6 +46,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     EditText gameTextEdit;
     Chronometer chronometer;
     BaseInputConnection textFieldInputConnection;
+    ScrollView sv;
 
     TextToSpeech tts;
     Text textToPlay;
@@ -95,7 +97,10 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void dictateNextWord() {
-        if (wordIndex > 0) pressTheButtonLabel.append(originalText[wordIndex-1]+" ");
+        if (wordIndex > 0) {
+            pressTheButtonLabel.append(originalText[wordIndex-1]+" ");
+            sv.scrollTo(0,sv.getBottom());
+        }
         if (wordIndex < words.length) speakActualWord();
         else gameOver();
         progressBar.setProgress((int)(((float)wordIndex/(float)words.length)*100));
@@ -133,6 +138,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         } catch (JSONException e) {
             Log.e(TAG,"JSON error");
         }
+
     }
 
     public void showGameOverDialog(int levelup) {
@@ -168,7 +174,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.getInstance().hideKeyboard(getActivity());
                 ((MainActivity)getActivity()).changeToTextFragment(R.anim.slide_in_left,R.anim.slide_out_right);
             }
         });
@@ -251,6 +256,8 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         gameTextEdit = (EditText) view.getRootView().findViewById(R.id.game_text_edit);
         progressBar = (ProgressBar) view.getRootView().findViewById(R.id.progress_bar);
         textFieldInputConnection = new BaseInputConnection(gameTextEdit, true);
+        sv = (ScrollView) view.getRootView().findViewById(R.id.scroll);
+
 
 
         return view;

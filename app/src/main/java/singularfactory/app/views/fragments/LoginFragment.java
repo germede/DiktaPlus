@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import singularfactory.app.R;
 import singularfactory.app.models.User;
+import singularfactory.app.views.activities.LoginActivity;
 import singularfactory.app.views.activities.MainActivity;
 
 public class LoginFragment extends BaseFragment {
@@ -69,6 +70,7 @@ public class LoginFragment extends BaseFragment {
         }
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         getActivity().finish();
     }
 }
