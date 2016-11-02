@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Diktaplus (dev)</string>
     <string name="account_management">Gestionar cuenta</string>
     <string name="best_score">Mejor puntuación: %1$d</string>
     <string name="button_exit">Salir</string>
@@ -32,21 +31,19 @@
     <string name="password">Contraseña</string>
     <string name="press_the_button_to_play">Pulsa play para empezar</string>
     <string name="progress">Progreso:</string>
-    <string name="ranking">Ranking</string>
     <string name="repeat">Repetir</string>
     <string name="score">Puntuación: %1$d</string>
-    <string name="searchbox">Buscar por nombre de usuario</string>
+    <string name="searchbox">Buscar por nick</string>
     <string name="select_country">Elegir país</string>
     <string name="settings">Preferencias</string>
     <string name="sign_up">Registrarme</string>
     <string name="submit">Enviar</string>
     <string name="text_error_unknown">Error desconocido</string>
-    <string name="top">Top</string>
     <string name="total_score">Puntuación total</string>
     <string name="typing_error">Error de escritura</string>
-    <string name="username">Nombre de usuario</string>
-    <string name="username_label">Nombre de usuario: %1$s</string>
-    <string name="username_or_email">Nombre de usuario o e-mail</string>
+    <string name="username">Nick de usuario</string>
+    <string name="username_label">Nick: %1$s</string>
+    <string name="username_or_email">Nick o e-mail</string>
     <string name="your_actual_password">Confirmar contraseña actual</string>
     <array name="difficulties">
         <item name="easy">Fácil</item>
@@ -54,4 +51,5 @@
         <item name="hard">Difícil</item>
     </array>
     <string name="no_text_founded">No se encontraron los textos</string>
+    <string name="successfully_signed_up">Se ha registrado satisfactoriamente. Por favor, intente ingresar al sistema</string>
 </resources>

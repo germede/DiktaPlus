@@ -16,7 +16,7 @@
     <string name="username_label">Username: %1$s</string>
     <string name="level_label">Level: %1$d</string>
     <string name="dictation">Dictation</string>
-    <string name="ranking">Ranking</string>
+    <string name="ranking" translatable="false">Ranking</string>
     <string name="friends">Friends</string>
     <string name="settings">Settings</string>
     <string name="log_out">Log out</string>
@@ -45,7 +45,7 @@
     <string name="score">Score: %1$d</string>
 
     <!-- Ranking -->
-    <string name="top">Top</string>
+    <string name="top" translatable="false">Top</string>
     <string name="of">of</string>
 
     <!-- Friends -->

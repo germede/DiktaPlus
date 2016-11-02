@@ -70,9 +70,7 @@ public class RankingFragment extends BaseFragment {
         country.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    showCountryList();
-                }
+                if (b) showCountryList();
             }
         });
         return view;
@@ -93,7 +91,8 @@ public class RankingFragment extends BaseFragment {
     public void setRanking(JSONArray users) throws JSONException {
         List<String> usersList = new ArrayList<>();
         for (int i = 0; i < users.length(); i++) {
-            usersList.add((i+1)+". "+users.getJSONObject(i).getString("username"));
+            usersList.add((i+1)+". "+users.getJSONObject(i).getString("username")+" - "
+                    +users.getJSONObject(i).getString("total_score"));
         }
         ranking.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,usersList));
     }

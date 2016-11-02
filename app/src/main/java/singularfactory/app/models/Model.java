@@ -66,17 +66,11 @@ public class Model {
     private void onResponseOK(Object object, String tag, JSONArray json) throws JSONException {
         Log.i(TAG, " - onResponseOK");
         switch (tag) {
-            case "Get texts":
-                appCommon.getPresenterText().getTextsResponse(object, json);
-                break;
-            case "Get text content":
-                appCommon.getPresenterText().getTextContentResponse(object, json.getJSONObject(0));
+            case "Register user":
+                appCommon.getPresenterUser().registerUserResponse(object, json.getJSONObject(0));
                 break;
             case "Login user":
                 appCommon.getPresenterUser().loginUserResponse(object, json.getJSONObject(0));
-                break;
-            case "Register user":
-                appCommon.getPresenterUser().registerUserResponse(object, json.getJSONObject(0));
                 break;
             case "Get user info":
                 appCommon.getPresenterUser().getUserInfoResponse(object, json.getJSONObject(0));
@@ -105,6 +99,12 @@ public class Model {
             case "Delete friends":
                 appCommon.getPresenterUser().deleteFriendsResponse(object, json);
                 break;
+            case "Get texts":
+                appCommon.getPresenterText().getTextsResponse(object, json);
+                break;
+            case "Get text content":
+                appCommon.getPresenterText().getTextContentResponse(object, json.getJSONObject(0));
+                break;
             case "Post game":
                 appCommon.getPresenterGame().postGameResponse(object, json.getJSONObject(0));
                 break;
@@ -119,17 +119,11 @@ public class Model {
     private void onResponseError(Object object, String tag, String message) {
         Log.e(TAG, " - onResponseError");
         switch (tag) {
-            case "Get texts":
-                appCommon.getPresenterText().responseError(object);
-                break;
-            case "Get text content":
-                appCommon.getPresenterText().responseError(object);
+            case "Register user":
+                appCommon.getPresenterUser().responseError(object, "Server error. Username or email may be already taken");
                 break;
             case "Login user":
                 appCommon.getPresenterUser().responseError(object, "Login error: " + message);
-                break;
-            case "Register user":
-                appCommon.getPresenterUser().responseError(object, "Server error. Username or email may be already taken");
                 break;
             case "Get user info":
                 appCommon.getPresenterUser().responseError(object, "Error getting user info:" + message);
@@ -157,6 +151,12 @@ public class Model {
                 break;
             case "Delete friends":
                 appCommon.getPresenterUser().responseError(object, "Friendship could not be deleted");
+                break;
+            case "Get texts":
+                appCommon.getPresenterText().responseError(object);
+                break;
+            case "Get text content":
+                appCommon.getPresenterText().responseError(object);
                 break;
             case "Post game":
                 appCommon.getPresenterGame().responseError(object, "The score could not be posted");
