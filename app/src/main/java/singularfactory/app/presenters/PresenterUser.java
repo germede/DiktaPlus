@@ -88,7 +88,6 @@ public class PresenterUser {
     public void loginUserResponse(Object object, JSONObject user) throws JSONException {
         LoginFragment loginFragment = (LoginFragment) object;
         loginFragment.setUser(user);
-
     }
 
     public void registerUserResponse(Object object, JSONObject json) {
