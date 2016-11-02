@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 
@@ -23,6 +24,7 @@ public class SplashActivity extends BaseActivity {
     private Runnable runnable;
 
     private AppCommon appCommon;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class SplashActivity extends BaseActivity {
         }
 
         setContentView(R.layout.activity_splash);
+        progressBar = (ProgressBar)findViewById(R.id.splash_progress_bar);
+
         initialize(findViewById(android.R.id.content));
     }
 
@@ -44,6 +48,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void getUserInfo(int id) {
+        progressBar.setProgress(33);
         appCommon.getPresenterUser().getUserInfo(
                 this,
                 "Get user info",
@@ -54,6 +59,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void setUserInfo(JSONObject userJson) {
+        progressBar.setProgress(66);
         try {
             appCommon.setUser(new User(userJson.getInt("id"),
                     userJson.getString("email"),
@@ -82,6 +88,7 @@ public class SplashActivity extends BaseActivity {
         handler = new Handler();
         runnable = new Runnable() {
             public void run() {
+                progressBar.setProgress(20);
                 int id = (Integer) appCommon.getUtils().sharedGetValue(getApplicationContext(), "id", 2);
                 if (id == 0) launchLoginActivity();
                 else getUserInfo(id);
@@ -91,6 +98,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void launchLoginActivity() {
+        progressBar.setProgress(100);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -98,6 +106,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void launchMainActivity() {
+        progressBar.setProgress(100);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);

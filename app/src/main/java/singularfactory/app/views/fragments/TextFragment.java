@@ -77,7 +77,7 @@ public class TextFragment extends BaseFragment {
         for (int i = 0; i < texts.length(); i++) {
             listItemInfo = new ArrayList<>();
             listDataHeader.add(texts.getJSONObject(i).getString("title"));
-            listItemInfo.add("Best score: 0");
+            listItemInfo.add(getString(R.string.best_score,0));
             listDataChild.put(listDataHeader.get(i), listItemInfo);
         }
 
@@ -323,12 +323,11 @@ public class TextFragment extends BaseFragment {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(android.R.layout.simple_expandable_list_item_1, null);
+                convertView = infalInflater.inflate(R.layout.fragment_text_parent, null);
             }
 
             TextView lblListHeader = (TextView) convertView
-                    .findViewById(android.R.id.text1);
-            lblListHeader.setTypeface(null, Typeface.BOLD);
+                    .findViewById(R.id.text_title_label);
             lblListHeader.setText(headerTitle);
 
             return convertView;

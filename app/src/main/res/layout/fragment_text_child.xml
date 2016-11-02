@@ -11,7 +11,7 @@
         android:id="@+id/best_score_label"
         android:layout_gravity="left|center"
         android:layout_marginLeft="30dp"
-        android:textSize="25sp" />
+        android:textSize="14sp" />
 
     <ImageButton
         android:layout_width="51dp"

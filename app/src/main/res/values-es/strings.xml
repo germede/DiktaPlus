@@ -48,4 +48,9 @@
     <string name="username_label">Nombre de usuario: %1$s</string>
     <string name="username_or_email">Nombre de usuario o e-mail</string>
     <string name="your_actual_password">Confirmar contraseña actual</string>
+    <array name="difficulties">
+        <item name="easy">Fácil</item>
+        <item name="medium">Intermedio</item>
+        <item name="hard">Difícil</item>
+    </array>
 </resources>

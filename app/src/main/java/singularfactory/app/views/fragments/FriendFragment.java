@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import singularfactory.app.R;
 import singularfactory.app.models.User;
@@ -219,7 +220,7 @@ public class FriendFragment extends BaseFragment {
             ImageView flag = (ImageView)findViewById(R.id.friend_flag);
 
             setTitle(selectedFriend.getUsername());
-            country.setText(selectedFriend.getCountry());
+            country.setText(new Locale("",selectedFriend.getCountry()).getDisplayCountry());
             level.setText(String.valueOf(selectedFriend.getLevel()));
             totalScore.setText(String.valueOf(selectedFriend.getTotalScore()));
             int drawableId = getResources()

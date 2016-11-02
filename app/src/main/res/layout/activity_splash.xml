@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:id="@+id/relativeLayout">
 
@@ -17,23 +17,23 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:id="@+id/ivLogo"
-            android:src="@android:drawable/ic_btn_speak_now"
-            android:layout_marginBottom="10dp" />
+            android:src="@mipmap/ic_launcher"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ProgressBar
+            android:id="@+id/splash_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/splash_progress_circle"
+            android:rotation="270"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="250dp"
+            android:layout_height="250dp" />
 
     </RelativeLayout>
-
-    <ProgressBar
-        android:id="@+id/pbLoading"
-        android:layout_width="@dimen/progressbar_size_small"
-        android:layout_height="@dimen/progressbar_size_small"
-        android:progress="1"
-        android:max="100"
-        android:indeterminate="false"
-        android:background="@drawable/progress_bar_circular"
-        style="@android:style/Widget.Holo.ProgressBar.Small"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:visibility="visible"/>
 
 </RelativeLayout>
