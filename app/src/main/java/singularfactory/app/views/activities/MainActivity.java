@@ -194,10 +194,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         assert navigationView != null;
         View hView =  navigationView.getHeaderView(0);
         TextView usernameLabel = (TextView)hView.findViewById(R.id.username_label);
-        usernameLabel.setText(getApplicationContext().getString(R.string.username_label,
+        usernameLabel.setText(getString(R.string.username_label,
                 appCommon.getUser().getUsername()));
         TextView levelLabel = (TextView)hView.findViewById(R.id.level_label);
-        levelLabel.setText(getApplicationContext().getString(R.string.level_label,
+        levelLabel.setText(getString(R.string.level_label,
                 appCommon.getUser().getLevel()));
     }
 

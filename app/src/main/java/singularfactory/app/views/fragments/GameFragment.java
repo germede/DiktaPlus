@@ -49,6 +49,9 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     String [] words;
     int wordIndex;
     String[] originalText;
+    int score;
+    int bestScore;
+    int level;
 
     @Override
     public void onInit(int status) {
@@ -98,9 +101,14 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
     public void gameOver() {
         stopDictation();
+        score = 1000;
+        if (score > bestScore) {
+            textToPlay.setBestScore(score);
+            bestScore = score;
+        }
         int[] params = {appCommon.getUser().getId(),
                 textToPlay.getId(),
-                1000};
+                score};
         try {
             appCommon.getPresenterGame().postGame(
                     this,
@@ -112,6 +120,16 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         } catch (JSONException e) {
             Log.e(TAG,"JSON error");
         }
+    }
+
+    public void showGameOverDialog(int levelup) {
+        if (levelup > 0) level = levelup;
+        else level = 0;
+        if (levelup > appCommon.getUser().getLevel()) {
+            appCommon.getUser().setLevel(levelup);
+            ((MainActivity)getActivity()).setUsernameLabelAndLevelLabel();
+        }
+
         GameOverDialog gameOverDialog = new GameOverDialog(getActivity());
         gameOverDialog.show();
     }
@@ -244,6 +262,18 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.fragment_game_over);
+
+            TextView levelupLabel = (TextView)findViewById(R.id.game_over_levelup_label);
+            TextView scoreLabel = (TextView)findViewById(R.id.game_over_score_label);
+            TextView bestScoreLabel = (TextView)findViewById(R.id.game_over_best_score_label);
+
+            if (level > 0) {
+                levelupLabel.setText(getActivity().getString(R.string.level_up,level));
+                levelupLabel.setVisibility(View.VISIBLE);
+            }
+            scoreLabel.setText(getActivity().getString(R.string.score, score));
+            bestScoreLabel.setText(getActivity().getString(R.string.best_score, bestScore));
+
 
             setTitle(getString(R.string.game_over));
             setCancelable(false);
