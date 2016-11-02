@@ -38,6 +38,7 @@
     <string name="best_score">Best score: %1$d</string>
     <string name="level">Level</string>
     <string name="total_score">Total score</string>
+    <string name="typing_error">Typing error</string>
 
     <!-- Ranking -->
     <string name="top">Top</string>

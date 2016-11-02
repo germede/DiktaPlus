@@ -32,6 +32,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     TextView pressTheButtonLabel;
     ProgressBar progressBar;
     ImageButton playButton;
+    ImageButton repeatButton;
     EditText gameTextEdit;
     BaseInputConnection textFieldInputConnection;
 
@@ -39,8 +40,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     Text textToPlay;
     String [] words;
     int wordIndex;
-    String lastString;
-
+    String[] originalText;
 
     @Override
     public void onInit(int status) {
@@ -58,7 +58,14 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void startDictation () {
-        words = textToPlay.getContent().split(" ");
+        String textToSplit = textToPlay.getContent();
+        // Remove punctuation
+        textToSplit = textToSplit.replaceAll("\\.","");
+        textToSplit = textToSplit.replaceAll("\\(","");
+        textToSplit = textToSplit.replaceAll("\\)","");
+
+        originalText = textToPlay.getContent().split(" ");
+        words = textToSplit.split(" ");
         switch(textToPlay.getDifficulty()) {
             case "Easy": tts.setSpeechRate(0.05f); break;
             case "Medium": tts.setSpeechRate(0.55f); break;
@@ -69,8 +76,12 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void dictateNextWord() {
-        if (wordIndex < words.length) tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
+        pressTheButtonLabel.append(originalText[wordIndex]);
+        if (wordIndex < words.length) speakActualWord();
+        else stopDictation();
         progressBar.setProgress((int)(((float)wordIndex/(float)words.length)*100));
+        gameTextEdit.setText("");
+
 }
     public void stopDictation() {
         if(tts != null) {
@@ -94,7 +105,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         // Change image of button and its behaviour
         pressTheButtonLabel.setText(getResources().getString(R.string.press_the_button_to_stop));
         pressTheButtonLabel.setVisibility(View.VISIBLE);
-        playButton.setVisibility(View.VISIBLE);
         playButton.setImageResource(android.R.drawable.ic_media_pause);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,16 +116,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
         // Show text area to play
         gameTextEdit.setVisibility(View.VISIBLE);
-        gameTextEdit.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (i == KeyEvent.KEYCODE_DEL) {
-
-                }
-                return false;
-            }
-        });
-
         gameTextEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -124,29 +124,18 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             @Override
             public void afterTextChanged(Editable s) {
                 String t = s.toString();
-                String lastWord;
-//                String [] writtenWords;
-
-
                 if (t.length() > 1 && t.charAt(t.length()-1) == ' ') {
                     t = t.trim();
 
-                    if (t.lastIndexOf(' ') == -1) lastWord = t;
-                    else lastWord = t.substring(t.lastIndexOf(' ')+1);
-
-                    if (lastWord.equals(words[wordIndex])) {
+                    if (t.equals(words[wordIndex])) {
                         wordIndex++;
                         dictateNextWord();
-                    } else if (lastString.length() < t.length()){
-                        showToast("Typing error");
-//                        textFieldInputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-                        tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
+                    } else {
+                        showToast(getString(R.string.typing_error));
+                        textFieldInputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+                        speakActualWord();
                     }
-
                 }
-
-                lastString = t.trim();
-
             }
         });
 
@@ -156,6 +145,16 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         imm.showSoftInput(gameTextEdit, InputMethodManager.SHOW_IMPLICIT);
 
         tts = new TextToSpeech(getContext(),this);
+
+        repeatButton = (ImageButton) view.getRootView().findViewById(R.id.repeat_button);
+        repeatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { speakActualWord(); }
+        });
+    }
+
+    private void speakActualWord() {
+        tts.speak(words[wordIndex],TextToSpeech.QUEUE_ADD,null);
     }
 
     @Override
