@@ -153,6 +153,7 @@ public class PresenterUser {
                 baseFragment.showDialog(message);
             } else if (object instanceof SplashActivity){
                 SplashActivity splashActivity = (SplashActivity) object;
+                appCommon.getUtils().sharedRemoveValue(splashActivity,"id");
                 splashActivity.showSingleAlertWithReflection(splashActivity,splashActivity,"Your credentials are not valid anymore, please log in again","launchLoginActivity");
             }
         }
