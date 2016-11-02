@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -50,7 +51,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     String [] words;
     int wordIndex;
     String[] originalText;
-    long time_start, time_end;
     int score;
     int bestScore;
     int level;
@@ -89,15 +89,14 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             case "Medium": tts.setSpeechRate(0.55f); break;
             case "Hard": tts.setSpeechRate(2f); break;
         }
-        time_start = System.currentTimeMillis();
-        chronometer.setBase(0);
+        chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
         dictateNextWord();
     }
 
     public void dictateNextWord() {
         if (wordIndex > 0) pressTheButtonLabel.append(originalText[wordIndex-1]+" ");
-        if (wordIndex < words.length) speakActualWord();
+        if (wordIndex <= words.length) speakActualWord();
         else gameOver();
         progressBar.setProgress((int)(((float)wordIndex/(float)words.length)*100));
         gameTextEdit.setText("");
@@ -109,12 +108,14 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
     public void gameOver() {
         stopDictation();
-        time_end = System.currentTimeMillis();
 
-        score = (int)(10000/(time_end - time_start));
+        score = (int) (10000000/(SystemClock.elapsedRealtime()-chronometer.getBase()));
+        switch(textToPlay.getDifficulty()) {
+            case "Easy": score = score / 4 ; break;
+            case "Medium": score = score / 2 ; break;
+        }
 
-
-        if (score > bestScore) {
+        if (score > textToPlay.getBestScore()) {
             textToPlay.setBestScore(score);
             bestScore = score;
         }
@@ -184,7 +185,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
                 String t = s.toString();
                 if (t.length() > 1 && t.charAt(t.length()-1) == ' ') {
                     t = t.trim();
-
                     if (t.equals(words[wordIndex])) {
                         wordIndex++;
                         dictateNextWord();
