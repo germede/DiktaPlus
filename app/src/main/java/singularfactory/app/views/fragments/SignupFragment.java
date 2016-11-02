@@ -82,8 +82,8 @@ public class SignupFragment extends BaseFragment {
         }
     }
 
-    public void registerUserSuccess(String message) {
-        showDialog(message);
+    public void registerUserSuccess() {
+        showDialog(getString(R.string.successfully_signed_up));
         ((LoginActivity)getActivity()).onClickReturnLogin(getView());
     }
 

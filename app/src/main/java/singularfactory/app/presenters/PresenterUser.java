@@ -93,7 +93,7 @@ public class PresenterUser {
 
     public void registerUserResponse(Object object, JSONObject json) {
         SignupFragment signupFragment = (SignupFragment) object;
-        signupFragment.registerUserSuccess("Successfully signed up, please try to login");
+        signupFragment.registerUserSuccess();
     }
 
     public void getUserInfoResponse(Object object, JSONObject user) {

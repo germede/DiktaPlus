@@ -9,6 +9,7 @@
     <string name="submit">Submit</string>
     <string name="country">Country</string>
     <string name="email" translatable="false">E-mail</string>
+    <string name="successfully_signed_up">Successfully signed up, please try to login</string>
     <string name="username">Username</string>
 
     <!-- Sidebar items -->
@@ -69,6 +70,7 @@
 
     <!-- Errors -->
     <string name="text_error_unknown">Unknown error</string>
+    <string name="no_text_founded">No text founded with that criteria</string>
 
     <!-- WebService -->
     <string name="message_no_internet">You should have an Internet connection, in order to use this application</string>

@@ -53,4 +53,5 @@
         <item name="medium">Intermedio</item>
         <item name="hard">Difícil</item>
     </array>
+    <string name="no_text_founded">No se encontraron los textos</string>
 </resources>

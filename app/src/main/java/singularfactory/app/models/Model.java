@@ -47,7 +47,7 @@ public class Model {
             onResponseOK(object, tag, result);
         } else if (httpStatus == 400) {
             Log.e(tag, " - ERROR 400");
-            onResponseError(object, tag, " bad request, please check all the fields");
+            onResponseError(object, tag, " bad request");
         } else if (httpStatus == 403) {
             Log.e(tag, " - ERROR 403");
             onResponseError(object, tag, " forbidden access");
@@ -120,10 +120,10 @@ public class Model {
         Log.e(TAG, " - onResponseError");
         switch (tag) {
             case "Get texts":
-                appCommon.getPresenterText().responseError(object, "No text founded with that criteria");
+                appCommon.getPresenterText().responseError(object);
                 break;
             case "Get text content":
-                appCommon.getPresenterText().responseError(object, "Error getting text content:" + message);
+                appCommon.getPresenterText().responseError(object);
                 break;
             case "Login user":
                 appCommon.getPresenterUser().responseError(object, "Login error: " + message);

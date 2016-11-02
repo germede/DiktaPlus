@@ -85,9 +85,9 @@ public class TextFragment extends BaseFragment {
         textsList.setAdapter(textsListAdapter);
     }
 
-    public void onErrorGetTexts (String message) {
+    public void onErrorGetTexts () {
         textsList.setAdapter((BaseExpandableListAdapter)null);
-        showToast(message);
+        showToast(getString(R.string.no_text_founded));
     }
 
 

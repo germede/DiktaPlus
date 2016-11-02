@@ -35,12 +35,12 @@ public class PresenterText {
         textFragment.setTextContent(text);
     }
 
-    /** Response error **/
-    public void responseError(Object object, String message) {
-        if(!message.equals("")) {
-            TextFragment textFragment = (TextFragment) object;
-            textFragment.onErrorGetTexts(message);
-        }
+    /*******************/
+    /** API RESPONSES **/
+    /*******************/
+    public void responseError(Object object) {
+        TextFragment textFragment = (TextFragment) object;
+        textFragment.onErrorGetTexts();
     }
 
 }
