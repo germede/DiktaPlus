@@ -160,7 +160,6 @@ public class TextFragment extends BaseFragment {
                 languageLabel.setOutAnimation(getContext(),R.anim.slide_out_left);
                 if (selectedLanguage == languages.length-1) selectedLanguage = 0;
                 else selectedLanguage++;
-                languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
                 updateLanguageLabel();
                 getTextList();
             }

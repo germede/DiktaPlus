@@ -5,10 +5,10 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="log_in">Log in</string>
     <string name="sign_up">Sign up</string>
-    <string name="logo">Logo</string>
+    <string name="logo" translatable="false">Logo</string>
     <string name="submit">Submit</string>
     <string name="country">Country</string>
-    <string name="email">E-mail</string>
+    <string name="email" translatable="false">E-mail</string>
     <string name="username">Username</string>
 
     <!-- Sidebar items -->
@@ -64,7 +64,6 @@
     <string name="delete_confirmation">Are you sure you want to delete your account and all its data?</string>
 
     <!-- Toolbar -->
-    <string name="search">Search</string>
     <string name="navigation_drawer_open">Open sidebar</string>
     <string name="navigation_drawer_close">Close sidebar</string>
 
@@ -74,6 +73,5 @@
     <!-- WebService -->
     <string name="message_no_internet">You should have an Internet connection, in order to use this application</string>
     <string name="message_server_error">There was a server error. Please try again later</string>
-    <string name="title_activity_settings">Settings</string>
 
 </resources>
