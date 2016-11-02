@@ -32,7 +32,7 @@
         android:id="@+id/fragment_main_container"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".views.activities.MainActivity"
-        tools:showIn="@layout/layout_activity_main"
+        tools:showIn="@layout/activity_main_layout"
         >
 
     </FrameLayout>
