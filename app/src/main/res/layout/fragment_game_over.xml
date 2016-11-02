@@ -48,7 +48,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
         <Button
             android:layout_width="match_parent"
-            android:id="@+id/btn_gameover_cancel"
+            android:id="@+id/btn_gameover_repeat"
             android:layout_weight="1"
             android:background="@color/black"
             android:textColor="@color/white"

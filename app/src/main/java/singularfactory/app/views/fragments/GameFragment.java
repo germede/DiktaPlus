@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -49,6 +50,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     String [] words;
     int wordIndex;
     String[] originalText;
+    long time_start, time_end;
     int score;
     int bestScore;
     int level;
@@ -69,6 +71,10 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void startDictation () {
+        words = null;
+        originalText = null;
+        wordIndex = 0;
+
         String textToSplit = textToPlay.getContent();
         // Remove punctuation
         textToSplit = textToSplit.replaceAll("\\.","");
@@ -83,6 +89,8 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             case "Medium": tts.setSpeechRate(0.55f); break;
             case "Hard": tts.setSpeechRate(2f); break;
         }
+        time_start = System.currentTimeMillis();
+        chronometer.setBase(0);
         chronometer.start();
         dictateNextWord();
     }
@@ -101,7 +109,11 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
     public void gameOver() {
         stopDictation();
-        score = 1000;
+        time_end = System.currentTimeMillis();
+
+        score = (int)(10000/(time_end - time_start));
+
+
         if (score > bestScore) {
             textToPlay.setBestScore(score);
             bestScore = score;
@@ -147,12 +159,6 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void play() {
-
-        // Initialize invisible elements
-        pressTheButtonLabel = (TextView)view.getRootView().findViewById(R.id.press_the_button_label);
-        gameTextEdit = (EditText) view.getRootView().findViewById(R.id.game_text_edit);
-        progressBar = (ProgressBar) view.getRootView().findViewById(R.id.progress_bar);
-        textFieldInputConnection = new BaseInputConnection(gameTextEdit, true);
 
         // Change image of button and its behaviour
         pressTheButtonLabel.setText("");
@@ -238,6 +244,13 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
         chronometer = (Chronometer) view.getRootView().findViewById(R.id.chronometer);
 
+        // Initialize elements
+        pressTheButtonLabel = (TextView)view.getRootView().findViewById(R.id.press_the_button_label);
+        gameTextEdit = (EditText) view.getRootView().findViewById(R.id.game_text_edit);
+        progressBar = (ProgressBar) view.getRootView().findViewById(R.id.progress_bar);
+        textFieldInputConnection = new BaseInputConnection(gameTextEdit, true);
+
+
         return view;
     }
 
@@ -256,6 +269,8 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
 
     class GameOverDialog extends Dialog implements
             android.view.View.OnClickListener {
+        TextView levelupLabel, scoreLabel, bestScoreLabel;
+        Button ok, repeat;
 
         GameOverDialog(Activity a) {super(a);}
         @Override
@@ -263,9 +278,9 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             super.onCreate(savedInstanceState);
             setContentView(R.layout.fragment_game_over);
 
-            TextView levelupLabel = (TextView)findViewById(R.id.game_over_levelup_label);
-            TextView scoreLabel = (TextView)findViewById(R.id.game_over_score_label);
-            TextView bestScoreLabel = (TextView)findViewById(R.id.game_over_best_score_label);
+            levelupLabel = (TextView)findViewById(R.id.game_over_levelup_label);
+            scoreLabel = (TextView)findViewById(R.id.game_over_score_label);
+            bestScoreLabel = (TextView)findViewById(R.id.game_over_best_score_label);
 
             if (level > 0) {
                 levelupLabel.setText(getActivity().getString(R.string.level_up,level));
@@ -275,11 +290,25 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
             bestScoreLabel.setText(getActivity().getString(R.string.best_score, bestScore));
 
 
+            ok = (Button) findViewById(R.id.btn_gameover_ok);
+            ok.setOnClickListener(this);
+            repeat = (Button) findViewById(R.id.btn_gameover_repeat);
+            repeat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dismiss();
+                    play();
+                }
+            });
+
             setTitle(getString(R.string.game_over));
             setCancelable(false);
         }
         @Override
-        public void onClick(View v) {dismiss();}
+        public void onClick(View v) {
+            dismiss();
+            ((MainActivity)getActivity()).changeToTextFragment(R.anim.slide_in_left,R.anim.slide_out_right);
+        }
     }
 
 }
