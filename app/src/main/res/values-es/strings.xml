@@ -24,7 +24,7 @@
     <string name="log_out">Salir</string>
     <string name="logo"></string>
     <string name="message_no_internet">Para usar esta aplicación debe existir una conexión a Internet funcionando.</string>
-    <string name="message_server_error">Error en el servidor, por favor inténtelo más tarde</string>
+    <string name="message_server_error">Error en el servidor, por favor inténtelo más tarde.</string>
     <string name="navigation_drawer_close">Cerrar barra de navegación</string>
     <string name="navigation_drawer_open">Abrir barra de navegación</string>
     <string name="of">de</string>
@@ -51,5 +51,6 @@
         <item name="hard">Difícil</item>
     </array>
     <string name="no_text_founded">No se encontraron los textos</string>
-    <string name="successfully_signed_up">Se ha registrado satisfactoriamente. Por favor, intente ingresar al sistema</string>
+    <string name="successfully_signed_up">Se ha registrado satisfactoriamente. Por favor, intente ingresar al sistema.</string>
+    <string name="points">puntos</string>
 </resources>

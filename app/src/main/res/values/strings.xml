@@ -9,7 +9,7 @@
     <string name="submit">Submit</string>
     <string name="country">Country</string>
     <string name="email" translatable="false">E-mail</string>
-    <string name="successfully_signed_up">Successfully signed up, please try to login</string>
+    <string name="successfully_signed_up">Successfully signed up, please try to login.</string>
     <string name="username">Username</string>
 
     <!-- Sidebar items -->
@@ -47,6 +47,7 @@
     <!-- Ranking -->
     <string name="top" translatable="false">Top</string>
     <string name="of">of</string>
+    <string name="points">points</string>
 
     <!-- Friends -->
     <string name="searchbox">Search by username</string>
@@ -73,7 +74,7 @@
     <string name="no_text_founded">No text founded with that criteria</string>
 
     <!-- WebService -->
-    <string name="message_no_internet">You should have an Internet connection, in order to use this application</string>
-    <string name="message_server_error">There was a server error. Please try again later</string>
+    <string name="message_no_internet">You should have an Internet connection, in order to use this application.</string>
+    <string name="message_server_error">There was a server error. Please try again later.</string>
 
 </resources>

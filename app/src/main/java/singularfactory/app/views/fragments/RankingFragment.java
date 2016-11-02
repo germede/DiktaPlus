@@ -92,7 +92,8 @@ public class RankingFragment extends BaseFragment {
         List<String> usersList = new ArrayList<>();
         for (int i = 0; i < users.length(); i++) {
             usersList.add((i+1)+". "+users.getJSONObject(i).getString("username")+" - "
-                    +users.getJSONObject(i).getString("total_score"));
+                    +users.getJSONObject(i).getString("total_score")+" "+getString(R.string.points)
+            );
         }
         ranking.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,usersList));
     }
