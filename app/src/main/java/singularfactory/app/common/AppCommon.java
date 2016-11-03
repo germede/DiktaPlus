@@ -14,7 +14,7 @@ public class AppCommon extends MultiDexApplication {
     private static AppCommon singleton;
     public static AppCommon getInstance() { return singleton; }
 
-    private final String baseURL = "http://192.168.1.15:8000/api/";
+    private final String baseURL = "http://192.168.1.138:8000/api/";
     private User user;
 
 

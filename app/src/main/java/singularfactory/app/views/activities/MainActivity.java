@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public void logout() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
 

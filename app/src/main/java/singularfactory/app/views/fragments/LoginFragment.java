@@ -70,7 +70,7 @@ public class LoginFragment extends BaseFragment {
         }
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        getActivity().overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         getActivity().finish();
     }
 }
