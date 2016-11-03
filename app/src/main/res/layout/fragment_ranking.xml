@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:editable="false"
-            android:text="@string/country"
+            android:text="@string/global"
             android:id="@+id/country_ranking_input"
             android:gravity="center_vertical|center_horizontal"
             android:textAlignment="center"

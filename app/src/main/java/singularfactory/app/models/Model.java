@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import singularfactory.app.common.AppCommon;
-import singularfactory.app.common.Volley;
 import singularfactory.app.views.activities.BaseActivity;
 
 public class Model {

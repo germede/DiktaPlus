@@ -76,5 +76,6 @@
     <!-- WebService -->
     <string name="message_no_internet">You should have an Internet connection, in order to use this application.</string>
     <string name="message_server_error">There was a server error. Please try again later.</string>
+    <string name="global">World</string>
 
 </resources>

@@ -52,4 +52,5 @@
         <item name="hard">Schwer</item>
     </array>
     <string name="points">Punkte</string>
+    <string name="global">Welt</string>
 </resources>

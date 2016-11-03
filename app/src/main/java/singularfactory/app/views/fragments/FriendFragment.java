@@ -86,7 +86,7 @@ public class FriendFragment extends BaseFragment {
         friendsList = new ArrayList<>();
         for (int i = 0; i < users.length(); i++) friendsList.add(users.getJSONObject(i).getString("username"));
         if (friendsList.contains(appCommon.getUser().getUsername())) friendsList.remove(appCommon.getUser().getUsername());
-        friends.setAdapter(new UsersAdapter(getContext(),friendsList));
+        friends.setAdapter(new FriendsAdapter(getContext(),friendsList));
         searchBox.setQuery("",false);
     }
 
@@ -123,7 +123,7 @@ public class FriendFragment extends BaseFragment {
             usersList.add(users.getJSONObject(i).getString("username"));
         }
         if (usersList.contains(appCommon.getUser().getUsername())) usersList.remove(appCommon.getUser().getUsername());
-        friends.setAdapter(new UsersAdapter(getContext(),usersList));
+        friends.setAdapter(new FriendsAdapter(getContext(),usersList));
     }
 
     private void getFriendInfo(int id) {
@@ -151,8 +151,8 @@ public class FriendFragment extends BaseFragment {
         }
     }
 
-    class UsersAdapter extends ArrayAdapter<String> {
-        UsersAdapter(Context context, ArrayList<String> users) {
+    class FriendsAdapter extends ArrayAdapter<String> {
+        FriendsAdapter(Context context, ArrayList<String> users) {
             super(context, 0, users);
         }
 

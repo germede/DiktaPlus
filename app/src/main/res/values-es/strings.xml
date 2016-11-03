@@ -53,4 +53,5 @@
     <string name="no_text_founded">No se encontraron los textos</string>
     <string name="successfully_signed_up">Se ha registrado satisfactoriamente. Por favor, intente ingresar al sistema.</string>
     <string name="points">puntos</string>
+    <string name="global">Mundo</string>
 </resources>

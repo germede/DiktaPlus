@@ -1,4 +1,4 @@
-package singularfactory.app.common;
+package singularfactory.app.models;
 
 import android.content.Context;
 import android.graphics.Bitmap;
