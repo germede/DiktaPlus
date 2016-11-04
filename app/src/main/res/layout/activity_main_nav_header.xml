@@ -10,14 +10,15 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:layout_height="wrap_content"
     android:background="@color/transparent"
-    >
+    android:weightSum="1">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@drawable/logo_large" />
+        android:src="@drawable/logo_large"
+        android:layout_weight="0.94"
+        android:layout_height="100dp" />
 
     <TextView
         android:layout_width="wrap_content"

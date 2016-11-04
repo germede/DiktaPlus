@@ -24,7 +24,7 @@
         android:background="@color/color_accent" >
 
         <ImageButton
-            style="@style/ButtonLeft"
+            style="@style/ButtonRight"
             android:id="@+id/language_right"
             android:onClick="onClickLanguageRight"
             android:layout_gravity="right|center_vertical" />
@@ -41,7 +41,7 @@
         </TextSwitcher>
 
         <ImageButton
-            style="@style/ButtonRight"
+            style="@style/ButtonLeft"
             android:id="@+id/language_left"
             android:onClick="onClickLanguageLeft"
             android:layout_gravity="left|center_vertical" />
@@ -57,7 +57,7 @@
         android:background="@color/color_accent">
 
         <ImageButton
-            style="@style/ButtonRight"
+            style="@style/ButtonLeft"
             android:onClick="onClickDifficultyLeft"
             android:id="@+id/difficulty_left"
             android:layout_gravity="left|center_vertical" />
@@ -73,7 +73,7 @@
         </TextSwitcher>
 
         <ImageButton
-            style="@style/ButtonLeft"
+            style="@style/ButtonRight"
             android:onClick="onClickDifficultyRight"
             android:id="@+id/difficulty_right"
             android:layout_gravity="right|center_vertical"

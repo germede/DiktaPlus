@@ -4,23 +4,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_dictation"
-            android:icon="@drawable/ic_menu_dictation"
+            android:icon="@drawable/ic_dictation"
             android:title="@string/dictation" />
         <item
             android:id="@+id/nav_ranking"
-            android:icon="@drawable/ic_menu_ranking"
+            android:icon="@drawable/ic_ranking"
             android:title="@string/ranking" />
         <item
             android:id="@+id/nav_friends"
-            android:icon="@drawable/ic_menu_friends"
+            android:icon="@drawable/ic_add_friend"
             android:title="@string/friends" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_settings"
+            android:icon="@drawable/ic_settings"
             android:title="@string/settings" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_logout"
+            android:icon="@drawable/ic_user"
             android:title="@string/log_out" />
     </group>
 
