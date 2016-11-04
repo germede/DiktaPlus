@@ -16,7 +16,6 @@
     <ImageButton
         android:layout_width="51dp"
         android:layout_height="51dp"
-        android:id="@+id/start_game_button"
         android:onClick="onClickStartGame"
         android:layout_gravity="right|center"
         android:src="@android:drawable/ic_media_play"

@@ -9,11 +9,9 @@
     <string name="change_password">Passwort ändern</string>
     <string name="choose_language_and_difficulty">Sprache und Schwierigkeit auswählen</string>
     <string name="delete_account">Konto löschen</string>
-    <string name="delete_account_summary">Dieser Vorgang kann nicht rückgängig gemacht werden</string>
     <string name="delete_confirmation">Möchten Sie Ihr Konto und alle seine bezogene Daten wirklich löschen?</string>
     <string name="dictation">Diktat</string>
     <string name="edit_account">Konto bearbeiten</string>
-    <string name="edit_account_summary">Kontodetails ändern</string>
     <string name="forgot_password">Passwort vergessen?</string>
     <string name="friends">Freunde</string>
     <string name="game_over">Ende des Spieles</string>
@@ -23,7 +21,6 @@
     <string name="log_in">Anmelden</string>
     <string name="log_out">Abmelden</string>
     <string name="message_no_internet">Um diese App zu nutzen, brauchen Sie eine funktionierende Internetverbindung.</string>
-    <string name="message_server_error">Ein Fehler ist auf dem Server aufgetreten.</string>
     <string name="navigation_drawer_close">Sidebar schliessen</string>
     <string name="navigation_drawer_open">Sidebar öffnen</string>
     <string name="no_text_founded">Keinen Text gefunden</string>
@@ -39,7 +36,6 @@
     <string name="sign_up">Registrieren</string>
     <string name="submit">Absenden</string>
     <string name="successfully_signed_up">Sie wurden erfolgreich registriert. Versuchen Sie, sich anzumelden.</string>
-    <string name="text_error_unknown">Unbekannter Fehler</string>
     <string name="total_score">Punktzahl</string>
     <string name="typing_error">Tippfehler</string>
     <string name="username">Benutzername</string>

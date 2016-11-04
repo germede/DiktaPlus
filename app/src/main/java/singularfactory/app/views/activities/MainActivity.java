@@ -51,6 +51,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         textFragment = new TextFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_main_container, textFragment).commit();
+        toolbar.setTitle("");
     }
 
     @Override
@@ -74,7 +75,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        toolbar.setTitle(R.string.app_name);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 
@@ -87,7 +87,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, textFragment);
         transaction.commit();
-        toolbar.setTitle(R.string.app_name);
     }
 
     public void changeToRankingFragment(int animIn, int animOut) {
@@ -96,7 +95,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, rankingFragment);
         transaction.commit();
-        toolbar.setTitle(R.string.ranking);
     }
 
     public void changeToFriendsFragment(int animIn, int animOut) {
@@ -105,7 +103,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, friendFragment);
         transaction.commit();
-        toolbar.setTitle(R.string.friends);
     }
 
     public void changeToSettingsFragment(int animIn, int animOut) {
@@ -114,7 +111,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.setCustomAnimations(animIn, animOut);
         transaction.replace(R.id.fragment_main_container, settingsFragment);
         transaction.commit();
-        toolbar.setTitle(R.string.settings);
     }
 
     public void logout() {
@@ -192,7 +188,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.replace(R.id.fragment_main_container, gameFragment);
         transaction.addToBackStack(TAG);
         transaction.commit();
-        toolbar.setTitle(textFragment.getSelectedText().getTitle());
     }
 
     @Override

@@ -9,11 +9,9 @@
     <string name="choose_language_and_difficulty">Elegir idioma y dificultad</string>
     <string name="country">País</string>
     <string name="delete_account">Eliminar cuenta</string>
-    <string name="delete_account_summary">Esta acción no se puede deshacer</string>
     <string name="delete_confirmation">¿Seguro que quiere eliminar la cuenta y todos los datos asociados a ella?</string>
     <string name="dictation">Dictado</string>
     <string name="edit_account">Editar cuenta</string>
-    <string name="edit_account_summary">Cambiar los detalles de la cuenta</string>
     <string name="forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="friends">Amigos</string>
     <string name="game_over">Partida finalizada</string>
@@ -24,7 +22,6 @@
     <string name="log_out">Salir</string>
     <string name="logo"></string>
     <string name="message_no_internet">Para usar esta aplicación debe existir una conexión a Internet funcionando.</string>
-    <string name="message_server_error">Error en el servidor, por favor inténtelo más tarde.</string>
     <string name="navigation_drawer_close">Cerrar barra de navegación</string>
     <string name="navigation_drawer_open">Abrir barra de navegación</string>
     <string name="of">de</string>
@@ -38,7 +35,6 @@
     <string name="settings">Preferencias</string>
     <string name="sign_up">Registrarme</string>
     <string name="submit">Enviar</string>
-    <string name="text_error_unknown">Error desconocido</string>
     <string name="total_score">Puntuación</string>
     <string name="typing_error">Error de escritura</string>
     <string name="username">Nick de usuario</string>

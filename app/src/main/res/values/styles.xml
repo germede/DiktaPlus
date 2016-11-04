@@ -39,30 +39,10 @@
     </style>
 
     <!-- Base input -->
-    <style name="BaseInput">
-        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
-        <item name="android:layout_width">150dp</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:minHeight">50dp</item>
-        <item name="android:paddingBottom">2dp</item>
-        <item name="android:paddingTop">2dp</item>
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:paddingRight">15dp</item>
-    </style>
 
     <!-- Text header primary color -->
-    <style name="TextHeaderPrimaryColor">
-        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-        <item name="android:textColor">@color/primary_text_color</item>
-        <item name="android:textStyle">bold</item>
-    </style>
 
     <!-- Text primary color -->
-    <style name="TextContentPrimaryColor">
-        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
-        <item name="android:textColor">@color/primary_text_color</item>
-        <item name="android:textStyle">normal</item>
-    </style>
 
     <!-- Button primary -->
     <style name="ButtonPrimaryColor">
@@ -111,12 +91,5 @@
     </style>
 
     <!-- Texts switcher label -->
-    <style name="TextSwitcherLabel">
-        <item name="android:textSize">20sp</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:text">bold</item>
-
-    </style>
 
 </resources>

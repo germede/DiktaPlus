@@ -56,9 +56,7 @@
     <!-- Settings -->
     <string name="account_management">Account management</string>
     <string name="edit_account">Edit account</string>
-    <string name="edit_account_summary">Change your account details</string>
     <string name="delete_account">Delete account</string>
-    <string name="delete_account_summary">This action cannot be undone</string>
     <string name="change_email">Change e-mail</string>
     <string name="change_country">Change country</string>
     <string name="change_password">Change password</string>
@@ -70,12 +68,10 @@
     <string name="navigation_drawer_close">Close sidebar</string>
 
     <!-- Errors -->
-    <string name="text_error_unknown">Unknown error</string>
     <string name="no_text_founded">No text founded with that criteria</string>
 
     <!-- WebService -->
     <string name="message_no_internet">You should have an Internet connection, in order to use this application.</string>
-    <string name="message_server_error">There was a server error. Please try again later.</string>
     <string name="global">World</string>
     <string name="correct_word">Correct word</string>
 
