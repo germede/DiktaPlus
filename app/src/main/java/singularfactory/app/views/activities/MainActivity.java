@@ -1,5 +1,7 @@
 package singularfactory.app.views.activities;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,7 +15,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 import singularfactory.app.R;
 import singularfactory.app.common.Utils;
@@ -124,7 +130,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        return id == R.id.nav_settings || super.onOptionsItemSelected(item);
+        if (id == R.id.menu_user) new UserInfoDialog(this).show();
+        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -206,6 +213,37 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         TextView levelLabel = (TextView)hView.findViewById(R.id.level_label);
         levelLabel.setText(getString(R.string.level_label,
                 appCommon.getUser().getLevel()));
+    }
+
+    class UserInfoDialog extends Dialog implements
+            android.view.View.OnClickListener {
+        private Button exit;
+
+        UserInfoDialog(Activity a) {super(a);}
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.fragment_friend_info);
+            TextView country = (TextView)findViewById(R.id.friend_country_label);
+            TextView level = (TextView)findViewById(R.id.friend_level_label);
+            TextView totalScore = (TextView)findViewById(R.id.friend_total_score_label);
+            ImageView flag = (ImageView)findViewById(R.id.friend_flag);
+
+            setTitle(appCommon.getUser().getUsername());
+            country.setText(new Locale("",appCommon.getUser().getCountry()).getDisplayCountry());
+            level.setText(String.valueOf(appCommon.getUser().getLevel()));
+            totalScore.setText(String.valueOf(appCommon.getUser().getTotalScore()));
+            int drawableId = getResources()
+                    .getIdentifier("flag_"+appCommon.getUser().getCountry().toLowerCase(), "drawable", getPackageName());
+
+            flag.setImageResource(drawableId);
+
+
+            exit = (Button) findViewById(R.id.btn_exit);
+            exit.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View v) {dismiss();}
     }
 
 }

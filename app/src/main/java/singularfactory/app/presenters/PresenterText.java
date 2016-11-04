@@ -15,11 +15,11 @@ public class PresenterText {
     /**** API CALLS ****/
     /*******************/
     public void getTexts(final Object object, final String tagRequest, int verb, String url, String dialogMessage){
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
     public void getTextContent(final Object object, final String tagRequest, int verb, String url, String dialogMessage){
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
     }
 
     /*******************/

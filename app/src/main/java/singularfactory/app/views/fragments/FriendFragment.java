@@ -165,13 +165,11 @@ public class FriendFragment extends BaseFragment {
             }
             TextView username = (TextView) convertView.findViewById(R.id.friend_label);
             ImageButton addButton = (ImageButton) convertView.findViewById(R.id.add_friend_button);
-            ImageButton infoButton = (ImageButton) convertView.findViewById(R.id.info_friend_button);
             ImageButton deleteButton = (ImageButton) convertView.findViewById(R.id.delete_friend_button);
 
             if (friendsList.contains((string))) {
                 addButton.setVisibility(View.GONE);
-                infoButton.setVisibility(View.VISIBLE);
-                infoButton.setOnClickListener(new View.OnClickListener() {
+                convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         try {
@@ -196,7 +194,6 @@ public class FriendFragment extends BaseFragment {
                         makeFriends(string);
                     }
                 });
-                infoButton.setVisibility(View.GONE);
                 deleteButton.setVisibility(View.GONE);
             }
             username.setText(string);
