@@ -148,10 +148,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     public void showGameOverDialog(int levelup) {
         if (levelup > 0) level = levelup;
         else level = 0;
-        if (levelup > appCommon.getUser().getLevel()) {
-            appCommon.getUser().setLevel(levelup);
-            ((MainActivity)getActivity()).setUsernameLabelAndLevelLabel();
-        }
+        if (levelup > appCommon.getUser().getLevel()) appCommon.getUser().setLevel(levelup);
 
         GameOverDialog gameOverDialog = new GameOverDialog(getActivity());
         gameOverDialog.show();

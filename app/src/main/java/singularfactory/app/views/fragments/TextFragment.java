@@ -186,8 +186,6 @@ public class TextFragment extends BaseFragment {
                 getTextList();
             }
         });
-
-        ((MainActivity)getActivity()).setUsernameLabelAndLevelLabel();
         getTextList();
 
         return view;

@@ -11,14 +11,17 @@
         android:id="@+id/best_score_label"
         android:layout_gravity="left|center"
         android:layout_marginLeft="30dp"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textColor="@color/primary_text_color" />
 
     <ImageButton
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:onClick="onClickStartGame"
         android:layout_gravity="right|center"
-        android:src="@android:drawable/ic_media_play"
-        android:layout_marginRight="30dp" />
+        android:background="@drawable/ic_play"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
 
 </FrameLayout>

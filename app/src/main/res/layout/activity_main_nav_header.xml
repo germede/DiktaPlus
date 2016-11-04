@@ -19,21 +19,5 @@
         android:layout_weight="0.94"
         android:layout_height="100dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/username_label"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/username_label"
-        android:textColor="@color/black"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <TextView
-        android:id="@+id/level_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="@string/level_label" />
-
 
 </LinearLayout>
