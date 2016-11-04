@@ -1,89 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:layout_gravity="center_horizontal|top"
+    android:orientation="vertical"
+    android:weightSum="1.0">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/splash"
+        android:layout_weight="0.4" />
+
+    <EditText
+        android:id="@+id/username_signup_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|top">
+        android:autoText="true"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:layout_weight="0.1" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:src="@drawable/splash"
-            android:contentDescription="@string/logo"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="180dp"
-            android:layout_height="180dp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:ems="10"
-            android:id="@+id/username_signup_input"
-            android:layout_gravity="center_horizontal"
-            android:autoText="true"
-            android:hint="@string/username" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/email_signup_input"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.61"
-            android:hint="@string/email" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:ems="10"
-            android:id="@+id/country_signup_input"
-            android:layout_weight="0.61"
-            android:hint="@string/country"
-            android:editable="false"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/password_signup_input"
-            android:layout_gravity="center_horizontal"
-            android:hint="@string/password" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
+    <EditText
+        android:id="@+id/email_signup_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom">
+        android:layout_weight="0.1"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/submit"
-            android:id="@+id/button"
-            style="@style/ButtonPrimaryColor"
-            android:layout_gravity="center_horizontal|bottom"
-            android:onClick="onClickSubmit" />
+    <EditText
+        android:id="@+id/country_signup_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:editable="false"
+        android:ems="10"
+        android:hint="@string/country"
+        android:inputType="none" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/log_in"
-            android:onClick="onClickReturnLogin"
-            android:id="@+id/button2"
-            style="@style/ButtonSecondaryColor"
-            android:layout_gravity="center_horizontal|bottom" />
-    </LinearLayout>
+    <EditText
+        android:id="@+id/password_signup_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:layout_weight="0.1" />
 
-</FrameLayout>
+
+    <Button
+        android:id="@+id/button"
+        style="@style/ButtonPrimaryColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickSubmit"
+        android:text="@string/submit"
+        android:layout_weight="0.1" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/ButtonSecondaryColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickReturnLogin"
+        android:text="@string/log_in"
+        android:layout_weight="0.1" />
+</LinearLayout>
+
