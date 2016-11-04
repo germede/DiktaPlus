@@ -31,6 +31,7 @@
     <color name="black">#000000</color>
     <color name="blue">#0083df</color>
     <color name="white">#ffffff</color>
+    <color name="gray">#c4c4c4</color>
 
     <!-- Custom -->
     <color name="transparent">#00000000</color>

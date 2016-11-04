@@ -261,7 +261,6 @@ public class TextFragment extends BaseFragment {
         public void onGroupExpanded(int groupPosition) {
             try {
                 getTextContent(groupPosition);
-
             } catch (JSONException e) {
                 Log.e(TAG,"JSON error");
             }
@@ -289,8 +288,9 @@ public class TextFragment extends BaseFragment {
             }
 
             TextView txtListChild = (TextView) convertView.findViewById(R.id.best_score_label);
-
             txtListChild.setText(childText);
+
+            convertView.setBackgroundColor(getResources().getColor(R.color.gray));
             return convertView;
         }
 
@@ -327,7 +327,8 @@ public class TextFragment extends BaseFragment {
             TextView lblListHeader = (TextView) convertView
                     .findViewById(R.id.text_title_label);
             lblListHeader.setText(headerTitle);
-
+            
+            if (isExpanded) convertView.setBackgroundColor(getResources().getColor(R.color.gray));
             return convertView;
         }
 
