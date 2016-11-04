@@ -327,8 +327,9 @@ public class TextFragment extends BaseFragment {
             TextView lblListHeader = (TextView) convertView
                     .findViewById(R.id.text_title_label);
             lblListHeader.setText(headerTitle);
-            
+
             if (isExpanded) convertView.setBackgroundColor(getResources().getColor(R.color.gray));
+            else convertView.setBackgroundColor(getResources().getColor(R.color.window_background));
             return convertView;
         }
 
