@@ -6,17 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:gravity="center_horizontal"
-    android:layout_margin="@dimen/activity_horizontal_margin">
+    android:gravity="center_horizontal">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal">
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@color/color_accent"
+        android:padding="@dimen/activity_horizontal_margin">
 
         <ImageView
-            app:srcCompat="@android:drawable/alert_dark_frame"
+            app:srcCompat="@drawable/ic_ranking_white"
             android:id="@+id/ranking_flag"
             android:layout_width="70dp"
             android:layout_height="60dp" />
@@ -29,7 +30,8 @@
             android:textSize="18sp"
             android:layout_marginRight="8dp"
             android:layout_weight="0.38"
-            android:textAlignment="textEnd" />
+            android:textAlignment="textEnd"
+            android:textColor="@color/secondary_text_color" />
 
         <EditText
             android:layout_height="wrap_content"
@@ -39,7 +41,8 @@
             android:gravity="center_vertical|fill_horizontal"
             android:text="10"
             android:textAlignment="center"
-            android:layout_width="29dp" />
+            android:layout_width="29dp"
+            android:textColor="@color/secondary_text_color" />
 
         <TextView
             android:text="@string/of"
@@ -50,7 +53,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_weight="0.07"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/secondary_text_color" />
 
         <EditText
             android:layout_height="wrap_content"
@@ -61,14 +65,11 @@
             android:gravity="center_vertical|center_horizontal"
             android:textAlignment="center"
             android:layout_weight="0.12"
-            android:layout_width="75dp" />
+            android:layout_width="75dp"
+            android:textColor="@color/secondary_text_color" />
 
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="2dp"
-        android:background="@android:color/darker_gray"/>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

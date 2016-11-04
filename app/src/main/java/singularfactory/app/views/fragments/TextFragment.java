@@ -107,7 +107,7 @@ public class TextFragment extends BaseFragment {
             public View makeView() {
                 TextView myText = new TextView(getActivity());
                 myText.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL);
-                myText.setTextColor(getResources().getColor(R.color.white));
+                myText.setTextColor(getResources().getColor(R.color.secondary_text_color));
                 myText.setTypeface(null, Typeface.BOLD);
                 myText.setTextSize(20);
                 return myText;
@@ -124,7 +124,7 @@ public class TextFragment extends BaseFragment {
             public View makeView() {
                 TextView myText = new TextView(getActivity());
                 myText.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL);
-                myText.setTextColor(getResources().getColor(R.color.white));
+                myText.setTextColor(getResources().getColor(R.color.secondary_text_color));
                 myText.setTypeface(null, Typeface.BOLD);
                 myText.setTextSize(20);
                 return myText;

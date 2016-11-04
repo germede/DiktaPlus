@@ -36,11 +36,5 @@
         android:textColor="@color/black"
         android:text="@string/level_label" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/color_primary"
-        android:layout_marginTop="@dimen/activity_vertical_margin" />
-
 
 </LinearLayout>

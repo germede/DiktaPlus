@@ -5,5 +5,4 @@
     <item name="ic_menu_settings" type="drawable">@android:drawable/ic_menu_camera</item>
     <item name="ic_menu_logout" type="drawable">@android:drawable/ic_menu_camera</item>
 
-    <!--TODO: poner el resto de iconos-->
 </resources>

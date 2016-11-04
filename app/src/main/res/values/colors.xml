@@ -2,12 +2,34 @@
 <resources>
 
     <!-- Material Design -->
-    <color name="color_accent">#9d22af</color>
-    <color name="color_primary">#741B81</color>
-    <color name="color_primary_dark">#561360</color>
-    <color name="navigation_bar_color">#561360</color>
+    <!--<color name="color_accent">#bae639</color>-->
+    <!--<color name="color_primary">#92b91f</color>-->
+    <!--<color name="color_primary_dark">#739412</color>-->
+    <!--<color name="navigation_bar_color">#739412</color>-->
+
+
+    <!--<color name="color_accent">#259793</color>-->
+    <!--<color name="color_primary">#147672</color>-->
+    <!--<color name="color_primary_dark">#0d5c59</color>-->
+    <!--<color name="navigation_bar_color">#0d5c59</color>-->
+
+    <!--<color name="color_accent">#a42da9</color>-->
+    <!--<color name="color_primary">#7B167F</color>-->
+    <!--<color name="color_primary_dark">#630e66</color>-->
+    <!--<color name="navigation_bar_color">#630e66</color>-->
+
+    <color name="color_accent">#DD4945</color>
+    <color name="color_primary">#C32521</color>
+    <color name="color_primary_dark">#9F110D</color>
+    <color name="navigation_bar_color">#630e66</color>
+
+
     <color name="primary_text_color">#000000</color>
+    <color name="secondary_text_color">#ffffff</color>
     <color name="window_background">#ffffff</color>
+
+    <color name="color_secondary">#92b91f</color>
+    <color name="color_terciary">#C39C21</color>
 
     <!-- Basic Colors -->
     <color name="black">#000000</color>

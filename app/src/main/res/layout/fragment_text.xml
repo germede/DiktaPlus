@@ -14,7 +14,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@color/color_accent"
         android:textAlignment="center"
-        android:textColor="@color/white" />
+        android:textColor="@color/secondary_text_color" />
 
     <FrameLayout
         android:orientation="horizontal"
