@@ -13,8 +13,6 @@
     <string name="username">Username</string>
 
     <!-- Sidebar items -->
-    <string name="username_label">Username: %1$s</string>
-    <string name="level_label">Level: %1$d</string>
     <string name="dictation">Dictation</string>
     <string name="ranking" translatable="false">Ranking</string>
     <string name="friends">Friends</string>

@@ -38,12 +38,6 @@
         <item name="android:background">@color/window_background</item>         <!-- Used for the background -->
     </style>
 
-    <!-- Base input -->
-
-    <!-- Text header primary color -->
-
-    <!-- Text primary color -->
-
     <!-- Button primary -->
     <style name="ButtonPrimaryColor">
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>

@@ -16,7 +16,6 @@
     <string name="friends">Amigos</string>
     <string name="game_over">Partida finalizada</string>
     <string name="level">Nivel</string>
-    <string name="level_label">Nivel: %1$d</string>
     <string name="level_up">¡NUEVO NIVEL: %1$d!</string>
     <string name="log_in">Ingresar</string>
     <string name="log_out">Salir</string>
@@ -38,7 +37,6 @@
     <string name="total_score">Puntuación</string>
     <string name="typing_error">Error de escritura</string>
     <string name="username">Nick de usuario</string>
-    <string name="username_label">Nick: %1$s</string>
     <string name="username_or_email">Nick o e-mail</string>
     <string name="your_actual_password">Confirmar contraseña actual</string>
     <array name="difficulties">
