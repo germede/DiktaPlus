@@ -14,19 +14,18 @@
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/editbox_dropdown_dark_frame"
         android:id="@+id/friend_flag"
-        android:layout_weight="0.17" />
+        android:layout_weight="0.33" />
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
+        android:showDividers="beginning|middle|end"
+        android:divider="@color/blue">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.17">
+            android:layout_height="match_parent"
+            android:layout_weight="2">
 
             <TextView
                 android:text="@string/country"
@@ -35,39 +34,7 @@
                 android:layout_weight="1.0"
                 android:textColor="@color/black"
                 android:gravity="right"
-                android:padding="@dimen/button_padding" />
-
-            <TextView
-                android:text="@string/level"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textView8"
-                android:layout_weight="1.0"
-                android:textColor="@color/black"
-                android:gravity="right"
-                android:padding="@dimen/button_padding" />
-
-            <TextView
-                android:text="@string/total_score"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textView9"
-                android:layout_weight="1.0"
-                android:textColor="@color/black"
-                android:gravity="right"
-                android:padding="@dimen/button_padding" />
-
-        </LinearLayout>
-        <View
-            android:layout_height="match_parent"
-            android:background="@color/color_primary"
-            android:layout_width="2dp" />
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.17">
+                android:padding="8dp" />
 
             <TextView
                 android:text="@string/country"
@@ -77,7 +44,23 @@
                 android:textColor="@color/black"
                 android:gravity="left"
                 android:layout_weight="1.0"
-                android:padding="@dimen/button_padding" />
+                android:padding="8dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <TextView
+                android:text="@string/level"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView8"
+                android:layout_weight="1.0"
+                android:textColor="@color/black"
+                android:gravity="right"
+                android:padding="8dp" />
 
             <TextView
                 android:text="@string/level"
@@ -87,7 +70,23 @@
                 android:textColor="@color/black"
                 android:gravity="left"
                 android:layout_weight="1.0"
-                android:padding="@dimen/button_padding" />
+                android:padding="8dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <TextView
+                android:text="@string/total_score"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView9"
+                android:layout_weight="1.0"
+                android:textColor="@color/black"
+                android:gravity="right"
+                android:padding="8dp" />
 
             <TextView
                 android:text="@string/total_score"
@@ -97,9 +96,10 @@
                 android:textColor="@color/black"
                 android:gravity="left"
                 android:layout_weight="1.0"
-                android:padding="@dimen/button_padding" />
-        </LinearLayout>
-    </LinearLayout>
+                android:padding="8dp" />
+        </TableRow>
+
+    </TableLayout>
 
     <Button
         android:text="@string/button_exit"

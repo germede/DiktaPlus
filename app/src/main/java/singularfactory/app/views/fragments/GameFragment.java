@@ -56,6 +56,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     int score;
     int bestScore;
     int level;
+    int tries;
 
     @Override
     public void onInit(int status) {
@@ -83,6 +84,8 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         textToSplit = textToSplit.replaceAll("\\(","");
         textToSplit = textToSplit.replaceAll("\\)","");
         textToSplit = textToSplit.replaceAll("\\,","");
+        textToSplit = textToSplit.replaceAll("\\;","");
+        textToSplit = textToSplit.replaceAll("\\:","");
 
         originalText = textToPlay.getContent().split(" ");
         words = textToSplit.split(" ");
@@ -97,6 +100,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
     }
 
     public void dictateNextWord() {
+        tries = 0;
         if (wordIndex > 0) {
             pressTheButtonLabel.append(originalText[wordIndex-1]+" ");
             sv.scrollTo(0,sv.getBottom());
@@ -195,7 +199,13 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
                         wordIndex++;
                         dictateNextWord();
                     } else {
-                        showToast(getString(R.string.typing_error));
+                        if (tries <= 2) {
+                            tries++;
+                            showToast(getString(R.string.typing_error)+" "+tries);
+                        } else {
+                            showToast(getString(R.string.correct_word)+": "+ words[wordIndex]);
+                            tries = 0;
+                        }
                         textFieldInputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
                         speakActualWord();
                     }

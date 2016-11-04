@@ -79,8 +79,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         toggle.syncState();
         toolbar.setTitle(R.string.app_name);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setChecked(true);
 
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
     }
 
     public void changeToTextFragment(int animIn, int animOut) {
@@ -121,6 +121,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     public void logout() {
+        appCommon.getUtils().sharedRemoveValue(this,"id");
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);

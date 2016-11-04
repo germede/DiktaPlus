@@ -39,7 +39,7 @@
     <string name="sign_up">Registrarme</string>
     <string name="submit">Enviar</string>
     <string name="text_error_unknown">Error desconocido</string>
-    <string name="total_score">Puntuación total</string>
+    <string name="total_score">Puntuación</string>
     <string name="typing_error">Error de escritura</string>
     <string name="username">Nick de usuario</string>
     <string name="username_label">Nick: %1$s</string>
@@ -54,4 +54,5 @@
     <string name="successfully_signed_up">Se ha registrado satisfactoriamente. Por favor, intente ingresar al sistema.</string>
     <string name="points">puntos</string>
     <string name="global">Mundo</string>
+    <string name="correct_word">Palabra correcta</string>
 </resources>

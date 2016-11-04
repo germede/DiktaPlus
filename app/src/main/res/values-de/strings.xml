@@ -40,7 +40,7 @@
     <string name="submit">Absenden</string>
     <string name="successfully_signed_up">Sie wurden erfolgreich registriert. Versuchen Sie, sich anzumelden.</string>
     <string name="text_error_unknown">Unbekannter Fehler</string>
-    <string name="total_score">Gesamte Punktzahl</string>
+    <string name="total_score">Punktzahl</string>
     <string name="typing_error">Tippfehler</string>
     <string name="username">Benutzername</string>
     <string name="username_label">Benutzername: %1$s</string>
@@ -53,4 +53,5 @@
     </array>
     <string name="points">Punkte</string>
     <string name="global">Welt</string>
+    <string name="correct_word">Richtiges wort</string>
 </resources>

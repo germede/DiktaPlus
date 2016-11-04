@@ -2,7 +2,6 @@ package singularfactory.app.common;
 
 import android.support.multidex.MultiDexApplication;
 
-import singularfactory.app.R;
 import singularfactory.app.models.Model;
 import singularfactory.app.models.User;
 import singularfactory.app.presenters.PresenterGame;
@@ -14,7 +13,6 @@ public class AppCommon extends MultiDexApplication {
     private static AppCommon singleton;
     public static AppCommon getInstance() { return singleton; }
 
-    private final String baseURL = "http://192.168.1.138:8000/api/";
     private User user;
 
 
@@ -66,7 +64,7 @@ public class AppCommon extends MultiDexApplication {
         return Utils.getInstance();
     }
     public String getBaseURL() {
-        return baseURL;
+        return "http://xan.singularfactory.com/sf_diktaplus_web/web/api/";
     }
     public User getUser() {
         return user;
