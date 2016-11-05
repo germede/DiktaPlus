@@ -1,22 +1,33 @@
 package singularfactory.app.models;
 
+import android.support.v4.app.Fragment;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.util.Log;
 
-import singularfactory.app.models.interfaces.IModel;
-import singularfactory.app.models.interfaces.IModelMain;
-import singularfactory.app.models.interfaces.IModelSplash;
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 
-/**
- * Created by Óscar Adae Rodríguez on 08/05/2016.
- */
-public class Model implements IModel {
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import singularfactory.app.common.AppCommon;
+import singularfactory.app.views.activities.BaseActivity;
+
+public class Model {
 
     private static final String TAG = Model.class.getSimpleName();
-
     private static Model singleton = null;
+    private final AppCommon appCommon = AppCommon.getInstance();
+    private ProgressDialog pDialog = null;
 
     public Model() {
-        //constructor
-
     }
 
     public static Model getInstance() {
@@ -26,13 +37,193 @@ public class Model implements IModel {
         return singleton;
     }
 
-    @Override
-    public IModelMain getModelMain() {
-        return ModelMain.getInstance();
+    private void checkStatusOnResponse(Object object, JSONArray result, String tag, int httpStatus) throws JSONException {
+        if (httpStatus == 200) {
+            Log.i(tag, " - OK 200");
+            onResponseOK(object, tag, result);
+        } else if (httpStatus == 201) {
+            Log.e(tag, " - CREATED 201");
+            onResponseOK(object, tag, result);
+        } else if (httpStatus == 400) {
+            Log.e(tag, " - ERROR 400");
+            onResponseError(object, tag, " bad request");
+        } else if (httpStatus == 403) {
+            Log.e(tag, " - ERROR 403");
+            onResponseError(object, tag, " forbidden access");
+        } else if (httpStatus == 404) {
+            Log.e(tag, " - ERROR 404");
+            onResponseError(object, tag, " not found");
+        } else if (httpStatus == 500) {
+            Log.e(tag, " - ERROR 500");
+            onResponseError(object, tag, " server error");
+        } else {
+            Log.e(tag, " - ERROR " + httpStatus);
+            onResponseError(object, tag, " unknown error");
+        }
     }
 
-    @Override
-    public IModelSplash getModelSplash() {
-        return ModelSplash.getInstance();
+    private void onResponseOK(Object object, String tag, JSONArray json) throws JSONException {
+        Log.i(TAG, " - onResponseOK");
+        switch (tag) {
+            case "Register user":
+                appCommon.getPresenterUser().registerUserResponse(object, json.getJSONObject(0));
+                break;
+            case "Login user":
+                appCommon.getPresenterUser().loginUserResponse(object, json.getJSONObject(0));
+                break;
+            case "Get user info":
+                appCommon.getPresenterUser().getUserInfoResponse(object, json.getJSONObject(0));
+                break;
+            case "Put user":
+                appCommon.getPresenterUser().putUserResponse(object, json.getJSONObject(0));
+                break;
+            case "Delete user":
+                appCommon.getPresenterUser().deleteUserResponse(object, json.getJSONObject(0));
+                break;
+            case "Get ranking":
+                appCommon.getPresenterUser().getRankingResponse(object, json);
+                break;
+            case "Get users by username":
+                appCommon.getPresenterUser().getUsersByUsernameResponse(object, json);
+                break;
+            case "Get friends":
+                appCommon.getPresenterUser().getFriendsResponse(object, json);
+                break;
+            case "Get friend info":
+                appCommon.getPresenterUser().getFriendInfoResponse(object, json.getJSONObject(0));
+                break;
+            case "Make friends":
+                appCommon.getPresenterUser().makeFriendsResponse(object, json);
+                break;
+            case "Delete friends":
+                appCommon.getPresenterUser().deleteFriendsResponse(object, json);
+                break;
+            case "Get texts":
+                appCommon.getPresenterText().getTextsResponse(object, json);
+                break;
+            case "Get text content":
+                appCommon.getPresenterText().getTextContentResponse(object, json.getJSONObject(0));
+                break;
+            case "Post game":
+                appCommon.getPresenterGame().postGameResponse(object, json.getJSONObject(0));
+                break;
+            case "Get best score":
+                appCommon.getPresenterGame().getBestScoreResponse(object, json.getJSONObject(0));
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void onResponseError(Object object, String tag, String message) {
+        Log.e(TAG, " - onResponseError");
+        switch (tag) {
+            case "Register user":
+                appCommon.getPresenterUser().responseError(object, "Server error. Username or email may be already taken");
+                break;
+            case "Login user":
+                appCommon.getPresenterUser().responseError(object, "Login error: " + message);
+                break;
+            case "Get user info":
+                appCommon.getPresenterUser().responseError(object, "Error getting user info:" + message);
+                break;
+            case "Put user":
+                appCommon.getPresenterUser().responseError(object, "Please check all the parameters");
+                break;
+            case "Delete user":
+                appCommon.getPresenterUser().responseError(object, "Error deleting user:" + message);
+                break;
+            case "Get ranking":
+                appCommon.getPresenterUser().responseError(object, "No ranking for that criteria");
+                break;
+            case "Get users by username":
+                appCommon.getPresenterUser().responseError(object, "No user found with that username");
+                break;
+            case "Get friends":
+                appCommon.getPresenterUser().responseError(object, "No friends");
+                break;
+            case "Get friend info":
+                appCommon.getPresenterUser().responseError(object, "Error getting info of that user");
+                break;
+            case "Make friends":
+                appCommon.getPresenterUser().responseError(object, "Friendship could not be created");
+                break;
+            case "Delete friends":
+                appCommon.getPresenterUser().responseError(object, "Friendship could not be deleted");
+                break;
+            case "Get texts":
+                appCommon.getPresenterText().responseError(object);
+                break;
+            case "Get text content":
+                appCommon.getPresenterText().responseError(object);
+                break;
+            case "Post game":
+                appCommon.getPresenterGame().responseError(object, "The score could not be posted");
+                break;
+            case "Get best score":
+                appCommon.getPresenterGame().responseError(object, "");
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url,
+                                String dialogMessage, boolean showDialog, String params) {
+        if (showDialog) {
+            Context context;
+            if (object instanceof BaseActivity) context = (BaseActivity)object;
+            else context = ((Fragment) object).getActivity();
+            pDialog = new ProgressDialog(context);
+            pDialog.setMessage(dialogMessage);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        final AppCommon appCommon = AppCommon.getInstance();
+        JsonArrayRequest request = new JsonArrayRequest(verb, url, params
+                , new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray result) {
+                Log.i(TAG + "_" + tagRequest, "OK");
+                if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
+                try {
+                    checkStatusOnResponse(object, result, tagRequest, 200);
+                } catch (JSONException e) {
+                    Log.e(TAG, "JSON error");
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse networkResponse = error.networkResponse;
+                int httpStatus = 500;
+                if (networkResponse != null) httpStatus = networkResponse.statusCode;
+                if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
+                try {
+                    checkStatusOnResponse(object, new JSONArray(), tagRequest, httpStatus);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept", "application/json");
+                headers.put("Content-Type", "application/json; charset=utf-8");
+//                headers.put("Authorization", "Bearer " + AppMediator.getInstance().sharedGetValue(AppMediator.getInstance().getApplicationContext(), Tags.SHARED_ACCESS_TOKEN, 1));
+                return headers;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                return new HashMap<>();
+            }
+        };
+
+        Volley.getInstance(appCommon.getApplicationContext()).addToRequestQueue(request, tagRequest);
     }
 }

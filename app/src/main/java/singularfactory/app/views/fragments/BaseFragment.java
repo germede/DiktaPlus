@@ -6,18 +6,32 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-/**
- * Created by Óscar Adae Rodríguez on 18/08/2016.
- */
+import singularfactory.app.common.AppCommon;
+import singularfactory.app.views.activities.BaseActivity;
+
 public class BaseFragment extends Fragment {
 
     public final static String TAG = BaseFragment.class.getSimpleName();
+    AppCommon appCommon;
 
+    public void showDialog(String message) {
+        ((BaseActivity)getActivity()).showSingleAlert(getContext(),message);
+    }
+
+    public void showToast(String message) {
+        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+    }
+
+    public String toProperCase(String s) {
+        return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        appCommon       = AppCommon.getInstance();
     }
 
     @Nullable
@@ -30,6 +44,7 @@ public class BaseFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
 
     /********************/
     /** PUBLIC METHODS **/

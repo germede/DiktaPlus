@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal|top"
+    android:orientation="vertical"
+    android:weightSum="1.0">
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/logo_short"
+        android:layout_weight="0.4" />
+
+    <EditText
+        android:id="@+id/username_signup_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="true"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:layout_weight="0.1" />
+
+    <EditText
+        android:id="@+id/email_signup_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/country_signup_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:editable="false"
+        android:ems="10"
+        android:hint="@string/country"
+        android:inputType="none" />
+
+    <EditText
+        android:id="@+id/password_signup_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:layout_weight="0.1" />
+
+
+    <Button
+        style="@style/ButtonPrimaryColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickSubmit"
+        android:text="@string/submit"
+        android:layout_weight="0.1" />
+
+    <Button
+        style="@style/ButtonSecondaryColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickReturnLogin"
+        android:text="@string/log_in"
+        android:layout_weight="0.1" />
+</LinearLayout>
+
