@@ -16,7 +16,7 @@ public class PresenterGame {
     /**** API CALLS ****/
     /*******************/
     public void getBestScore(final Object object, final String tagRequest, int verb, String url, String dialogMessage) throws JSONException{
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,null);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,null);
     }
 
     public void postGame(final Object object, final String tagRequest, int verb, String url, String dialogMessage, int [] jsonParams) throws JSONException{
@@ -24,7 +24,7 @@ public class PresenterGame {
         jsonObject.put("user",jsonParams[0]);
         jsonObject.put("text",jsonParams[1]);
         jsonObject.put("score",jsonParams[2]);
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,jsonObject.toString());
     }
 
     /*******************/
