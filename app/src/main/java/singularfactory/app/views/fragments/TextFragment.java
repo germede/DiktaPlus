@@ -99,6 +99,7 @@ public class TextFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_text, container, false);
 
+        ((MainActivity)getActivity()).setUsernameLabelAndLevelLabel();
         textsList = (ExpandableListView)view.findViewById(R.id.textsList);
 
         // Default difficulty: "Medium"

@@ -19,5 +19,21 @@
         android:layout_weight="0.94"
         android:layout_height="100dp" />
 
+    <TextView
+        android:text="@string/username_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/username_label"
+        android:layout_weight="0.94"
+        android:textColor="@color/primary_text_color" />
+
+    <TextView
+        android:text="@string/email_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/email_label"
+        android:layout_weight="0.94"
+        android:textColor="@color/primary_text_color" />
+
 
 </LinearLayout>

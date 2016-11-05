@@ -48,4 +48,5 @@
     <string name="points">Punkte</string>
     <string name="global">Welt</string>
     <string name="correct_word">Richtiges wort</string>
+    <string name="username_label">Benutzername: %1$s</string>
 </resources>

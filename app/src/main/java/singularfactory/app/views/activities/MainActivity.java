@@ -120,7 +120,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     public void logout() {
-        appCommon.getUtils().sharedRemoveValue(this,"id");
+        appCommon.getUtils().sharedRemoveValue(this, "id");
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -140,19 +140,22 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_dictation:
-                if (chooseCorrectAnimation(0)) changeToTextFragment(correctAnimIn,correctAnimOut);
+                if (chooseCorrectAnimation(0)) changeToTextFragment(correctAnimIn, correctAnimOut);
                 previousSelectedItem = 0;
                 break;
             case R.id.nav_ranking:
-                if (chooseCorrectAnimation(1)) changeToRankingFragment(correctAnimIn,correctAnimOut);
+                if (chooseCorrectAnimation(1))
+                    changeToRankingFragment(correctAnimIn, correctAnimOut);
                 previousSelectedItem = 1;
                 break;
             case R.id.nav_friends:
-                if (chooseCorrectAnimation(2)) changeToFriendsFragment(correctAnimIn,correctAnimOut);
+                if (chooseCorrectAnimation(2))
+                    changeToFriendsFragment(correctAnimIn, correctAnimOut);
                 previousSelectedItem = 2;
                 break;
             case R.id.nav_settings:
-                if (chooseCorrectAnimation(3)) changeToSettingsFragment(correctAnimIn,correctAnimOut);
+                if (chooseCorrectAnimation(3))
+                    changeToSettingsFragment(correctAnimIn, correctAnimOut);
                 previousSelectedItem = 3;
                 break;
             case R.id.nav_logout:
@@ -165,14 +168,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_toolbar_menu, menu);
         menu.getItem(0).setEnabled(true);
         return true;
     }
 
-    private boolean chooseCorrectAnimation (int selectedItem) {
+    private boolean chooseCorrectAnimation(int selectedItem) {
         if (selectedItem < previousSelectedItem) {
             correctAnimIn = R.anim.slide_in_top;
             correctAnimOut = R.anim.slide_out_bottom;
@@ -207,22 +209,25 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             android.view.View.OnClickListener {
         private Button exit;
 
-        UserInfoDialog(Activity a) {super(a);}
+        UserInfoDialog(Activity a) {
+            super(a);
+        }
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.fragment_friend_info);
-            TextView country = (TextView)findViewById(R.id.friend_country_label);
-            TextView level = (TextView)findViewById(R.id.friend_level_label);
-            TextView totalScore = (TextView)findViewById(R.id.friend_total_score_label);
-            ImageView flag = (ImageView)findViewById(R.id.friend_flag);
+            TextView country = (TextView) findViewById(R.id.friend_country_label);
+            TextView level = (TextView) findViewById(R.id.friend_level_label);
+            TextView totalScore = (TextView) findViewById(R.id.friend_total_score_label);
+            ImageView flag = (ImageView) findViewById(R.id.friend_flag);
 
             setTitle(appCommon.getUser().getUsername());
-            country.setText(new Locale("",appCommon.getUser().getCountry()).getDisplayCountry());
+            country.setText(new Locale("", appCommon.getUser().getCountry()).getDisplayCountry());
             level.setText(String.valueOf(appCommon.getUser().getLevel()));
             totalScore.setText(String.valueOf(appCommon.getUser().getTotalScore()));
             int drawableId = getResources()
-                    .getIdentifier("flag_"+appCommon.getUser().getCountry().toLowerCase(), "drawable", getPackageName());
+                    .getIdentifier("flag_" + appCommon.getUser().getCountry().toLowerCase(), "drawable", getPackageName());
 
             flag.setImageResource(drawableId);
 
@@ -230,8 +235,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             exit = (Button) findViewById(R.id.btn_exit);
             exit.setOnClickListener(this);
         }
+
         @Override
-        public void onClick(View v) {dismiss();}
+        public void onClick(View v) {
+            dismiss();
+        }
     }
 
+    public void setUsernameLabelAndLevelLabel() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView = navigationView.getHeaderView(0);
+        TextView usernameLabel = (TextView) hView.findViewById(R.id.username_label);
+        usernameLabel.setText(getApplicationContext().getString(R.string.username_label,
+                appCommon.getUser().getUsername()));
+        TextView levelLabel = (TextView) hView.findViewById(R.id.email_label);
+        levelLabel.setText(getApplicationContext().getString(R.string.email_label,
+                appCommon.getUser().getEmail()));
+
+
+    }
 }

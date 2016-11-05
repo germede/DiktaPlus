@@ -18,7 +18,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         android:textStyle="normal|bold"
         android:textSize="30sp"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:textColor="@color/color_primary" />
 
 
     <TextView
