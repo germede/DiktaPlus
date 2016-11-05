@@ -1,21 +1,78 @@
 <resources>
+    <!-- Login & Signup -->
+    <string name="username_or_email">Username or email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="logo" translatable="false">Logo</string>
+    <string name="submit">Submit</string>
+    <string name="country">Country</string>
+    <string name="email" translatable="false">E-mail</string>
+    <string name="successfully_signed_up">Successfully signed up, please try to login.</string>
+    <string name="username">Username</string>
 
-    <!-- Global -->
-    <!--<string name="app_name">BaseProject</string>-->
-    <string name="action_settings">Configuración</string>
-    <string name="navigation_drawer_open">Abrir menú lateral</string>
-    <string name="navigation_drawer_close">Cerrar menú lateral</string>
+    <!-- Sidebar items -->
+    <string name="dictation">Dictation</string>
+    <string name="ranking" translatable="false">Ranking</string>
+    <string name="friends">Friends</string>
+    <string name="settings">Settings</string>
+    <string name="log_out">Log out</string>
+    <string name="username_label">Username: %1$s</string>
+    <string name="email_label" translatable="false">Email: %1$s</string>
 
-    <!-- Global errors -->
-    <string name="text_error_unknown">Error desconocido</string>
+    <!-- General -->
+    <string name="select_country">Select country</string>
 
-    <!-- SplashActivity -->
-    <string name="button_exit">Salir</string>
-    <string name="button_go_to_play_store">Ir a Play Store</string>
-    <string name="message_new_api_version">Hay una nueva versión disponible. Para poder continuar usando la aplicación, es necesario actualizar. ¿Desea actualizar ahora?</string>
+    <!-- Texts -->
+    <string name="choose_language_and_difficulty">Choose language and difficulty</string>
+    <array name="difficulties">
+        <item name="easy">Easy</item>
+        <item name="medium">Medium</item>
+        <item name="hard">Hard</item>
+    </array>
+
+    <!-- Game -->
+    <string name="press_the_button_to_play">Press the play button to start</string>
+    <string name="progress">Progress:</string>
+    <string name="best_score">Best score: %1$d</string>
+    <string name="level">Level</string>
+    <string name="total_score">Total score</string>
+    <string name="typing_error">Typing error</string>
+    <string name="repeat">Repeat</string>
+    <string name="game_over">Game Over</string>
+    <string name="level_up">¡LEVEL UP: %1$d!</string>
+    <string name="score">Score: %1$d</string>
+
+    <!-- Ranking -->
+    <string name="top" translatable="false">Top</string>
+    <string name="of">of</string>
+    <string name="points">points</string>
+
+    <!-- Friends -->
+    <string name="searchbox">Search by username</string>
+    <string name="button_exit">Exit</string>
+
+    <!-- Settings -->
+    <string name="account_management">Account management</string>
+    <string name="edit_account">Edit account</string>
+    <string name="delete_account">Delete account</string>
+    <string name="change_email">Change e-mail</string>
+    <string name="change_country">Change country</string>
+    <string name="change_password">Change password</string>
+    <string name="your_actual_password">Confirm your actual password</string>
+    <string name="delete_confirmation">Are you sure you want to delete your account and all its data?</string>
+
+    <!-- Toolbar -->
+    <string name="navigation_drawer_open">Open sidebar</string>
+    <string name="navigation_drawer_close">Close sidebar</string>
+
+    <!-- Errors -->
+    <string name="no_text_founded">No text founded with that criteria</string>
 
     <!-- WebService -->
-    <string name="message_no_internet">Debe disponer de conexión a Internet para poder utilizar la aplicación</string>
-    <string name="message_server_error">Se ha producido un error en el servidor. Por favor, inténtelo más tarde</string>
+    <string name="message_no_internet">You should have an Internet connection, in order to use this application.</string>
+    <string name="global">World</string>
+    <string name="correct_word">Correct word</string>
 
 </resources>

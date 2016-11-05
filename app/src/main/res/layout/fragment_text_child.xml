@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="100dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Best score"
+        android:id="@+id/best_score_label"
+        android:layout_gravity="left|center"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:textSize="14sp"
+        android:textColor="@color/primary_text_color" />
+
+    <ImageButton
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:onClick="onClickStartGame"
+        android:layout_gravity="right|center"
+        android:background="@drawable/ic_play"
+        android:layout_margin="@dimen/activity_horizontal_margin" />
+
+</FrameLayout>
