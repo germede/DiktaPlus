@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings">
 
     <PreferenceCategory android:title="@string/account_management">
@@ -17,6 +16,7 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/game_settings">
         <CheckBoxPreference
+            android:defaultValue="true"
             android:icon="@drawable/ic_keyboard"
             android:key="input_method"
             android:title="@string/handwrite_mode" />
