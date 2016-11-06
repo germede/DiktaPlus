@@ -171,7 +171,7 @@ public class GameFragment extends BaseFragment implements TextToSpeech.OnInitLis
         // Change image of button and its behaviour
         pressTheButtonLabel.setText("");
         pressTheButtonLabel.setVisibility(View.VISIBLE);
-        playButton.setImageResource(R.drawable.ic_stop);
+        playButton.setBackgroundResource(R.drawable.ic_stop);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
