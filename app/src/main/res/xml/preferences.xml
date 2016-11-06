@@ -11,15 +11,8 @@
 
         <Preference
             android:icon="@drawable/ic_delete"
-            android:key="delete_account" android:title="@string/delete_account" />
-
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/game_settings">
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:icon="@drawable/ic_keyboard"
-            android:key="input_method"
-            android:title="@string/handwrite_mode" />
+            android:key="delete_account"
+            android:title="@string/delete_account"/>
     </PreferenceCategory>
 
     <Preference

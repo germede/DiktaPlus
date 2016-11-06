@@ -15,7 +15,8 @@
         android:id="@+id/friends_searchbox"
         android:queryHint="@string/searchbox"
         android:iconifiedByDefault="false"
-        android:layout_marginBottom="@dimen/activity_vertical_margin" />
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:backgroundTint="@color/color_accent" />
 
     <ListView
         android:layout_width="match_parent"
