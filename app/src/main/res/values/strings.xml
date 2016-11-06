@@ -62,6 +62,11 @@
     <string name="change_password">Change password</string>
     <string name="your_actual_password">Confirm your actual password</string>
     <string name="delete_confirmation">Are you sure you want to delete your account and all its data?</string>
+    <string name="game_settings">Game settings</string>
+    <string name="handwrite_mode">Hand-write mode</string>
+    <!--TODO copyright¿?-->
+    <string name="copyright">Copyright © 2016 - </string>
+
 
     <!-- Toolbar -->
     <string name="navigation_drawer_open">Open sidebar</string>
