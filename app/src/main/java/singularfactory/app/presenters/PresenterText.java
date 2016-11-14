@@ -38,9 +38,9 @@ public class PresenterText {
     /*******************/
     /** API RESPONSES **/
     /*******************/
-    public void responseError(Object object) {
+    public void responseError(Object object, String message) {
         TextFragment textFragment = (TextFragment) object;
-        textFragment.onErrorGetTexts();
+        textFragment.onErrorGetTexts(message);
     }
 
 }

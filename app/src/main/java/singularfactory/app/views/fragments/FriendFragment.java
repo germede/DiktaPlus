@@ -39,7 +39,6 @@ public class FriendFragment extends BaseFragment {
     User selectedFriend;
 
     public FriendFragment() {
-        // Required empty public constructor
     }
 
     @Override

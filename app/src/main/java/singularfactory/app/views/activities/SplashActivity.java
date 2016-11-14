@@ -20,7 +20,7 @@ import singularfactory.app.models.User;
 
 public class SplashActivity extends BaseActivity {
     private static final String TAG = SplashActivity.class.getName();
-    private static final int SPLASH_TIME_OUT = 1000; //ms
+    private static final int SPLASH_TIME_OUT = 1000;
 
     private Handler handler;
     private Runnable runnable;
@@ -32,7 +32,6 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // No internet -> No App
         if (!AppCommon.getInstance().getUtils().hasInternet(AppCommon.getInstance().getApplicationContext())) {
             showSingleAlertWithReflection(this, this, getResources().getString(R.string.message_no_internet),"exitApp");
             return;

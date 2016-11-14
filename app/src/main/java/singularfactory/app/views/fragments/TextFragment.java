@@ -52,7 +52,6 @@ public class TextFragment extends BaseFragment {
     TextSwitcher difficultyLabel;
 
     public TextFragment() {
-        // Required empty public constructor
     }
 
     public Text getSelectedText() {
@@ -85,9 +84,9 @@ public class TextFragment extends BaseFragment {
         textsList.setAdapter(textsListAdapter);
     }
 
-    public void onErrorGetTexts () {
+    public void onErrorGetTexts (String message) {
         textsList.setAdapter((BaseExpandableListAdapter)null);
-        showToast(getString(R.string.no_text_founded));
+        showToast(message);
     }
 
 

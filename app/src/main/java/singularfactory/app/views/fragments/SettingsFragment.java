@@ -106,7 +106,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     public void deleteAccountSuccess() {
-        showToast("Account successfully deleted");
         ((MainActivity) getActivity()).logout();
     }
 

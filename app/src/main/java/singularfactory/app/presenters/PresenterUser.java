@@ -132,13 +132,11 @@ public class PresenterUser {
 
     public void makeFriendsResponse(Object object, JSONArray users) throws JSONException {
         FriendFragment friendFragment = (FriendFragment) object;
-        friendFragment.showToast("Friendship successfully created");
         friendFragment.getFriends();
     }
 
     public void deleteFriendsResponse(Object object, JSONArray users) throws JSONException {
         FriendFragment friendFragment = (FriendFragment) object;
-        friendFragment.showToast("Friendship successfully deleted");
         friendFragment.getFriends();
     }
 

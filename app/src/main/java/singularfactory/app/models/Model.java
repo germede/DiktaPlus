@@ -17,6 +17,7 @@ import org.json.JSONException;
 import java.util.HashMap;
 import java.util.Map;
 
+import singularfactory.app.R;
 import singularfactory.app.common.AppCommon;
 import singularfactory.app.views.activities.BaseActivity;
 
@@ -38,32 +39,17 @@ public class Model {
     }
 
     private void checkStatusOnResponse(Object object, JSONArray result, String tag, int httpStatus) throws JSONException {
-        if (httpStatus == 200) {
-            Log.i(tag, " - OK 200");
+        if (httpStatus >= 200 && httpStatus <= 201) {
+            Log.i(tag, " - OK: " + httpStatus);
             onResponseOK(object, tag, result);
-        } else if (httpStatus == 201) {
-            Log.e(tag, " - CREATED 201");
-            onResponseOK(object, tag, result);
-        } else if (httpStatus == 400) {
-            Log.e(tag, " - ERROR 400");
-            onResponseError(object, tag, " bad request");
-        } else if (httpStatus == 403) {
-            Log.e(tag, " - ERROR 403");
-            onResponseError(object, tag, " forbidden access");
-        } else if (httpStatus == 404) {
-            Log.e(tag, " - ERROR 404");
-            onResponseError(object, tag, " not found");
-        } else if (httpStatus == 500) {
-            Log.e(tag, " - ERROR 500");
-            onResponseError(object, tag, " server error");
         } else {
-            Log.e(tag, " - ERROR " + httpStatus);
-            onResponseError(object, tag, " unknown error");
+            Log.e(tag, " - ERROR: " + httpStatus);
+            Log.e(tag, " - ERRORRESPONSE: " + result.toString());
+            onResponseError(object, tag);
         }
     }
 
     private void onResponseOK(Object object, String tag, JSONArray json) throws JSONException {
-        Log.i(TAG, " - onResponseOK");
         switch (tag) {
             case "Register user":
                 appCommon.getPresenterUser().registerUserResponse(object, json.getJSONObject(0));
@@ -115,53 +101,52 @@ public class Model {
         }
     }
 
-    private void onResponseError(Object object, String tag, String message) {
-        Log.e(TAG, " - onResponseError");
+    private void onResponseError(Object object, String tag) {
         switch (tag) {
             case "Register user":
-                appCommon.getPresenterUser().responseError(object, "Server error. Username or email may be already taken");
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_server));
                 break;
             case "Login user":
-                appCommon.getPresenterUser().responseError(object, "Login error: " + message);
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_login));
                 break;
             case "Get user info":
-                appCommon.getPresenterUser().responseError(object, "Error getting user info:" + message);
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_get_user_info));
                 break;
             case "Put user":
-                appCommon.getPresenterUser().responseError(object, "Please check all the parameters");
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_put_user));
                 break;
             case "Delete user":
-                appCommon.getPresenterUser().responseError(object, "Error deleting user:" + message);
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_deleting_user));
                 break;
             case "Get ranking":
-                appCommon.getPresenterUser().responseError(object, "No ranking for that criteria");
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_no_ranking));
                 break;
             case "Get users by username":
-                appCommon.getPresenterUser().responseError(object, "No user found with that username");
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_no_user_found));
                 break;
             case "Get friends":
-                appCommon.getPresenterUser().responseError(object, "No friends");
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_no_friends));
                 break;
             case "Get friend info":
-                appCommon.getPresenterUser().responseError(object, "Error getting info of that user");
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_info_user));
                 break;
             case "Make friends":
-                appCommon.getPresenterUser().responseError(object, "Friendship could not be created");
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_friendship_not_created));
                 break;
             case "Delete friends":
-                appCommon.getPresenterUser().responseError(object, "Friendship could not be deleted");
+                appCommon.getPresenterUser().responseError(object, appCommon.getString(R.string.error_friendship_not_deleted));
                 break;
             case "Get texts":
-                appCommon.getPresenterText().responseError(object);
+                appCommon.getPresenterText().responseError(object, appCommon.getString(R.string.error_getting_texts));
                 break;
             case "Get text content":
-                appCommon.getPresenterText().responseError(object);
+                appCommon.getPresenterText().responseError(object, appCommon.getString(R.string.error_text_content));
                 break;
             case "Post game":
-                appCommon.getPresenterGame().responseError(object, "The score could not be posted");
+                appCommon.getPresenterGame().responseError(object, appCommon.getString(R.string.error_posting_game));
                 break;
             case "Get best score":
-                appCommon.getPresenterGame().responseError(object, "");
+                appCommon.getPresenterGame().responseError(object, appCommon.getString(R.string.error_best_score));
                 break;
             default:
                 break;
@@ -179,6 +164,7 @@ public class Model {
             pDialog.setCancelable(false);
             pDialog.show();
         }
+        Log.e(TAG, "    "+verb+"   "+url);
 
         final AppCommon appCommon = AppCommon.getInstance();
         JsonArrayRequest request = new JsonArrayRequest(verb, url, params
@@ -186,7 +172,6 @@ public class Model {
 
             @Override
             public void onResponse(JSONArray result) {
-                Log.i(TAG + "_" + tagRequest, "OK");
                 if (pDialog != null && pDialog.isShowing()) pDialog.dismiss();
                 try {
                     checkStatusOnResponse(object, result, tagRequest, 200);
@@ -205,7 +190,7 @@ public class Model {
                 try {
                     checkStatusOnResponse(object, new JSONArray(), tagRequest, httpStatus);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.e(TAG, "JSON error");
                 }
             }
         }) {
@@ -223,7 +208,6 @@ public class Model {
                 return new HashMap<>();
             }
         };
-
         Volley.getInstance(appCommon.getApplicationContext()).addToRequestQueue(request, tagRequest);
     }
 }

@@ -64,7 +64,12 @@ public class AppCommon extends MultiDexApplication {
         return Utils.getInstance();
     }
     public String getBaseURL() {
-        return "http://xan.singularfactory.com/sf_diktaplus_web/web/api/";
+//        return "http://xan.singularfactory.com/sf_diktaplus_web/web/api/";
+        return "http://192.168.1.15:8000/api/";
+    }
+    public String getOauthURL() {
+//        return "http://xan.singularfactory.com/sf_diktaplus_web/web/oauth/v2/token";
+        return "http://192.168.1.15:8000/oauth/v2/token";
     }
     public User getUser() {
         return user;

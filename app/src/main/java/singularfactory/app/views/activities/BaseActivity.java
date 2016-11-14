@@ -28,10 +28,6 @@ public class BaseActivity extends AppCompatActivity {
         appCommon = (AppCommon) getApplication();
     }
 
-    /********************/
-    /** PUBLIC METHODS **/
-    /********************/
-
     public static void showSingleAlert(final Context context, String message) {
         new android.support.v7.app.AlertDialog.Builder(context, R.style.MyAlertDialogStyle)
                 .setMessage(message)

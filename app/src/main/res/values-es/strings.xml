@@ -44,10 +44,28 @@
         <item name="medium">Intermedio</item>
         <item name="hard">Difícil</item>
     </array>
-    <string name="no_text_founded">No se encontraron los textos</string>
+    <string name="message">No se encontraron los textos</string>
     <string name="successfully_signed_up">Se ha registrado satisfactoriamente. Por favor, intente ingresar al sistema.</string>
     <string name="points">puntos</string>
     <string name="global">Mundo</string>
     <string name="correct_word">Palabra correcta</string>
     <string name="username_label">Nick: %1$s</string>
+    <string name="contain_spaces">No se admiten espacios en el nombre de usuario</string>
+    <string name="password_longer">La contraseña debe ser más larga</string>
+    <string name="valid_email">Por favor, utilice una dirección de E-mail válida</string>
+    <string name="error_best_score">Error al obtener mejor puntuación</string>
+    <string name="error_deleting_user">Error al eliminar la cuenta</string>
+    <string name="error_friendship_not_created">Error creando amistad</string>
+    <string name="error_friendship_not_deleted">Error eliminado amistad</string>
+    <string name="error_get_user_info">Error obteniendo info del usuario</string>
+    <string name="error_no_friends">No existen amigos</string>
+    <string name="error_no_ranking">No hay ranking para esos criterios</string>
+    <string name="error_no_user_found">Ningún usuario encontrado con ese nombre de usuario</string>
+    <string name="error_posting_game">No se pudo subir la puntuación</string>
+    <string name="error_put_user">Error actualizando detalles de la cuenta</string>
+    <string name="error_server">Error en el servidor</string>
+    <string name="error_text_content">Error obteniendo contenido del texto</string>
+    <string name="error_getting_texts">Error obteniendo textos</string>
+    <string name="error_info_user">Error obteniendo información de ese usuario</string>
+    <string name="error_login">Error al acceder</string>
 </resources>

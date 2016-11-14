@@ -22,7 +22,7 @@
     <string name="message_no_internet">Um diese App zu nutzen, brauchen Sie eine funktionierende Internetverbindung.</string>
     <string name="navigation_drawer_close">Sidebar schliessen</string>
     <string name="navigation_drawer_open">Sidebar öffnen</string>
-    <string name="no_text_founded">Keinen Text gefunden</string>
+    <string name="message">Keinen Text gefunden</string>
     <string name="of">von</string>
     <string name="password">Passwort</string>
     <string name="press_the_button_to_play">Um zu spielen, drücken Sie den Play-Button</string>
@@ -49,4 +49,23 @@
     <string name="global">Welt</string>
     <string name="correct_word">Richtiges wort</string>
     <string name="username_label">Benutzername: %1$s</string>
+    <string name="contain_spaces">Benutzername sollte kein Leerzeichen enthalten</string>
+    <string name="password_longer">Passwort sollte länger sein</string>
+    <string name="valid_email">Bitte nutzen Sie eine gültige Email-Adresse</string>
+    <string name="error_login">Fehler beim Anmelden</string>
+    <string name="email_label" translatable="false"></string>
+    <string name="error_best_score">Fehler bei der Einholung von der besten Punktzahl</string>
+    <string name="error_deleting_user">Fehler bei der Löschung des Benutzerkontos</string>
+    <string name="error_friendship_not_created">Fehler bei Freundschaftserstellung</string>
+    <string name="error_friendship_not_deleted">Fehler bei Freundschafslöschung</string>
+    <string name="error_get_user_info">Fehler bei Benutzerinfoeinholung</string>
+    <string name="error_getting_texts">Fehler bei Texteeinholung</string>
+    <string name="error_no_friends">Kein Freund</string>
+    <string name="error_no_ranking">Kein Ranking für die angegebenen Kriterien</string>
+    <string name="error_no_user_found">Kein Benutzername gefunden</string>
+    <string name="error_posting_game">Die Punktzahl konnte nicht hochgeladen werden</string>
+    <string name="error_put_user">Fehler bei Kontodetailsaktualisierung</string>
+    <string name="error_server">Fehler beim Server</string>
+    <string name="error_text_content">Fehler bei Textinhaltseinholung</string>
+    <string name="error_info_user">Fehler bei Infoeinholung vom User</string>
 </resources>

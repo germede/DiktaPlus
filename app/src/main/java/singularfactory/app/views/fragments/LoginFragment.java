@@ -25,7 +25,6 @@ public class LoginFragment extends BaseFragment {
     String savedEmail;
 
     public LoginFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -46,7 +45,7 @@ public class LoginFragment extends BaseFragment {
     }
 
     public void getUser() throws JSONException {
-        String [] params = {usernameOrEmail.getText().toString(), password.getText().toString()};
+        String [] params = {usernameOrEmail.getText().toString().trim(), password.getText().toString()};
         appCommon.getPresenterUser().loginUser(
                 this,
                 "Login user",

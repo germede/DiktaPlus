@@ -11,6 +11,9 @@
     <string name="email" translatable="false">E-mail</string>
     <string name="successfully_signed_up">Successfully signed up, please try to login.</string>
     <string name="username">Username</string>
+    <string name="contain_spaces">Username should not contain spaces</string>
+    <string name="password_longer">Password should be longer</string>
+    <string name="valid_email">Please use a valid email</string>
 
     <!-- Sidebar items -->
     <string name="dictation">Dictation</string>
@@ -63,20 +66,34 @@
     <string name="your_actual_password">Confirm your actual password</string>
     <string name="delete_confirmation">Are you sure you want to delete your account and all its data?</string>
     <string name="game_settings">Game settings</string>
-    <!--TODO copyright¿?-->
-    <string name="copyright">Copyright © 2016 - </string>
+    <string name="copyright">Copyright © 2016 - Gerardo Medina</string>
 
 
     <!-- Toolbar -->
     <string name="navigation_drawer_open">Open sidebar</string>
     <string name="navigation_drawer_close">Close sidebar</string>
 
-    <!-- Errors -->
-    <string name="no_text_founded">No text founded with that criteria</string>
-
     <!-- WebService -->
     <string name="message_no_internet">You should have an Internet connection, in order to use this application.</string>
     <string name="global">World</string>
     <string name="correct_word">Correct word</string>
+
+    <!-- Errors -->
+    <string name="error_friendship_not_deleted">Friendship could not be deleted</string>
+    <string name="error_friendship_not_created">Friendship could not be created</string>
+    <string name="error_info_user">Error getting info of that user</string>
+    <string name="error_no_friends">No friends</string>
+    <string name="error_no_user_found">No user found with that username</string>
+    <string name="error_no_ranking">No ranking for that criteria</string>
+    <string name="error_text_content">Error getting text content</string>
+    <string name="error_getting_texts">Error getting texts</string>
+    <string name="error_posting_game">The score could not be posted</string>
+    <string name="error_best_score">Error getting best score</string>
+    <string name="error_deleting_user">Error deleting user</string>
+    <string name="error_put_user">Error updating user info</string>
+    <string name="error_get_user_info">Error getting user info</string>
+    <string name="error_login">Login error</string>
+    <string name="error_server">Server error</string>
+
 
 </resources>
