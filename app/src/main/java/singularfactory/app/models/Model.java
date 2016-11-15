@@ -196,7 +196,6 @@ public class Model {
                 headers.put("Accept", "application/json");
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 headers.put("Authorization", "Bearer " + appCommon.getUtils().sharedGetValue(context, "access_token", 1));
-                Log.e(TAG,"Bearer " + appCommon.getUtils().sharedGetValue(context, "access_token", 1));
                 return headers;
             }
 
