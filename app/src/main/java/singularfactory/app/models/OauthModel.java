@@ -9,14 +9,9 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +48,7 @@ public class OauthModel {
 
 
     public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url,
-                                String dialogMessage, boolean showDialog, String params) {
+                                String dialogMessage, boolean showDialog, final String [] usernameAndPassword) {
         if (showDialog) {
             Context context;
             if (object instanceof BaseActivity) context = (BaseActivity) object;
@@ -91,6 +86,7 @@ public class OauthModel {
                 headers.put("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
                 return headers;
             }
+
             @Override
             protected Map<String, String> getParams() {
                 HashMap<String, String> params = new HashMap<>();
@@ -98,8 +94,8 @@ public class OauthModel {
                 params.put("grant_type", "password");
                 params.put("client_id", appCommon.getOauthClientId());
                 params.put("client_secret", appCommon.getOauthClientSecret());
-                params.put("username", "example");
-                params.put("password", "example");
+                params.put("username", usernameAndPassword[0]);
+                params.put("password", usernameAndPassword[1]);
 
                 return params;
             }

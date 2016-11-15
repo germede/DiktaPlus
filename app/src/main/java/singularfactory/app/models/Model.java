@@ -42,7 +42,6 @@ public class Model {
             onResponseOK(object, tag, result);
         } else {
             Log.e(tag, " - ERROR: " + httpStatus);
-            Log.e(tag, " - ERRORRESPONSE: " + result.toString());
             onResponseError(object, tag);
         }
     }
@@ -196,7 +195,8 @@ public class Model {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Accept", "application/json");
                 headers.put("Content-Type", "application/json; charset=utf-8");
-                headers.put("Authorization", "Bearer " + appCommon.getUtils().sharedGetValue(context, "access-token", 1));
+                headers.put("Authorization", "Bearer " + appCommon.getUtils().sharedGetValue(context, "access_token", 1));
+                Log.e(TAG,"Bearer " + appCommon.getUtils().sharedGetValue(context, "access_token", 1));
                 return headers;
             }
 
@@ -205,7 +205,6 @@ public class Model {
                 return new HashMap<>();
             }
         };
-        Log.e(TAG, "    "+verb+"   "+url);
         Volley.getInstance(appCommon.getApplicationContext()).addToRequestQueue(request, tagRequest);
     }
 }

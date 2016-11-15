@@ -24,13 +24,9 @@ public class PresenterUser {
     /**** API CALLS ****/
     /*******************/
     public void getOauthToken(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("username",jsonParams[0]);
-        jsonObject.put("password",jsonParams[1]);
-        jsonObject.put("client-id", appCommon.getOauthClientId());
-        jsonObject.put("client-secret",appCommon.getOauthClientSecret());
-        jsonObject.put("grant-type","password");
-        appCommon.getOauthModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
+        Log.e("A",jsonParams[0]);
+        Log.e("A",jsonParams[1]);
+        appCommon.getOauthModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonParams);
     }
 
     public void loginUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
@@ -38,7 +34,9 @@ public class PresenterUser {
         jsonObject.put("email",jsonParams[0]);
         jsonObject.put("username",jsonParams[0]);
         jsonObject.put("password",jsonParams[1]);
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,jsonObject.toString());
+        Log.e("A",jsonParams[0]);
+        Log.e("A",jsonParams[1]);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
     }
 
     public void registerUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
@@ -95,11 +93,15 @@ public class PresenterUser {
     /*******************/
     /** API RESPONSES **/
     /*******************/
-    public void getOauthTokenResponse(Object object, String result) {
-        LoginFragment loginFragment = (LoginFragment) object;
-        Log.e(TAG,result);
-//        appCommon.getUtils().sharedSetValue(((LoginFragment) object).getContext(), "access-token", json.get("access-token"));
-//        loginFragment.getUser();
+    public void getOauthTokenResponse(Object object, String result)  {
+        try {
+            JSONObject json = new JSONObject(result);
+            appCommon.getUtils().sharedSetValue(((LoginFragment) object).getContext(), "access_token", json.get("access_token"));
+            LoginFragment loginFragment = (LoginFragment) object;
+            loginFragment.getUser();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loginUserResponse(Object object, JSONObject user) throws JSONException {
