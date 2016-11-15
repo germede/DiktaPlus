@@ -70,12 +70,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     }
 
-    public void editAccount(String email, String country, String password, String oldPassword) throws JSONException {
+    public void editAccount(String email, String country, String password) throws JSONException {
         String[] params = {
                 email,
                 country,
                 password,
-                oldPassword
         };
         appCommon.getPresenterUser().putUser(
                 this,
@@ -135,7 +134,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             changeEmail = (EditText) findViewById(R.id.email_edit_input);
             changeCountry = (EditText) findViewById(R.id.country_edit_input);
             changePassword = (EditText) findViewById(R.id.password_edit_input);
-            oldPassword = (EditText) findViewById(R.id.password_old_edit_input);
 
             changeEmail.setText(appCommon.getUser().getEmail());
             changeCountry.setText((new Locale("", appCommon.getUser().getCountry())).getDisplayCountry());
@@ -164,8 +162,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                         try {
                             editAccount(changeEmail.getText().toString(),
                                     selectedCountry,
-                                    changePassword.getText().toString(),
-                                    oldPassword.getText().toString());
+                                    changePassword.getText().toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

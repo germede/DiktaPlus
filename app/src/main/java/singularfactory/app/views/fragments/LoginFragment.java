@@ -56,14 +56,14 @@ public class LoginFragment extends BaseFragment {
     }
 
     public void getUser() throws JSONException {
-        String [] params = {usernameOrEmail.getText().toString().trim(), password.getText().toString()};
+        String usernameOrEmailString = usernameOrEmail.getText().toString().trim();
         appCommon.getPresenterUser().loginUser(
                 this,
                 "Login user",
                 Request.Method.POST,
                 appCommon.getBaseURL()+"users/login",
                 "Trying to log in...",
-                params);
+                usernameOrEmailString);
     }
 
     public void setUser(JSONObject userJson) {

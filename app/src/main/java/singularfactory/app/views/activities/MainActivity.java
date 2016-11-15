@@ -121,6 +121,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     public void logout() {
         appCommon.getUtils().sharedRemoveValue(this, "id");
+        appCommon.getUtils().sharedRemoveValue(this, "access_token");
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);

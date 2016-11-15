@@ -24,18 +24,13 @@ public class PresenterUser {
     /**** API CALLS ****/
     /*******************/
     public void getOauthToken(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
-        Log.e("A",jsonParams[0]);
-        Log.e("A",jsonParams[1]);
         appCommon.getOauthModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonParams);
     }
 
-    public void loginUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
+    public void loginUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String usernameOrEmail) throws JSONException{
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("email",jsonParams[0]);
-        jsonObject.put("username",jsonParams[0]);
-        jsonObject.put("password",jsonParams[1]);
-        Log.e("A",jsonParams[0]);
-        Log.e("A",jsonParams[1]);
+        jsonObject.put("email",usernameOrEmail);
+        jsonObject.put("username",usernameOrEmail);
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
     }
 
@@ -57,7 +52,6 @@ public class PresenterUser {
         jsonObject.put("email",jsonParams[0]);
         jsonObject.put("country",jsonParams[1]);
         jsonObject.put("password",jsonParams[2]);
-        jsonObject.put("old_password",jsonParams[3]);
         Log.e(TAG,jsonObject.toString());
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,jsonObject.toString());
     }
