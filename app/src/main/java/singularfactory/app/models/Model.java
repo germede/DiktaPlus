@@ -32,9 +32,7 @@ public class Model {
     }
 
     public static Model getInstance() {
-        if (singleton == null) {
-            singleton = new Model();
-        }
+        if (singleton == null) singleton = new Model();
         return singleton;
     }
 
@@ -155,16 +153,15 @@ public class Model {
 
     public void volleyAsynctask(final Object object, final String tagRequest, int verb, String url,
                                 String dialogMessage, boolean showDialog, String params) {
+        final Context context;
+        if (object instanceof BaseActivity) context = (BaseActivity)object;
+        else context = ((Fragment) object).getActivity();
         if (showDialog) {
-            Context context;
-            if (object instanceof BaseActivity) context = (BaseActivity)object;
-            else context = ((Fragment) object).getActivity();
             pDialog = new ProgressDialog(context);
             pDialog.setMessage(dialogMessage);
             pDialog.setCancelable(false);
             pDialog.show();
         }
-        Log.e(TAG, "    "+verb+"   "+url);
 
         final AppCommon appCommon = AppCommon.getInstance();
         JsonArrayRequest request = new JsonArrayRequest(verb, url, params
@@ -199,7 +196,7 @@ public class Model {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Accept", "application/json");
                 headers.put("Content-Type", "application/json; charset=utf-8");
-//                headers.put("Authorization", "Bearer " + AppMediator.getInstance().sharedGetValue(AppMediator.getInstance().getApplicationContext(), Tags.SHARED_ACCESS_TOKEN, 1));
+                headers.put("Authorization", "Bearer " + appCommon.getUtils().sharedGetValue(context, "access-token", 1));
                 return headers;
             }
 
@@ -208,6 +205,7 @@ public class Model {
                 return new HashMap<>();
             }
         };
+        Log.e(TAG, "    "+verb+"   "+url);
         Volley.getInstance(appCommon.getApplicationContext()).addToRequestQueue(request, tagRequest);
     }
 }

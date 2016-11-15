@@ -49,13 +49,6 @@ public class Volley {
         return mRequestQueue;
     }
 
-    public void volleySetDefaultPolicyRetry(StringRequest request, String tagRequest) {
-        RetryPolicy policy = new DefaultRetryPolicy(SOCKET_TIMEOUT, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        request.setRetryPolicy(policy);
-        request.setTag(TextUtils.isEmpty(tagRequest) ? TAG : tagRequest);
-        getRequestQueue().add(request);
-    }
-
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         RetryPolicy policy = new DefaultRetryPolicy(SOCKET_TIMEOUT, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         req.setRetryPolicy(policy);
@@ -63,17 +56,4 @@ public class Volley {
         getRequestQueue().add(req);
     }
 
-    public <T> void addToRequestQueue(Request<T> req) {
-        getRequestQueue().add(req);
-    }
-
-    public void cancelPendingRequests(Object tag) {
-        if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(tag);
-        }
-    }
-
-    public ImageLoader getImageLoader() {
-        return mImageLoader;
-    }
 }

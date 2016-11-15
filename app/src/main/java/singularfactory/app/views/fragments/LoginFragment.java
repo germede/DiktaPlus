@@ -44,6 +44,17 @@ public class LoginFragment extends BaseFragment {
         return view;
     }
 
+    public void getOauthToken() throws JSONException {
+        String [] params = {usernameOrEmail.getText().toString().trim(), password.getText().toString()};
+        appCommon.getPresenterUser().getOauthToken(
+                this,
+                "Get Oauth token",
+                Request.Method.POST,
+                appCommon.getOauthURL(),
+                "Trying to get OAuth token...",
+                params);
+    }
+
     public void getUser() throws JSONException {
         String [] params = {usernameOrEmail.getText().toString().trim(), password.getText().toString()};
         appCommon.getPresenterUser().loginUser(

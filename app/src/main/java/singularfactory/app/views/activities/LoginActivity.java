@@ -32,7 +32,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void onClickLogin(View view) throws JSONException{
-        loginFragment.getUser();
+        loginFragment.getOauthToken();
     }
 
     public void onClickSubmit (View view) throws JSONException {
