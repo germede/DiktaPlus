@@ -86,7 +86,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     public void updateAccountSuccess() {
-        showToast("Successfully changed your account details");
+        showToast(getString(R.string.successfully_changed_account));
         appCommon.setUser(new User(appCommon.getUser().getId(),
                 newEmail,
                 appCommon.getUser().getUsername(),
@@ -129,6 +129,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         protected void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.fragment_settings_edit);
+            selectedCountry = appCommon.getUser().getCountry();
 
             setTitle(appCommon.getUser().getUsername());
             changeEmail = (EditText) findViewById(R.id.email_edit_input);

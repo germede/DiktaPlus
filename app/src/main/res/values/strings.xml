@@ -66,6 +66,7 @@
     <string name="your_actual_password">Confirm your actual password</string>
     <string name="delete_confirmation">Are you sure you want to delete your account and all its data?</string>
     <string name="game_settings">Game settings</string>
+    <string name="successfully_changed_account">Successfully changed your account details</string>
     <string name="copyright">Copyright © 2016 - Gerardo Medina</string>
 
 
@@ -88,7 +89,6 @@
     <string name="error_text_content">Error getting text content</string>
     <string name="error_getting_texts">Error getting texts</string>
     <string name="error_posting_game">The score could not be posted</string>
-    <string name="error_best_score">Error getting best score</string>
     <string name="error_deleting_user">Error deleting user</string>
     <string name="error_put_user">Error updating user info</string>
     <string name="error_get_user_info">Error getting user info</string>

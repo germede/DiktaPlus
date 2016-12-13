@@ -52,7 +52,6 @@ public class PresenterUser {
         jsonObject.put("email",jsonParams[0]);
         jsonObject.put("country",jsonParams[1]);
         jsonObject.put("password",jsonParams[2]);
-        Log.e(TAG,jsonObject.toString());
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,jsonObject.toString());
     }
 

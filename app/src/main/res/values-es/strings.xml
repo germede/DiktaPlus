@@ -19,7 +19,6 @@
     <string name="level_up">¡NUEVO NIVEL: %1$d!</string>
     <string name="log_in">Ingresar</string>
     <string name="log_out">Salir</string>
-    <string name="logo"></string>
     <string name="message_no_internet">Para usar esta aplicación debe existir una conexión a Internet funcionando.</string>
     <string name="navigation_drawer_close">Cerrar barra de navegación</string>
     <string name="navigation_drawer_open">Abrir barra de navegación</string>
@@ -53,7 +52,6 @@
     <string name="contain_spaces">No se admiten espacios en el nombre de usuario</string>
     <string name="password_longer">La contraseña debe ser más larga</string>
     <string name="valid_email">Por favor, utilice una dirección de E-mail válida</string>
-    <string name="error_best_score">Error al obtener mejor puntuación</string>
     <string name="error_deleting_user">Error al eliminar la cuenta</string>
     <string name="error_friendship_not_created">Error creando amistad</string>
     <string name="error_friendship_not_deleted">Error eliminado amistad</string>
@@ -68,4 +66,5 @@
     <string name="error_getting_texts">Error obteniendo textos</string>
     <string name="error_info_user">Error obteniendo información de ese usuario</string>
     <string name="error_login">Error al acceder</string>
+    <string name="successfully_changed_account">Los detalles de la cuenta se actualizaron correctamente</string>
 </resources>

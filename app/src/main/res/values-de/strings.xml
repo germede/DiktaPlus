@@ -53,8 +53,6 @@
     <string name="password_longer">Passwort sollte länger sein</string>
     <string name="valid_email">Bitte nutzen Sie eine gültige Email-Adresse</string>
     <string name="error_login">Fehler beim Anmelden</string>
-    <string name="email_label" translatable="false"></string>
-    <string name="error_best_score">Fehler bei der Einholung von der besten Punktzahl</string>
     <string name="error_deleting_user">Fehler bei der Löschung des Benutzerkontos</string>
     <string name="error_friendship_not_created">Fehler bei Freundschaftserstellung</string>
     <string name="error_friendship_not_deleted">Fehler bei Freundschafslöschung</string>
@@ -68,4 +66,5 @@
     <string name="error_server">Fehler beim Server</string>
     <string name="error_text_content">Fehler bei Textinhaltseinholung</string>
     <string name="error_info_user">Fehler bei Infoeinholung vom User</string>
+    <string name="successfully_changed_account">Konto wurde erfolgreich geändert</string>
 </resources>

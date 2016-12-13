@@ -143,7 +143,7 @@ public class Model {
                 appCommon.getPresenterGame().responseError(object, appCommon.getString(R.string.error_posting_game));
                 break;
             case "Get best score":
-                appCommon.getPresenterGame().responseError(object, appCommon.getString(R.string.error_best_score));
+                appCommon.getPresenterGame().responseError(object, "");
                 break;
             default:
                 break;
