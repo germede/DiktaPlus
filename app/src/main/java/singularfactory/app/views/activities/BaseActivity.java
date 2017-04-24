@@ -27,7 +27,10 @@ public class BaseActivity extends AppCompatActivity {
     private void initialize() {
         appCommon = (AppCommon) getApplication();
     }
-
+    public void exitApp() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
     public static void showSingleAlert(final Context context, String message) {
         new android.support.v7.app.AlertDialog.Builder(context, R.style.MyAlertDialogStyle)
                 .setMessage(message)
@@ -63,5 +66,6 @@ public class BaseActivity extends AppCompatActivity {
                     .create()
                     .show();
         }
+
     }
 }

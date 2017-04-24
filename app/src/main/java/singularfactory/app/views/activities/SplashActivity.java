@@ -42,10 +42,7 @@ public class SplashActivity extends BaseActivity {
         initialize(findViewById(android.R.id.content));
     }
 
-    public void exitApp() {
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
-    }
+
 
     private void getUserInfo(int id) {
         appCommon.getPresenterUser().getUserInfo(

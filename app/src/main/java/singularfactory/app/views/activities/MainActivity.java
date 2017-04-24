@@ -65,7 +65,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
         if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
-        else super.onBackPressed();
+        else if (gameFragment != null && gameFragment.active) super.onBackPressed();
+        else exitApp();
     }
 
     private void initialize(View view) {
@@ -88,6 +89,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     public void changeToTextFragment(int animIn, int animOut) {
         if (gameFragment != null) gameFragment.stopDictation();
+        gameFragment = null;
         Utils.getInstance().hideKeyboard(this);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(animIn, animOut);
