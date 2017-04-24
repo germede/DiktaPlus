@@ -62,11 +62,11 @@ public class SignupFragment extends BaseFragment {
 
     public void registerUser() throws JSONException{
         if (username.getText().toString().indexOf(' ') > -1) {
-            showToast("Username should not contain spaces");
+            showToast(getString(R.string.contain_spaces));
         } else if (password.getText().toString().length() < 6) {
-            showToast("Password should be longer");
+            showToast(getString(R.string.password_longer));
         } else if (!Utils.getInstance().isValidEmail(email.getText().toString())) {
-            showToast("Please use a valid email");
+            showToast(getString(R.string.valid_email));
         }else {
             String[] params = {username.getText().toString(),
                     email.getText().toString(),

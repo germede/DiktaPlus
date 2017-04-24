@@ -25,7 +25,6 @@ public class LoginFragment extends BaseFragment {
     String savedEmail;
 
     public LoginFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -45,15 +44,26 @@ public class LoginFragment extends BaseFragment {
         return view;
     }
 
+    public void getOauthToken() throws JSONException {
+        String [] params = {usernameOrEmail.getText().toString().trim(), password.getText().toString()};
+        appCommon.getPresenterUser().getOauthToken(
+                this,
+                "Get Oauth token",
+                Request.Method.POST,
+                appCommon.getOauthURL(),
+                "Trying to get OAuth token...",
+                params);
+    }
+
     public void getUser() throws JSONException {
-        String [] params = {usernameOrEmail.getText().toString(), password.getText().toString()};
+        String usernameOrEmailString = usernameOrEmail.getText().toString().trim();
         appCommon.getPresenterUser().loginUser(
                 this,
                 "Login user",
                 Request.Method.POST,
                 appCommon.getBaseURL()+"users/login",
                 "Trying to log in...",
-                params);
+                usernameOrEmailString);
     }
 
     public void setUser(JSONObject userJson) {

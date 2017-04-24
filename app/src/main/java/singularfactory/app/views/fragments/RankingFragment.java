@@ -39,7 +39,6 @@ public class RankingFragment extends BaseFragment {
     String[] userCountriesList;
 
     public RankingFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -82,8 +81,6 @@ public class RankingFragment extends BaseFragment {
         getRanking();
         return view;
     }
-
-
 
     public void getRanking() {
         ranking.setAdapter(null);

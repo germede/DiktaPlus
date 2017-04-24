@@ -23,12 +23,15 @@ public class PresenterUser {
     /*******************/
     /**** API CALLS ****/
     /*******************/
-    public void loginUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
+    public void getOauthToken(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
+        appCommon.getOauthModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonParams);
+    }
+
+    public void loginUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String usernameOrEmail) throws JSONException{
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("email",jsonParams[0]);
-        jsonObject.put("username",jsonParams[0]);
-        jsonObject.put("password",jsonParams[1]);
-        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,jsonObject.toString());
+        jsonObject.put("email",usernameOrEmail);
+        jsonObject.put("username",usernameOrEmail);
+        appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,true,jsonObject.toString());
     }
 
     public void registerUser(final Object object, final String tagRequest, int verb, String url, String dialogMessage, String [] jsonParams) throws JSONException{
@@ -49,8 +52,6 @@ public class PresenterUser {
         jsonObject.put("email",jsonParams[0]);
         jsonObject.put("country",jsonParams[1]);
         jsonObject.put("password",jsonParams[2]);
-        jsonObject.put("old_password",jsonParams[3]);
-        Log.e(TAG,jsonObject.toString());
         appCommon.getModel().volleyAsynctask(object,tagRequest,verb,url,dialogMessage,false,jsonObject.toString());
     }
 
@@ -85,6 +86,17 @@ public class PresenterUser {
     /*******************/
     /** API RESPONSES **/
     /*******************/
+    public void getOauthTokenResponse(Object object, String result)  {
+        try {
+            JSONObject json = new JSONObject(result);
+            appCommon.getUtils().sharedSetValue(((LoginFragment) object).getContext(), "access_token", json.get("access_token"));
+            LoginFragment loginFragment = (LoginFragment) object;
+            loginFragment.getUser();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void loginUserResponse(Object object, JSONObject user) throws JSONException {
         LoginFragment loginFragment = (LoginFragment) object;
         loginFragment.setUser(user);
@@ -132,13 +144,11 @@ public class PresenterUser {
 
     public void makeFriendsResponse(Object object, JSONArray users) throws JSONException {
         FriendFragment friendFragment = (FriendFragment) object;
-        friendFragment.showToast("Friendship successfully created");
         friendFragment.getFriends();
     }
 
     public void deleteFriendsResponse(Object object, JSONArray users) throws JSONException {
         FriendFragment friendFragment = (FriendFragment) object;
-        friendFragment.showToast("Friendship successfully deleted");
         friendFragment.getFriends();
     }
 

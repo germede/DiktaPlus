@@ -52,7 +52,6 @@ public class TextFragment extends BaseFragment {
     TextSwitcher difficultyLabel;
 
     public TextFragment() {
-        // Required empty public constructor
     }
 
     public Text getSelectedText() {
@@ -85,9 +84,9 @@ public class TextFragment extends BaseFragment {
         textsList.setAdapter(textsListAdapter);
     }
 
-    public void onErrorGetTexts () {
+    public void onErrorGetTexts (String message) {
         textsList.setAdapter((BaseExpandableListAdapter)null);
-        showToast(getString(R.string.no_text_founded));
+        showToast(message);
     }
 
 
@@ -114,7 +113,9 @@ public class TextFragment extends BaseFragment {
                 return myText;
             }
         });
-        selectedDifficulty = 1;
+        if (appCommon.getUtils().sharedGetValue(getActivity(),"selectedDifficulty", 2) != null)
+            selectedDifficulty = (Integer)appCommon.getUtils().sharedGetValue(getActivity(),"selectedDifficulty", 2);
+        else selectedDifficulty = 1;
         updateDifficultyLabel();
 
         // Default language: "English"
@@ -133,7 +134,9 @@ public class TextFragment extends BaseFragment {
         });
         languagesLocales = new Locale[languages.length];
         for (int i = 0; i < languages.length; i++) {languagesLocales[i] = new Locale(languages[i]);}
-        selectedLanguage = 0;
+        if (appCommon.getUtils().sharedGetValue(getActivity(),"selectedLanguage", 2) != null)
+            selectedLanguage = (Integer)appCommon.getUtils().sharedGetValue(getActivity(),"selectedLanguage", 2);
+        else selectedLanguage = 0;
         updateLanguageLabel();
 
         // Switch language and difficulty buttons
@@ -194,10 +197,12 @@ public class TextFragment extends BaseFragment {
 
     private void updateLanguageLabel() {
         languageLabel.setText(toProperCase(languagesLocales[selectedLanguage].getDisplayName()));
+        appCommon.getUtils().sharedSetValue(getActivity(),"selectedLanguage",selectedLanguage);
     }
 
     private void updateDifficultyLabel() {
         difficultyLabel.setText(getResources().getStringArray(R.array.difficulties)[selectedDifficulty]);
+        appCommon.getUtils().sharedSetValue(getActivity(),"selectedDifficulty",selectedDifficulty);
     }
 
     public void getBestScore() throws JSONException {
