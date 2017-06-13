@@ -1,68 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "singularfactory.app"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 25
         multiDexEnabled true    //Enabling multidex support.
         vectorDrawables.useSupportLibrary = true
     }
 
-    productFlavors {
-        _dev {
-            applicationId "singularfactory.app"
-            resValue "string", "app_name", "Diktaplus (dev)"
-            buildConfigField "Boolean", "SHOW_LOGS", 'true'
-            buildConfigField "String", "API_VERSION", '"1.0.0"'
-            buildConfigField "String", "BASE_URL", '"http://"'
-            buildConfigField "String", "CLIENT_ID", '"XXXX"'
-            buildConfigField "String", "CLIENT_SECRET", '"XXXX"'
-            buildConfigField "String", "GCM_SENDER_ID", '"000000000000"'
-            versionCode 1
-            versionName "1.0.0-Dev"
-        }
-        _prod {
-            applicationId "singularfactory.app"
-            resValue "string", "app_name", "Diktaplus"
-            buildConfigField "Boolean", "SHOW_LOGS", 'false'
-            buildConfigField "String", "API_VERSION", '"1.0.0"'
-            buildConfigField "String", "BASE_URL", '"http://"'
-            buildConfigField "String", "CLIENT_ID", '"XXXX"'
-            buildConfigField "String", "CLIENT_SECRET", '"XXXX"'
-            buildConfigField "String", "GCM_SENDER_ID", '"000000000000"'
-            versionCode 1
-            versionName "1.0.0"
-        }
-    }
-
-    signingConfigs {
-//        debug {
-//            storeFile file('sf_keystore_debug.jks')
-//            storePassword 'oopectlest'
-//            keyAlias 'sf_debug'
-//            keyPassword 'oopectlest'
-//        }
-//        release {
-//            storeFile file('sf_keystore_debug.jks')
-//            storePassword 'oopectlest'
-//            keyAlias 'sf_debug'
-//            keyPassword 'oopectlest'
-//        }
-    }
-
     buildTypes {
-        debug {
-//            applicationIdSuffix ".debug"
-            signingConfig signingConfigs.debug
-        }
-
         release {
             minifyEnabled false
-            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -71,14 +23,14 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:support-vector-drawable:25.3.1'
+    compile 'com.android.support:preference-v7:25.3.1'
+    compile 'com.google.code.gson:gson:2.7'
     compile 'com.mcxiaoke.volley:library:1.0.19'
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support:support-vector-drawable:23.4.0'
     compile 'com.juanpabloprado:countrypicker:1.2.0'
-    compile 'com.android.support:preference-v7:23.0.1'
 
     testCompile 'junit:junit:4.12'
 }
