@@ -67,4 +67,6 @@
     <string name="error_info_user">Error obteniendo información de ese usuario</string>
     <string name="error_login">Error al acceder</string>
     <string name="successfully_changed_account">Los detalles de la cuenta se actualizaron correctamente</string>
+    <string name="about">Acerca de</string>
+    <string name="copyright">Desarrollada por Gerardo Medina como proyecto de TFG de la ULPGC en colaboración con la empresa Singular Factory © 2017</string>
 </resources>

@@ -3,6 +3,7 @@ package net.gerardomedina.diktaplus.common;
 import android.support.multidex.MultiDexApplication;
 
 import net.gerardomedina.diktaplus.models.Model;
+import net.gerardomedina.diktaplus.models.OauthModel;
 import net.gerardomedina.diktaplus.models.User;
 import net.gerardomedina.diktaplus.presenters.PresenterGame;
 import net.gerardomedina.diktaplus.presenters.PresenterText;
@@ -29,6 +30,13 @@ public class AppCommon extends MultiDexApplication {
         if (model == null) model = new Model();
         return model;
     }
+
+    private OauthModel oauthMOdel;
+    public OauthModel getOauthModel(){
+        if (oauthMOdel == null) oauthMOdel = new OauthModel();
+        return oauthMOdel;
+    }
+
 
 
     /* PRESENTERS */

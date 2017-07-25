@@ -2,10 +2,6 @@ package net.gerardomedina.diktaplus.presenters;
 
 import android.support.v4.app.Fragment;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import net.gerardomedina.diktaplus.common.AppCommon;
 import net.gerardomedina.diktaplus.views.activities.SplashActivity;
 import net.gerardomedina.diktaplus.views.fragments.BaseFragment;
@@ -14,6 +10,10 @@ import net.gerardomedina.diktaplus.views.fragments.LoginFragment;
 import net.gerardomedina.diktaplus.views.fragments.RankingFragment;
 import net.gerardomedina.diktaplus.views.fragments.SettingsFragment;
 import net.gerardomedina.diktaplus.views.fragments.SignupFragment;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class PresenterUser {
     private static final String TAG = PresenterUser.class.getSimpleName();

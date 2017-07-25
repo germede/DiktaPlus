@@ -14,11 +14,4 @@
             android:key="delete_account"
             android:title="@string/delete_account"/>
     </PreferenceCategory>
-
-    <Preference
-        android:key="copyright"
-        android:selectable="false"
-        android:summary="@string/copyright" />
-
-
 </PreferenceScreen>

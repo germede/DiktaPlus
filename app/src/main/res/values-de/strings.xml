@@ -67,4 +67,6 @@
     <string name="error_text_content">Fehler bei Textinhaltseinholung</string>
     <string name="error_info_user">Fehler bei Infoeinholung vom User</string>
     <string name="successfully_changed_account">Konto wurde erfolgreich geändert</string>
+    <string name="about">Über uns</string>
+    <string name="copyright">Von Gerardo Medina entwickelt. Für eine Bachelorarbeit von der ULPGC und in Zusammenarbeit mit der Firma Singular Factory © 2017</string>
 </resources>

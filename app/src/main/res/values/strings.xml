@@ -20,6 +20,7 @@
     <string name="ranking" translatable="false">Ranking</string>
     <string name="friends">Friends</string>
     <string name="settings">Settings</string>
+    <string name="about">About</string>
     <string name="log_out">Log out</string>
     <string name="username_label">Username: %1$s</string>
     <string name="email_label" translatable="false">Email: %1$s</string>
@@ -67,7 +68,7 @@
     <string name="delete_confirmation">Are you sure you want to delete your account and all its data?</string>
     <string name="game_settings">Game settings</string>
     <string name="successfully_changed_account">Successfully changed your account details</string>
-    <string name="copyright">Copyright © 2016 - Gerardo Medina</string>
+    <string name="copyright">Developed by Gerardo Medina, for a dissertation of the ULPGC and Singular Factory (as partner) © 2017</string>
 
 
     <!-- Toolbar -->

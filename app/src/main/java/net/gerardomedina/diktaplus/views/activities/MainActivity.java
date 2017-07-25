@@ -19,8 +19,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Locale;
-
 import net.gerardomedina.diktaplus.R;
 import net.gerardomedina.diktaplus.common.Utils;
 import net.gerardomedina.diktaplus.views.fragments.FriendFragment;
@@ -28,6 +26,8 @@ import net.gerardomedina.diktaplus.views.fragments.GameFragment;
 import net.gerardomedina.diktaplus.views.fragments.RankingFragment;
 import net.gerardomedina.diktaplus.views.fragments.SettingsFragment;
 import net.gerardomedina.diktaplus.views.fragments.TextFragment;
+
+import java.util.Locale;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,
         PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
@@ -160,6 +160,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 if (chooseCorrectAnimation(3))
                     changeToSettingsFragment(correctAnimIn, correctAnimOut);
                 previousSelectedItem = 3;
+                break;
+            case R.id.nav_about:
+                showSingleAlert(this,getString(R.string.copyright));
                 break;
             case R.id.nav_logout:
                 appCommon.getUtils().sharedRemoveValue(this, "id");
