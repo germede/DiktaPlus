@@ -1,0 +1,53 @@
+home:
+    path:     /
+    defaults: { _controller: DiktaplusBundle:Security:login }
+
+
+#============================== TEXTS MANAGEMENT ============================
+
+texts:
+    path:     /texts/{page}
+    defaults: { _controller: DiktaplusBundle:Texts:texts, page: 1}
+
+texts_add:
+    path:     /texts/add/new
+    defaults: { _controller: DiktaplusBundle:Texts:addText }
+
+texts_edit:
+    path:     /texts/edit/{id}
+    defaults: { _controller: DiktaplusBundle:Texts:editText }
+
+texts_delete:
+    path:     /texts/delete/{id}
+    defaults: { _controller: DiktaplusBundle:Texts:deleteText }
+
+
+#============================== USERS MANAGEMENT ============================
+
+users:
+    path:     /users/{page}
+    defaults: { _controller: DiktaplusBundle:Users:users, page: 1 }
+
+users_add:
+    path:     /users/add/new
+    defaults: { _controller: DiktaplusBundle:Users:addUser }
+
+users_edit:
+    path:     /users/edit/{id}
+    defaults: { _controller: DiktaplusBundle:Users:editUser }
+
+users_delete:
+    path:     /users/delete/{id}
+    defaults: { _controller: DiktaplusBundle:Users:deleteUser }
+
+#============================== SECURITY ============================
+
+login:
+    pattern: /login
+    defaults: { _controller: DiktaplusBundle:Security:login }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout

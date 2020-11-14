@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block toolbar %}
+    <a type="button" href="{{ path('users_add') }}" class="btn btn-success">Add user</a>
+    <ul class="pagination pull-right">
+        {% for i in 1..pagesCount %}
+            <li {% if i == actualPage %} class="active" {% endif %} ><a href="{{ path('texts', {'page': i}) }}">{{ i }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>E-mail</th>
+                <th>Username</th>
+                <th>Country</th>
+                <th>Total score</th>
+                <th>Level</th>
+                <th width="15%">Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.country }}</td>
+                    <td>{{ user.totalScore }}</td>
+                    <td>{{ user.level }}</td>
+                    <td><a href="{{ path('users_edit', { 'id': user.id }) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ path('users_delete', { 'id': user.id }) }}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
